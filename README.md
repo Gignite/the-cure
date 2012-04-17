@@ -1,6 +1,7 @@
 # The Cure
 
 > Each time I play a song it seems more real.
+>
 > *Robert Smith*
 
 ## General flow of using The Cure
@@ -43,7 +44,7 @@ if ($image->create($owner, compact('filename')))
 
 ``` php
 <?php
-$image = $mapper->use('Media')->find('Image', $id);
+$image = $mapper->use('Media')->find('Image', $id); // => Model_Media_Image
 $image->caption('A new caption.');
 
 if ($image->validation()->check())
@@ -53,9 +54,24 @@ if ($image->validation()->check())
 ?>
 ```
 
+### Finding
+
+ - Use Mapper::find_one() to find a single model
+
+The update example includes a ::find_one() call which has two
+arguments. Optionally you can simply pass in an ID like so:
+
+``` php
+<?php
+$mapper->use('Profile')->find($id); // => Model_Profile
+$mapper->use('Profile')->find('Artist', $id); // => Model_Profile_Artist
+?>
+```
+
 ## Notes
 
  - `MapperContainer` is currently locked down to Mongo
-   connections, this doesn't matter to me at the moment.
+   connections, this doesn't matter to me at the moment
  - `Mapper` classes need an IdentityMap to ensure only one
-   object is ever created per document.
+   object is ever created per document
+ - Collections (and Cursors) do not exist yet
