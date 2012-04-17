@@ -6,4 +6,6 @@ interface Mapper {
 
 	public function save($model);
 
+	public function delete($model);
+
 }

@@ -60,14 +60,24 @@ abstract class Mapper_Mongo implements Mapper {
 		$model->__object($object);
 		return $model;
 	}
-	
-	public function save($model)
+
+	protected function is_valid_model(Model $model)
 	{
-		if ( ! $model instanceOf $this->model_class())
+		return $model instanceOf $this->model_class();
+	}
+
+	protected function assert_valid_model(Model $model)
+	{
+		if ( ! $this->is_valid_model($model))
 		{
 			throw new InvalidArgumentException(
 				get_class($model).' should descend from '.$this->model_class());
 		}
+	}
+	
+	public function save($model)
+	{
+		$this->assert_valid_model($model);
 
 		$collection = $this->collection();
 		$object = $model->__object();
@@ -80,6 +90,22 @@ abstract class Mapper_Mongo implements Mapper {
 		{
 			$collection->insert($object);
 		}
+	}
+
+	public function delete($model)
+	{
+		$collection = $this->collection();
+
+		if ($this->is_valid_model($model))
+		{
+			$remove = array('_id' => $model->__object()->_id);
+		}
+		else
+		{
+			$remove = $model;
+		}
+		
+		$collection->remove($remove, $this->container()->query_options());
 	}
 
 }

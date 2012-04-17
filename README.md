@@ -63,6 +63,21 @@ arguments. Optionally you can simply pass in an ID like so:
 
 ``` php
 <?php
+
+// Using a model
+$profile_mapper->delete($profile_mapper->find_one($id));
+
+// Using an ID
+$profile_mapper->delete($id);
+
+// Using a query (unlimited)
+$profile_mapper->delete(array('type' => 'artist'));
+?>
+```
+
+## The relationship between a Model and it's Mappers
+
+This is by convention only and it is completely possible to
 $mapper->use('Profile')->find($id); // => Model_Profile
 $mapper->use('Profile')->find('Artist', $id); // => Model_Profile_Artist
 ?>
