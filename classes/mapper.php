@@ -1,11 +1,81 @@
 <?php
 
-interface Mapper {
+abstract class Mapper {
+
+	protected $container;
+
+	protected $identity;
+
+	public function __construct(MapperContainer $container)
+	{
+		$this->container = $container;
+	}
+
+	protected function identity()
+	{
+		if ($this->identity === NULL)
+		{
+			$this->identity = new IdentityMap($this);
+		}
+
+		return $this->identity;
+	}
+
+	protected function container()
+	{
+		return $this->container;
+	}
+
+	protected function domain_name()
+	{
+		$class = get_class($this);
+		$domain = str_replace('Mapper_', '', $class);
+		$domain = substr($domain, strpos($domain, '_'));
+		return $domain;
+	}
 	
-	public function find_one($suffix, $id = NULL);
+	protected function collection_name()
+	{
+		$collection = strtolower($this->domain_name());
+		return $collection;
+	}
 
-	public function save($model);
+	protected function collection()
+	{
+		return $this->container()->connection()->selectCollection(
+			$this->collection_name());
+	}
 
-	public function delete($model);
+	protected function model_class($suffix = NULL)
+	{
+		$model = "Model_{$this->domain_name()}";
+
+		if ($suffix !== NULL)
+		{
+			$model .= "_{$suffix}";
+		}
+
+		return $model;
+	}
+
+	protected function is_valid_model(Model $model)
+	{
+		return $model instanceOf $this->model_class();
+	}
+
+	protected function assert_valid_model(Model $model)
+	{
+		if ( ! $this->is_valid_model($model))
+		{
+			throw new UnexpectedValueException(
+				get_class($model).' should descend from '.$this->model_class());
+		}
+	}
+	
+	abstract public function find_one($suffix, $id = NULL);
+
+	abstract public function save(Model $model);
+
+	abstract public function delete($model);
 
 }
