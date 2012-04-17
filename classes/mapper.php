@@ -15,7 +15,7 @@ abstract class Mapper {
 	{
 		if ($this->identity === NULL)
 		{
-			$this->identity = new IdentityMap($this);
+			$this->identity = new IdentityMap;
 		}
 
 		return $this->identity;
