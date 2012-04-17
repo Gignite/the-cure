@@ -70,7 +70,7 @@ abstract class Mapper_Mongo implements Mapper {
 	{
 		if ( ! $this->is_valid_model($model))
 		{
-			throw new InvalidArgumentException(
+			throw new UnexpectedValueException(
 				get_class($model).' should descend from '.$this->model_class());
 		}
 	}
