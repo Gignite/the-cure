@@ -146,8 +146,4 @@ $model = $container->use('Profile')->find_one($id);
 
 ## Notes
 
- - `MapperContainer` is currently locked down to Mongo
-   connections, this doesn't matter to me at the moment
- - `Mapper` classes need an IdentityMap to ensure only one
-   object is ever created per document
  - Collections (and Cursors) do not exist yet
