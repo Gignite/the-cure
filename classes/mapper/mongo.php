@@ -2,20 +2,23 @@
 
 abstract class Mapper_Mongo extends Mapper {
 
-	public function find($suffix = NULL, $where = NULL)
+	public function find($suffix = NULL, array $where = NULL)
 	{
 		if ($where === NULL)
 		{
-			if ($suffix === NULL)
+			if ($suffix === NULL OR is_string($suffix))
 			{
 				$where = array();
 			}
-			else
+			elseif (is_array($suffix))
 			{
 				$where = $suffix;
+				$suffix = NULL;
 			}
-			
-			$suffix = NULL;
+			else
+			{
+				throw new InvalidArgumentException;
+			}
 		}
 
 		$cursor = $this->collection()->find($where, $options);
