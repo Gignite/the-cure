@@ -23,22 +23,20 @@ class MapperContainer {
 		return Arr::get($config, $key, $default);
 	}
 
+	protected function type()
+	{
+		return $this->type;
+	}
+
 	public function connection()
 	{
 		if ($this->connection === NULL)
 		{
-			$connection = $this->config('connection', 'mongodb://127.0.0.1');
-			$db = $this->config('db');
-
-			$this->connection = new Mongo("{$connection}/{$db}");
+			$connection_class = "Connection_{$this->type()}";
+			$this->connection = new $connection_class($this->config());
 		}
 
 		return $this->connection;
-	}
-
-	protected function type()
-	{
-		return $this->type;
 	}
 
 	protected function get_mapper_class($mapper)
