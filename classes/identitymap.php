@@ -48,4 +48,10 @@ class IdentityMap {
 		$this->identities[get_class($model).$id] = $model;
 	}
 
+	public function unset(Model $model)
+	{
+		$id = $this->extract_identity($model);
+		unset($this->identities[get_class($model).$id]);
+	}
+
 }
