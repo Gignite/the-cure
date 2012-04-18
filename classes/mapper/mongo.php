@@ -27,7 +27,7 @@ abstract class Mapper_Mongo extends Mapper {
 		});
 	}
 	
-	public function save($model)
+	public function save(Model $model)
 	{
 		$options = $this->query_options();
 
