@@ -60,7 +60,8 @@ abstract class Mapper implements MapperActions {
 
 	protected function is_valid_model(Model $model)
 	{
-		return $model instanceOf $this->model_class();
+		$class = $this->model_class();
+		return $model instanceOf $class;
 	}
 
 	protected function assert_valid_model(Model $model)
