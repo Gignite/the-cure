@@ -46,7 +46,7 @@ class MapperContainer {
 		return $this->connection;
 	}
 
-	protected function identities()
+	public function identities()
 	{
 		if ($this->identities === NULL)
 		{
