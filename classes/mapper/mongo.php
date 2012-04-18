@@ -80,9 +80,18 @@ abstract class Mapper_Mongo extends Mapper {
 	{
 		$collection = $this->collection();
 
-		if ($valid_model = $this->is_valid_model($model))
+		if ($model instanceOf Model)
 		{
 			$remove = array('_id' => $model->__object()->_id);
+		}
+		elseif ($model instanceOf Collection)
+		{
+			foreach ($model as $_id => $_model)
+			{
+				$this->delete($_id);
+			}
+
+			return;
 		}
 		else
 		{
@@ -91,7 +100,7 @@ abstract class Mapper_Mongo extends Mapper {
 		
 		$collection->remove($remove, $this->container()->query_options());
 
-		if ($valid_model AND $this->identities()->has($model))
+		if ($this->identities()->has($model))
 		{
 			$this->identities()->unset($model);
 		}
