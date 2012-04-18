@@ -101,7 +101,7 @@ already in the ecosystem.
 
 ``` php
 <?php
-$collection = $mapper->use('Profile')->find();
+$collection = $mapper->mapper('Profile')->find();
 
 foreach ($collection as $_model)
 {
@@ -155,7 +155,7 @@ the data before and after an operation on your model. By
 convention this would then be called `Mapper_Mock_User`.
 
 This convention explains the API choice of
-`MapperContainer::__construct()`, `MapperContainer::use()`,
+`MapperContainer::__construct()`, `MapperContainer::mapper()`,
 `Mapper::find()` and `Mapper::find_one()`.
 
 ### MapperContainer::__construct($type)
@@ -164,12 +164,12 @@ The argument passed here is added onto the `Mapper_` prefix,
 so for example `new MapperContainer('Mongo')` creates a prefix
 for all mappers called `Mapper_Mongo_`.
 
-### MapperContainer::use($mapper)
+### MapperContainer::mapper($mapper)
 
-The argument passed to ::use() indicates the domain area being
-mapped so for example `$container->use('Profile')` will
-instantiate a single `Mapper_Mongo_Profile` and register it
-with the container so that subsequent calls return the same
+The argument passed to ::mapper() indicates the domain area
+being mapped so for example `$container->mapper('Profile')`
+will instantiate a single `Mapper_Mongo_Profile` and register
+it with the container so that subsequent calls return the same
 instance.
 
 ### Mapper::find($suffix, $id) and ::find_one($suffix, $id)
