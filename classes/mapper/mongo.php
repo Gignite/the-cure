@@ -4,7 +4,7 @@ abstract class Mapper_Mongo extends Mapper {
 
 	protected function query_options()
 	{
-		return $this->container()->query_options();
+		return $this->container()->config('query_options');
 	}
 
 	public function find($suffix = NULL, array $where = array())

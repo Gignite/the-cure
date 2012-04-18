@@ -11,9 +11,19 @@ class MapperContainer {
 		$this->type = $type;
 	}
 
-	protected function config($key, $default = NULL)
+	protected function type()
 	{
-		$config = Kohana::$config->load('mgo.'.Kohana::$environment);
+		return $this->type;
+	}
+
+	public function config($key, $default = NULL)
+	{
+		static $config;
+
+		if ($config === NULL)
+		{
+			$config = Kohana::$config->load("mappers.{$this->type()}");
+		}
 
 		if ($key === NULL)
 		{
@@ -21,11 +31,6 @@ class MapperContainer {
 		}
 
 		return Arr::get($config, $key, $default);
-	}
-
-	protected function type()
-	{
-		return $this->type;
 	}
 
 	public function connection()
