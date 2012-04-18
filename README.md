@@ -57,6 +57,7 @@ if ($image->validation()->check())
 ### Finding
 
  - Use Mapper::find_one() to find a single model
+ - Use Mapper::find() to find a Collection of models
 
 The update example includes a ::find_one() call which has two
 arguments. Optionally you can simply pass in an ID like so:
@@ -65,6 +66,28 @@ arguments. Optionally you can simply pass in an ID like so:
 <?php
 $mapper->use('Profile')->find_one($id); // => Model_Profile
 $mapper->use('Profile')->find_one('Artist', $id); // => Model_Profile_Artist
+?>
+```
+
+`::find()` has a similar API to `::find_one()` the differences
+being all of `::find()`s arguments are optional, and the
+`$where` argument must be an array. If you supply no arguments
+you will get a Collection representing an entire collection,
+table, etc.
+
+``` php
+<?php
+$mapper->use('Profile')->find(); // => Collection_Model of Model_Profile
+
+$mapper->use('Profile')->find('Artist'); // => Collection_Model of Model_Profile_Artist
+
+$mapper->use('Profile')->find(array(
+	'plan' => 'free',
+)); // => Collection_Model of Model_Profile
+
+$mapper->use('Profile')->find('Artist', array(
+	'plan' => 'free',
+)); // => Collection_Model of Model_Profile_Artist
 ?>
 ```
 
@@ -109,8 +132,8 @@ the data before and after an operation on your model. By
 convention this would then be called `Mapper_Mock_User`.
 
 This convention explains the API choice of
-`MapperContainer::__construct()`, `MapperContainer::use()` and
-`Mapper::find_one()`:
+`MapperContainer::__construct()`, `MapperContainer::use()`,
+`Mapper::find()` and `Mapper::find_one()`.
 
 ### MapperContainer::__construct($type)
 
@@ -126,7 +149,7 @@ instantiate a single `Mapper_Mongo_Profile` and register it
 with the container so that subsequent calls return the same
 instance.
 
-### Mapper::find_one($suffix, $id)
+### Mapper::find($suffix, $id) and ::find_one($suffix, $id)
 
 The first argument passed to `::find_one()` is a suffix for
 the model class name which is by default a derivative of the
@@ -143,7 +166,3 @@ $model = $container->use('Profile')->find_one('Artist', $id);
 $model = $container->use('Profile')->find_one($id);
 ?>
 ```
-
-## Notes
-
- - Collections (and Cursors) do not exist yet
