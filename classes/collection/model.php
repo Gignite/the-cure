@@ -38,19 +38,21 @@ class Collection_Model extends Collection_Iterable {
 	public function current()
 	{
 		$object = parent::current();
+		$class = $this->class_name();
 
-		if ($domain = $this->identities()->get($object))
+		if ($model = $this->identities()->get($class, $this->key()))
 		{
-			return $domain;
+			// Done
+		}
+		else
+		{
+			$model = new $class;
+			$model->__object($object);
+
+			$this->identities()->set($model);
 		}
 
-		$class = $this->class_name();
-		$domain = new $class;
-		$domain->__object($object);
-
-		$this->identities()->set($domain);
-
-		return $domain;
+		return $model;
 	}
 
 }
