@@ -12,7 +12,7 @@ abstract class Mapper_Mongo extends Mapper {
 		
 		$class = $this->model_class($suffix);
 
-		if ($model = $this->identity()->get($class, $id))
+		if ($model = $this->identities()->get($class, $id))
 		{
 			// We got it
 		}
@@ -45,9 +45,9 @@ abstract class Mapper_Mongo extends Mapper {
 			$collection->insert($object, $options);
 		}
 
-		if ( ! $this->identity()->has($model))
+		if ( ! $this->identities()->has($model))
 		{
-			$this->identity()->set($model);
+			$this->identities()->set($model);
 		}
 	}
 
@@ -66,9 +66,9 @@ abstract class Mapper_Mongo extends Mapper {
 		
 		$collection->remove($remove, $this->container()->query_options());
 
-		if ($valid_model AND $this->identity()->has($model))
+		if ($valid_model AND $this->identities()->has($model))
 		{
-			$this->identity()->unset($model);
+			$this->identities()->unset($model);
 		}
 	}
 
