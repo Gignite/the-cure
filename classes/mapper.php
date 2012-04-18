@@ -40,12 +40,6 @@ abstract class Mapper implements MapperActions {
 		return $collection;
 	}
 
-	protected function collection()
-	{
-		return $this->container()->connection()->selectCollection(
-			$this->collection_name());
-	}
-
 	protected function model_class($suffix = NULL)
 	{
 		$model = "Model_{$this->domain_name()}";
@@ -92,7 +86,7 @@ abstract class Mapper implements MapperActions {
 			}
 		}
 
-		$cursor = call_user_func($callback, $this->collection(), $where);
+		$cursor = call_user_func($callback, $where);
 		$class = $this->model_class($suffix);
 		return new Collection_Model($cursor, $this->identities(), $class);
 	}
@@ -117,7 +111,7 @@ abstract class Mapper implements MapperActions {
 		}
 		else
 		{
-			$object = call_user_func($callback, $this->collection(), $id);
+			$object = call_user_func($callback, $id);
 
 			$model = new $class;
 			$model->__object($object);
@@ -130,10 +124,9 @@ abstract class Mapper implements MapperActions {
 	{
 		$this->assert_valid_model($model);
 
-		$collection = $this->collection();
 		$object = $model->__object();
 
-		call_user_func($callback, $this->collection(), $object);
+		call_user_func($callback, $object);
 
 		if ( ! $this->identities()->has($model))
 		{
@@ -143,8 +136,6 @@ abstract class Mapper implements MapperActions {
 
 	public function delete_model($model, $callback)
 	{
-		$collection = $this->collection();
-
 		if ($model instanceOf Model)
 		{
 			$remove = array('_id' => $model->__object()->_id);
@@ -163,7 +154,7 @@ abstract class Mapper implements MapperActions {
 			$remove = $model;
 		}
 		
-		call_user_func($callback, $this->collection(), $remove);
+		call_user_func($callback, $remove);
 
 		if ($this->identities()->has($model))
 		{
