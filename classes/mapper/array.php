@@ -65,7 +65,7 @@ abstract class Mapper_Array extends Mapper {
 	{
 		$collection = $this->collection();
 
-		$this->delete_model($model, function ($object) use ($collection)
+		$this->delete_model($model, function ($remove) use (& $collection)
 		{
 			unset($collection[$remove]);
 		});
