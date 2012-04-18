@@ -1,6 +1,6 @@
 <?php
 
-abstract class Mapper {
+abstract class Mapper implements MapperActions {
 
 	protected $container;
 
@@ -71,11 +71,5 @@ abstract class Mapper {
 				get_class($model).' should descend from '.$this->model_class());
 		}
 	}
-	
-	abstract public function find_one($suffix, $id = NULL);
-
-	abstract public function save(Model $model);
-
-	abstract public function delete($model);
 
 }
