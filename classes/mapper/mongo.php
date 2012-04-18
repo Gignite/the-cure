@@ -2,6 +2,28 @@
 
 abstract class Mapper_Mongo extends Mapper {
 
+	public function find($suffix = NULL, $where = NULL)
+	{
+		if ($where === NULL)
+		{
+			if ($suffix === NULL)
+			{
+				$where = array();
+			}
+			else
+			{
+				$where = $suffix;
+			}
+			
+			$suffix = NULL;
+		}
+
+		$cursor = $this->collection()->find($where, $options);
+		$class = $this->model_class($suffix);
+
+		return new Collection_Model($cursor, $this->identities(), $class);
+	}
+
 	public function find_one($suffix, $id = NULL)
 	{
 		if ($id === NULL)
