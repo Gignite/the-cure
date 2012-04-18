@@ -2,108 +2,56 @@
 
 abstract class Mapper_Mongo extends Mapper {
 
-	public function find($suffix = NULL, array $where = NULL)
+	protected function query_options()
 	{
-		if ($where === NULL)
+		return $this->container()->query_options();
+	}
+
+	public function find($suffix = NULL, array $where = array())
+	{
+		$options = $this->query_options();
+
+		return $this->create_collection($suffix, $where, function($collection, $where) use ($options)
 		{
-			if ($suffix === NULL OR is_string($suffix))
-			{
-				$where = array();
-			}
-			elseif (is_array($suffix))
-			{
-				$where = $suffix;
-				$suffix = NULL;
-			}
-			else
-			{
-				throw new InvalidArgumentException;
-			}
-		}
-
-		$cursor = $this->collection()->find($where, $options);
-		$class = $this->model_class($suffix);
-
-		return new Collection_Model($cursor, $this->identities(), $class);
+			return $collection->find($where, $options);
+		});
 	}
 
 	public function find_one($suffix, $id = NULL)
 	{
-		if ($id === NULL)
-		{
-			$id = $suffix;
-			$suffix = NULL;
-		}
-		
-		$class = $this->model_class($suffix);
+		$options = $this->query_options();
 
-		if ($model = $this->identities()->get($class, $id))
+		return $this->create_model($suffix, $id, function ($collection, $id) use ($options)
 		{
-			// We got it
-		}
-		else
-		{
-			$options = $this->container()->query_options();
-			$object = $this->collection()->findOne($id, $options);
-
-			$model = new $class;
-			$model->__object($object);
-		}
-
-		return $model;
+			return $collection->findOne($id, $options);
+		});
 	}
 	
 	public function save($model)
 	{
-		$this->assert_valid_model($model);
+		$options = $this->query_options();
 
-		$collection = $this->collection();
-		$object = $model->__object();
-		$options = $this->container()->query_options();
-
-		if (isset($object->_id))
+		$this->save_model($model, function ($collection, $object) use ($options)
 		{
-			$collection->update(array('_id' => $object->_id), $object, $options);
-		}
-		else
-		{
-			$collection->insert($object, $options);
-		}
-
-		if ( ! $this->identities()->has($model))
-		{
-			$this->identities()->set($model);
-		}
+			if (isset($object->_id))
+			{
+				$collection->update(array('_id' => $object->_id), $object, $options);
+			}
+			else
+			{
+				$collection->insert($object, $options);
+			}
+		});
 	}
 
 	public function delete($model)
 	{
-		$collection = $this->collection();
+		$options = $this->query_options();
 
-		if ($model instanceOf Model)
+		$this->delete_model($model, function ($collection, $object) use ($options)
 		{
-			$remove = array('_id' => $model->__object()->_id);
-		}
-		elseif ($model instanceOf Collection)
-		{
-			foreach ($model as $_id => $_model)
-			{
-				$this->delete($_id);
-			}
-
-			return;
-		}
-		else
-		{
-			$remove = $model;
-		}
-		
-		$collection->remove($remove, $this->container()->query_options());
-
-		if ($this->identities()->has($model))
-		{
-			$this->identities()->unset($model);
-		}
+			$collection->remove($remove, $options);
+		});
 	}
 
 }
