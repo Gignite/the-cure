@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="The Cure" tests="23" assertions="21" failures="0" errors="0" time="0.153742">
+    <testsuite name="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" fullPackage="Beautiful.Beautiful" category="Collection" package="Beautiful" subpackage="Beautiful" tests="8" assertions="8" failures="0" errors="0" time="0.049162">
+      <testcase name="testConstruct" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="15" assertions="0" time="0.008482"/>
+      <testcase name="testCurrent" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="26" assertions="1" time="0.007173"/>
+      <testcase name="testKey" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="35" assertions="1" time="0.005242"/>
+      <testcase name="testNext" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="44" assertions="1" time="0.005333"/>
+      <testcase name="testValid" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="54" assertions="2" time="0.006764"/>
+      <testcase name="testRewind" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="65" assertions="1" time="0.005313"/>
+      <testcase name="testCount" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="75" assertions="1" time="0.005261"/>
+      <testcase name="testAsArray" class="CollectionTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionTest.php" line="84" assertions="1" time="0.005594"/>
+    </testsuite>
+    <testsuite name="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" fullPackage="Beautiful.Beautiful" category="Collection" package="Beautiful" subpackage="Beautiful" tests="9" assertions="9" failures="0" errors="0" time="0.057056">
+      <testcase name="testConstruct" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="16" assertions="0" time="0.007804"/>
+      <testcase name="testCurrent" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="30" assertions="1" time="0.009384"/>
+      <testcase name="testCurrentReturnsSameObject" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="39" assertions="1" time="0.005887"/>
+      <testcase name="testKey" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="35" assertions="1" time="0.005319"/>
+      <testcase name="testNext" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="44" assertions="1" time="0.005364"/>
+      <testcase name="testValid" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="54" assertions="2" time="0.005744"/>
+      <testcase name="testRewind" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="65" assertions="1" time="0.005374"/>
+      <testcase name="testCount" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="75" assertions="1" time="0.005259"/>
+      <testcase name="testAsArray" class="CollectionModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/CollectionModelTest.php" line="84" assertions="1" time="0.006921"/>
+    </testsuite>
+    <testsuite name="IdentityMapTest" file="/srv/git/gignite/modules/vendor/the-cure/test/IdentityMapTest.php" fullPackage="Beautiful.Beautiful" category="IdentityMap" package="Beautiful" subpackage="Beautiful" tests="5" assertions="3" failures="0" errors="0" time="0.042197">
+      <testcase name="testConstruct" class="IdentityMapTest" file="/srv/git/gignite/modules/vendor/the-cure/test/IdentityMapTest.php" line="23" assertions="0" time="0.005152"/>
+      <testcase name="testHasNotDomain" class="IdentityMapTest" file="/srv/git/gignite/modules/vendor/the-cure/test/IdentityMapTest.php" line="31" assertions="1" time="0.005479"/>
+      <testcase name="testSetDomain" class="IdentityMapTest" file="/srv/git/gignite/modules/vendor/the-cure/test/IdentityMapTest.php" line="39" assertions="0" time="0.005314"/>
+      <testcase name="testGetDomain" class="IdentityMapTest" file="/srv/git/gignite/modules/vendor/the-cure/test/IdentityMapTest.php" line="48" assertions="1" time="0.020730"/>
+      <testcase name="testDeleteDomain" class="IdentityMapTest" file="/srv/git/gignite/modules/vendor/the-cure/test/IdentityMapTest.php" line="56" assertions="1" time="0.005522"/>
+    </testsuite>
+    <testsuite name="ModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/ModelTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.005327">
+      <testcase name="testDefaultObjectIsStdClass" class="ModelTest" file="/srv/git/gignite/modules/vendor/the-cure/test/ModelTest.php" line="5" assertions="1" time="0.005327"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
