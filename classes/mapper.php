@@ -166,7 +166,7 @@ abstract class Mapper implements MapperActions {
 
 		if ($this->identities()->has($model))
 		{
-			$this->identities()->unset($model);
+			$this->identities()->delete($model);
 		}
 	}
 

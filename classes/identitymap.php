@@ -17,7 +17,7 @@ class IdentityMap {
 
 	protected $identities = array();
 
-	protected function extract_identity_from_object(StdClass $object)
+	protected function extract_identity_from_object($object)
 	{
 		return (string) $object->_id;
 	}
@@ -34,11 +34,6 @@ class IdentityMap {
 
 	public function get($class, $id)
 	{
-		if ($id instanceOf StdClass)
-		{
-			$id = $this->extract_identity_from_object($id);
-		}
-
 		return Arr::get($this->identities, $class.$id);
 	}
 
@@ -48,7 +43,7 @@ class IdentityMap {
 		$this->identities[get_class($model).$id] = $model;
 	}
 
-	public function unset(Model $model)
+	public function delete(Model $model)
 	{
 		$id = $this->extract_identity($model);
 		unset($this->identities[get_class($model).$id]);
