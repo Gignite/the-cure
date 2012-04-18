@@ -56,14 +56,14 @@ class MapperContainer {
 		return $this->identities;
 	}
 
-	protected function get_mapper_class($mapper)
+	protected function mapper_class($mapper)
 	{
 		return "Mapper_{$this->type()}_{$mapper}";
 	}
 
 	public function mapper($mapper)
 	{
-		$class = $this->get_mapper_class($mapper);
+		$class = $this->mapper_class($mapper);
 
 		if ( ! isset($this->mappers[$class]))
 		{
