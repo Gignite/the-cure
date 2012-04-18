@@ -91,16 +91,39 @@ $mapper->use('Profile')->find('Artist', array(
 ?>
 ```
 
+### Working with collections
+
+A Collection is a container, cursor and iterable that
+represents more than one document, row, etc. It does not
+initialise any models however until that row is iterated over,
+at that point an IdentityMap is used to ensure the model isn't
+already in the ecosystem.
+
+``` php
+<?php
+$collection = $mapper->use('Profile')->find();
+
+foreach ($collection as $_model)
+{
+	echo "{$_model->name()}\n";
+}
+?>
+```
+
 ### Deleting
 
- - Use Mapper::delete() to delete a model or by query.
+ - Use Mapper::delete() to delete a model, collection or by
+   a new query.
 
 ``` php
 <?php
 $profile_mapper = $mapper->use('Profile');
 
-// Using a model
+// Using a Model
 $profile_mapper->delete($profile_mapper->find_one($id));
+
+// Using a Collection
+$profile_mapper->delete($profile_mapper->find());
 
 // Using an ID
 $profile_mapper->delete($id);
