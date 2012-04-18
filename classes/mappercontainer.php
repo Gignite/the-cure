@@ -49,7 +49,7 @@ class MapperContainer {
 		return "Mapper_{$this->type()}_{$mapper}";
 	}
 
-	public function use($mapper)
+	public function mapper($mapper)
 	{
 		$class = $this->get_mapper_class($mapper);
 

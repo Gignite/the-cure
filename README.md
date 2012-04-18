@@ -12,9 +12,9 @@
 
 ``` php
 <?php
-$mapper = new MapperContainer('Mongo');
-$mapper->use('Profile'); // => Mapper_Mongo_Profile
-$mapper->use('Media');   // => Mapper_Mongo_Media
+$container = new MapperContainer('Mongo');
+$container->mapper('Profile'); // => Mapper_Mongo_Profile
+$container->mapper('Media');   // => Mapper_Mongo_Media
 ?>
 ```
 
@@ -30,7 +30,7 @@ $image = new Model_Media_Image;
 
 if ($image->create($owner, compact('filename')))
 {
-	$mapper->use('Media')->save($image);
+	$container->mapper('Media')->save($image);
 }
 ?>
 ```
@@ -44,12 +44,12 @@ if ($image->create($owner, compact('filename')))
 
 ``` php
 <?php
-$image = $mapper->use('Media')->find_one('Image', $id); // => Model_Media_Image
+$image = $container->mapper('Media')->find_one('Image', $id); // => Model_Media_Image
 $image->caption('A new caption.');
 
 if ($image->validation()->check())
 {
-	$mapper->use('Media')->save($image);
+	$container->mapper('Media')->save($image);
 }
 ?>
 ```
@@ -64,8 +64,8 @@ arguments. Optionally you can simply pass in an ID like so:
 
 ``` php
 <?php
-$mapper->use('Profile')->find_one($id); // => Model_Profile
-$mapper->use('Profile')->find_one('Artist', $id); // => Model_Profile_Artist
+$container->mapper('Profile')->find_one($id); // => Model_Profile
+$container->mapper('Profile')->find_one('Artist', $id); // => Model_Profile_Artist
 ?>
 ```
 
@@ -77,15 +77,15 @@ table, etc.
 
 ``` php
 <?php
-$mapper->use('Profile')->find(); // => Collection_Model of Model_Profile
+$container->mapper('Profile')->find(); // => Collection_Model of Model_Profile
 
-$mapper->use('Profile')->find('Artist'); // => Collection_Model of Model_Profile_Artist
+$container->mapper('Profile')->find('Artist'); // => Collection_Model of Model_Profile_Artist
 
-$mapper->use('Profile')->find(array(
+$container->mapper('Profile')->find(array(
 	'plan' => 'free',
 )); // => Collection_Model of Model_Profile
 
-$mapper->use('Profile')->find('Artist', array(
+$container->mapper('Profile')->find('Artist', array(
 	'plan' => 'free',
 )); // => Collection_Model of Model_Profile_Artist
 ?>
@@ -117,7 +117,7 @@ foreach ($collection as $_model)
 
 ``` php
 <?php
-$profile_mapper = $mapper->use('Profile');
+$profile_mapper = $container->mapper('Profile');
 
 // Using a Model
 $profile_mapper->delete($profile_mapper->find_one($id));
@@ -183,9 +183,9 @@ mapper class name. Take this example:
 $container = new MapperContainer('Mongo');
 
 // Using Mapper_Mongo_Profile to find Model_Profile_Artist
-$model = $container->use('Profile')->find_one('Artist', $id);
+$model = $container->mapper('Profile')->find_one('Artist', $id);
 
 // Using Mapper_Mongo_Profile to find Model_Profile
-$model = $container->use('Profile')->find_one($id);
+$model = $container->mapper('Profile')->find_one($id);
 ?>
 ```
