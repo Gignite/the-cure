@@ -4,8 +4,6 @@ abstract class Mapper implements MapperActions {
 
 	protected $container;
 
-	protected $identities;
-
 	public function __construct(MapperContainer $container)
 	{
 		$this->container = $container;
@@ -13,12 +11,7 @@ abstract class Mapper implements MapperActions {
 
 	protected function identities()
 	{
-		if ($this->identities === NULL)
-		{
-			$this->identities = new IdentityMap;
-		}
-
-		return $this->identities;
+		return $this->container()->identities();
 	}
 
 	protected function container()

@@ -4,6 +4,8 @@ class MapperContainer {
 
 	protected $connection;
 
+	protected $identities;
+
 	protected $mappers;
 	
 	public function __constuct($type)
@@ -42,6 +44,16 @@ class MapperContainer {
 		}
 
 		return $this->connection;
+	}
+
+	protected function identities()
+	{
+		if ($this->identities === NULL)
+		{
+			$this->identities = new IdentityMap;
+		}
+
+		return $this->identities;
 	}
 
 	protected function get_mapper_class($mapper)
