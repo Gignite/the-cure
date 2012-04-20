@@ -17,13 +17,13 @@ abstract class Mapper_Array extends Mapper {
 				self::$data[$this->collection_name()] = array();
 			}
 
-			return self::$data;
+			return self::$data[$this->collection_name()];
 		}
 
 		self::$data[$this->collection_name()] = $collection;
 	}
 
-	public function find($suffix = NULL, array $where = array())
+	public function find($suffix = NULL, array $where = NULL)
 	{
 		$collection = $this->collection();
 
@@ -32,20 +32,32 @@ abstract class Mapper_Array extends Mapper {
 			$where,
 			function($where) use ($collection)
 			{
-				return $collection;
+				return new ArrayIterator($collection);
 			});
 	}
 
-	public function find_one($suffix, $id = NULL)
+	public function find_one($suffix = NULL, $where = NULL)
 	{
 		$collection = $this->collection();
 
 		return $this->create_model(
 			$suffix,
-			$id,
-			function ($id) use ($collection)
+			$where,
+			function ($where) use ($collection)
 			{
-				return $collection[$id];
+				if (isset($where['_id']))
+				{
+					return $collection[$where['_id']];
+				}
+				elseif ($where)
+				{
+					// THIS SHOULD DO SOMETHING QUERY-LIKE
+					return current($collection);
+				}
+				else
+				{
+					return current($collection);
+				}
 			});
 	}
 	
@@ -55,6 +67,11 @@ abstract class Mapper_Array extends Mapper {
 
 		$this->save_model($model, function ($object) use (& $collection)
 		{
+			if ( ! isset($object->_id))
+			{
+				$object->_id = count($collection);
+			}
+
 			$collection[$object->_id] = $object;
 		});
 
@@ -65,9 +82,21 @@ abstract class Mapper_Array extends Mapper {
 	{
 		$collection = $this->collection();
 
-		$this->delete_model($model, function ($remove) use (& $collection)
+		$this->delete_model($model, function ($where) use (& $collection)
 		{
-			unset($collection[$remove]);
+			if (isset($where['_id']))
+			{
+				unset($collection[$where['_id']]);
+			}
+			elseif ($where)
+			{
+				// THIS SHOULD DO SOMETHING QUERY-LIKE
+				array_shift($collection);
+			}
+			else
+			{
+				array_shift($collection);
+			}
 		});
 
 		$this->collection($collection);

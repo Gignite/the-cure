@@ -12,36 +12,29 @@
  */
 class MapperArrayTest extends MapperTest {
 
-	protected $table = 'test';
+	protected static $mapper;
 
-	public function testInstance()
+	protected static function mapper()
 	{
-		return new Mapper_Array(
-			array(
-				'table'  => $this->table,
-				'fields' => array('name'),
-			),
-			array(
-				array('id' => 0, 'name' => 'Luke'),
-				array('id' => 1, 'name' => 'Peter'),
-			));
+		if (static::$mapper === NULL)
+		{
+			$mapper = new Mapper_Array_User;
+			$mapper->identities(new IdentityMap);
+			static::$mapper = $mapper;
+		}
+
+		return static::$mapper;
 	}
 
-	public function testInsertNonAuto()
+	protected static function prepareData()
 	{
-		$mapper = new Mapper_Array(
-			array(
-				'table'  => $this->table,
-				'fields' => array('name'),
-				'auto'   => FALSE,
-			));
-
-		$expected = array('name' => 'Luke', 'id' => 0);
-		$id = $mapper->insert(new Object($expected));
-		$rows = $mapper->as_array();
-		$this->assertSame($expected, $rows[$id]);
-
-		return $mapper;
+		$mapper = static::mapper();
+		$mapper::$data = array();
+		$mapper::$data['user'][] = $data = (object) array(
+			'_id'  => 0,
+			'name' => 'Luke',
+		);
+		return $data;
 	}
 
 }

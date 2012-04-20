@@ -13,8 +13,9 @@
 			<file>test/IdentityMapTest.php</file>
 			<file>test/ModelTest.php</file>
 			<file>test/MapperTest.php</file>
-			<!-- <file>test/MapperArrayTest.php</file> -->
+			<file>test/MapperArrayTest.php</file>
 			<file>test/MapperMongoTest.php</file>
+			<file>test/MapperContainerTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>

@@ -16,7 +16,8 @@ abstract class Mapper_Mongo extends Mapper implements MapperConnection {
 
 	protected function collection()
 	{
-		return $this->connection()->get()->selectCollection($this->collection_name());
+		return $this->connection()->get()->selectCollection(
+			$this->collection_name());
 	}
 
 	protected function query_options()
@@ -27,28 +28,26 @@ abstract class Mapper_Mongo extends Mapper implements MapperConnection {
 	public function find($suffix = NULL, array $where = NULL)
 	{
 		$collection = $this->collection();
-		$options = $this->query_options();
 
 		return $this->create_collection(
 			$suffix,
 			$where,
-			function($where) use ($collection, $options)
+			function ($where) use ($collection)
 			{
 				return $collection->find($where);
 			});
 	}
 
-	public function find_one($suffix, $id = NULL)
+	public function find_one($suffix = NULL, $where = NULL)
 	{
 		$collection = $this->collection();
-		$options = $this->query_options();
 
 		return $this->create_model(
 			$suffix,
-			$id,
-			function ($id) use ($collection, $options)
+			$where,
+			function ($where) use ($collection)
 			{
-				return (object) $collection->findOne($id);
+				return (object) $collection->findOne($where);
 			});
 	}
 	
@@ -57,21 +56,26 @@ abstract class Mapper_Mongo extends Mapper implements MapperConnection {
 		$collection = $this->collection();
 		$options = $this->query_options();
 
-		$this->save_model($model, function ($object) use ($collection, $options)
-		{
-			$array = (array) $object;
-
-			if (isset($object->_id))
+		$this->save_model(
+			$model,
+			function ($object) use ($collection, $options)
 			{
-				$collection->update(array('_id' => $object->_id), $array, $options);
-			}
-			else
-			{
-				$collection->insert($array, $options);
-			}
+				$array = (array) $object;
 
-			return (object) $array;
-		});
+				if (isset($object->_id))
+				{
+					$collection->update(
+						array('_id' => $object->_id),
+						$array,
+						$options);
+				}
+				else
+				{
+					$collection->insert($array, $options);
+				}
+
+				return (object) $array;
+			});
 	}
 
 	public function delete($model)
@@ -79,10 +83,12 @@ abstract class Mapper_Mongo extends Mapper implements MapperConnection {
 		$collection = $this->collection();
 		$options = $this->query_options();
 
-		$this->delete_model($model, function ($object) use ($collection, $options)
-		{
-			$collection->remove($remove, $options);
-		});
+		$this->delete_model(
+			$model,
+			function ($where) use ($collection, $options)
+			{
+				$collection->remove($where, $options);
+			});
 	}
 
 }

@@ -8,7 +8,9 @@ class MapperContainer {
 
 	protected $mappers;
 	
-	public function __constuct($type)
+	protected $type;
+	
+	public function __construct($type)
 	{
 		$this->type = $type;
 	}
@@ -63,7 +65,12 @@ class MapperContainer {
 		if ( ! isset($this->mappers[$class]))
 		{
 			$mapper = new $class;
-			$mapper->connection($this->connection());
+
+			if ($mapper instanceOf MapperConnection)
+			{
+				$mapper->connection($this->connection());
+			}
+			
 			$mapper->identities($this->identities());
 			$mapper->config($this->config());
 
