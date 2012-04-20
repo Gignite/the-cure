@@ -2,28 +2,53 @@
 
 abstract class Mapper implements MapperActions {
 
-	protected $container;
+	protected $connection;
 
-	public function __construct(MapperContainer $container)
+	protected $identities;
+
+	protected $config;
+
+	public function connection(Connection $connection = NULL)
 	{
-		$this->container = $container;
+		if ($connection === NULL)
+		{
+			return $this->connection;
+		}
+		
+		$this->connection = $connection;
 	}
 
-	protected function identities()
+	public function identities(IdentityMap $identities = NULL)
 	{
-		return $this->container()->identities();
+		if ($identities === NULL)
+		{
+			return $this->identities;
+		}
+		
+		$this->identities = $identities;
 	}
 
-	protected function container()
+	public function config($config = NULL, $default = NULL)
 	{
-		return $this->container;
+		if ($config === NULL)
+		{
+			return $this->config;
+		}
+		elseif (is_array($config))
+		{
+			$this->config = $config;
+		}
+		else
+		{
+			return Arr::get($this->config, $config, $default);
+		}
 	}
 
 	protected function domain_name()
 	{
 		$class = get_class($this);
 		$domain = str_replace('Mapper_', '', $class);
-		$domain = substr($domain, strpos($domain, '_'));
+		$domain = substr($domain, strpos($domain, '_') + 1);
 		return $domain;
 	}
 	
@@ -60,7 +85,7 @@ abstract class Mapper implements MapperActions {
 		}
 	}
 	
-	protected function create_collection($suffix, array $where, $callback)
+	protected function create_collection($suffix, $where, $callback)
 	{
 		if ($where === NULL)
 		{
@@ -118,8 +143,8 @@ abstract class Mapper implements MapperActions {
 		$this->assert_valid_model($model);
 
 		$object = $model->__object();
-
-		call_user_func($callback, $object);
+		$object = call_user_func($callback, $object);
+		$model->__object($object);
 
 		if ( ! $this->identities()->has($model))
 		{

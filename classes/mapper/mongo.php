@@ -4,16 +4,15 @@ abstract class Mapper_Mongo extends Mapper {
 
 	protected function collection()
 	{
-		return $this->container()->connection()->selectCollection(
-			$this->collection_name());
+		return $this->connection()->get()->selectCollection($this->collection_name());
 	}
 
 	protected function query_options()
 	{
-		return $this->container()->config('query_options');
+		return $this->config('query_options', array());
 	}
 
-	public function find($suffix = NULL, array $where = array())
+	public function find($suffix = NULL, array $where = NULL)
 	{
 		$collection = $this->collection();
 		$options = $this->query_options();
@@ -23,7 +22,7 @@ abstract class Mapper_Mongo extends Mapper {
 			$where,
 			function($where) use ($collection, $options)
 			{
-				return $collection->find($where, $options);
+				return $collection->find($where);
 			});
 	}
 
@@ -37,7 +36,7 @@ abstract class Mapper_Mongo extends Mapper {
 			$id,
 			function ($id) use ($collection, $options)
 			{
-				return $collection->findOne($id, $options);
+				return (object) $collection->findOne($id);
 			});
 	}
 	
@@ -48,14 +47,18 @@ abstract class Mapper_Mongo extends Mapper {
 
 		$this->save_model($model, function ($object) use ($collection, $options)
 		{
+			$array = (array) $object;
+
 			if (isset($object->_id))
 			{
-				$collection->update(array('_id' => $object->_id), $object, $options);
+				$collection->update(array('_id' => $object->_id), $array, $options);
 			}
 			else
 			{
-				$collection->insert($object, $options);
+				$collection->insert($array, $options);
 			}
+
+			return (object) $array;
 		});
 	}
 

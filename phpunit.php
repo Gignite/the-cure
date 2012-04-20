@@ -32,3 +32,4 @@ Kohana::$config->attach(new Config_File);
 Kohana::modules(array('the-cure' => __DIR__.'/'));
 
 class Model_User extends Model {}
+class Mapper_Mongo_User extends Mapper_Mongo {}

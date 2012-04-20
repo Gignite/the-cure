@@ -2,6 +2,6 @@
 
 interface Connection {
 	
-	public function connect();
+	public function get();
 
 }

@@ -18,7 +18,10 @@ class Collection_Model extends Collection_Iterable {
 
 	protected $class_name;
 
-	public function __construct($collection, IdentityMap $identities, $class_name)
+	public function __construct(
+		$collection,
+		IdentityMap $identities,
+		$class_name)
 	{
 		parent::__construct($collection);
 		$this->identities = $identities;
@@ -47,7 +50,7 @@ class Collection_Model extends Collection_Iterable {
 		else
 		{
 			$model = new $class;
-			$model->__object($object);
+			$model->__object((object) $object);
 
 			$this->identities()->set($model);
 		}

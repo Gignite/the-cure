@@ -2,6 +2,8 @@
 
 class Connection_Mongo implements Connection {
 
+	protected $connection;
+
 	public function __construct(array $config)
 	{
 		$this->config = $config;
@@ -17,11 +19,19 @@ class Connection_Mongo implements Connection {
 		return Arr::get($this->config, $key, $default);
 	}
 	
-	public function connect()
+	protected function connect()
 	{
-		$connection = $this->config('connection', 'mongodb://127.0.0.1');
-		$db = $this->config('db');
-		return new Mongo("{$connection}/{$db}");
+		return new Mongo($this->config('connection', 'mongodb://127.0.0.1'));
+	}
+
+	public function get()
+	{
+		if ($this->connection === NULL)
+		{
+			$this->connection = $this->connect();
+		}
+
+		return $this->connection->selectDb($this->config('db'));
 	}
 
 }

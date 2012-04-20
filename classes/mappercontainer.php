@@ -18,7 +18,7 @@ class MapperContainer {
 		return $this->type;
 	}
 
-	public function config($key, $default = NULL)
+	protected function config($key, $default = NULL)
 	{
 		static $config;
 
@@ -35,7 +35,7 @@ class MapperContainer {
 		return Arr::get($config, $key, $default);
 	}
 
-	public function connection()
+	protected function connection()
 	{
 		if ($this->connection === NULL)
 		{
@@ -46,7 +46,7 @@ class MapperContainer {
 		return $this->connection;
 	}
 
-	public function identities()
+	protected function identities()
 	{
 		if ($this->identities === NULL)
 		{
@@ -61,13 +61,18 @@ class MapperContainer {
 		return "Mapper_{$this->type()}_{$mapper}";
 	}
 
-	public function mapper($mapper)
+	public function mapper($class)
 	{
-		$class = $this->mapper_class($mapper);
+		$class = $this->mapper_class($class);
 
 		if ( ! isset($this->mappers[$class]))
 		{
-			$this->mappers[$class] = new $class($this);
+			$mapper = new $class;
+			$mapper->connection($this->connection());
+			$mapper->identities($this->identities());
+			$mapper->config($this->config());
+
+			$this->mappers[$class] = $mapper;
 		}
 
 		return $this->mappers[$class];
