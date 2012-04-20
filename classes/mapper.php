@@ -138,7 +138,7 @@ abstract class Mapper implements MapperActions {
 		return $model;
 	}
 
-	public function save_model(Model $model, $callback)
+	protected function save_model(Model $model, $callback)
 	{
 		$this->assert_valid_model($model);
 
@@ -152,7 +152,7 @@ abstract class Mapper implements MapperActions {
 		}
 	}
 
-	public function delete_model($model, $callback)
+	protected function delete_model($model, $callback)
 	{
 		if ($model instanceOf Model)
 		{
