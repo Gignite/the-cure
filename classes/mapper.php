@@ -28,13 +28,9 @@ abstract class Mapper implements MapperActions {
 		$this->identities = $identities;
 	}
 
-	public function config($config = NULL, $default = NULL)
+	public function config($config, $default = NULL)
 	{
-		if ($config === NULL)
-		{
-			return $this->config;
-		}
-		elseif (is_array($config))
+		if (is_array($config))
 		{
 			$this->config = $config;
 		}
@@ -68,21 +64,6 @@ abstract class Mapper implements MapperActions {
 		}
 
 		return $model;
-	}
-
-	protected function is_valid_model(Model $model)
-	{
-		$class = $this->model_class();
-		return $model instanceOf $class;
-	}
-
-	protected function assert_valid_model(Model $model)
-	{
-		if ( ! $this->is_valid_model($model))
-		{
-			throw new UnexpectedValueException(
-				get_class($model).' should descend from '.$this->model_class());
-		}
 	}
 	
 	protected function create_collection($suffix, $where, $callback)
@@ -140,8 +121,6 @@ abstract class Mapper implements MapperActions {
 
 	protected function save_model(Model $model, $callback)
 	{
-		$this->assert_valid_model($model);
-
 		$object = $model->__object();
 		$object = call_user_func($callback, $object);
 		$model->__object($object);

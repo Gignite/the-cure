@@ -18,7 +18,7 @@ class MapperContainer {
 		return $this->type;
 	}
 
-	protected function config($key, $default = NULL)
+	protected function config()
 	{
 		static $config;
 
@@ -27,12 +27,7 @@ class MapperContainer {
 			$config = Kohana::$config->load("mappers.{$this->type()}");
 		}
 
-		if ($key === NULL)
-		{
-			return $config;
-		}
-
-		return Arr::get($config, $key, $default);
+		return $config;
 	}
 
 	protected function connection()

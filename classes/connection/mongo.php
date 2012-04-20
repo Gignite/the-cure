@@ -11,11 +11,6 @@ class Connection_Mongo implements Connection {
 
 	protected function config($key, $default = NULL)
 	{
-		if ($key === NULL)
-		{
-			return $this->config;
-		}
-
 		return Arr::get($this->config, $key, $default);
 	}
 	
