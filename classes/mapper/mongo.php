@@ -1,6 +1,18 @@
 <?php
 
-abstract class Mapper_Mongo extends Mapper {
+abstract class Mapper_Mongo extends Mapper implements MapperConnection {
+
+	protected $connection;
+
+	public function connection(Connection $connection = NULL)
+	{
+		if ($connection === NULL)
+		{
+			return $this->connection;
+		}
+		
+		$this->connection = $connection;
+	}
 
 	protected function collection()
 	{

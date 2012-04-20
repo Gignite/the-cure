@@ -2,21 +2,9 @@
 
 abstract class Mapper implements MapperActions {
 
-	protected $connection;
-
 	protected $identities;
 
 	protected $config;
-
-	public function connection(Connection $connection = NULL)
-	{
-		if ($connection === NULL)
-		{
-			return $this->connection;
-		}
-		
-		$this->connection = $connection;
-	}
 
 	public function identities(IdentityMap $identities = NULL)
 	{
@@ -94,24 +82,36 @@ abstract class Mapper implements MapperActions {
 	 * [!!] We probably always need to check to see if Model
 	 *      actually exists even if pulled from identities.
 	 */
-	protected function create_model($suffix, $id, $callback)
+	protected function create_model($suffix, $where, $callback)
 	{
-		if ($id === NULL)
+		if ($where === NULL)
 		{
-			$id = $suffix;
-			$suffix = NULL;
+			if ($suffix === NULL OR is_string($suffix))
+			{
+				$where = array();
+			}
+			else
+			{
+				$where = $suffix;
+				$suffix = NULL;
+			}
+		}
+
+		if ( ! is_array($where))
+		{
+			$where = array('_id' => $where);
 		}
 		
 		$class = $this->model_class($suffix);
+		$object = call_user_func($callback, $where);
 
-		if ($model = $this->identities()->get($class, $id))
+		if ( ! isset($object->_id))
 		{
-			// We got it
+			return;
 		}
-		else
-		{
-			$object = call_user_func($callback, $id);
 
+		if ( ! $model = $this->identities()->get($class, $object->_id))
+		{
 			$model = new $class;
 			$model->__object($object);
 		}
