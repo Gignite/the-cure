@@ -1,6 +1,6 @@
 <?php
 
-abstract class Relationship {
+abstract class Relationship extends Field {
 
 	protected $name;
 
