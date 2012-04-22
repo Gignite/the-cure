@@ -11,28 +11,22 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$where = array('name' => 'Luke');
 
 		return array(
-			array(NULL,    NULL),
-			array($id,     NULL),
-			array($suffix, $id),
-			array($where,  NULL),
-			array($suffix, $where),
+			array(NULL,    NULL,   "Model_User"),
+			array($id,     NULL,   "Model_User"),
+			array($suffix, NULL,   "Model_User_{$suffix}"),
+			array($suffix, $id,    "Model_User_{$suffix}"),
+			array($where,  NULL,   "Model_User"),
+			array($suffix, $where, "Model_User_{$suffix}"),
 		);
 	}
 
 	/**
 	 * @dataProvider  providerTestFindOne
 	 */
-	public function testFindOne($suffix, $id)
+	public function testFindOne($suffix, $id, $expectedClass)
 	{
 		$model = static::mapper()->find_one($suffix, $id);
-
-		$classExpected = 'Model_User';
-		if (is_string($suffix))
-		{
-			$classExpected .= "_{$suffix}";
-		}
-
-		$this->assertInstanceOf($classExpected, $model);
+		$this->assertInstanceOf($expectedClass, $model);
 	}
 
 	public function providerTestFind()
