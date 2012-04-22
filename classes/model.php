@@ -2,21 +2,21 @@
 
 abstract class Model {
 
-	protected $object;
+	protected $__object;
 	
 	public function __object($object = NULL)
 	{
 		if ($object === NULL)
 		{
-			if ($this->object === NULL)
+			if ($this->__object === NULL)
 			{
-				$this->object = new StdClass;
+				$this->__object = new StdClass;
 			}
 			
-			return $this->object;
+			return $this->__object;
 		}
 
-		$this->object = $object;
+		$this->__object = $object;
 	}
 
 }
