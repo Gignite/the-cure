@@ -30,27 +30,30 @@ abstract class Model_Magic extends Model {
 		{
 			$value = $object->{$field->name()};
 
-			if ($field instanceOf Field)
-			{
-				return $value;
-			}
-			elseif ($field instanceOf Relationship)
+			if ($field instanceOf Relationship)
 			{
 				return $field->find($this->__container(), $value);
 			}
+			else
+			{
+				return $value;
+			}
 		}
-		elseif (strpos($method, 'add') === 0
-			&& $field = Arr::get($fields, substr($method, 4)))
+		elseif ($field instanceOf Relationship_OneToMany)
 		{
-			return $field->add($this->__container(), $object, $args[0]);
-		}
-		elseif (strpos($method, 'remove') === 0
-			&& $field = Arr::get($fields, substr($method, 7)))
-		{
-			return $field->remove($this->__container(), $object, $args[0]);
+			if (strpos($method, 'add') === 0
+				&& $field = Arr::get($fields, substr($method, 4)))
+			{
+				return $field->add($this->__container(), $object, $args[0]);
+			}
+			elseif (strpos($method, 'remove') === 0
+				&& $field = Arr::get($fields, substr($method, 7)))
+			{
+				return $field->remove($this->__container(), $object, $args[0]);
+			}
 		}
 
-		throw new BadMethodName;
+		throw new BadMethodCallException;
 	}
 
 }
