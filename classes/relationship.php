@@ -42,6 +42,10 @@ abstract class Relationship extends Field {
 	{
 		return $this->mapper_class;
 	}
+
+	protected function mapper(MapperContainer $container)
+	{
+		return $container->mapper($this->mapper_class());
 	}
 
 	abstract public function find(MapperContainer $container, $value);
