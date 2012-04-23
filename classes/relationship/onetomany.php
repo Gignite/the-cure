@@ -2,14 +2,9 @@
 
 class Relationship_OneToMany extends Relationship {
 
-	protected function mapper(MapperContainer $container)
-	{
-		return $container->mapper($this->mapper());
-	}
-
 	public function find(MapperContainer $container, $ids)
 	{
-		$this->mapper($container)->find($this->model(), array(
+		$this->mapper($container)->find($this->model_suffix(), array(
 			'_id' => array('$in' => $ids),
 		));
 	}

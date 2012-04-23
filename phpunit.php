@@ -34,6 +34,21 @@ Kohana::modules(array('the-cure' => __DIR__.'/'));
 class Model_User extends Model {}
 class Model_User_Admin extends Model_User {}
 
+class Model_User_Magic extends Model_Magic {
+
+	public static function fields()
+	{
+		return parent::fields() + array(
+			'name'    => new Field('name'),
+			'friends' => new Relationship_OneToMany('friends', array(
+				'mapper_class' => 'User',
+				'model_suffix' => 'User_Magic',
+			)),
+		);
+	}
+
+}
+
 class Mapper_Mongo_User extends Mapper_Mongo {}
 class Mapper_Array_User extends Mapper_Array {}
 

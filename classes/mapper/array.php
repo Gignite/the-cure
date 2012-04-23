@@ -23,6 +23,25 @@ abstract class Mapper_Array extends Mapper {
 		self::$data[$this->collection_name()] = $collection;
 	}
 
+	public static function each_where($collection, $where, $callback)
+	{
+		foreach ($collection as $_key => $_row)
+		{
+			foreach ($where as $_field => $_value)
+			{
+				if (empty($_row->{$_field}) OR $_row->{$_field} !== $_value)
+				{
+					continue 2;	
+				}
+			}
+
+			if (call_user_func($callback, $_key) === FALSE)
+			{
+				break;
+			}
+		}
+	}
+
 	public function find($suffix = NULL, array $where = NULL)
 	{
 		$collection = $this->collection();
@@ -32,7 +51,15 @@ abstract class Mapper_Array extends Mapper {
 			$where,
 			function($where) use ($collection)
 			{
-				return new ArrayIterator($collection);
+				$found = array();
+				Mapper_Array::each_where(
+					$collection,
+					$where,
+					function ($record) use ($collection, & $found)
+					{
+						$found[] = $collection[$record];
+					});
+				return new ArrayIterator($found);
 			});
 	}
 
@@ -51,8 +78,16 @@ abstract class Mapper_Array extends Mapper {
 				}
 				elseif ($where)
 				{
-					// THIS SHOULD DO SOMETHING QUERY-LIKE
-					return current($collection);
+					$found = NULL;
+					Mapper_Array::each_where(
+						$collection,
+						$where,
+						function ($record) use ($collection, & $found)
+						{
+							$found = $collection[$record];
+							return FALSE;
+						});
+					return $found;
 				}
 				else
 				{
