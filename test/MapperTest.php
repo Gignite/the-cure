@@ -54,7 +54,12 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		}
 
 		$collection = static::mapper()->find($suffix, $id);
-		$this->assertTrue(static::mapper()->find()->count() > 0);
+		$this->assertTrue($collection->count() > 0);
+	}
+
+	public function testFindNone()
+	{
+		$this->assertSame(0, static::mapper()->find(array('foo' => 'bar'))->count());
 	}
 
 	public function providerTestSave()
