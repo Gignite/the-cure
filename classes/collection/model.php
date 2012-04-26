@@ -40,7 +40,11 @@ class Collection_Model extends Collection_Iterable {
 
 	public function current()
 	{
-		$object = parent::current();
+		if ( ! $object = parent::current())
+		{
+			return;
+		}
+		
 		$class = $this->class_name();
 
 		if ($model = $this->identities()->get($class, $this->key()))
