@@ -29,6 +29,11 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf($expectedClass, $model);
 	}
 
+	public function testFindOneNone()
+	{
+		$this->assertNull(static::mapper()->find_one(array('foo' => 'bar')));
+	}
+
 	public function providerTestFind()
 	{
 		$suffix = 'Admin';
@@ -59,7 +64,9 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 
 	public function testFindNone()
 	{
-		$this->assertSame(0, static::mapper()->find(array('foo' => 'bar'))->count());
+		$collection = static::mapper()->find(array('foo' => 'bar'));
+		$this->assertSame(0, $collection->count());
+		$this->assertNull($collection->current());
 	}
 
 	public function providerTestSave()
@@ -93,18 +100,9 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame($model, $mapper->find_one());
 	}
 
-	// public function providerTestDelete()
-	// {
-	// 	return array(
-	// 		array(),
-	// 		array(static::mapper()->find()),
-	// 		array(static::mapper()->find_one()->__object()->_id),
-	// 		array(array('name' => 'Luke')),
-	// 	);
-	// }
-
 	public function testDeleteWithModel()
 	{
+		// PREP
 		$mapper = static::mapper();
 		$expectedCount = $mapper->find()->count();
 
@@ -113,9 +111,68 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 
 		$mapper->save($model);
 		$this->assertSame($expectedCount + 1, $mapper->find()->count());
+		// END PREP
 
 		$mapper->delete($model);
 		$this->assertSame($expectedCount, $mapper->find()->count());
+	}
+
+	public function testDeleteWithCollection()
+	{
+		// PREP
+		$mapper = static::mapper();
+
+		$query = array('name' => 'Bob');
+		$bobObject = function ()
+		{
+			return (object) array('name' => 'Bob');
+		};
+
+		$expectedCount = $mapper->find($query)->count();
+
+		// Create two users
+		$model = new Model_User;
+		$model->__object($bobObject());
+		$mapper->save($model);
+		
+		$model = new Model_User;
+		$model->__object($bobObject());
+		$mapper->save($model);
+
+		$this->assertSame(2, $mapper->find($query)->count());
+		// END PREP
+
+		$mapper->delete($mapper->find($query));
+		$this->assertSame(0, $mapper->find($query)->count());
+	}
+
+	public function testDeleteWithQuery()
+	{
+		// PREP
+		$mapper = static::mapper();
+
+		$query = array('name' => 'Jim');
+		$bobObject = function ()
+		{
+			return (object) array('name' => 'Jim');
+		};
+
+		$expectedCount = $mapper->find($query)->count();
+
+		// Create two users
+		$model = new Model_User;
+		$model->__object($bobObject());
+		$mapper->save($model);
+		
+		$model = new Model_User;
+		$model->__object($bobObject());
+		$mapper->save($model);
+
+		$this->assertSame(2, $mapper->find($query)->count());
+		// END PREP
+
+		$mapper->delete($query);
+		$this->assertSame(0, $mapper->find($query)->count());
 	}
 
 }

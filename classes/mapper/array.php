@@ -2,7 +2,7 @@
 
 abstract class Mapper_Array extends Mapper {
 
-	public static $data = array();
+	public $data = array();
 
 	/**
 	 * [!!] Using self::$data so that all mapper data is
@@ -12,15 +12,10 @@ abstract class Mapper_Array extends Mapper {
 	{
 		if ($collection === NULL)
 		{
-			if ( ! isset(self::$data[$this->collection_name()]))
-			{
-				self::$data[$this->collection_name()] = array();
-			}
-
-			return self::$data[$this->collection_name()];
+			return $this->data;
 		}
 
-		self::$data[$this->collection_name()] = $collection;
+		$this->data = $collection;
 	}
 
 	public static function each_where($collection, $where, $callback)
@@ -29,9 +24,15 @@ abstract class Mapper_Array extends Mapper {
 		{
 			foreach ($where as $_field => $_value)
 			{
-				if (empty($_row->{$_field}) OR $_row->{$_field} !== $_value)
+				if (is_array($_value)
+					AND isset($_value['$in'])
+					AND in_array($_row->{$_field}, $_value['$in']))
 				{
-					continue 2;	
+					// This is okay
+				}
+				elseif (empty($_row->{$_field}) OR $_row->{$_field} !== $_value)
+				{
+					continue 2;
 				}
 			}
 
@@ -52,13 +53,15 @@ abstract class Mapper_Array extends Mapper {
 			function($where) use ($collection)
 			{
 				$found = array();
+
 				Mapper_Array::each_where(
 					$collection,
 					$where,
 					function ($record) use ($collection, & $found)
 					{
-						$found[] = $collection[$record];
+						$found[$record] = $collection[$record];
 					});
+
 				return new ArrayIterator($found);
 			});
 	}
@@ -123,14 +126,9 @@ abstract class Mapper_Array extends Mapper {
 			{
 				unset($collection[$where['_id']]);
 			}
-			elseif ($where)
-			{
-				// THIS SHOULD DO SOMETHING QUERY-LIKE
-				array_shift($collection);
-			}
 			else
 			{
-				array_shift($collection);
+				throw new Exception('Not implemented');
 			}
 		});
 

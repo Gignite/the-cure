@@ -29,8 +29,7 @@ class MapperArrayTest extends MapperTest {
 	protected static function prepareData()
 	{
 		$mapper = static::mapper();
-		$mapper::$data = array();
-		$mapper::$data['user'][] = $data = (object) array(
+		$mapper->data[] = $data = (object) array(
 			'_id'  => 0,
 			'name' => 'Luke',
 		);

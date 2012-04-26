@@ -135,20 +135,21 @@ abstract class Mapper implements MapperActions {
 	{
 		if ($model instanceOf Model)
 		{
-			$remove = array('_id' => $model->__object()->_id);
+			$id = $model->__object()->_id;
+			$remove = array('_id' => $id);
 		}
 		elseif ($model instanceOf Collection)
 		{
-			foreach ($model as $_id => $_model)
+			foreach ($model as $_model)
 			{
-				$this->delete($_id);
+				$this->delete_model($_model, $callback);
 			}
-
 			return;
 		}
 		else
 		{
-			$remove = $model;
+			$this->delete_model($this->find($model), $callback);
+			return;
 		}
 		
 		call_user_func($callback, $remove);
