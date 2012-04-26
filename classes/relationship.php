@@ -4,7 +4,7 @@ abstract class Relationship extends Field {
 
 	protected $name;
 
-	protected $mapper_class;
+	protected $mapper_suffix;
 
 	protected $model_suffix;
 
@@ -14,7 +14,7 @@ abstract class Relationship extends Field {
 	 */
 	public function __construct($name, array $config = NULL)
 	{
-		$this->name   = $name;
+		$this->name = $name;
 
 		if ($config)
 		{
@@ -38,14 +38,14 @@ abstract class Relationship extends Field {
 		return $this->model_suffix;
 	}
 
-	protected function mapper_class()
+	protected function mapper_suffix()
 	{
-		return $this->mapper_class;
+		return $this->mapper_suffix;
 	}
 
 	protected function mapper(MapperContainer $container)
 	{
-		return $container->mapper($this->mapper_class());
+		return $container->mapper($this->mapper_suffix());
 	}
 
 	abstract public function find(MapperContainer $container, $value);
