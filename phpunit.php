@@ -34,6 +34,71 @@ Kohana::modules(array('the-cure' => __DIR__.'/'));
 class Model_User extends Model {}
 class Model_User_Admin extends Model_User {}
 
+class Model_User_Magic extends Model_Magic {
+
+	public static function fields()
+	{
+		return parent::fields() + array(
+			'name'    => new Field('name'),
+			'friends' => new Relationship_OneToMany('friends', array(
+				'mapper_suffix' => 'User',
+				'model_suffix'  => 'Magic',
+			)),
+		);
+	}
+
+}
+
+class Model_User_MockableRelation extends Model_Magic {
+
+	public static $relation;
+
+	public static function fields()
+	{
+		return parent::fields() + array(
+			'relation' => call_user_func(static::$relation),
+		);
+	}
+
+	public function __container(MapperContainer $container = NULL)
+	{
+		if ($this->__container === NULL)
+		{
+			parent::__container(new MapperContainer('Array'));
+		}
+
+		return parent::__container();
+	}
+
+}
+
+class Relationship_Mock extends Relationship
+	implements Relationship_AddRemove {
+
+	protected $method_called;
+
+	public function method_called()
+	{
+		return $this->method_called;
+	}
+
+	public function find(MapperContainer $container, $value)
+	{
+		$this->method_called = 'find';
+	}
+
+	public function add(MapperContainer $container, $object, $relation)
+	{
+		$this->method_called = 'add';
+	}
+
+	public function remove(MapperContainer $container, $object, $relation)
+	{
+		$this->method_called = 'remove';
+	}
+
+}
+
 class Mapper_Mongo_User extends Mapper_Mongo {}
 class Mapper_Array_User extends Mapper_Array {}
 
