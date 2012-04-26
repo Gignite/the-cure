@@ -27,6 +27,25 @@ class IdentityMap {
 		return $this->extract_identity_from_object($model->__object());
 	}
 
+	protected function key($model, $id = NULL)
+	{
+		if ($model instanceOf Model)
+		{
+			$class = get_class($model);
+		}
+		else
+		{
+			$class = $model;
+		}
+
+		if ($id === NULL)
+		{
+			$id = $this->extract_identity($model);
+		}
+		
+		return $class.$id;
+	}
+
 	public function has(Model $model)
 	{
 		return in_array($model, $this->identities);
@@ -34,19 +53,17 @@ class IdentityMap {
 
 	public function get($class, $id)
 	{
-		return Arr::get($this->identities, $class.$id);
+		return Arr::get($this->identities, $this->key($class, $id));
 	}
 
 	public function set(Model $model)
 	{
-		$id = $this->extract_identity($model);
-		$this->identities[get_class($model).$id] = $model;
+		$this->identities[$this->key($model)] = $model;
 	}
 
 	public function delete(Model $model)
 	{
-		$id = $this->extract_identity($model);
-		unset($this->identities[get_class($model).$id]);
+		unset($this->identities[$this->key($model)]);
 	}
 
 }
