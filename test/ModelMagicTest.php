@@ -57,27 +57,6 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame($expectedName, $model->name());
 	}
 
-	// public function providerTestMagicCallRelationshipFind()
-	// {
-	// 	ob_start();
-	// 	$luke = $this->user('Luke');
-	// 	$jim = $this->user('Jim');
-	// 	ob_clean();
-
-	// 	return array(
-	// 		array($luke, $jim),
-	// 	);
-	// }
-
-	// /**
-	//  * @dataProvider  providerTestMagicCallRelationshipFind
-	//  */
-	// public function testMagicCallRelationshipFind($model, $expectedRelation)
-	// {
-	// 	$this->assertTrue($model->friends()->count() > 0);
-	// 	$this->assertSame($expectedRelation, $model->friends()->current());
-	// }
-
 	public function providerModelWithMockableRelation()
 	{
 		$args = array(new Model_User);
