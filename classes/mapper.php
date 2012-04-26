@@ -73,11 +73,7 @@ abstract class Mapper implements MapperActions {
 			}
 		}
 
-		if ( ! $cursor = call_user_func($callback, $where))
-		{
-			$cursor = new ArrayIterator(array());
-		}
-
+		$cursor = call_user_func($callback, $where);
 		$class = $this->model_class($suffix);
 		return new Collection_Model($cursor, $this->identities(), $class);
 	}
