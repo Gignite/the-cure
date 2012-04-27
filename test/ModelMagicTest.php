@@ -105,5 +105,14 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame($expected, $mock->method_called());
 	}
 
+	/**
+	 * @expectedException  BadMethodCallException
+	 */
+	public function testItShouldThrowBadMethodCallException()
+	{
+		$model = new Model_User_Magic;
+		$model->unknown();
+	}
+
 }
 
