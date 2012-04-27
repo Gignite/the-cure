@@ -15,7 +15,7 @@
  */
 define('EXT', '.php');
 define('APPPATH', __DIR__.'/test/');
-define('SYSPATH', __DIR__.'/../../../system/');
+define('SYSPATH', APPPATH.'/system/');
 
 error_reporting(E_ALL | E_STRICT);
 
