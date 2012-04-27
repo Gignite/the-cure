@@ -18,9 +18,9 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 
 	public function testItShouldFindACollectionOfRelatedModels()
 	{
-		$collection = $this->relationship()->find(
-			$this->container(),
-			array(0, 1));
+		$container = $this->container();
+		$container->mapper('User')->save(new Model_User_Admin);
+		$collection = $this->relationship()->find($container, array(0, 1));
 		$this->assertInstanceOf('Collection', $collection);
 	}
 
