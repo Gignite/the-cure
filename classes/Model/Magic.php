@@ -40,6 +40,17 @@ abstract class Model_Magic extends Model {
 			return $field;
 		}
 	}
+
+	private function set_relation($fields, $method, array $args)
+	{
+		if ($field = Arr::get($fields, $method)
+			AND $field instanceOf Relationship_Set
+			AND $args)
+		{
+			return $field;
+		}
+	}
+
 	public function __call($method, $args)
 	{
 		$fields = static::fields();
@@ -52,6 +63,10 @@ abstract class Model_Magic extends Model {
 		elseif ($field = $this->remove_relation($fields, $method))
 		{
 			$field->remove($this->__container(), $object, $args[0]);
+		}
+		elseif ($field = $this->set_relation($fields, $method, $args))
+		{
+			$field->set($this->__container(), $object, $args[0]);
 		}
 		elseif ($field = Arr::get($fields, $method))
 		{

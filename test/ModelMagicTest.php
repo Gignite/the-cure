@@ -80,6 +80,12 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 				'remove',
 				$args,
 			),
+			array(
+				new Model_User_MockableRelation,
+				'relation',
+				'set',
+				$args,
+			),
 		);
 	}
 
@@ -96,7 +102,6 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 		};
 
 		call_user_func_array(array($model, $method), $args);
-		$fields = $model::fields();
 		$this->assertSame($expected, $mock->method_called());
 	}
 
