@@ -50,7 +50,7 @@ class Relationship_OneToMany
 			throw new RelationNotFoundException;
 		}
 
-		throw new RelationArrayNotFoundException;
+		throw new RelationFieldNotFoundException;
 	}
 
 }

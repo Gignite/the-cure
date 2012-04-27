@@ -72,7 +72,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  RelationArrayNotFoundException
+	 * @expectedException  RelationFieldNotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelationArrayNotExists()
 	{
