@@ -71,5 +71,34 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame(0, count($modelObject->{$relationship->name()}));
 	}
 
+	/**
+	 * @expectedException  RelationArrayNotFoundException
+	 */
+	public function testItShouldThrowExceptionWhenRelationArrayNotExists()
+	{
+		$this->relationship()->remove(
+			$this->container(),
+			new Model_User_Admin,
+			new Model_User_Admin);
+	}
+
+	/**
+	 * @expectedException  RelationNotFoundException
+	 */
+	public function testItShouldThrowExceptionWhenRelatedObjectIDNotInArray()
+	{
+		$relationship = $this->relationship();
+
+		$model = new Model_User_Admin;
+		$model->__object((object) array(
+			$relationship->name() => array(),
+		));
+		
+		$relationship->remove(
+			$this->container(),
+			$model,
+			new Model_User_Admin);
+	}
+
 }
 

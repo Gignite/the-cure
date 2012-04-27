@@ -33,16 +33,24 @@ class Relationship_OneToMany
 	public function remove(MapperContainer $container, $model, $relation)
 	{
 		$model_object = $model->__object();
-		$ids = $model_object->{$this->name()};
-		
-		foreach ($ids as $_k => $_id)
+
+		if (isset($model_object->{$this->name()}))
 		{
-			if ($_id == $relation->__object()->_id)
+			$ids = $model_object->{$this->name()};
+		
+			foreach ($ids as $_k => $_id)
 			{
-				unset($model_object->{$this->name()}[$_k]);
-				return;
+				if ($_id == $relation->__object()->_id)
+				{
+					unset($model_object->{$this->name()}[$_k]);
+					return;
+				}
 			}
+			
+			throw new RelationNotFoundException;
 		}
+
+		throw new RelationArrayNotFoundException;
 	}
 
 }
