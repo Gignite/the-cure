@@ -122,14 +122,7 @@ abstract class Mapper_Array extends Mapper {
 
 		$this->delete_model($model, function ($where) use (& $collection)
 		{
-			if (isset($where['_id']))
-			{
-				unset($collection[$where['_id']]);
-			}
-			else
-			{
-				throw new Exception('Not implemented');
-			}
+			unset($collection[$where['_id']]);
 		});
 
 		$this->collection($collection);
