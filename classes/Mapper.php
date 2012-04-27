@@ -22,7 +22,7 @@ abstract class Mapper implements MapperActions {
 		{
 			$this->config = $config;
 		}
-		else
+		elseif ($this->config)
 		{
 			return Arr::get($this->config, $config, $default);
 		}

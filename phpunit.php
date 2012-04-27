@@ -19,8 +19,8 @@ define('SYSPATH', APPPATH.'/system/');
 
 error_reporting(E_ALL | E_STRICT);
 
-require SYSPATH.'classes/kohana/core.php';
-require SYSPATH.'classes/kohana.php';
+require SYSPATH.'classes/Kohana/Core.php';
+require SYSPATH.'classes/Kohana.php';
 
 spl_autoload_register(array('Kohana', 'auto_load'));
 
