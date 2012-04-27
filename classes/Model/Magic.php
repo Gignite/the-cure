@@ -37,7 +37,7 @@ abstract class Model_Magic extends Model {
 			{
 				return $field->add($this->__container(), $object, $args[0]);
 			}
-			elseif ($remove)
+			else // if ($remove)
 			{
 				return $field->remove($this->__container(), $object, $args[0]);
 			}
