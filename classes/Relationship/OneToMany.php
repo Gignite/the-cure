@@ -10,7 +10,7 @@ class Relationship_OneToMany
 		));
 	}
 
-	public function add(MapperContainer $container, $object, $relation)
+	public function add(MapperContainer $container, $model, $relation)
 	{
 		$relation_object = $relation->__object();
 
@@ -20,18 +20,26 @@ class Relationship_OneToMany
 			$this->mapper($container)->save($relation);
 		}
 
-		$object->__object()->{$this->name()}[] = $model->__object()->_id;
+		$object = $model->__object();
+
+		if ( ! isset($object->{$this->name()}))
+		{
+			$object->{$this->name()} = array();
+		}
+
+		$object->{$this->name()}[] = $relation->__object()->_id;
 	}
 
-	public function remove(MapperContainer $container, $object, $relation)
+	public function remove(MapperContainer $container, $model, $relation)
 	{
-		$ids = $object->__object()->{$this->name()};
+		$model_object = $model->__object();
+		$ids = $model_object->{$this->name()};
 		
 		foreach ($ids as $_k => $_id)
 		{
-			if ($ids == $model->__object()->_id)
+			if ($_id == $relation->__object()->_id)
 			{
-				unset($object->__object()->{$this->name()}[$_k]);
+				unset($model_object->{$this->name()}[$_k]);
 				return;
 			}
 		}

@@ -17,6 +17,7 @@
 			<file>test/MapperContainerTest.php</file>
 			<file>test/ModelTest.php</file>
 			<file>test/ModelMagicTest.php</file>
+			<file>test/RelationshipOneToManyTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
