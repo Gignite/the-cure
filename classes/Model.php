@@ -19,7 +19,7 @@
  *
  * @package     TheCure
  * @category    Model
- * @copyright   Gignite, 2011
+ * @copyright   Gignite, 2012
  */
 abstract class Model {
 

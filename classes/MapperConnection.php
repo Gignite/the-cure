@@ -4,7 +4,7 @@
  *
  * @package     TheCure
  * @category    Mapper
- * @copyright   Gignite, 2011
+ * @copyright   Gignite, 2012
  */
 interface MapperConnection {
 	

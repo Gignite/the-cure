@@ -11,9 +11,11 @@
  *
  * @package     TheCure
  * @category    Container
- * @copyright   Gignite, 2011
+ * @copyright   Gignite, 2012
  */
 class MapperContainer {
+
+	protected $config;
 
 	protected $connection;
 
@@ -46,16 +48,21 @@ class MapperContainer {
 		return $this->type;
 	}
 
-	protected function config()
+	public function config(array $config = NULL)
 	{
-		static $config;
-
 		if ($config === NULL)
 		{
-			$config = Kohana::$config->load("mappers.{$this->type()}");
+			if ($this->config === NULL
+				AND class_exists('Kohana')
+				AND isset(Kohana::$config))
+			{
+				$config = Kohana::$config->load("mappers.{$this->type()}");
+			}
+
+			return $this->config;
 		}
 
-		return $config;
+		$this->config = $config;
 	}
 
 	protected function connection()
