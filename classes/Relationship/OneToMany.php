@@ -1,7 +1,8 @@
 <?php
 
 class Relationship_OneToMany
-	extends Relationship implements Relationship_AddRemove {
+	extends Relationship
+		implements Relationship_Add, Relationship_Remove {
 
 	public function find(MapperContainer $container, $ids)
 	{

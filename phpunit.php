@@ -73,7 +73,7 @@ class Model_User_MockableRelation extends Model_Magic {
 }
 
 class Relationship_Mock extends Relationship
-	implements Relationship_AddRemove {
+	implements Relationship_Add, Relationship_Remove {
 
 	protected $method_called;
 

@@ -21,28 +21,39 @@ abstract class Model_Magic extends Model {
 		$this->__container = $container;
 	}
 
+	private function add_relation($fields, $method)
+	{
+		if (strpos($method, 'add') === 0
+			AND $field = Arr::get($fields, substr($method, 4))
+			AND $field instanceOf Relationship_Add)
+		{
+			return $field;
+		}
+	}
+
+	private function remove_relation($fields, $method)
+	{
+		if (strpos($method, 'remove') === 0
+			AND $field = Arr::get($fields, substr($method, 7))
+			AND $field instanceOf Relationship_Remove)
+		{
+			return $field;
+		}
+	}
 	public function __call($method, $args)
 	{
 		$fields = static::fields();
 		$object = $this->__object();
-		$field = Arr::get($fields, $method);
-
-		if ((($add = (strpos($method, 'add') === 0)
-				AND $field = Arr::get($fields, substr($method, 4)))
-			OR ($remove = (strpos($method, 'remove') === 0)
-				AND $field = Arr::get($fields, substr($method, 7))))
-			AND $field instanceOf Relationship_AddRemove)
+		
+		if ($field = $this->add_relation($fields, $method))
 		{
-			if ($add)
-			{
-				return $field->add($this->__container(), $object, $args[0]);
-			}
-			else // if ($remove)
-			{
-				return $field->remove($this->__container(), $object, $args[0]);
-			}
+			$field->add($this->__container(), $object, $args[0]);
 		}
-		else
+		elseif ($field = $this->remove_relation($fields, $method))
+		{
+			$field->remove($this->__container(), $object, $args[0]);
+		}
+		elseif ($field = Arr::get($fields, $method))
 		{
 			if (isset($object->{$field->name()}))
 			{
@@ -62,8 +73,10 @@ abstract class Model_Magic extends Model {
 				return $value;
 			}
 		}
-
-		throw new BadMethodCallException;
+		else
+		{
+			throw new BadMethodCallException;
+		}
 	}
 
 }
