@@ -61,7 +61,7 @@ abstract class Mapper_Array extends Mapper {
 					{
 						$found[$record] = $collection[$record];
 					});
-
+				
 				return new ArrayIterator($found);
 			});
 	}
