@@ -57,36 +57,6 @@ abstract class Magic extends Model {
 		}
 	}
 
-	// private function add_relation($fields, $method)
-	// {
-	// 	if (strpos($method, 'add') === 0
-	// 		AND $field = Arr::get($fields, substr($method, 4))
-	// 		AND $field instanceOf Relation\Add)
-	// 	{
-	// 		return $field;
-	// 	}
-	// }
-
-	// private function remove_relation($fields, $method)
-	// {
-	// 	if (strpos($method, 'remove') === 0
-	// 		AND $field = Arr::get($fields, substr($method, 7))
-	// 		AND $field instanceOf Relation\Remove)
-	// 	{
-	// 		return $field;
-	// 	}
-	// }
-
-	// private function set_relation($fields, $method, array $args)
-	// {
-	// 	if ($field = Arr::get($fields, $method)
-	// 		AND $field instanceOf Relation\Set
-	// 		AND $args)
-	// 	{
-	// 		return $field;
-	// 	}
-	// }
-
 	public function __call($method, $args)
 	{
 		$fields = static::fields();
