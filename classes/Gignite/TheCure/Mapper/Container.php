@@ -54,17 +54,31 @@ class Container {
 
 	public function config(array $config = NULL)
 	{
+
+	public function config($config = NULL)
+	{
+		if (is_array($config))
+		{
+			$this->config = $config;
+			return;
+		}
+
+		if ($this->config === NULL
+			AND class_exists('Kohana')
+			AND isset(\Kohana::$config))
+		{
+			$this->config = \Kohana::$config->load('thecure');
+		}
+
 		if ($config === NULL)
 		{
-			if ($this->config === NULL
-				AND class_exists('Kohana')
-				AND isset(\Kohana::$config))
-			{
-				$config = \Kohana::$config->load("mappers.{$this->type()}");
-			}
-
 			return $this->config;
 		}
+		elseif (isset($this->config[$config]))
+		{
+			return $this->config[$config];
+		}
+	}
 
 		$this->config = $config;
 	}
