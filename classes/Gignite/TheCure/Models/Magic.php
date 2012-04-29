@@ -65,7 +65,7 @@ abstract class Magic extends Model {
 		if ($field_action = $this->relation_action($fields, $method, $args))
 		{
 			list($field, $action) = $field_action;
-			$field->{$action}($this->__container(), $object, $args[0]);
+			$field->{$action}($this->__container(), $this, $args[0]);
 		}
 		elseif (isset($fields[$method]))
 		{
