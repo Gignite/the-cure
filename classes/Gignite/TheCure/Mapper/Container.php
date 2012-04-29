@@ -38,10 +38,10 @@ class Container {
 	 * a base class.
 	 *
 	 *     // Mappers will be prefixed with Mapper_Mongo_
-	 *     new MapperContainer('Mongo') 
+	 *     new Container('Mongo') 
 	 *
 	 *     // Mappers will be prefixed with Mapper_Diff_One_
-	 *     new MapperContainer('Diff_One') 
+	 *     new Container('Diff_One') 
 	 * 
 	 * @param   string  a base type of mapper
 	 * @return  void
@@ -126,7 +126,7 @@ class Container {
 	 * has been instantiated that object will continue to be
 	 * returned.
 	 *
-	 *     $container = new MapperContainer('Mongo');
+	 *     $container = new Container('Mongo');
 	 *     $container->mapper('User'); // => Mapper_Mongo_User
 	 *
 	 * @param   string  the class
