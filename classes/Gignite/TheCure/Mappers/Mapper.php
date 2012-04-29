@@ -23,20 +23,15 @@ abstract class Mapper implements MapperActions {
 		$this->identities = $identities;
 	}
 
-	public function config($config, $default = NULL)
+	public function config($config)
 	{
 		if (is_array($config))
 		{
 			$this->config = $config;
 		}
-		elseif ($this->config)
+		elseif ($this->config AND isset($this->config[$config]))
 		{
-			if (isset($this->config[$config]))
-			{
-				return $this->config[$config];
-			}
-
-			return $default;
+			return $this->config[$config];
 		}
 	}
 
