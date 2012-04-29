@@ -27,7 +27,7 @@ $container->mapper('Media');   // => Mappers\Mongo\Media
 
 ``` php
 <?php
-$image = new Model_Media_Image;
+$image = new Models\Media\Image;
 
 if ($image->create($owner, compact('filename')))
 {
