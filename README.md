@@ -207,7 +207,13 @@ is acceptable in specialised areas.
 
 ``` php
 <?php
+namespace Models;
+
 use Gignite\TheCure\Models\Magic as MagicModel;
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Relationships\OneToMany as OneToManyRelationship;
+use Gignite\TheCure\Mapper\Container;
+
 class User extends MagicModel {
 
 	public static function fields()
@@ -217,15 +223,25 @@ class User extends MagicModel {
 			'age'  => new Field('age'),
 			'friends' => new OneToManyRelationship('friends', array(
 				'mapper_suffix' => 'User',
-				'model_suffix'  => 'Admin',
+				// 'model_suffix'  => 'Admin',
 			)),
 		);
 	}
 
 }
+
 $user = new User;
+$user->__container(new Container('Mock'));
 $user->name('Luke');
-echo $user->name();
+var_dump($user->name());
+
+$bob = new User;
+$bob->name('Bob');
+$user->add_friends($bob);
+var_dump($user->friends()->current()->name());
+
+$user->remove_friends($bob);
+var_dump($user->friends()->count());
 ?>
 ```
 
