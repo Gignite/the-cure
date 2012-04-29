@@ -62,32 +62,40 @@ abstract class Magic extends Model {
 		$fields = static::fields();
 		$object = $this->__object();
 		
-		if (isset($fields[$method]) AND ! $args)
-		{
-			$field = $fields[$method];
-
-			if (isset($object->{$field->name()}))
-			{
-				$value = $object->{$field->name()};
-			}
-			else
-			{
-				$value = NULL;
-			}
-
-			if ($field instanceOf Relationship)
-			{
-				return $field->find($this->__container(), $value);
-			}
-			else
-			{
-				return $value;
-			}
-		}
-		elseif ($field_action = $this->relation_action($fields, $method, $args))
+		if ($field_action = $this->relation_action($fields, $method, $args))
 		{
 			list($field, $action) = $field_action;
 			$field->{$action}($this->__container(), $object, $args[0]);
+		}
+		elseif (isset($fields[$method]))
+		{
+			$field = $fields[$method];
+
+			if ($args)
+			{
+				$object->{$field->name()} = $args[0];
+				return;
+			}
+			else
+			{
+				if (isset($object->{$field->name()}))
+				{
+					$value = $object->{$field->name()};
+				}
+				else
+				{
+					$value = NULL;
+				}
+
+				if ($field instanceOf Relationship)
+				{
+					return $field->find($this->__container(), $value);
+				}
+				else
+				{
+					return $value;
+				}
+			}
 		}
 		else
 		{

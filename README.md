@@ -199,3 +199,33 @@ $model = $container->mapper('Profile')->find_one($id);
 ?>
 ```
 
+## Magic
+
+Usually I try to avoid magic code but expressing fields and
+relationships is repetative and I believe some so-called magic
+is acceptable in specialised areas.
+
+``` php
+<?php
+use Gignite\TheCure\Models\Magic as MagicModel;
+class User extends MagicModel {
+
+	public static function fields()
+	{
+		return array(
+			'name' => new Field('name'),
+			'age'  => new Field('age'),
+			'friends' => new OneToManyRelationship('friends', array(
+				'mapper_suffix' => 'User',
+				'model_suffix'  => 'Admin',
+			)),
+		);
+	}
+
+}
+$user = new User;
+$user->name('Luke');
+echo $user->name();
+?>
+```
+

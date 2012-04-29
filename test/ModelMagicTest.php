@@ -46,15 +46,21 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 		$luke = $this->user($expectedName);
 
 		return array(
-			array($luke, $expectedName),
+			array($luke, $expectedName, array()),
+			array($luke, $expectedName, array($expectedName)),
 		);
 	}
 
 	/**
 	 * @dataProvider  providerTestMagicCall
 	 */
-	public function testMagicCall($model, $expectedName)
+	public function testMagicCall($model, $expectedName, $args)
 	{
+		if ($args)
+		{
+			call_user_func_array(array($model, 'name'), $args);
+		}
+
 		$this->assertSame($expectedName, $model->name());
 	}
 
