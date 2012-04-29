@@ -58,7 +58,7 @@ if ($image->validation()->check())
 ### Finding
 
  - Use `Gignite\TheCure\Mappers\Mapper::find_one()` to find a
-   single `M odel`
+   single `Model`
  - Use `Gignite\TheCure\Mappers\Mapper::find()` to find a
    `Collection` of models
 
