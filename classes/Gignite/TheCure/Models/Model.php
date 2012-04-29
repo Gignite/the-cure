@@ -21,6 +21,8 @@
  * @category    Model
  * @copyright   Gignite, 2012
  */
+namespace Gignite\TheCure\Models;
+
 abstract class Model {
 
 	protected $__object;
@@ -37,7 +39,7 @@ abstract class Model {
 		{
 			if ($this->__object === NULL)
 			{
-				$this->__object = new StdClass;
+				$this->__object = new \StdClass;
 			}
 			
 			return $this->__object;

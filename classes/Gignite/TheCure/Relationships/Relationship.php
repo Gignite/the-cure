@@ -1,4 +1,8 @@
 <?php
+namespace Gignite\TheCure\Relationships;
+
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Mapper\Container;
 
 abstract class Relationship extends Field {
 
@@ -43,11 +47,11 @@ abstract class Relationship extends Field {
 		return $this->mapper_suffix;
 	}
 
-	protected function mapper(MapperContainer $container)
+	protected function mapper(Container $container)
 	{
 		return $container->mapper($this->mapper_suffix());
 	}
 
-	abstract public function find(MapperContainer $container, $value);
+	abstract public function find(Container $container, $value);
 
 }

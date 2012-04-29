@@ -1,4 +1,6 @@
 <?php
+use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Relationships\OneToOne;
 
 class RelationshipOneToOnelTest extends PHPUnit_Framework_TestCase {
 
@@ -8,12 +10,12 @@ class RelationshipOneToOnelTest extends PHPUnit_Framework_TestCase {
 			'mapper_suffix' => 'User',
 			'model_suffix' => 'Admin',
 		);
-		return new Relationship_OneToOne('best_friend', $config);
+		return new OneToOne('best_friend', $config);
 	}
 
 	protected function container()
 	{
-		return new MapperContainer('Array');
+		return new Container('Array');
 	}
 
 	public function testItShouldFindARelatedModel()
@@ -73,7 +75,7 @@ class RelationshipOneToOnelTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  RelationFieldNotFoundException
+	 * @expectedException  Gignite\TheCure\Relation\FieldNotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelationFieldNotExists()
 	{

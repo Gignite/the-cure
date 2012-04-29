@@ -1,4 +1,8 @@
 <?php
+namespace Gignite\TheCure;
+
+use Gignite\TheCure\Models\Model;
+
 /**
  * Describe the identities handled in a session
  * 
@@ -53,7 +57,12 @@ class IdentityMap {
 
 	public function get($class, $id)
 	{
-		return Arr::get($this->identities, $this->key($class, $id));
+		$key = $this->key($class, $id);
+		
+		if (isset($this->identities[$key]))
+		{
+			return $this->identities[$key];
+		}
 	}
 
 	public function set(Model $model)

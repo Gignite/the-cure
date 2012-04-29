@@ -1,4 +1,5 @@
 <?php
+use Gignite\TheCure\Mapper\Container;
 
 class ModelMagicTest extends PHPUnit_Framework_TestCase {
 
@@ -8,7 +9,7 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 	{
 		if ($this->container === NULL)
 		{
-			$container = new MapperContainer('Array');
+			$container = new Container('Array');
 
 			$jim = new Model_User_Magic;
 			$jim->__container($container);

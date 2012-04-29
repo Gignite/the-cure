@@ -11,11 +11,14 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
+use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Collections\Model as ModelCollection;
+
 class CollectionModelTest extends CollectionTest {
 
 	public function testConstruct()
 	{
-		return new Collection_Model(
+		return new ModelCollection(
 			new ArrayIterator(array(
 				(object) array('_id' => 0),
 				(object) array('_id' => 1),

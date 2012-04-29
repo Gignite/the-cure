@@ -11,7 +11,9 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-class Collection implements Iterator, Countable {
+namespace Gignite\TheCure\Collections;
+
+class Collection implements \Iterator, \Countable {
 
 	protected $i;
 

@@ -10,6 +10,9 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
+use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Connections\Mongo as MongoConnection;
+
 class MapperMongoTest extends MapperTest {
 
 	protected static $mapper;
@@ -52,7 +55,7 @@ class MapperMongoTest extends MapperTest {
 		if (static::$mapper === NULL)
 		{
 			$mapper = new Mapper_Mongo_User;
-			$mapper->connection(new Connection_Mongo(static::config()));
+			$mapper->connection(new MongoConnection(static::config()));
 			$mapper->identities(new IdentityMap);
 			$mapper->config(array('query_options' => array('safe' => TRUE)));
 			static::$mapper = $mapper;

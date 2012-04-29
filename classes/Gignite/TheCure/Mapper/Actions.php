@@ -6,7 +6,11 @@
  * @category    Mapper
  * @copyright   Gignite, 2012
  */
-interface MapperActions {
+namespace Gignite\TheCure\Mapper;
+
+use Gignite\TheCure\Models\Model;
+
+interface Actions {
 	
 	/**
 	 * Find a Collection of records.

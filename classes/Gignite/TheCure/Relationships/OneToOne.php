@@ -1,15 +1,17 @@
 <?php
+namespace Gignite\TheCure\Relationships;
 
-class Relationship_OneToOne
-	extends Relationship
-		implements Relationship_Set, Relationship_Remove {
+use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Relation;
 
-	public function find(MapperContainer $container, $id)
+class OneToOne	extends Relationship implements Relation\Set, Relation\Remove {
+
+	public function find(Container $container, $id)
 	{
 		return $this->mapper($container)->find_one($this->model_suffix(), $id);
 	}
 
-	public function set(MapperContainer $container, $model, $relation)
+	public function set(Container $container, $model, $relation)
 	{
 		$relation_object = $relation->__object();
 
@@ -22,7 +24,7 @@ class Relationship_OneToOne
 		$model->__object()->{$this->name()} = $relation->__object()->_id;
 	}
 
-	public function remove(MapperContainer $container, $model, $relation)
+	public function remove(Container $container, $model, $relation)
 	{
 		$model_object = $model->__object();
 
@@ -32,7 +34,7 @@ class Relationship_OneToOne
 			return;
 		}
 
-		throw new RelationFieldNotFoundException;
+		throw new Relation\FieldNotFoundException;
 	}
 
 }

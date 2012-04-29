@@ -12,7 +12,11 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-class Collection_Model extends Collection_Iterable {
+namespace Gignite\TheCure\Collections;
+
+use Gignite\TheCure\IdentityMap;
+
+class Model extends Iterable {
 
 	protected $identities;
 

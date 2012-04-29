@@ -1,6 +1,7 @@
 <?php
+namespace Gignite\TheCure\Connections;
 
-class Connection_Mongo implements Connection {
+class Mongo implements Connection {
 
 	protected $connection;
 
@@ -11,12 +12,17 @@ class Connection_Mongo implements Connection {
 
 	protected function config($key, $default = NULL)
 	{
-		return Arr::get($this->config, $key, $default);
+		if (isset($this->config[$key]))
+		{
+			return $this->config[$key];
+		}
+
+		return $default;
 	}
 	
 	protected function connect()
 	{
-		return new Mongo($this->config('connection', 'mongodb://127.0.0.1'));
+		return new \Mongo($this->config('connection', 'mongodb://127.0.0.1'));
 	}
 
 	public function get()

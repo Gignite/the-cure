@@ -1,17 +1,19 @@
 <?php
+namespace Gignite\TheCure\Relationships;
 
-class Relationship_OneToMany
-	extends Relationship
-		implements Relationship_Add, Relationship_Remove {
+use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Relation;
 
-	public function find(MapperContainer $container, $ids)
+class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
+
+	public function find(Container $container, $ids)
 	{
 		return $this->mapper($container)->find($this->model_suffix(), array(
 			'_id' => array('$in' => $ids),
 		));
 	}
 
-	public function add(MapperContainer $container, $model, $relation)
+	public function add(Container $container, $model, $relation)
 	{
 		$relation_object = $relation->__object();
 
@@ -31,7 +33,7 @@ class Relationship_OneToMany
 		$object->{$this->name()}[] = $relation->__object()->_id;
 	}
 
-	public function remove(MapperContainer $container, $model, $relation)
+	public function remove(Container $container, $model, $relation)
 	{
 		$model_object = $model->__object();
 
@@ -48,10 +50,10 @@ class Relationship_OneToMany
 				}
 			}
 			
-			throw new RelationNotFoundException;
+			throw new Relation\NotFoundException;
 		}
 
-		throw new RelationFieldNotFoundException;
+		throw new Relation\FieldNotFoundException;
 	}
 
 }

@@ -1,4 +1,11 @@
 <?php
+namespace Gignite\TheCure\Mappers;
+
+use Gignite\TheCure\Mapper\Actions as MapperActions;
+use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Models\Model;
+use Gignite\TheCure\Collections\Collection;
+use Gignite\TheCure\Collections\Model as ModelCollection;
 
 abstract class Mapper implements MapperActions {
 
@@ -24,7 +31,12 @@ abstract class Mapper implements MapperActions {
 		}
 		elseif ($this->config)
 		{
-			return Arr::get($this->config, $config, $default);
+			if (isset($this->config[$config]))
+			{
+				return $this->config[$config];
+			}
+
+			return $default;
 		}
 	}
 
@@ -69,13 +81,13 @@ abstract class Mapper implements MapperActions {
 			}
 			else
 			{
-				throw new InvalidArgumentException;
+				throw new \InvalidArgumentException;
 			}
 		}
 
 		$cursor = call_user_func($callback, $where);
 		$class = $this->model_class($suffix);
-		return new Collection_Model($cursor, $this->identities(), $class);
+		return new ModelCollection($cursor, $this->identities(), $class);
 	}
 
 	/**

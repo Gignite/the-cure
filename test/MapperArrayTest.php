@@ -10,6 +10,8 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
+use Gignite\TheCure\IdentityMap;
+
 class MapperArrayTest extends MapperTest {
 
 	protected static $mapper;

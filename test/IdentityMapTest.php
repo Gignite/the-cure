@@ -10,6 +10,8 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
+use Gignite\TheCure\IdentityMap;
+
 class IdentityMapTest extends PHPUnit_Framework_TestCase {
 
 	protected $domain;

@@ -1,4 +1,5 @@
 <?php
+namespace Gignite\TheCure;
 
 class Field {
 

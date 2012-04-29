@@ -10,6 +10,8 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
+use Gignite\TheCure\Collections\Collection;
+
 class CollectionTest extends PHPUnit_Framework_TestCase {
 
 	public function testConstruct()

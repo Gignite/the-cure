@@ -1,6 +1,12 @@
 <?php
+namespace Gignite\TheCure\Mappers;
 
-abstract class Mapper_Mongo extends Mapper implements MapperConnection {
+use Gignite\TheCure\Connections\Connection;
+use Gignite\TheCure\Mapper\ConnectionSetGet;
+use Gignite\TheCure\Mappers\Mapper;
+use Gignite\TheCure\Models\Model;
+
+abstract class Mongo extends Mapper implements ConnectionSetGet {
 
 	protected $connection;
 

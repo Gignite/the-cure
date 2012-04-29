@@ -12,7 +12,9 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-class Collection_Iterable extends Collection {
+namespace Gignite\TheCure\Collections;
+
+class Iterable extends Collection {
 
 	public function current()
 	{

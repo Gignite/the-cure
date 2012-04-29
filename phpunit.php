@@ -31,16 +31,28 @@ Kohana::$config->attach(new Config_File);
 
 Kohana::modules(array('the-cure' => __DIR__.'/'));
 
+use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Mapper\ConnectionSetGet;
+use Gignite\TheCure\Connections\Connection;
+use Gignite\TheCure\Mappers\Mock as MockMapper;
+use Gignite\TheCure\Mappers\Mongo as MongoMapper;
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Models\Model;
+use Gignite\TheCure\Models\Magic as MagicModel;
+use Gignite\TheCure\Relation;
+use Gignite\TheCure\Relationships\Relationship;
+use Gignite\TheCure\Relationships\OneToMany;
+
 class Model_User extends Model {}
 class Model_User_Admin extends Model_User {}
 
-class Model_User_Magic extends Model_Magic {
+class Model_User_Magic extends MagicModel {
 
 	public static function fields()
 	{
 		return parent::fields() + array(
 			'name'    => new Field('name'),
-			'friends' => new Relationship_OneToMany('friends', array(
+			'friends' => new OneToMany('friends', array(
 				'mapper_suffix' => 'User',
 				'model_suffix'  => 'Magic',
 			)),
@@ -49,7 +61,7 @@ class Model_User_Magic extends Model_Magic {
 
 }
 
-class Model_User_MockableRelation extends Model_Magic {
+class Model_User_MockableRelation extends MagicModel {
 
 	public static $relation;
 
@@ -60,11 +72,11 @@ class Model_User_MockableRelation extends Model_Magic {
 		);
 	}
 
-	public function __container(MapperContainer $container = NULL)
+	public function __container(Container $container = NULL)
 	{
 		if ($this->__container === NULL)
 		{
-			parent::__container(new MapperContainer('Array'));
+			parent::__container(new Container('Array'));
 		}
 
 		return parent::__container();
@@ -73,7 +85,7 @@ class Model_User_MockableRelation extends Model_Magic {
 }
 
 class Relationship_Mock extends Relationship
-	implements Relationship_Add, Relationship_Remove, Relationship_Set {
+	implements Relation\Add, Relation\Remove, Relation\Set {
 
 	protected $method_called;
 
@@ -82,32 +94,32 @@ class Relationship_Mock extends Relationship
 		return $this->method_called;
 	}
 
-	public function find(MapperContainer $container, $value)
+	public function find(Container $container, $value)
 	{
 		$this->method_called = 'find';
 	}
 
-	public function add(MapperContainer $container, $object, $relation)
+	public function add(Container $container, $object, $relation)
 	{
 		$this->method_called = 'add';
 	}
 
-	public function remove(MapperContainer $container, $object, $relation)
+	public function remove(Container $container, $object, $relation)
 	{
 		$this->method_called = 'remove';
 	}
 
-	public function set(MapperContainer $container, $object, $relation)
+	public function set(Container $container, $object, $relation)
 	{
 		$this->method_called = 'set';
 	}
 
 }
 
-class Mapper_Mongo_User extends Mapper_Mongo {}
-class Mapper_Array_User extends Mapper_Array {}
+class Mapper_Mongo_User extends MongoMapper {}
+class Mapper_Array_User extends MockMapper {}
 
-class Mapper_ConnectionTest_User implements MapperConnection {
+class Mapper_ConnectionTest_User implements ConnectionSetGet {
 
 	protected $connection;
 

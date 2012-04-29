@@ -1,4 +1,6 @@
 <?php
+use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Relationships\OneToMany;
 
 class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 
@@ -8,12 +10,12 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 			'mapper_suffix' => 'User',
 			'model_suffix' => 'Admin',
 		);
-		return new Relationship_OneToMany('friends', $config);
+		return new OneToMany('friends', $config);
 	}
 
 	protected function container()
 	{
-		return new MapperContainer('Array');
+		return new Container('Array');
 	}
 
 	public function testItShouldFindACollectionOfRelatedModels()
@@ -21,7 +23,9 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 		$container = $this->container();
 		$container->mapper('User')->save(new Model_User_Admin);
 		$collection = $this->relationship()->find($container, array(0, 1));
-		$this->assertInstanceOf('Collection', $collection);
+		$this->assertInstanceOf(
+			'Gignite\TheCure\Collections\Collection',
+			$collection);
 	}
 
 	public function testItShouldSaveAnRelatedObjectWhenAddingRelation()
@@ -72,7 +76,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  RelationFieldNotFoundException
+	 * @expectedException  Gignite\TheCure\Relation\FieldNotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelationArrayNotExists()
 	{
@@ -83,7 +87,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  RelationNotFoundException
+	 * @expectedException  Gignite\TheCure\Relation\NotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelatedObjectIDNotInArray()
 	{

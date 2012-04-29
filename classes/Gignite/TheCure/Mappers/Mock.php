@@ -1,6 +1,9 @@
 <?php
+namespace Gignite\TheCure\Mappers;
 
-abstract class Mapper_Array extends Mapper {
+use Gignite\TheCure\Models\Model;
+
+abstract class Mock extends Mapper {
 
 	public $data = array();
 
@@ -54,7 +57,7 @@ abstract class Mapper_Array extends Mapper {
 			{
 				$found = array();
 
-				Mapper_Array::each_where(
+				Mock::each_where(
 					$collection,
 					$where,
 					function ($record) use ($collection, & $found)
@@ -62,7 +65,7 @@ abstract class Mapper_Array extends Mapper {
 						$found[$record] = $collection[$record];
 					});
 				
-				return new ArrayIterator($found);
+				return new \ArrayIterator($found);
 			});
 	}
 
@@ -82,7 +85,7 @@ abstract class Mapper_Array extends Mapper {
 				elseif ($where)
 				{
 					$found = NULL;
-					Mapper_Array::each_where(
+					Mock::each_where(
 						$collection,
 						$where,
 						function ($record) use ($collection, & $found)

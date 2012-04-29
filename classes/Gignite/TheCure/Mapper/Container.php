@@ -13,7 +13,11 @@
  * @category    Container
  * @copyright   Gignite, 2012
  */
-class MapperContainer {
+namespace Gignite\TheCure\Mapper;
+
+use Gignite\TheCure\IdentityMap;
+
+class Container {
 
 	protected $config;
 
@@ -54,9 +58,9 @@ class MapperContainer {
 		{
 			if ($this->config === NULL
 				AND class_exists('Kohana')
-				AND isset(Kohana::$config))
+				AND isset(\Kohana::$config))
 			{
-				$config = Kohana::$config->load("mappers.{$this->type()}");
+				$config = \Kohana::$config->load("mappers.{$this->type()}");
 			}
 
 			return $this->config;
@@ -110,7 +114,7 @@ class MapperContainer {
 		{
 			$mapper = new $class;
 
-			if ($mapper instanceOf MapperConnection)
+			if ($mapper instanceOf ConnectionSetGet)
 			{
 				$mapper->connection($this->connection());
 			}

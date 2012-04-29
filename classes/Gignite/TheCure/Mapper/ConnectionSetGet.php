@@ -6,7 +6,11 @@
  * @category    Mapper
  * @copyright   Gignite, 2012
  */
-interface MapperConnection {
+namespace Gignite\TheCure\Mapper;
+
+use Gignite\TheCure\Connections\Connection;
+
+interface ConnectionSetGet {
 	
 	/**
 	 * Get/set the connection.
