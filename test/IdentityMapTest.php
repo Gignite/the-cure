@@ -18,7 +18,7 @@ class IdentityMapTest extends PHPUnit_Framework_TestCase {
 
 	public function setUp()
 	{
-		$this->domain = new Model_User;
+		$this->domain = new Models\User;
 		$this->domain->__object((object) array('_id' => 2));
 	}
 
@@ -49,7 +49,7 @@ class IdentityMapTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testGetDomain($map)
 	{
-		$this->assertEquals($this->domain, $map->get('Model_User', 2));
+		$this->assertEquals($this->domain, $map->get('Models\User', 2));
 	}
 
 	/**

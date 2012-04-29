@@ -24,7 +24,7 @@ class CollectionModelTest extends CollectionTest {
 				(object) array('_id' => 1),
 			)),
 			$this->map = new IdentityMap,
-			'Model_User');
+			'Models\User');
 	}
 
 	/**
@@ -32,7 +32,7 @@ class CollectionModelTest extends CollectionTest {
 	 */
 	public function testCurrent($collection)
 	{
-		$this->assertInstanceOf('Model_User', $collection->current());
+		$this->assertInstanceOf('Models\User', $collection->current());
 		return $collection;
 	}
 

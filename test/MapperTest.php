@@ -11,12 +11,12 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$where = array('name' => 'Luke');
 
 		return array(
-			array(NULL,    NULL,   "Model_User"),
-			array($id,     NULL,   "Model_User"),
-			array($suffix, NULL,   "Model_User_{$suffix}"),
-			array($suffix, $id,    "Model_User_{$suffix}"),
-			array($where,  NULL,   "Model_User"),
-			array($suffix, $where, "Model_User_{$suffix}"),
+			array(NULL,    NULL,   "Models\\User"),
+			array($id,     NULL,   "Models\\User"),
+			array($suffix, NULL,   "Models\\User\\{$suffix}"),
+			array($suffix, $id,    "Models\\User\\{$suffix}"),
+			array($where,  NULL,   "Models\\User"),
+			array($suffix, $where, "Models\\User\\{$suffix}")
 		);
 	}
 
@@ -71,7 +71,7 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 
 	public function providerTestSave()
 	{
-		$model = new Model_User;
+		$model = new Models\User;
 		$model->__object((object) array('name' => 'Luke'));
 
 		return array(
@@ -106,7 +106,7 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$mapper = static::mapper();
 		$expectedCount = $mapper->find()->count();
 
-		$model = new Model_User;
+		$model = new Models\User;
 		$model->__object((object) array('name' => 'Luke'));
 
 		$mapper->save($model);
@@ -131,11 +131,11 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$expectedCount = $mapper->find($query)->count();
 
 		// Create two users
-		$model = new Model_User;
+		$model = new Models\User;
 		$model->__object($bobObject());
 		$mapper->save($model);
 		
-		$model = new Model_User;
+		$model = new Models\User;
 		$model->__object($bobObject());
 		$mapper->save($model);
 
@@ -160,11 +160,11 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$expectedCount = $mapper->find($query)->count();
 
 		// Create two users
-		$model = new Model_User;
+		$model = new Models\User;
 		$model->__object($bobObject());
 		$mapper->save($model);
 		
-		$model = new Model_User;
+		$model = new Models\User;
 		$model->__object($bobObject());
 		$mapper->save($model);
 

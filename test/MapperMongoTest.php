@@ -10,6 +10,7 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
+use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;
 use Gignite\TheCure\Connections\Mongo as MongoConnection;
 
@@ -54,9 +55,11 @@ class MapperMongoTest extends MapperTest {
 	{
 		if (static::$mapper === NULL)
 		{
-			$mapper = new Mapper_Mongo_User;
+			$mapper = new Mappers\Mongo\User;
 			$mapper->connection(new MongoConnection(static::config()));
 			$mapper->identities(new IdentityMap);
+			$mapper->factory(
+				new Factory(Kohana::$config->load('thecure.factory')));
 			$mapper->config(array('query_options' => array('safe' => TRUE)));
 			static::$mapper = $mapper;
 		}

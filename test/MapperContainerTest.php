@@ -5,9 +5,9 @@ class MapperContainerTest extends PHPUnit_Framework_TestCase {
 
 	public function testMapper()
 	{
-		$container = new Container('Array');
+		$container = new Container('Mock');
 		$this->assertInstanceOf(
-			'Mapper_Array_User',
+			'Mappers\Mock\User',
 			$container->mapper('User'));
 	}
 
@@ -15,13 +15,13 @@ class MapperContainerTest extends PHPUnit_Framework_TestCase {
 	{
 		$container = new Container('ConnectionTest');
 		$this->assertInstanceOf(
-			'Mapper_ConnectionTest_User',
+			'Mappers\ConnectionTest\User',
 			$container->mapper('User'));
 	}
 
 	public function testItShouldSetAndGetConfig()
 	{
-		$container = new Container('Array');
+		$container = new Container('Mock');
 		$expectedConfig = array();
 		$container->config($expectedConfig);
 		$this->assertSame($expectedConfig, $container->config());

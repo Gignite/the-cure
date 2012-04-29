@@ -15,25 +15,25 @@ class RelationshipOneToOnelTest extends PHPUnit_Framework_TestCase {
 
 	protected function container()
 	{
-		return new Container('Array');
+		return new Container('Mock');
 	}
 
 	public function testItShouldFindARelatedModel()
 	{
 		$container = $this->container();
-		$container->mapper('User')->save(new Model_User_Admin);
+		$container->mapper('User')->save(new Models\User\Admin);
 		$collection = $this->relationship()->find($container, 0);
-		$this->assertInstanceOf('Model_User_Admin', $collection);
+		$this->assertInstanceOf('Models\User\Admin', $collection);
 	}
 
 	public function testItShouldSaveRelationWhenSetting()
 	{
 		$container = $this->container();
 
-		$model = new Model_User_Admin;
+		$model = new Models\User\Admin;
 
 		$relationObject = (object) array('name' => 'Luke');
-		$relation = new Model_User_Admin;
+		$relation = new Models\User\Admin;
 		$relation->__object($relationObject);
 
 		$this->relationship()->set($container, $model, $relation);
@@ -81,8 +81,8 @@ class RelationshipOneToOnelTest extends PHPUnit_Framework_TestCase {
 	{
 		$this->relationship()->remove(
 			$this->container(),
-			new Model_User_Admin,
-			new Model_User_Admin);
+			new Models\User\Admin,
+			new Models\User\Admin);
 	}
 
 }

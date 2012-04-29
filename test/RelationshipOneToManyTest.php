@@ -15,13 +15,13 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 
 	protected function container()
 	{
-		return new Container('Array');
+		return new Container('Mock');
 	}
 
 	public function testItShouldFindACollectionOfRelatedModels()
 	{
 		$container = $this->container();
-		$container->mapper('User')->save(new Model_User_Admin);
+		$container->mapper('User')->save(new Models\User\Admin);
 		$collection = $this->relationship()->find($container, array(0, 1));
 		$this->assertInstanceOf(
 			'Gignite\TheCure\Collections\Collection',
@@ -32,9 +32,9 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 
-		$model = new Model_User_Admin;
+		$model = new Models\User\Admin;
 
-		$relation = new Model_User_Admin;
+		$relation = new Models\User\Admin;
 		$relationObject = (object) array('name' => 'Luke');
 		$relation->__object($relationObject);
 
@@ -82,8 +82,8 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 	{
 		$this->relationship()->remove(
 			$this->container(),
-			new Model_User_Admin,
-			new Model_User_Admin);
+			new Models\User\Admin,
+			new Models\User\Admin);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 	{
 		$relationship = $this->relationship();
 
-		$model = new Model_User_Admin;
+		$model = new Models\User\Admin;
 		$model->__object((object) array(
 			$relationship->name() => array(),
 		));
@@ -101,7 +101,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 		$relationship->remove(
 			$this->container(),
 			$model,
-			new Model_User_Admin);
+			new Models\User\Admin);
 	}
 
 }

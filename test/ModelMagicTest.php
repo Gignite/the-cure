@@ -9,16 +9,16 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 	{
 		if ($this->container === NULL)
 		{
-			$container = new Container('Array');
+			$container = new Container('Mock');
 
-			$jim = new Model_User_Magic;
+			$jim = new Models\User\Magic;
 			$jim->__container($container);
 			$jim->__object((object) array(
 				'name' => 'Jim',
 			));
 			$container->mapper('User')->save($jim);
 
-			$luke = new Model_User_Magic;
+			$luke = new Models\User\Magic;
 			$luke->__container($container);
 			$luke->__object((object) array(
 				'name'    => 'Luke',
@@ -60,29 +60,29 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 
 	public function providerModelWithMockableRelation()
 	{
-		$args = array(new Model_User);
+		$args = array(new Models\User);
 
 		return array(
 			array(
-				new Model_User_MockableRelation,
+				new Models\User\MockableRelation,
 				'relation',
 				'find',
 				array(),
 			),
 			array(
-				new Model_User_MockableRelation,
+				new Models\User\MockableRelation,
 				'add_relation',
 				'add',
 				$args,
 			),
 			array(
-				new Model_User_MockableRelation,
+				new Models\User\MockableRelation,
 				'remove_relation',
 				'remove',
 				$args,
 			),
 			array(
-				new Model_User_MockableRelation,
+				new Models\User\MockableRelation,
 				'relation',
 				'set',
 				$args,
@@ -95,9 +95,9 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testMagicCallRelationship($model, $method, $expected, $args)
 	{
-		$mock = new Relationship_Mock('relation');
+		$mock = new Relationships\Mock('relation');
 
-		Model_User_MockableRelation::$relation = function () use ($mock)
+		Models\User\MockableRelation::$relation = function () use ($mock)
 		{
 			return $mock;
 		};
@@ -111,7 +111,7 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldThrowBadMethodCallException()
 	{
-		$model = new Model_User_Magic;
+		$model = new Models\User\Magic;
 		$model->unknown();
 	}
 
