@@ -10,9 +10,10 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
+use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;
 
-class MapperArrayTest extends MapperTest {
+class MapperMockTest extends MapperTest {
 
 	protected static $mapper;
 
@@ -20,8 +21,10 @@ class MapperArrayTest extends MapperTest {
 	{
 		if (static::$mapper === NULL)
 		{
-			$mapper = new Mapper_Array_User;
+			$mapper = new Mappers\Mock\User;
 			$mapper->identities(new IdentityMap);
+			$mapper->factory(
+				new Factory(Kohana::$config->load('thecure.factory')));
 			static::$mapper = $mapper;
 		}
 
