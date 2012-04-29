@@ -14,8 +14,8 @@
 <?php
 use Gignite\TheCure\Mapper\Container;
 $container = new Container('Mongo');
-$container->mapper('Profile'); // => Mapper_Mongo_Profile
-$container->mapper('Media');   // => Mapper_Mongo_Media
+$container->mapper('Profile'); // => Mappers\Mongo\Profile
+$container->mapper('Media');   // => Mappers\Mongo\Media
 ?>
 ```
 
@@ -45,7 +45,7 @@ if ($image->create($owner, compact('filename')))
 
 ``` php
 <?php
-$image = $container->mapper('Media')->find_one('Image', $id); // => Model_Media_Image
+$image = $container->mapper('Media')->find_one('Image', $id); // => Models\Media\Image
 $image->caption('A new caption.');
 
 if ($image->validation()->check())
@@ -68,8 +68,8 @@ so:
 
 ``` php
 <?php
-$container->mapper('Profile')->find_one($id); // => Model_Profile
-$container->mapper('Profile')->find_one('Artist', $id); // => Model_Profile_Artist
+$container->mapper('Profile')->find_one($id); // => Models\Profile
+$container->mapper('Profile')->find_one('Artist', $id); // => Models\Profile\Artist
 ?>
 ```
 
@@ -81,17 +81,21 @@ table, etc.
 
 ``` php
 <?php
-$container->mapper('Profile')->find(); // => Collection_Model of Model_Profile
+$container->mapper('Profile')->find();
+// => Gignite\TheCure\Collections\Model of Models\Profile
 
-$container->mapper('Profile')->find('Artist'); // => Collection_Model of Model_Profile_Artist
+$container->mapper('Profile')->find('Artist');
+// => Gignite\TheCure\Collections\Model of Models\Profile\Artist
 
 $container->mapper('Profile')->find(array(
 	'plan' => 'free',
-)); // => Collection_Model of Model_Profile
+));
+// => Gignite\TheCure\Collections\Model of Models\Profile
 
 $container->mapper('Profile')->find('Artist', array(
 	'plan' => 'free',
-)); // => Collection_Model of Model_Profile_Artist
+));
+// => Gignite\TheCure\Collections\Model of Models\Profile\Artist
 ?>
 ```
 
@@ -145,18 +149,18 @@ not follow it.
 A Model describes the business (or domain) logic for a
 particular area of expertise. For example a Model might
 describe a user of an application. This would likely be called
-`Model_User`. The model would have methods for registering an
+`Models\User`. The model would have methods for registering an
 account, updating it's email address, etc.
 
-In order to store `Model_User` in a Mongo database we need a
+In order to store `Models\User` in a Mongo database we need a
 mapper. A mapper knows how to store a model's data into what
 ever medium it wants. A mongo mapper for a user model would,
-by convention, be called `Mapper_Mongo_User`.
+by convention, be called `Mappers\Mongo\User`.
 
-If you wanted to test `Model_User` you would also need another
+If you wanted to test `Models\User` you would also need another
 mapper. This mapper would be a mock and would be used to test
 the data before and after an operation on your model. By
-convention this would then be called `Mapper_Mock_User`.
+convention this would then be called `Mappers\Mock\User`.
 
 This convention explains the API choice of
 `Container::__construct()`, `Container::mapper()`,
@@ -164,15 +168,15 @@ This convention explains the API choice of
 
 ### Gignite\TheCure\Mapper\Container::__construct($type)
 
-The argument passed here is added onto the `Mapper_` prefix,
-so for example `new MapperContainer('Mongo')` creates a prefix
-for all mappers called `Mapper_Mongo_`.
+The argument passed here is added onto the `Mappers\` prefix,
+so for example `new Container('Mongo')` creates a prefix
+for all mappers called `Mappers\Mongo\`.
 
 ### Gignite\TheCure\Mapper\Container::mapper($mapper)
 
 The argument passed to ::mapper() indicates the domain area
 being mapped so for example `$container->mapper('Profile')`
-will instantiate a single `Mapper_Mongo_Profile` and register
+will instantiate a single `Mappers\Mongo\Profile` and register
 it with the container so that subsequent calls return the same
 instance.
 
@@ -187,10 +191,10 @@ mapper class name. Take this example:
 use Gignite\TheCure\Mapper\Container;
 $container = new Container('Mongo');
 
-// Using Mapper_Mongo_Profile to find Model_Profile_Artist
+// Using Mappers\Mongo\Profile to find Models\Profile\Artist
 $model = $container->mapper('Profile')->find_one('Artist', $id);
 
-// Using Mapper_Mongo_Profile to find Model_Profile
+// Using Mappers\Mongo\Profile to find Models\Profile
 $model = $container->mapper('Profile')->find_one($id);
 ?>
 ```
