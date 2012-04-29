@@ -16,10 +16,13 @@
 namespace Gignite\TheCure\Mapper;
 
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Factory;
 
 class Container {
 
 	protected $config;
+
+	protected $factory;
 
 	protected $connection;
 
@@ -52,8 +55,15 @@ class Container {
 		return $this->type;
 	}
 
-	public function config(array $config = NULL)
+	protected function factory()
 	{
+		if ($this->factory === NULL)
+		{
+			$this->factory = new Factory($this->config('factory'));
+		}
+
+		return $this->factory;
+	}
 
 	public function config($config = NULL)
 	{
@@ -87,8 +97,8 @@ class Container {
 	{
 		if ($this->connection === NULL)
 		{
-			$connection_class = "Connection_{$this->type()}";
-			$this->connection = new $connection_class($this->config());
+			$class = $this->factory()->connection($this->type());
+			$this->connection = new $class($this->mapper_config());
 		}
 
 		return $this->connection;
@@ -104,11 +114,6 @@ class Container {
 		return $this->identities;
 	}
 
-	protected function mapper_class($mapper)
-	{
-		return "Mapper_{$this->type()}_{$mapper}";
-	}
-
 	/**
 	 * Get a mapper instance. Once a mapper of a certain type
 	 * has been instantiated that object will continue to be
@@ -120,9 +125,9 @@ class Container {
 	 * @param   string  the class
 	 * @return  Mapper
 	 */
-	public function mapper($class)
+	public function mapper($suffix)
 	{
-		$class = $this->mapper_class($class);
+		$class = $this->factory()->mapper($this->type(), $suffix);
 
 		if ( ! isset($this->mappers[$class]))
 		{
@@ -135,6 +140,10 @@ class Container {
 			
 			$mapper->identities($this->identities());
 			$mapper->config($this->config());
+			if ($mapper instanceOf FactorySetGet)
+			{
+				$mapper->factory($this->factory());
+			}
 
 			$this->mappers[$class] = $mapper;
 		}

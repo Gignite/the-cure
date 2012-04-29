@@ -1,15 +1,19 @@
 <?php
 namespace Gignite\TheCure\Mappers;
 
-use Gignite\TheCure\Mapper\Actions as MapperActions;
+use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Mapper\Actions as MapperActions;
+use Gignite\TheCure\Mapper\FactorySetGet;
 use Gignite\TheCure\Models\Model;
 use Gignite\TheCure\Collections\Collection;
 use Gignite\TheCure\Collections\Model as ModelCollection;
 
-abstract class Mapper implements MapperActions {
+abstract class Mapper implements MapperActions, FactorySetGet {
 
 	protected $identities;
+	
+	protected $factory;
 
 	protected $config;
 
@@ -35,30 +39,25 @@ abstract class Mapper implements MapperActions {
 		}
 	}
 
-	protected function domain_name()
+	public function factory(Factory $factory = NULL)
 	{
-		$class = get_class($this);
-		$domain = str_replace('Mapper_', '', $class);
-		$domain = substr($domain, strpos($domain, '_') + 1);
-		return $domain;
+		if ($factory === NULL)
+		{
+			return $this->factory;
+		}
+
+		$this->factory = $factory;
 	}
 	
 	protected function collection_name()
 	{
-		$collection = strtolower($this->domain_name());
+		$collection = strtolower($this->factory()->domain($this));
 		return $collection;
 	}
 
 	protected function model_class($suffix = NULL)
 	{
-		$model = "Model_{$this->domain_name()}";
-
-		if ($suffix !== NULL)
-		{
-			$model .= "_{$suffix}";
-		}
-
-		return $model;
+		return $this->factory()->model($this, $suffix);
 	}
 	
 	protected function create_collection($suffix, $where, $callback)
