@@ -23,7 +23,7 @@ $container->mapper('Media');   // => Mapper_Mongo_Media
 
  - Create a new model
  - Validate the model
- - Pass the model to Gignite\TheCure\Mappers\Mapper::save()
+ - Pass the model to `Gignite\TheCure\Mappers\Mapper::save()`
 
 ``` php
 <?php
@@ -38,10 +38,10 @@ if ($image->create($owner, compact('filename')))
 
 ### Updating
 
- - Use Gignite\TheCure\Mappers\Mapper::find_one()
+ - Use `Gignite\TheCure\Mappers\Mapper::find_one()`
  - Operate on the model
  - Validate the model
- - Pass the model to Gignite\TheCure\Mappers\Mapper::save()
+ - Pass the model to `Gignite\TheCure\Mappers\Mapper::save()`
 
 ``` php
 <?php
