@@ -1,4 +1,12 @@
 <?php
+/**
+ * A relationship between models
+ *
+ * @package     TheCure
+ * @category    Field
+ * @category    Relationships
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure\Relationships;
 
 use Gignite\TheCure\Field;

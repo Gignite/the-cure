@@ -1,4 +1,15 @@
 <?php
+/**
+ * An MongoDB mapper
+ * 
+ *     $mapper->find($id);
+ *     $mapper->find(array('name' => 'Luke'));
+ *     $mapper->find('Admin', array('name' => 'Luke'));
+ *
+ * @package     TheCure
+ * @category    Mappers
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure\Mappers;
 
 use Gignite\TheCure\Connections\Connection;

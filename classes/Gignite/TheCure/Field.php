@@ -1,4 +1,11 @@
 <?php
+/**
+ * A field
+ *
+ * @package     TheCure
+ * @category    Field
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure;
 
 class Field {

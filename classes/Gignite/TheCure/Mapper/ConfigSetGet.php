@@ -1,6 +1,6 @@
 <?php
 /**
- * An interface for a mapper that uses a connection
+ * An interface for a mapper that uses a config
  *
  * @package     TheCure
  * @category    Mapper

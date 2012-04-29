@@ -11,6 +11,7 @@
  *
  * @package     TheCure
  * @category    Container
+ * @category    Mapper
  * @copyright   Gignite, 2012
  */
 namespace Gignite\TheCure\Mapper;

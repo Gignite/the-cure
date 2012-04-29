@@ -1,4 +1,11 @@
 <?php
+/**
+ * An identity map
+ *
+ * @package     TheCure
+ * @category    IdentityMap
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure;
 
 use Gignite\TheCure\Models\Model;

@@ -11,14 +11,14 @@
  * This class provides one pseudo-magic method ::__object()
  * for setting and getting the data transfer object.
  *
- *     $user = new Model_User;
+ *     $user = new Models\User;
  *     $user->__object((object) array(
  *         'name' => 'Luke',
  *     ));
  *     $object = $user->__object();
  *
  * @package     TheCure
- * @category    Model
+ * @category    Models
  * @copyright   Gignite, 2012
  */
 namespace Gignite\TheCure\Models;

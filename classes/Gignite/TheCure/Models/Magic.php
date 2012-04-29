@@ -1,13 +1,19 @@
 <?php
+/**
+ * Add some magic into your Model
+ *
+ * [!!] This file is full of sin
+ *
+ * @package     TheCure
+ * @category    Models
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure\Models;
 
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\Relationship;
 use Gignite\TheCure\Relationships\Relation;
 
-/**
- * [!!] This file is full of sin
- */
 abstract class Magic extends Model {
 
 	public static function fields()

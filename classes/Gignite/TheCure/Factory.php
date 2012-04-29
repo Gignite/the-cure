@@ -1,4 +1,16 @@
 <?php
+/**
+ * A class name factory
+ * 
+ *     $factory->connection('Mongo');
+ *     $factory->mapper('Mongo', 'User');
+ *     $factory->domain($mapper);
+ *     $factory->model($mapper, 'Admin');
+ *
+ * @package     TheCure
+ * @category    Factory
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure;
 
 use Gignite\TheCure\Mappers\Mapper;

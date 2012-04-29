@@ -1,6 +1,6 @@
 <?php
 /**
- * An interface for a mapper that uses a connection
+ * An interface for a mapper that uses a factory
  *
  * @package     TheCure
  * @category    Mapper

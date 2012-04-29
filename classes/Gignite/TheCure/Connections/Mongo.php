@@ -1,4 +1,11 @@
 <?php
+/**
+ * A MongoDB connection
+ *
+ * @package     TheCure
+ * @category    Connections
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure\Connections;
 
 class Mongo implements Connection {
