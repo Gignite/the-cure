@@ -80,17 +80,23 @@ class Container {
 			$this->config = \Kohana::$config->load('thecure');
 		}
 
-		if ($config === NULL)
-		{
-			return $this->config;
-		}
-		elseif (isset($this->config[$config]))
+		if (isset($this->config[$config]))
 		{
 			return $this->config[$config];
 		}
+
+		return $this->config;
 	}
 
-		$this->config = $config;
+	protected function mapper_config()
+	{
+		$mappers = $this->config('mappers');
+		$key = strtolower($this->type());
+
+		if (isset($mappers[$key]))
+		{
+			return $mappers[$key];
+		}
 	}
 
 	protected function connection()
@@ -139,7 +145,8 @@ class Container {
 			}
 			
 			$mapper->identities($this->identities());
-			$mapper->config($this->config());
+			$mapper->config($this->mapper_config());
+
 			if ($mapper instanceOf FactorySetGet)
 			{
 				$mapper->factory($this->factory());
