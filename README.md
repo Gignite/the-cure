@@ -6,9 +6,9 @@
 
 ## General flow of using The Cure
 
- - Create a `MapperContainer` that is the DI container for all
-   mappers and the objects they create
- - Get a mapper object from `MapperContainer` using `::use()`
+ - Create a `Gignite\TheCure\Mapper\Container` that is the DI
+   container for all mappers and the objects they create
+ - Get a mapper object from `Container` using `::use()`
 
 ``` php
 <?php
@@ -23,7 +23,7 @@ $container->mapper('Media');   // => Mapper_Mongo_Media
 
  - Create a new model
  - Validate the model
- - Pass the model to Mapper::save()
+ - Pass the model to Gignite\TheCure\Mappers\Mapper::save()
 
 ``` php
 <?php
@@ -38,10 +38,10 @@ if ($image->create($owner, compact('filename')))
 
 ### Updating
 
- - Use Mapper::find_one()
+ - Use Gignite\TheCure\Mappers\Mapper::find_one()
  - Operate on the model
  - Validate the model
- - Pass the model to Mapper::save()
+ - Pass the model to Gignite\TheCure\Mappers\Mapper::save()
 
 ``` php
 <?php
@@ -57,11 +57,14 @@ if ($image->validation()->check())
 
 ### Finding
 
- - Use Mapper::find_one() to find a single model
- - Use Mapper::find() to find a Collection of models
+ - Use `Gignite\TheCure\Mappers\Mapper::find_one()` to find a
+   single `M odel`
+ - Use `Gignite\TheCure\Mappers\Mapper::find()` to find a
+   `Collection` of models
 
-The update example includes a ::find_one() call which has two
-arguments. Optionally you can simply pass in an ID like so:
+The update example includes a `::find_one()` call which has
+two arguments. Optionally you can simply pass in an ID like
+so:
 
 ``` php
 <?php
@@ -73,7 +76,7 @@ $container->mapper('Profile')->find_one('Artist', $id); // => Model_Profile_Arti
 `::find()` has a similar API to `::find_one()` the differences
 being all of `::find()`s arguments are optional, and the
 `$where` argument must be an array. If you supply no arguments
-you will get a Collection representing an entire collection,
+you will get a `Collection` representing an entire collection,
 table, etc.
 
 ``` php
@@ -94,11 +97,11 @@ $container->mapper('Profile')->find('Artist', array(
 
 ### Working with collections
 
-A Collection is a container, cursor and iterable that
-represents more than one document, row, etc. It does not
-initialise any models however until that row is iterated over,
-at that point an IdentityMap is used to ensure the model isn't
-already in the ecosystem.
+A `Gignite\TheCure\Collections\Collection` is a container,
+cursor and iterable that represents more than one document,
+row, etc. It does not initialise any models however until that
+row is iterated over, at that point an `IdentityMap` is used
+to ensure the model isn't already in the ecosystem.
 
 ``` php
 <?php
@@ -113,8 +116,8 @@ foreach ($collection as $_model)
 
 ### Deleting
 
- - Use Mapper::delete() to delete a model, collection or by
-   a new query.
+ - Use `Gignite\TheCure\Mappers\Mapper::delete()` to delete a
+   model, collection or by a new query.
 
 ``` php
 <?php
@@ -156,16 +159,16 @@ the data before and after an operation on your model. By
 convention this would then be called `Mapper_Mock_User`.
 
 This convention explains the API choice of
-`MapperContainer::__construct()`, `MapperContainer::mapper()`,
+`Container::__construct()`, `Container::mapper()`,
 `Mapper::find()` and `Mapper::find_one()`.
 
-### MapperContainer::__construct($type)
+### Gignite\TheCure\Mapper\Container::__construct($type)
 
 The argument passed here is added onto the `Mapper_` prefix,
 so for example `new MapperContainer('Mongo')` creates a prefix
 for all mappers called `Mapper_Mongo_`.
 
-### MapperContainer::mapper($mapper)
+### Gignite\TheCure\Mapper\Container::mapper($mapper)
 
 The argument passed to ::mapper() indicates the domain area
 being mapped so for example `$container->mapper('Profile')`
@@ -173,7 +176,7 @@ will instantiate a single `Mapper_Mongo_Profile` and register
 it with the container so that subsequent calls return the same
 instance.
 
-### Mapper::find($suffix, $id) and ::find_one($suffix, $id)
+### Gignite\TheCure\Mappers\Mapper::find($suffix, $id) and ::find_one($suffix, $id)
 
 The first argument passed to `::find_one()` is a suffix for
 the model class name which is by default a derivative of the
