@@ -144,8 +144,15 @@ class Container {
 				$mapper->connection($this->connection());
 			}
 			
-			$mapper->identities($this->identities());
-			$mapper->config($this->mapper_config());
+			if ($mapper instanceOf IdentitiesSetGet)
+			{
+				$mapper->identities($this->identities());
+			}
+			
+			if ($mapper instanceOf ConfigSetGet)
+			{
+				$mapper->config($this->mapper_config());
+			}
 
 			if ($mapper instanceOf FactorySetGet)
 			{
