@@ -12,7 +12,8 @@
 
 ``` php
 <?php
-$container = new MapperContainer('Mongo');
+use Gignite\TheCure\Mapper\Container;
+$container = new Container('Mongo');
 $container->mapper('Profile'); // => Mapper_Mongo_Profile
 $container->mapper('Media');   // => Mapper_Mongo_Media
 ?>
@@ -180,7 +181,8 @@ mapper class name. Take this example:
 
 ``` php
 <?php
-$container = new MapperContainer('Mongo');
+use Gignite\TheCure\Mapper\Container;
+$container = new Container('Mongo');
 
 // Using Mapper_Mongo_Profile to find Model_Profile_Artist
 $model = $container->mapper('Profile')->find_one('Artist', $id);
@@ -189,3 +191,4 @@ $model = $container->mapper('Profile')->find_one('Artist', $id);
 $model = $container->mapper('Profile')->find_one($id);
 ?>
 ```
+
