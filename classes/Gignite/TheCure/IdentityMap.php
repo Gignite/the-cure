@@ -57,11 +57,24 @@ class IdentityMap {
 		return $class.$id;
 	}
 
+	/**
+	 * Has this identity map mapped $model?
+	 *
+	 * @param   Model
+	 * @return  boolean
+	 */
 	public function has(Model $model)
 	{
 		return in_array($model, $this->identities);
 	}
 
+	/**
+	 * Get a Model by class name and ID.
+	 *
+	 * @param   string  class name
+	 * @param   mixed   ID
+	 * @return  Model
+	 */
 	public function get($class, $id)
 	{
 		$key = $this->key($class, $id);
@@ -72,11 +85,25 @@ class IdentityMap {
 		}
 	}
 
+	/**
+	 * Add a Model to the identity map.
+	 *
+	 * @param   string  class name
+	 * @param   mixed   ID
+	 * @return  Model
+	 */
 	public function set(Model $model)
 	{
 		$this->identities[$this->key($model)] = $model;
 	}
 
+	/**
+	 * Delete a Model from the identity map.
+	 *
+	 * @param   string  class name
+	 * @param   mixed   ID
+	 * @return  Model
+	 */
 	public function delete(Model $model)
 	{
 		unset($this->identities[$this->key($model)]);

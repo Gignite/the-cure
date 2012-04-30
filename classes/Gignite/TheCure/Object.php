@@ -12,6 +12,13 @@ class Object {
 
 	protected $data;
 	
+	/**
+	 * Create a new Object optionally with an array of data.
+	 *
+	 * @param   array  of data
+	 * @param   array  keys to filter with
+	 * @return  void
+	 */
 	public function __construct(array $data = NULL, array $filter = NULL)
 	{
 		if ($data === NULL)
@@ -26,6 +33,7 @@ class Object {
 		$this->data = $data;
 	}
 
+	// Filter an array by keys
 	protected function filter(array $data, array $filter)
 	{
 		$clean_data = array();
@@ -41,6 +49,12 @@ class Object {
 		return $clean_data;
 	}
 
+	/**
+	 * Get a field's value.
+	 *
+	 * @param   string  field name
+	 * @return  mixed   value
+	 */
 	public function get($field)
 	{
 		if (isset($this->data[$field]))
@@ -49,6 +63,14 @@ class Object {
 		}
 	}
 
+	/**
+	 * Set one or more field's value.
+	 *
+	 * @param   array   array  of $field => $value
+	 * @param   string  field name
+	 * @param   mixed   value
+	 * @return  void
+	 */
 	public function set($field, $value = NULL)
 	{
 		if (is_array($field))
@@ -64,9 +86,16 @@ class Object {
 		}
 	}
 
+	/**
+	 * Set or get one field's value.
+	 *
+	 * @param   string  field name
+	 * @param   mixed   value if setting
+	 * @return  mixed   value if getting
+	 */
 	public function accessor($field, $value = NULL)
 	{
-		if ($value)
+		if ($value !== NULL)
 		{
 			$this->set($field, $value);
 			return;
@@ -75,24 +104,48 @@ class Object {
 		return $this->get($field);
 	}
 
+	/**
+	 * Get Object's data as an array.
+	 *
+	 * @return  array
+	 */
 	public function as_array()
 	{
 		return $this->data;
 	}
 
+	/**
+	 * Magic isset.
+	 *
+	 * @param   string  field name
+	 * @return  boolean
+	 */
 	public function __isset($field)
 	{
 		return isset($this->data[$field]);
 	}
 
+	/**
+	 * Magic get.
+	 *
+	 * @param   string  field name
+	 * @return  mixed
+	 */
 	public function __get($field)
 	{
 		return $this->get($field);
 	}
 
+	/**
+	 * Magic set.
+	 *
+	 * @param   string  field name
+	 * @param   mixed   value
+	 * @return  void
+	 */
 	public function __set($field, $value)
 	{
-		return $this->set($field, $value);
+		$this->set($field, $value);
 	}
 
 }

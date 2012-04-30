@@ -19,6 +19,12 @@ class Factory {
 
 	protected $config;
 	
+	/**
+	 * Create new name factory.
+	 *
+	 * @param   array  config
+	 * @return  void
+	 */
 	public function __construct(array $config)
 	{
 		$this->config = $config;
@@ -38,7 +44,14 @@ class Factory {
 	{
 		return $this->config['separator'];
 	}
-
+	
+	/**
+	 * Get mapper class.
+	 *
+	 * @param   string  mapper type
+	 * @param   string  mapper suffix
+	 * @return  string  class name
+	 */
 	public function mapper($type, $suffix)
 	{
 		$class = $this->prefix('mapper');
@@ -48,7 +61,13 @@ class Factory {
 		$class .= $suffix;
 		return $class;
 	}
-
+	
+	/**
+	 * Get domain from Mapper.
+	 *
+	 * @param   Mapper
+	 * @return  string  domain
+	 */
 	public function domain(Mapper $mapper)
 	{
 		$config = $this->config();
@@ -58,7 +77,14 @@ class Factory {
 		$domain = substr($domain, $domainPos);
 		return $domain;
 	}
-
+	
+	/**
+	 * Get model class from Mapper and model suffix.
+	 *
+	 * @param   Mapper
+	 * @param   string  model suffix
+	 * @return  string  model class
+	 */
 	public function model(Mapper $mapper, $suffix = NULL)
 	{
 		$class = $this->prefix('model');
