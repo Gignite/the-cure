@@ -19,6 +19,7 @@
 			<file>test/ModelMagicTest.php</file>
 			<file>test/RelationshipOneToOneTest.php</file>
 			<file>test/RelationshipOneToManyTest.php</file>
+			<file>test/ObjectTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
