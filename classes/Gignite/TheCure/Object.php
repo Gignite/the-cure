@@ -14,27 +14,31 @@ class Object {
 	
 	public function __construct(array $data = NULL, array $filter = NULL)
 	{
-		if ($filter)
-		{
-			$clean_data = array();
-
-			foreach ($filter as $_field)
-			{
-				if (array_key_exists($_field, $data))
-				{
-					$clean_data[$_field] = $data[$_field];
-				}
-			}
-
-			$data = $clean_data;
-		}
-
 		if ($data === NULL)
 		{
 			$data = array();
 		}
+		elseif ($filter)
+		{
+			$data = $this->filter($data, $filter);
+		}
 
 		$this->data = $data;
+	}
+
+	protected function filter(array $data, array $filter)
+	{
+		$clean_data = array();
+
+		foreach ($filter as $_field)
+		{
+			if (array_key_exists($_field, $data))
+			{
+				$clean_data[$_field] = $data[$_field];
+			}
+		}
+
+		return $clean_data;
 	}
 
 	public function get($field)
