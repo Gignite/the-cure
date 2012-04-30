@@ -33,11 +33,6 @@ class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 
 		$object = $model->__object();
 
-		if ( ! isset($object->{$this->name()}))
-		{
-			$object->{$this->name()} = array();
-		}
-
 		if (isset($object->{$this->name()}))
 		{
 			$relations = $object->{$this->name()};
