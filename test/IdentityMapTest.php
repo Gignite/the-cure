@@ -11,6 +11,7 @@
  * @license     MIT
  */
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Object;
 
 class IdentityMapTest extends PHPUnit_Framework_TestCase {
 
@@ -19,7 +20,7 @@ class IdentityMapTest extends PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->domain = new Models\User;
-		$this->domain->__object((object) array('_id' => 2));
+		$this->domain->__object(new Object(array('_id' => 2)));
 	}
 
 	public function testConstruct()

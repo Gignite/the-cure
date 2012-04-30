@@ -1,4 +1,5 @@
 <?php
+use Gignite\TheCure\Object;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\OneToMany;
 
@@ -35,7 +36,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 		$model = new Models\User\Admin;
 
 		$relation = new Models\User\Admin;
-		$relationObject = (object) array('name' => 'Luke');
+		$relationObject = new Object(array('name' => 'Luke'));
 		$relation->__object($relationObject);
 
 		$relationship = $this->relationship();
@@ -94,9 +95,9 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 		$relationship = $this->relationship();
 
 		$model = new Models\User\Admin;
-		$model->__object((object) array(
+		$model->__object(new Object(array(
 			$relationship->name() => array(),
-		));
+		)));
 		
 		$relationship->remove(
 			$this->container(),

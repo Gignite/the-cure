@@ -12,6 +12,7 @@
  */
 namespace Gignite\TheCure\Mappers;
 
+use Gignite\TheCure\Object;
 use Gignite\TheCure\Connections\Connection;
 use Gignite\TheCure\Mapper\ConnectionSetGet;
 use Gignite\TheCure\Mappers\Mapper;
@@ -64,7 +65,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 			$where,
 			function ($where) use ($collection)
 			{
-				return (object) $collection->findOne($where);
+				return new Object($collection->findOne($where));
 			});
 	}
 	
@@ -77,7 +78,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 			$model,
 			function ($object) use ($collection, $options)
 			{
-				$array = (array) $object;
+				$array = $object->as_array();
 
 				if (isset($object->_id))
 				{
@@ -91,7 +92,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 					$collection->insert($array, $options);
 				}
 
-				return (object) $array;
+				return new Object($array);
 			});
 	}
 

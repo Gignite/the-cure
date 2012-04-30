@@ -1,4 +1,5 @@
 <?php
+use Gignite\TheCure\Object;
 
 abstract class MapperTest extends PHPUnit_Framework_TestCase {
 
@@ -72,7 +73,7 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 	public function providerTestSave()
 	{
 		$model = new Models\User;
-		$model->__object((object) array('name' => 'Luke'));
+		$model->__object(new Object(array('name' => 'Luke')));
 
 		return array(
 			array($model),
@@ -107,7 +108,7 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$expectedCount = $mapper->find()->count();
 
 		$model = new Models\User;
-		$model->__object((object) array('name' => 'Luke'));
+		$model->__object(new Object(array('name' => 'Luke')));
 
 		$mapper->save($model);
 		$this->assertSame($expectedCount + 1, $mapper->find()->count());
@@ -125,7 +126,7 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$query = array('name' => 'Bob');
 		$bobObject = function ()
 		{
-			return (object) array('name' => 'Bob');
+			return new Object(array('name' => 'Bob'));
 		};
 
 		$expectedCount = $mapper->find($query)->count();
@@ -154,7 +155,7 @@ abstract class MapperTest extends PHPUnit_Framework_TestCase {
 		$query = array('name' => 'Jim');
 		$bobObject = function ()
 		{
-			return (object) array('name' => 'Jim');
+			return new Object(array('name' => 'Jim'));
 		};
 
 		$expectedCount = $mapper->find($query)->count();

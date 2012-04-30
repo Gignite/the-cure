@@ -12,6 +12,7 @@
  * @license     MIT
  */
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Object;
 use Gignite\TheCure\Collections\Model as ModelCollection;
 
 class CollectionModelTest extends CollectionTest {
@@ -20,8 +21,8 @@ class CollectionModelTest extends CollectionTest {
 	{
 		return new ModelCollection(
 			new ArrayIterator(array(
-				(object) array('_id' => 0),
-				(object) array('_id' => 1),
+				new Object(array('_id' => 0)),
+				new Object(array('_id' => 1)),
 			)),
 			$this->map = new IdentityMap,
 			'Models\User');

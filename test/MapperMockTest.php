@@ -12,6 +12,7 @@
  */
 use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Object;
 
 class MapperMockTest extends MapperTest {
 
@@ -34,10 +35,10 @@ class MapperMockTest extends MapperTest {
 	protected static function prepareData()
 	{
 		$mapper = static::mapper();
-		$mapper->data[] = $data = (object) array(
+		$mapper->data[] = $data = new Object(array(
 			'_id'  => 0,
 			'name' => 'Luke',
-		);
+		));
 		return $data;
 	}
 

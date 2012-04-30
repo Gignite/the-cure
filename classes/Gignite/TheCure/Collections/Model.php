@@ -15,12 +15,14 @@
 namespace Gignite\TheCure\Collections;
 
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Object;
 
 class Model extends Iterable {
 
 	protected $identities;
 
 	protected $class_name;
+
 
 	public function __construct(
 		$collection,
@@ -57,9 +59,13 @@ class Model extends Iterable {
 		}
 		else
 		{
+			if ( ! $object instanceOf Object)
+			{
+				$object = new Object($object);
+			}
+			
 			$model = new $class;
-			$model->__object((object) $object);
-
+			$model->__object($object);
 			$this->identities()->set($model);
 		}
 

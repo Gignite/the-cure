@@ -1,4 +1,5 @@
 <?php
+use Gignite\TheCure\Object;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\OneToOne;
 
@@ -32,7 +33,7 @@ class RelationshipOneToOnelTest extends PHPUnit_Framework_TestCase {
 
 		$model = new Models\User\Admin;
 
-		$relationObject = (object) array('name' => 'Luke');
+		$relationObject = new Object(array('name' => 'Luke'));
 		$relation = new Models\User\Admin;
 		$relation->__object($relationObject);
 

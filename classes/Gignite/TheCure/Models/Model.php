@@ -23,6 +23,8 @@
  */
 namespace Gignite\TheCure\Models;
 
+use Gignite\TheCure\Object;
+
 abstract class Model {
 
 	protected $__object;
@@ -33,13 +35,13 @@ abstract class Model {
 	 * @param   StdClass  If setting pass in a StdClass
 	 * @return  StdClass  If getting
 	 */
-	public function __object($object = NULL)
+	public function __object(Object $object = NULL)
 	{
 		if ($object === NULL)
 		{
 			if ($this->__object === NULL)
 			{
-				$this->__object = new \StdClass;
+				$this->__object = new Object;
 			}
 			
 			return $this->__object;

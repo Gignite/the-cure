@@ -38,7 +38,17 @@ class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 			$object->{$this->name()} = array();
 		}
 
-		$object->{$this->name()}[] = $relation->__object()->_id;
+		if (isset($object->{$this->name()}))
+		{
+			$relations = $object->{$this->name()};
+		}
+		else
+		{
+			$relations = array();
+		}
+
+		$relations[] = $relation->__object()->_id;
+		$object->{$this->name()} = $relations;
 	}
 
 	public function remove(Container $container, $model, $relation)
@@ -53,7 +63,9 @@ class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 			{
 				if ($_id == $relation->__object()->_id)
 				{
-					unset($model_object->{$this->name()}[$_k]);
+					$relations = $model_object->{$this->name()};
+					unset($relations[$_k]);
+					$model_object->{$this->name()} = $relations;
 					return;
 				}
 			}

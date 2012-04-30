@@ -12,6 +12,7 @@
  */
 use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Object;
 use Gignite\TheCure\Connections\Mongo as MongoConnection;
 
 class MapperMongoTest extends MapperTest {
@@ -48,7 +49,7 @@ class MapperMongoTest extends MapperTest {
 		$collection = static::collection(static::db());
 		$data = array('name' => 'Luke');
 		$collection->insert($data);
-		return (object) $data;
+		return new Object($data);
 	}
 
 	protected static function mapper()

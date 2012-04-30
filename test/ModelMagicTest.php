@@ -1,4 +1,5 @@
 <?php
+use Gignite\TheCure\Object;
 use Gignite\TheCure\Mapper\Container;
 
 class ModelMagicTest extends PHPUnit_Framework_TestCase {
@@ -13,17 +14,17 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 
 			$jim = new Models\User\Magic;
 			$jim->__container($container);
-			$jim->__object((object) array(
+			$jim->__object(new Object(array(
 				'name' => 'Jim',
-			));
+			)));
 			$container->mapper('User')->save($jim);
 
 			$luke = new Models\User\Magic;
 			$luke->__container($container);
-			$luke->__object((object) array(
+			$luke->__object(new Object(array(
 				'name'    => 'Luke',
 				'friends' => array($jim->__object()->_id),
-			));
+			)));
 			$container->mapper('User')->save($luke);
 
 			$this->container = $container;
