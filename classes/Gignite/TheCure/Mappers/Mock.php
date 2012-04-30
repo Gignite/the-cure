@@ -36,15 +36,17 @@ abstract class Mock extends Mapper {
 	{
 		foreach ($collection as $_key => $_row)
 		{
-			foreach ($where as $_field => $_value)
+			foreach ($where as $_field => $_needle)
 			{
-				if (is_array($_value)
-					AND isset($_value['$in'])
-					AND in_array($_row->{$_field}, $_value['$in']))
+				$value = $_row->get($_field);
+
+				if (is_array($_needle)
+					AND isset($_needle['$in'])
+					AND in_array($value, $_needle['$in']))
 				{
 					// This is okay
 				}
-				elseif (empty($_row[$_field]) OR $_row[$_field] !== $_value)
+				elseif ($value === NULL OR $value !== $_needle)
 				{
 					continue 2;
 				}
