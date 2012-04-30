@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * A data transfer object
+ *
+ * @package     TheCure
+ * @category    Object
+ * @copyright   Gignite, 2012
+ */
 namespace Gignite\TheCure;
 
 class Object {
