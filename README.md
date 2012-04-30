@@ -248,3 +248,43 @@ var_dump($user->friends()->count());
 ?>
 ```
 
+## Object, a data transfer object
+
+In order to transfer data between models and mappers we have
+devised a DTO called `Object`.
+
+### Creating an Object
+
+`Object::__construct()` optionally takes two arguments. The
+first is an array of data. The second a whitelist of keys to
+extract from the first arg.
+
+``` php
+<?php
+$object = new Object(array('name' => 'Luke'));
+
+// Or filter your data
+$object = new Object($_POST, array('name'));
+?>
+```
+
+### Updating an Object
+
+``` php
+<?php
+$object->name = 'Jim';
+$object->set('name', 'Jim');
+$object->accessor('name', 'Jim');
+?>
+```
+
+### Getting data from an Object
+
+``` php
+<?php
+var_dump($object->name);
+var_dump($object->get('name'));
+var_dump($object->accessor('name'));
+var_dump($object->as_array());
+?>
+```
