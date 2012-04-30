@@ -232,6 +232,8 @@ class User extends MagicModel {
 
 $user = new User;
 $user->__container(new Container('Mock'));
+// Or try with mongo!!
+//     $user->__container(new Container('Mongo'));
 $user->name('Luke');
 var_dump($user->name());
 
@@ -239,6 +241,7 @@ $bob = new User;
 $bob->name('Bob');
 $user->add_friends($bob);
 var_dump($user->friends()->current()->name());
+var_dump($user->friends()->count());
 
 $user->remove_friends($bob);
 var_dump($user->friends()->count());

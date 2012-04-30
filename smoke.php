@@ -27,7 +27,6 @@ spl_autoload_register(array('Kohana', 'auto_load'));
 
 \Kohana::modules(array('the-cure' => __DIR__.'/'));
 
-
 use Gignite\TheCure\Models\Magic as MagicModel;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\OneToMany as OneToManyRelationship;
@@ -50,7 +49,9 @@ class User extends MagicModel {
 }
 
 $user = new User;
-$user->__container(new Container('Mongo'));
+$user->__container(new Container('Mock'));
+// Or try with mongo!!
+//     $user->__container(new Container('Mongo'));
 $user->name('Luke');
 var_dump($user->name());
 
