@@ -93,11 +93,7 @@ class Container {
 	{
 		$mappers = $this->config('mappers');
 		$key = $this->type();
-
-		if (isset($mappers[$key]))
-		{
-			return $mappers[$key];
-		}
+		return $mappers[$key];
 	}
 
 	protected function connection()
