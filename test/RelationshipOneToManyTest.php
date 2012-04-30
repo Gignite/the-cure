@@ -29,18 +29,27 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 			$collection);
 	}
 
+	protected function relation()
+	{
+		$relation = new Models\User\Admin;
+		$relationObject = new Object(array('name' => 'Luke'));
+		$relation->__object($relationObject);
+		return $relation;
+	}
+
 	public function testItShouldSaveAnRelatedObjectWhenAddingRelation()
 	{
 		$container = $this->container();
 
 		$model = new Models\User\Admin;
 
-		$relation = new Models\User\Admin;
-		$relationObject = new Object(array('name' => 'Luke'));
-		$relation->__object($relationObject);
+		$relation = $this->relation();
+		$relationObject = $relation->__object();
+		$anotherRelation = $this->relation();
 
 		$relationship = $this->relationship();
 		$relationship->add($container, $model, $relation);
+		$relationship->add($container, $model, $anotherRelation);
 
 		$userData = $container->mapper('User')->data;
 		$this->assertSame($relationObject, current($userData));
@@ -57,7 +66,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 
 		$modelObject = $model->__object();
 		$relationshipName = $this->relationship()->name();
-		$this->assertSame(1, count($modelObject->{$relationshipName}));
+		$this->assertSame(2, count($modelObject->{$relationshipName}));
 
 		return array($container, $model, $relation);
 	}
@@ -73,7 +82,7 @@ class RelationshipOneToManyTest extends PHPUnit_Framework_TestCase {
 		$relationship->remove($container, $model, $relation);
 
 		$modelObject = $model->__object();
-		$this->assertSame(0, count($modelObject->{$relationship->name()}));
+		$this->assertSame(1, count($modelObject->{$relationship->name()}));
 	}
 
 	/**
