@@ -2,8 +2,8 @@
 
 return array(
 	'mappers' => array(
-		'mock' => array(),
-		'connectiontest' => array(
+		'Mock' => array(),
+		'ConnectionTest' => array(
 			'connection_class' => 'Connections\ConnectionTest',
 		),
 	),

@@ -92,7 +92,7 @@ class Container {
 	protected function mapper_config()
 	{
 		$mappers = $this->config('mappers');
-		$key = strtolower($this->type());
+		$key = $this->type();
 
 		if (isset($mappers[$key]))
 		{
