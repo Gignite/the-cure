@@ -12,5 +12,24 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame($expected, $object->as_array());
 	}
 
+	public function testItShouldReturnNullIfFieldNotSet()
+	{
+		$object = new Object;
+		$this->assertNull($object->get('unknown'));
+	}
+
+	public function testItShouldGetViaAccessor()
+	{
+		$object = new Object(array('name' => 'Luke'));
+		$this->assertSame('Luke', $object->accessor('name'));
+	}
+
+	public function testItShouldSetViaAccessor()
+	{
+		$object = new Object(array('name' => 'Luke'));
+		$object->accessor('name', 'Jake');
+		$this->assertSame('Jake', $object->name);
+	}
+
 }
 
