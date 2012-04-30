@@ -39,14 +39,6 @@ class Factory {
 		return $this->config['separator'];
 	}
 
-	public function connection($suffix)
-	{
-		$class = $this->prefix('connection');
-		$class .= $this->separator();
-		$class .= $suffix;
-		return $class;
-	}
-
 	public function mapper($type, $suffix)
 	{
 		$class = $this->prefix('mapper');
