@@ -274,6 +274,10 @@ $object = new Object($_POST, array('name'));
 <?php
 $object->name = 'Jim';
 $object->set('name', 'Jim');
+$object->set(array(
+	'name' => 'Jim',
+	'age'  => 26,
+));
 $object->accessor('name', 'Jim');
 ?>
 ```
