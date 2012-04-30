@@ -49,9 +49,19 @@ class Object {
 		}
 	}
 
-	public function set($field, $value)
+	public function set($field, $value = NULL)
 	{
-		$this->data[$field] = $value;
+		if (is_array($field))
+		{
+			foreach ($field as $_field => $_val)
+			{
+				$this->data[$_field] = $_val;
+			}
+		}
+		else
+		{
+			$this->data[$field] = $value;
+		}
 	}
 
 	public function accessor($field, $value = NULL)
