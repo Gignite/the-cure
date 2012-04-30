@@ -44,7 +44,7 @@ abstract class Mock extends Mapper {
 				{
 					// This is okay
 				}
-				elseif (empty($_row->{$_field}) OR $_row->{$_field} !== $_value)
+				elseif (empty($_row[$_field]) OR $_row[$_field] !== $_value)
 				{
 					continue 2;
 				}
