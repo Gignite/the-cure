@@ -73,6 +73,11 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 		$this->user('Jim')->age(22);
 	}
 
+	public function testItShouldUseDefaultValueWhenNoValueSet()
+	{
+		$this->assertSame(1, $this->user('Jim')->age());
+	}
+
 	public function providerModelWithMockableRelation()
 	{
 		$args = array(new Models\User);

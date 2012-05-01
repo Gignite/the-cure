@@ -11,7 +11,7 @@ class Magic extends MagicModel {
 	{
 		return parent::fields() + array(
 			'name'    => new Field('name', array('setter' => TRUE)),
-			'age'     => new Field('age'),
+			'age'     => new Field('age', array('value' => 1)),
 			'friends' => new OneToMany('friends', array(
 				'mapper_suffix' => 'User',
 				'model_suffix'  => 'Magic',

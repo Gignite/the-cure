@@ -10,6 +10,7 @@
  */
 namespace Gignite\TheCure\Models;
 
+use Gignite\TheCure\Field;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\Relationship;
 use Gignite\TheCure\Relationships\Relation;
@@ -61,7 +62,7 @@ abstract class Magic extends Model {
 	{
 		$fields = static::fields();
 		$object = $this->__object();
-		
+
 		if ($field_action = $this->relation_action($fields, $method, $args))
 		{
 			list($field, $action) = $field_action;
@@ -87,6 +88,10 @@ abstract class Magic extends Model {
 				if (isset($object->{$field->name()}))
 				{
 					$value = $object->{$field->name()};
+				}
+				elseif ($field instanceOf Field)
+				{
+					$value = $field->value();
 				}
 				else
 				{

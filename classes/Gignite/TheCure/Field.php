@@ -5,6 +5,9 @@
  *     // Enable setter method functionality
  *     new Field('name', array('setter' => TRUE))
  *
+ *     // Provide a default value
+ *     new Field('verified', array('value' => FALSE));
+ *
  * @package     TheCure
  * @category    Field
  * @copyright   Gignite, 2012
@@ -14,6 +17,8 @@ namespace Gignite\TheCure;
 class Field {
 
 	protected $name;
+
+	protected $value;
 
 	protected $setter;
 
@@ -48,6 +53,16 @@ class Field {
 	public function name()
 	{
 		return $this->name;
+	}
+
+	/**
+	 * Get default value.
+	 *
+	 * @return  mixed
+	 */
+	public function value()
+	{
+		return $this->value;
 	}
 
 	/**
