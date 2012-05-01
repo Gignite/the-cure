@@ -37,7 +37,7 @@ class User extends MagicModel {
 	public static function fields()
 	{
 		return array(
-			'name' => new Field('name'),
+			'name' => new Field('name', array('setter' => TRUE)),
 			'age'  => new Field('age'),
 			'friends' => new OneToManyRelationship('friends', array(
 				'mapper_suffix' => 'User',
