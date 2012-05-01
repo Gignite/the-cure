@@ -288,6 +288,7 @@ $object->accessor('name', 'Jim');
 <?php
 var_dump($object->name);
 var_dump($object->get('name'));
+var_dump($object->get(array('name', 'age')));
 var_dump($object->accessor('name'));
 var_dump($object->as_array());
 ?>

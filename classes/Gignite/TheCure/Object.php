@@ -57,7 +57,21 @@ class Object {
 	 */
 	public function get($field)
 	{
-		if (isset($this->data[$field]))
+		if (is_array($field))
+		{
+			$data = array();
+
+			foreach ($field as $_field)
+			{
+				if (isset($this->data[$_field]))
+				{
+					$data[$_field] = $this->data[$_field];
+				}
+			}
+
+			return $data;
+		}
+		elseif (isset($this->data[$field]))
 		{
 			return $this->data[$field];
 		}
