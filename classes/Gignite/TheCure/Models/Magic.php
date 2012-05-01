@@ -73,6 +73,12 @@ abstract class Magic extends Model {
 
 			if ($args)
 			{
+				if ( ! $field->is_setter())
+				{
+					throw new \BadMethodCallException(
+						'You cannot pass arguments to a non-setter field.');
+				}
+
 				$object->{$field->name()} = $args[0];
 				return;
 			}

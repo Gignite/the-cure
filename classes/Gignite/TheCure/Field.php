@@ -2,6 +2,9 @@
 /**
  * A field
  *
+ *     // Enable setter method functionality
+ *     new Field('name', array('setter' => TRUE))
+ *
  * @package     TheCure
  * @category    Field
  * @copyright   Gignite, 2012
@@ -11,6 +14,8 @@ namespace Gignite\TheCure;
 class Field {
 
 	protected $name;
+
+	protected $setter;
 
 	/**
 	 * Create a new field.
@@ -43,6 +48,16 @@ class Field {
 	public function name()
 	{
 		return $this->name;
+	}
+
+	/**
+	 * Is this field a setter?
+	 *
+	 * @return  boolean
+	 */
+	public function is_setter()
+	{
+		return $this->setter;
 	}
 
 }

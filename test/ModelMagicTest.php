@@ -48,7 +48,7 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 
 		return array(
 			array($luke, $expectedName, array()),
-			array($luke, $expectedName, array($expectedName)),
+			array($luke, $expectedName = 'Bob', array($expectedName)),
 		);
 	}
 
@@ -63,6 +63,14 @@ class ModelMagicTest extends PHPUnit_Framework_TestCase {
 		}
 
 		$this->assertSame($expectedName, $model->name());
+	}
+
+	/**
+	 * @expectedException  BadMethodCallException
+	 */
+	public function testItShouldThrowBadMethodCallExceptionWhenNoSetter()
+	{
+		$this->user('Jim')->age(22);
 	}
 
 	public function providerModelWithMockableRelation()
