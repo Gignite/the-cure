@@ -31,6 +31,12 @@ class ObjectTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame('Jake', $object->name);
 	}
 
+	public function testItShouldSetAnArrayOfDataIfGivenAnArray()
+	{
+		$object = new Object;
+		$object->set($expected = array('name' => 'Bob'));
+		$this->assertSame($expected, $object->as_array());
+	}
 
 	public function testItShouldReturnAnArrayIfGivenAnArrayOfFields()
 	{
