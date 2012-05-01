@@ -24,6 +24,12 @@ abstract class Magic extends Model {
 
 	protected $__container;
 
+	/**
+	 * Get/set the Container.
+	 *
+	 * @param   Container  If setting
+	 * @return  Container  If getting
+	 */
 	public function __container(Container $container = NULL)
 	{
 		if ($container === NULL)
