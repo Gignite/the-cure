@@ -20,6 +20,8 @@
 			<file>test/RelationshipOneToOneTest.php</file>
 			<file>test/RelationshipOneToManyTest.php</file>
 			<file>test/ObjectTest.php</file>
+			
+			<file>test/ModelBankAccountTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
