@@ -8,7 +8,7 @@
 
  - Create a `Gignite\TheCure\Mapper\Container` that is the DI
    container for all mappers and the objects they create
- - Get a mapper object from `Container` using `::use()`
+ - Get a mapper object from `Container` using `::mapper()`
 
 ``` php
 <?php
