@@ -63,3 +63,10 @@ var_dump($user->friends()->count());
 
 $user->remove_friends($bob);
 var_dump($user->friends()->count());
+
+$object = new \Gignite\TheCure\Object;
+$object->set(array(
+	'name' => 'Jim',
+	'age'  => 26,
+));
+var_dump($object->get(array('name', 'age')));
