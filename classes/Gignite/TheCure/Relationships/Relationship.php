@@ -12,7 +12,7 @@ namespace Gignite\TheCure\Relationships;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Mapper\Container;
 
-abstract class Relationship extends Field {
+abstract class Relationship {
 
 	protected $name;
 
@@ -21,8 +21,11 @@ abstract class Relationship extends Field {
 	protected $model_suffix;
 
 	/**
-	 *     $this->mapper_class = $mapper_class;
-	 *     $this->model_suffix  = $model_suffix;
+	 * Create a new relationship.
+	 *
+	 * @param   string  relationship name
+	 * @param   array   additional config
+	 * @return  void
 	 */
 	public function __construct($name, array $config = NULL)
 	{

@@ -16,11 +16,23 @@ class Field {
 	 * Create a new field.
 	 *
 	 * @param   string  field name
+	 * @param   array   additional config
 	 * @return  void
 	 */
-	public function __construct($name)
+	public function __construct($name, array $config = NULL)
 	{
 		$this->name = $name;
+
+		if ($config)
+		{
+			foreach ($config as $_k => $_v)
+			{
+				if (property_exists($this, $_k))
+				{
+					$this->{$_k} = $_v;
+				}
+			}
+		}
 	}
 
 	/**
