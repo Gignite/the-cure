@@ -105,7 +105,16 @@ class Container {
 		if ($this->connection === NULL)
 		{
 			$mapper_config = $this->mapper_config();
-			$class = $mapper_config['connection_class'];
+
+			if (isset($mapper_config['connection_class']))
+			{
+				$class = $mapper_config['connection_class'];
+			}
+			else
+			{
+				$class = $this->factory()->connection($this->type());
+			}
+
 			$this->connection = new $class($mapper_config);
 		}
 

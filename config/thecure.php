@@ -3,8 +3,9 @@
 return array(
 	'factory' => array(
 		'prefixes' => array(
-			'mapper' => 'Mappers',
-			'model'  => 'Models',
+			'connection' => 'Connections',
+			'mapper'     => 'Mappers',
+			'model'      => 'Models',
 		),
 		'separator' => '\\',
 	),

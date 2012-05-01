@@ -27,4 +27,19 @@ class MapperContainerTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame($expectedConfig, $container->config());
 	}
 
+	public function testItShouldReturnNullIfNoMapperConfigFound()
+	{
+		$container = new Container('ConnectionTest');
+		$container->config(array(
+			'factory' => array(
+				'prefixes' => array(
+					'connection' => 'Connections',
+					'mapper'     => 'Mappers',
+				),
+				'separator' => '\\',
+			),
+		));
+		$mapper = $container->mapper('User');
+	}
+
 }
