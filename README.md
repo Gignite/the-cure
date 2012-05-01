@@ -326,7 +326,6 @@ simple design, let's test it.
 
 ``` php
 <?php
-
 class ModelBankAccountTest extends PHPUnit_Framework_TestCase {
 
 	public function provideBankAccounts()
@@ -364,7 +363,6 @@ Let's implement the bare minimum:
 
 ``` php
 <?php
-
 namespace Models;
 
 class BankAccount extends \Gignite\TheCure\Models\Model {
@@ -380,4 +378,3 @@ class BankAccount extends \Gignite\TheCure\Models\Model {
 ```
 
 Running the unit test will show this code passes.
-
