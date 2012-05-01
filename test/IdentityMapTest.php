@@ -23,40 +23,40 @@ class IdentityMapTest extends PHPUnit_Framework_TestCase {
 		$this->domain->__object(new Object(array('_id' => 2)));
 	}
 
-	public function testConstruct()
+	public function testItShouldConstructAnIdentityMap()
 	{
 		return new IdentityMap;
 	}
 
 	/**
-	 * @depends  testConstruct
+	 * @depends  testItShouldConstructAnIdentityMap
 	 */
-	public function testHasNotDomain($map)
+	public function testItShouldNotHaveDomain($map)
 	{
 		$this->assertFalse($map->has($this->domain));
 	}
 
 	/**
-	 * @depends  testConstruct
+	 * @depends  testItShouldConstructAnIdentityMap
 	 */
-	public function testSetDomain($map)
+	public function testItShouldSetDomain($map)
 	{
 		$map->set($this->domain);
 		return $map;
 	}
 
 	/**
-	 * @depends  testSetDomain
+	 * @depends  testItShouldSetDomain
 	 */
-	public function testGetDomain($map)
+	public function testItShouldGetDomain($map)
 	{
 		$this->assertEquals($this->domain, $map->get('Models\User', 2));
 	}
 
 	/**
-	 * @depends  testConstruct
+	 * @depends  testItShouldConstructAnIdentityMap
 	 */
-	public function testDeleteDomain($map)
+	public function testItShouldDeleteDomain($map)
 	{
 		$map->delete($this->domain);
 		$this->assertFalse($map->has($this->domain));
