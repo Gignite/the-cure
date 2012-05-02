@@ -62,51 +62,65 @@ abstract class Magic extends Model {
 	}
 
 	/**
-	 * @param            $fields
-	 * @param            $method
-	 * @param array|null $args
-	 * @return array
+	 * @param               $fields
+	 * @param               $method
+	 * @param   array|null  $args
+	 * @return  array
 	 */
-	private function relation_action($fields, $method, array $args = NULL)
+	private function relationship(array $attributes, $method, array $args)
 	{
-		if ($field = $this->field($fields, $method) AND $args)
+		if ($relationship = $this->attribute($attributes, $method))
 		{
-			$verb = 'Set';
+			if ($args)
+			{
+				$verb = 'set';
+			}
+			else
+			{
+				$verb = 'find';
+				$args[0] = $this->__object()->get($relationship->name());
+			}
 		}
 		else
 		{
 			$verb = current(explode('_', $method));
-			$field = $this->field($fields, substr($method, strlen($verb) + 1));
+			$relationship = $this->attribute(
+				$attributes,
+				substr($method, strlen($verb) + 1));
 		}
+
+		$arg = current($args);
 
 		$interface = ucfirst($verb);
 		$interface = "Gignite\\TheCure\\Relation\\{$interface}";
 
 		if (interface_exists($interface)
-			AND $field
-			AND $field instanceOf $interface)
+			AND $relationship
+			AND $relationship instanceOf $interface)
 		{
-			return array($field, $verb);
+			return $relationship->{$verb}($this->__container(), $this, $arg);
 		}
+
+		return FALSE;
 	}
 
 	/**
-	 * @param string $method
-	 * @param array  $args
-	 * @return mixed|null
-	 * @throws \BadMethodCallException
+	 * @param   string  $method
+	 * @param   array   $args
+	 * @return  mixed|null
+	 * @throws  \BadMethodCallException
 	 */
 	public function __call($method, $args)
 	{
-		$fields = static::fields();
+		$attributes = static::attributes();
 		$object = $this->__object();
+		$relationship = $this->relationship($attributes, $method, $args);
 
-		if ($field_action = $this->relation_action($fields, $method, $args))
+		if ($relationship !== FALSE)
 		{
-			list($field, $action) = $field_action;
-			$field->{$action}($this->__container(), $this, $args[0]);
+			return $relationship;
 		}
-		elseif ($field = $this->field($fields, $method))
+		elseif ($field = $this->attribute($attributes, $method))
 		{
 			if ($args)
 			{
@@ -128,19 +142,12 @@ abstract class Magic extends Model {
 					$value = NULL;
 				}
 
-				if ($field instanceOf Relationship)
-				{
-					return $field->find($this->__container(), $value);
-				}
-				else
-				{
-					return $value;
-				}
+				return $value;
 			}
 		}
 		else
 		{
-			throw new \BadMethodCallException;
+			throw new \BadMethodCallException('Method: '.$method);
 		}
 	}
 
