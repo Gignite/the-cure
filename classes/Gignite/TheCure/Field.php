@@ -2,8 +2,11 @@
 /**
  * A field
  *
- *     // Enable setter method functionality
- *     new Field('name', array('setter' => TRUE))
+ *     // A field with a name of "name"
+ *     new Field('name');
+ *
+ *     // A field with a name of "location" but aliased to "town"
+ *     new Field('name', array('alias' => 'town'));
  *
  *     // Provide a default value
  *     new Field('verified', array('value' => FALSE));
@@ -19,8 +22,6 @@ class Field extends Attribute {
 
 	protected $value;
 
-	protected $setter;
-
 	protected $rules;
 
 	/**
@@ -31,16 +32,6 @@ class Field extends Attribute {
 	public function value()
 	{
 		return $this->value;
-	}
-
-	/**
-	 * Is this field a setter?
-	 *
-	 * @return  boolean
-	 */
-	public function is_setter()
-	{
-		return $this->setter;
 	}
 
 	/**

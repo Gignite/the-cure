@@ -45,6 +45,17 @@ abstract class Magic extends Model {
 		$this->__container = $container;
 	}
 
+	private function field($fields, $method)
+	{
+		foreach ($fields as $_field)
+		{
+			if ($_field->alias() === $method)
+			{
+				return $_field;
+			}
+		}
+	}
+
 	/**
 	 * @param            $fields
 	 * @param            $method
@@ -53,25 +64,24 @@ abstract class Magic extends Model {
 	 */
 	private function relation_action($fields, $method, array $args = NULL)
 	{
-		if (isset($fields[$method]) AND $args)
+		if ($field = $this->field($fields, $method) AND $args)
 		{
 			$verb = 'Set';
-			$key  = $method;
 		}
 		else
 		{
 			$verb = current(explode('_', $method));
-			$key  = substr($method, strlen($verb) + 1);
+			$field = $this->field($fields, substr($method, strlen($verb) + 1));
 		}
 
 		$interface = ucfirst($verb);
 		$interface = "Gignite\\TheCure\\Relation\\{$interface}";
 
 		if (interface_exists($interface)
-			AND isset($fields[$key])
-			AND $fields[$key] instanceOf $interface)
+			AND $field
+			AND $field instanceOf $interface)
 		{
-			return array($fields[$key], $verb);
+			return array($field, $verb);
 		}
 	}
 
@@ -91,18 +101,10 @@ abstract class Magic extends Model {
 			list($field, $action) = $field_action;
 			$field->{$action}($this->__container(), $this, $args[0]);
 		}
-		elseif (isset($fields[$method]))
+		elseif ($field = $this->field($fields, $method))
 		{
-			$field = $fields[$method];
-
 			if ($args)
 			{
-				if ( ! $field->is_setter())
-				{
-					throw new \BadMethodCallException(
-						'You cannot pass arguments to a non-setter field.');
-				}
-
 				$object->{$field->name()} = $args[0];
 				return;
 			}
