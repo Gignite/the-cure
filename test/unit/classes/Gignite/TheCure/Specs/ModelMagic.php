@@ -6,7 +6,7 @@ use Gignite\TheCure\Models;
 use Gignite\TheCure\Relationships;
 use Gignite\TheCure\Mapper\Container;
 
-class ModelMagicTest extends \PHPUnit_Framework_TestCase {
+class ModelMagic extends \PHPUnit_Framework_TestCase {
 
 	protected $container;
 

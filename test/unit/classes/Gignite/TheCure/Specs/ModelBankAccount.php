@@ -3,7 +3,7 @@ namespace Gignite\TheCure\Specs;
 
 use Gignite\TheCure\Models;
 
-class ModelBankAccountTest extends \PHPUnit_Framework_TestCase {
+class ModelBankAccount extends \PHPUnit_Framework_TestCase {
 
 	public function provideBankAccounts()
 	{

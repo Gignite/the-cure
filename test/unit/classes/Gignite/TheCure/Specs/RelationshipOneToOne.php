@@ -6,7 +6,7 @@ use Gignite\TheCure\Models;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\OneToOne;
 
-class RelationshipOneToOnelTest extends \PHPUnit_Framework_TestCase {
+class RelationshipOneToOne extends \PHPUnit_Framework_TestCase {
 
 	protected function relationship()
 	{
