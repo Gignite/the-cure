@@ -18,33 +18,46 @@ use Gignite\TheCure\Mappers\Mapper;
 class Factory {
 
 	protected $config;
-	
+
 	/**
 	 * Create new name factory.
 	 *
-	 * @param   array  config
-	 * @return  void
+	 * @param array $config
 	 */
 	public function __construct(array $config)
 	{
 		$this->config = $config;
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function config()
 	{
 		return $this->config;
 	}
 
+	/**
+	 * @param  $type
+	 * @return mixed
+	 */
 	protected function prefix($type)
 	{
 		return $this->config['prefixes'][$type];
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function separator()
 	{
 		return $this->config['separator'];
 	}
 
+	/**
+	 * @param  string $suffix
+	 * @return string
+	 */
 	public function connection($suffix)
 	{
 		$class = $this->prefix('connection');
@@ -69,12 +82,12 @@ class Factory {
 		$class .= $suffix;
 		return $class;
 	}
-	
+
 	/**
 	 * Get domain from Mapper.
 	 *
-	 * @param   Mapper
-	 * @return  string  domain
+	 * @param  Mappers\Mapper $mapper
+	 * @return mixed|string
 	 */
 	public function domain(Mapper $mapper)
 	{
@@ -85,13 +98,13 @@ class Factory {
 		$domain = substr($domain, $domainPos);
 		return $domain;
 	}
-	
+
 	/**
 	 * Get model class from Mapper and model suffix.
 	 *
-	 * @param   Mapper
-	 * @param   string  model suffix
-	 * @return  string  model class
+	 * @param  Mappers\Mapper $mapper
+	 * @param  null $suffix
+	 * @return string
 	 */
 	public function model(Mapper $mapper, $suffix = NULL)
 	{

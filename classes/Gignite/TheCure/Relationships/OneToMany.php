@@ -14,6 +14,11 @@ use Gignite\TheCure\Relation;
 
 class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 
+	/**
+	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  $ids
+	 * @return mixed
+	 */
 	public function find(Container $container, $ids)
 	{
 		return $this->mapper($container)->find($this->model_suffix(), array(
@@ -21,6 +26,11 @@ class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 		));
 	}
 
+	/**
+	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  $model
+	 * @param  $relation
+	 */
 	public function add(Container $container, $model, $relation)
 	{
 		$relation_object = $relation->__object();
@@ -46,6 +56,14 @@ class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 		$object->{$this->name()} = $relations;
 	}
 
+	/**
+	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  $model
+	 * @param  $relation
+	 * @return mixed
+	 * @throws \Gignite\TheCure\Relation\NotFoundException
+	 * @throws \Gignite\TheCure\Relation\FieldNotFoundException
+	 */
 	public function remove(Container $container, $model, $relation)
 	{
 		$model_object = $model->__object();

@@ -23,9 +23,8 @@ abstract class Relationship {
 	/**
 	 * Create a new relationship.
 	 *
-	 * @param   string  relationship name
-	 * @param   array   additional config
-	 * @return  void
+	 * @param            $name   Relationship name
+	 * @param array|null $config additional config
 	 */
 	public function __construct($name, array $config = NULL)
 	{
@@ -43,26 +42,45 @@ abstract class Relationship {
 		}
 	}
 
+	/**
+	 * @return string Relationship name
+	 */
 	public function name()
 	{
 		return $this->name;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function model_suffix()
 	{
 		return $this->model_suffix;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function mapper_suffix()
 	{
 		return $this->mapper_suffix;
 	}
 
+	/**
+	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @return \Gignite\TheCure\Mapper\Mapper
+	 */
 	protected function mapper(Container $container)
 	{
 		return $container->mapper($this->mapper_suffix());
 	}
 
+	/**
+	 * @abstract
+	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  $value
+	 * @return mixed
+	 */
 	abstract public function find(Container $container, $value);
 
 }

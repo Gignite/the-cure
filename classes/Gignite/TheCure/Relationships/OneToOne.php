@@ -14,11 +14,21 @@ use Gignite\TheCure\Relation;
 
 class OneToOne	extends Relationship implements Relation\Set, Relation\Remove {
 
+	/**
+	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  $id
+	 * @return mixed
+	 */
 	public function find(Container $container, $id)
 	{
 		return $this->mapper($container)->find_one($this->model_suffix(), $id);
 	}
 
+	/**
+	 * @param \Gignite\TheCure\Mapper\Container $container
+	 * @param $model
+	 * @param $relation
+	 */
 	public function set(Container $container, $model, $relation)
 	{
 		$relation_object = $relation->__object();
@@ -32,6 +42,13 @@ class OneToOne	extends Relationship implements Relation\Set, Relation\Remove {
 		$model->__object()->{$this->name()} = $relation->__object()->_id;
 	}
 
+	/**
+	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  $model
+	 * @param  $relation
+	 * @return mixed
+	 * @throws \Gignite\TheCure\Relation\FieldNotFoundException
+	 */
 	public function remove(Container $container, $model, $relation)
 	{
 		$model_object = $model->__object();

@@ -15,9 +15,8 @@ class Object {
 	/**
 	 * Create a new Object optionally with an array of data.
 	 *
-	 * @param   array  of data
-	 * @param   array  keys to filter with
-	 * @return  void
+	 * @param   array|null  of data
+	 * @param   array|null  keys to filter with
 	 */
 	public function __construct(array $data = NULL, array $filter = NULL)
 	{
@@ -33,7 +32,13 @@ class Object {
 		$this->data = $data;
 	}
 
-	// Filter an array by keys
+	/**
+	 * Filter an array by keys
+	 *
+	 * @param  array $data
+	 * @param  array $filter
+	 * @return array
+	 */
 	protected function filter(array $data, array $filter)
 	{
 		$clean_data = array();

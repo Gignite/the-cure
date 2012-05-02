@@ -28,16 +28,29 @@ class IdentityMap {
 
 	protected $identities = array();
 
+	/**
+	 * @param  $object
+	 * @return string
+	 */
 	protected function extract_identity_from_object($object)
 	{
 		return (string) $object->_id;
 	}
 
+	/**
+	 * @param  Models\Model $model
+	 * @return string
+	 */
 	protected function extract_identity(Model $model)
 	{
 		return $this->extract_identity_from_object($model->__object());
 	}
 
+	/**
+	 * @param  $model
+	 * @param  null $id
+	 * @return string
+	 */
 	protected function key($model, $id = NULL)
 	{
 		if ($model instanceOf Model)
@@ -60,8 +73,8 @@ class IdentityMap {
 	/**
 	 * Has this identity map mapped $model?
 	 *
-	 * @param   Model
-	 * @return  boolean
+	 * @param  Model   $model
+	 * @return boolean
 	 */
 	public function has(Model $model)
 	{
@@ -88,9 +101,7 @@ class IdentityMap {
 	/**
 	 * Add a Model to the identity map.
 	 *
-	 * @param   string  class name
-	 * @param   mixed   ID
-	 * @return  Model
+	 * @param Models\Model $model
 	 */
 	public function set(Model $model)
 	{
@@ -100,9 +111,7 @@ class IdentityMap {
 	/**
 	 * Delete a Model from the identity map.
 	 *
-	 * @param   string  class name
-	 * @param   mixed   ID
-	 * @return  Model
+	 * @param Models\Model $model
 	 */
 	public function delete(Model $model)
 	{
