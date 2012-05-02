@@ -8,9 +8,9 @@ class MockableRelation extends MagicModel {
 
 	public static $relation;
 
-	public static function fields()
+	public static function attributes()
 	{
-		return parent::fields() + array(
+		return parent::attributes() + array(
 			'relation' => call_user_func(static::$relation),
 		);
 	}

@@ -7,9 +7,9 @@ use Gignite\TheCure\Relationships\OneToMany;
 
 class Magic extends MagicModel {
 
-	public static function fields()
+	public static function attributes()
 	{
-		return parent::fields() + array(
+		return parent::attributes() + array(
 			new Field('name'),
 			new Field('location', array('alias' => 'town')),
 			new Field('age',  array('value' => 1)),

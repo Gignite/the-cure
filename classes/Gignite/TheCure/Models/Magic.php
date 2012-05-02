@@ -21,7 +21,7 @@ abstract class Magic extends Model {
 	 * @static
 	 * @return array
 	 */
-	public static function fields()
+	public static function attributes()
 	{
 		return array();
 	}
@@ -45,13 +45,18 @@ abstract class Magic extends Model {
 		$this->__container = $container;
 	}
 
-	private function field($fields, $method)
+	/**
+	 * @param   array      of attributes
+	 * @param   string     method called
+	 * @return  Attribute
+	 */
+	private function attribute(array $attributes, $method)
 	{
-		foreach ($fields as $_field)
+		foreach ($attributes as $_attr)
 		{
-			if ($_field->alias() === $method)
+			if ($_attr->alias() === $method)
 			{
-				return $_field;
+				return $_attr;
 			}
 		}
 	}

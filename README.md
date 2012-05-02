@@ -216,7 +216,7 @@ use Gignite\TheCure\Mapper\Container;
 
 class User extends MagicModel {
 
-	public static function fields()
+	public static function attributes()
 	{
 		return array(
 			'name' => new Field('name'),
