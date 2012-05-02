@@ -71,7 +71,7 @@ abstract class Mock extends Mapper {
 	/**
 	 * @param  null $suffix
 	 * @param  array|null $where
-	 * @return \Gignite\TheCure\Collections\Model|\Gignite\TheCure\Mapper\Collection
+	 * @return Model|Collection
 	 */
 	public function find($suffix = NULL, array $where = NULL)
 	{
@@ -135,7 +135,7 @@ abstract class Mock extends Mapper {
 	}
 
 	/**
-	 * @param \Gignite\TheCure\Models\Model $model
+	 * @param Model $model
 	 */
 	public function save(Model $model)
 	{

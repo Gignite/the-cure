@@ -15,9 +15,9 @@ interface Remove {
 
 	/**
 	 * @abstract
-	 * @param \Gignite\TheCure\Mapper\Container $container
-	 * @param                                   $object
-	 * @param                                   $relation
+	 * @param Container $container
+	 * @param           $object
+	 * @param           $relation
 	 * @return mixed
 	 */
 	public function remove(Container $container, $object, $relation);

@@ -15,7 +15,7 @@ use Gignite\TheCure\Relation;
 class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 
 	/**
-	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  Container $container
 	 * @param  $ids
 	 * @return mixed
 	 */
@@ -27,7 +27,7 @@ class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 	}
 
 	/**
-	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  Container $container
 	 * @param  $model
 	 * @param  $relation
 	 */
@@ -57,12 +57,12 @@ class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
 	}
 
 	/**
-	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  Container $container
 	 * @param  $model
 	 * @param  $relation
 	 * @return mixed
-	 * @throws \Gignite\TheCure\Relation\NotFoundException
-	 * @throws \Gignite\TheCure\Relation\FieldNotFoundException
+	 * @throws Relation\NotFoundException
+	 * @throws Relation\FieldNotFoundException
 	 */
 	public function remove(Container $container, $model, $relation)
 	{

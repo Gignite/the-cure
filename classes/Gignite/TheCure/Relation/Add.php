@@ -15,9 +15,9 @@ interface Add {
 
 	/**
 	 * @abstract
-	 * @param \Gignite\TheCure\Mapper\Container $container
-	 * @param                                   $object
-	 * @param                                   $relation
+	 * @param Container $container
+	 * @param           $object
+	 * @param           $relation
 	 * @return mixed
 	 */
 	public function add(Container $container, $object, $relation);

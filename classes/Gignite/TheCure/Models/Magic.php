@@ -32,7 +32,7 @@ abstract class Magic extends Model {
 	protected $__container;
 
 	/**
-	 * @param  \Gignite\TheCure\Mapper\Container|null $container
+	 * @param  Container|null $container
 	 * @return mixed
 	 */
 	public function __container(Container $container = NULL)
