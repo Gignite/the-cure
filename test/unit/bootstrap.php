@@ -1,17 +1,10 @@
 <?php
 /**
- * Test bootstrap for Beautiful Domain
+ * A PHPUnit (unit test) bootstrap
  *
- * You will find a number of Mock (but real) objects used in
- * various tests. In the future I plan to place these in their
- * own directory.
- * 
- * @package     Beautiful
- * @subpackage  Beautiful Domain
+ * @package     TheCure
  * @category    Test
- * @author      Luke Morton
- * @copyright   Luke Morton, 2011
- * @license     MIT
+ * @copyright   Gignite, 2012
  */
 define('EXT', '.php');
 define('APPPATH', __DIR__.'/');
