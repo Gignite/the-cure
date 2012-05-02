@@ -3,7 +3,7 @@
  * A relationship between one and many models
  *
  * @package     TheCure
- * @category    Field
+ * @category    Attribute
  * @category    Relationships
  * @copyright   Gignite, 2012
  */
