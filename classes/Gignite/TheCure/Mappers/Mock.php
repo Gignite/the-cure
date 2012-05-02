@@ -21,6 +21,9 @@ abstract class Mock extends Mapper {
 	/**
 	 * [!!] Using self::$data so that all mapper data is
 	 *      shared against Mapper_Array and not sub classes.
+	 *
+	 * @param  array|null $collection
+	 * @return array
 	 */
 	protected function collection(array $collection = NULL)
 	{
@@ -32,6 +35,12 @@ abstract class Mock extends Mapper {
 		$this->data = $collection;
 	}
 
+	/**
+	 * @static
+	 * @param $collection
+	 * @param $where
+	 * @param $callback
+	 */
 	public static function each_where($collection, $where, $callback)
 	{
 		foreach ($collection as $_key => $_row)
@@ -59,6 +68,11 @@ abstract class Mock extends Mapper {
 		}
 	}
 
+	/**
+	 * @param  null $suffix
+	 * @param  array|null $where
+	 * @return \Gignite\TheCure\Collections\Model|\Gignite\TheCure\Mapper\Collection
+	 */
 	public function find($suffix = NULL, array $where = NULL)
 	{
 		$collection = $this->collection();
@@ -82,6 +96,11 @@ abstract class Mock extends Mapper {
 			});
 	}
 
+	/**
+	 * @param  null $suffix
+	 * @param  null $where
+	 * @return mixed
+	 */
 	public function find_one($suffix = NULL, $where = NULL)
 	{
 		$collection = $this->collection();
@@ -114,7 +133,10 @@ abstract class Mock extends Mapper {
 				}
 			});
 	}
-	
+
+	/**
+	 * @param \Gignite\TheCure\Models\Model $model
+	 */
 	public function save(Model $model)
 	{
 		$collection = $this->collection();
@@ -132,6 +154,9 @@ abstract class Mock extends Mapper {
 		$this->collection($collection);
 	}
 
+	/**
+	 * @param $model
+	 */
 	public function delete($model)
 	{
 		$collection = $this->collection();
