@@ -14,7 +14,7 @@
  */
 namespace Gignite\TheCure;
 
-class Attribute {
+abstract class Attribute {
 
 	protected $name;
 
