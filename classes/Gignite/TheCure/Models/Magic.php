@@ -95,7 +95,6 @@ abstract class Magic extends Model {
 		$interface = "Gignite\\TheCure\\Relation\\{$interface}";
 
 		if (interface_exists($interface)
-			AND $relationship
 			AND $relationship instanceOf $interface)
 		{
 			return $relationship->{$verb}($this->__container(), $this, $arg);
@@ -133,13 +132,9 @@ abstract class Magic extends Model {
 				{
 					$value = $object->{$field->name()};
 				}
-				elseif ($field instanceOf Field)
-				{
-					$value = $field->value();
-				}
 				else
 				{
-					$value = NULL;
+					$value = $field->value();
 				}
 
 				return $value;
