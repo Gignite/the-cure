@@ -16,31 +16,49 @@ namespace Gignite\TheCure\Collections;
 
 class Iterable extends Collection {
 
+	/**
+	 * @return mixed
+	 */
 	public function current()
 	{
 		return $this->collection()->current();
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function key()
 	{
 		return $this->collection()->key();
 	}
 
+	/**
+	 * Move forwards one
+	 */
 	public function next()
 	{
 		$this->collection()->next();
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function valid()
 	{
 		return $this->collection()->valid();
 	}
 
+	/**
+	 * Move backwards one
+	 */
 	public function rewind()
 	{
 		$this->collection()->rewind();
 	}
 
+	/**
+	 * @return int|void
+	 */
 	public function count()
 	{
 		return $this->collection()->count();

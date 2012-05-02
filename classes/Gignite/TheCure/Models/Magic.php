@@ -17,18 +17,23 @@ use Gignite\TheCure\Relationships\Relation;
 
 abstract class Magic extends Model {
 
+	/**
+	 * @static
+	 * @return array
+	 */
 	public static function fields()
 	{
 		return array();
 	}
 
+	/**
+	 * @var
+	 */
 	protected $__container;
 
 	/**
-	 * Get/set the Container.
-	 *
-	 * @param   Container  If setting
-	 * @return  Container  If getting
+	 * @param  \Gignite\TheCure\Mapper\Container|null $container
+	 * @return mixed
 	 */
 	public function __container(Container $container = NULL)
 	{
@@ -40,6 +45,12 @@ abstract class Magic extends Model {
 		$this->__container = $container;
 	}
 
+	/**
+	 * @param            $fields
+	 * @param            $method
+	 * @param array|null $args
+	 * @return array
+	 */
 	private function relation_action($fields, $method, array $args = NULL)
 	{
 		if (isset($fields[$method]) AND $args)
@@ -64,6 +75,12 @@ abstract class Magic extends Model {
 		}
 	}
 
+	/**
+	 * @param string $method
+	 * @param array  $args
+	 * @return mixed|null
+	 * @throws \BadMethodCallException
+	 */
 	public function __call($method, $args)
 	{
 		$fields = static::fields();

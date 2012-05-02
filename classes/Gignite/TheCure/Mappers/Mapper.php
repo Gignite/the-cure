@@ -1,7 +1,7 @@
 <?php
 /**
  * An abstract mapper
- * 
+ *
  *     $mapper->find($id);
  *     $mapper->find(array('name' => 'Luke'));
  *     $mapper->find('Admin', array('name' => 'Luke'));
@@ -25,22 +25,39 @@ use Gignite\TheCure\Collections\Model as ModelCollection;
 abstract class Mapper
 	implements MapperActions, FactorySetGet, IdentitiesSetGet, ConfigSetGet {
 
+	/**
+	 * @var
+	 */
 	protected $identities;
-	
+
+	/**
+	 * @var
+	 */
 	protected $factory;
 
+	/**
+	 * @var
+	 */
 	protected $config;
 
+	/**
+	 * @param \Gignite\TheCure\IdentityMap|null $identities
+	 * @return mixed
+	 */
 	public function identities(IdentityMap $identities = NULL)
 	{
 		if ($identities === NULL)
 		{
 			return $this->identities;
 		}
-		
+
 		$this->identities = $identities;
 	}
 
+	/**
+	 * @param $config
+	 * @return mixed
+	 */
 	public function config($config)
 	{
 		if (is_array($config))
@@ -53,6 +70,10 @@ abstract class Mapper
 		}
 	}
 
+	/**
+	 * @param \Gignite\TheCure\Factory|null $factory
+	 * @return mixed
+	 */
 	public function factory(Factory $factory = NULL)
 	{
 		if ($factory === NULL)
@@ -62,18 +83,32 @@ abstract class Mapper
 
 		$this->factory = $factory;
 	}
-	
+
+	/**
+	 * @return string
+	 */
 	protected function collection_name()
 	{
 		$collection = strtolower($this->factory()->domain($this));
 		return $collection;
 	}
 
+	/**
+	 * @param null $suffix
+	 * @return mixed
+	 */
 	protected function model_class($suffix = NULL)
 	{
 		return $this->factory()->model($this, $suffix);
 	}
-	
+
+	/**
+	 * @param $suffix
+	 * @param $where
+	 * @param $callback
+	 * @return \Gignite\TheCure\Collections\Model
+	 * @throws \InvalidArgumentException
+	 */
 	protected function create_collection($suffix, $where, $callback)
 	{
 		if ($where === NULL)
@@ -121,7 +156,7 @@ abstract class Mapper
 		{
 			$where = array('_id' => $where);
 		}
-		
+
 		$class = $this->model_class($suffix);
 		$object = call_user_func($callback, $where);
 
@@ -139,6 +174,10 @@ abstract class Mapper
 		return $model;
 	}
 
+	/**
+	 * @param \Gignite\TheCure\Models\Model $model
+	 * @param                               $callback
+	 */
 	protected function save_model(Model $model, $callback)
 	{
 		$object = $model->__object();
@@ -151,6 +190,11 @@ abstract class Mapper
 		}
 	}
 
+	/**
+	 * @param $model
+	 * @param $callback
+	 * @return mixed
+	 */
 	protected function delete_model($model, $callback)
 	{
 		if ($model instanceOf Model)
@@ -171,7 +215,7 @@ abstract class Mapper
 			$this->delete_model($this->find($model), $callback);
 			return;
 		}
-		
+
 		call_user_func($callback, $remove);
 
 		if ($this->identities()->has($model))

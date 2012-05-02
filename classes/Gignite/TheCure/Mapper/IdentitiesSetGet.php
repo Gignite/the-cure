@@ -15,8 +15,8 @@ interface IdentitiesSetGet {
 	/**
 	 * Get/set the factory.
 	 *
-	 * @param   IdentityMap  if setting
-	 * @return  IdentityMap  if getting
+	 * @param   IdentityMap  $identities If setting
+	 * @return  IdentityMap  If getting
 	 */
 	public function identities(IdentityMap $identities = NULL);
 

@@ -43,8 +43,7 @@ class Container {
 	 *     // Mappers will be prefixed with Mapper_Diff_One_
 	 *     new Container('Diff_One') 
 	 * 
-	 * @param   string  a base type of mapper
-	 * @return  void
+	 * @param string $type a base type of mapper
 	 */
 	public function __construct($type)
 	{

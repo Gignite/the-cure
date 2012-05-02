@@ -15,8 +15,8 @@ interface FactorySetGet {
 	/**
 	 * Get/set the factory.
 	 *
-	 * @param   Factory  if setting
-	 * @return  Factory  if getting
+	 * @param   Factory  $factory If setting
+	 * @return  Factory  If getting
 	 */
 	public function factory(Factory $factory = NULL);
 

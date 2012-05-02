@@ -15,8 +15,8 @@ interface ConnectionSetGet {
 	/**
 	 * Get/set the connection.
 	 *
-	 * @param   Connection  if setting
-	 * @return  Connection  if getting
+	 * @param   Connection  $connection Connection if setting
+	 * @return  Connection  If getting
 	 */
 	public function connection(Connection $connection = NULL);
 

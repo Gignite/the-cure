@@ -19,49 +19,76 @@ class Collection implements \Iterator, \Countable {
 
 	protected $collection;
 
+	/**
+	 * @param $collection
+	 */
 	public function __construct($collection)
 	{
 		$this->collection = $collection;
 		$this->rewind();
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function collection()
 	{
 		return $this->collection;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function as_array()
 	{
 		return iterator_to_array($this);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function current()
 	{
 		return $this->collection[$this->i];
 	}
 
+	/**
+	 * @return string
+	 */
 	public function key()
 	{
 		return $this->i;
 	}
 
+	/**
+	 * Move forwards one
+	 */
 	public function next()
 	{
 		next($this->collection);
 		$this->i = key($this->collection);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function valid()
 	{
 		return isset($this->collection[$this->i]);
 	}
 
+	/**
+	 * Move backwards one
+	 */
 	public function rewind()
 	{
 		reset($this->collection);
 		$this->i = key($this->collection);
 	}
 
+	/**
+	 * @return int|void
+	 */
 	public function count()
 	{
 		return count($this->collection);

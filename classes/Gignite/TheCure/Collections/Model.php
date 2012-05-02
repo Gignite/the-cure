@@ -23,7 +23,11 @@ class Model extends Iterable {
 
 	protected $class_name;
 
-
+	/**
+	 * @param $collection
+	 * @param \Gignite\TheCure\IdentityMap $identities
+	 * @param $class_name
+	 */
 	public function __construct(
 		$collection,
 		IdentityMap $identities,
@@ -34,16 +38,25 @@ class Model extends Iterable {
 		$this->class_name = $class_name;
 	}
 
+	/**
+	 * @return \Gignite\TheCure\IdentityMap
+	 */
 	protected function identities()
 	{
 		return $this->identities;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function class_name()
 	{
 		return $this->class_name;
 	}
 
+	/**
+	 * @return \Gignite\TheCure\Models\Model|mixed
+	 */
 	public function current()
 	{
 		if ( ! $object = parent::current())
