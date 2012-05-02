@@ -43,12 +43,4 @@ abstract class Relationship extends Attribute {
 		return $container->mapper($this->mapper_suffix());
 	}
 
-	/**
-	 * @abstract
-	 * @param  Container $container
-	 * @param  $value
-	 * @return mixed
-	 */
-	abstract public function find(Container $container, $value);
-
 }
