@@ -3,52 +3,20 @@
  * A relationship between models
  *
  * @package     TheCure
- * @category    Field
+ * @category    Attribute
  * @category    Relationships
  * @copyright   Gignite, 2012
  */
 namespace Gignite\TheCure\Relationships;
 
-use Gignite\TheCure\Field;
+use Gignite\TheCure\Attribute;
 use Gignite\TheCure\Mapper\Container;
 
-abstract class Relationship {
-
-	protected $name;
+abstract class Relationship extends Attribute {
 
 	protected $mapper_suffix;
 
 	protected $model_suffix;
-
-	/**
-	 * Create a new relationship.
-	 *
-	 * @param            $name   Relationship name
-	 * @param array|null $config additional config
-	 */
-	public function __construct($name, array $config = NULL)
-	{
-		$this->name = $name;
-
-		if ($config)
-		{
-			foreach ($config as $_k => $_v)
-			{
-				if (property_exists($this, $_k))
-				{
-					$this->{$_k} = $_v;
-				}
-			}
-		}
-	}
-
-	/**
-	 * @return string Relationship name
-	 */
-	public function name()
-	{
-		return $this->name;
-	}
 
 	/**
 	 * @return mixed
