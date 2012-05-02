@@ -9,53 +9,19 @@
  *     new Field('verified', array('value' => FALSE));
  *
  * @package     TheCure
+ * @category    Attribute
  * @category    Field
  * @copyright   Gignite, 2012
  */
 namespace Gignite\TheCure;
 
-class Field {
-
-	protected $name;
+class Field extends Attribute {
 
 	protected $value;
 
 	protected $setter;
 
 	protected $rules;
-
-	/**
-	 * Create a new field.
-	 *
-	 * @param   string  field name
-	 * @param   array   additional config
-	 * @return  void
-	 */
-	public function __construct($name, array $config = NULL)
-	{
-		$this->name = $name;
-
-		if ($config)
-		{
-			foreach ($config as $_k => $_v)
-			{
-				if (property_exists($this, $_k))
-				{
-					$this->{$_k} = $_v;
-				}
-			}
-		}
-	}
-
-	/**
-	 * Get field name.
-	 *
-	 * @return  string
-	 */
-	public function name()
-	{
-		return $this->name;
-	}
 
 	/**
 	 * Get default value.
