@@ -22,6 +22,13 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 
 	protected $connection;
 
+	/**
+	 * Sets the connection property if one is passed in otherwise
+	 * it returns the connection.
+	 *
+	 * @param  \Gignite\TheCure\Connections\Connection|null $connection
+	 * @return \Mongo
+	 */
 	public function connection(Connection $connection = NULL)
 	{
 		if ($connection === NULL)
@@ -32,17 +39,44 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 		$this->connection = $connection;
 	}
 
+	/**
+	 * @return \MongoCollection
+	 */
 	protected function collection()
 	{
 		return $this->connection()->get()->selectCollection(
 			$this->collection_name());
 	}
 
+	/**
+	 * Options used in the 2nd argument to the Mongo
+	 * remove, insert and update methods.
+	 *
+	 * @return array
+	 */
 	protected function query_options()
 	{
 		return $this->config('query_options', array());
 	}
 
+	/**
+	 * @example
+	 *
+	 *   // Find all entries in the Page model
+	 *   $container->mapper('Page')->find()
+	 *
+	 *   // When using a suffix this would find all
+	 *   // the entries for the Page\Artist model
+	 *   $container->mapper('Page')->find('Artist')
+	 *
+	 *   // When no suffix is needed the where
+	 *   // condition can be moved forward.
+	 *   $container->mapper('Page')->find(array('email' => '...')
+	 *
+	 * @param  null $suffix
+	 * @param  array|null $where
+	 * @return \Gignite\TheCure\Collections\Model|\Gignite\TheCure\Mapper\Collection
+	 */
 	public function find($suffix = NULL, array $where = NULL)
 	{
 		$collection = $this->collection();
@@ -56,6 +90,24 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 			});
 	}
 
+	/**
+	 * @example
+	 *
+	 *   // Find one entry in the Page model
+	 *   $container->mapper('Page')->find_one()
+	 *
+	 *   // When using a suffix this would an entry
+	 *   // in the Page\Artist model
+	 *   $container->mapper('Page')->find_one('Artist')
+	 *
+	 *   // When no suffix is needed the where
+	 *   // condition can be moved forward.
+	 *   $container->mapper('Page')->find_one(array('email' => '...')
+	 *
+	 * @param  null $suffix
+	 * @param  null $where
+	 * @return mixed
+	 */
 	public function find_one($suffix = NULL, $where = NULL)
 	{
 		$collection = $this->collection();
@@ -68,7 +120,12 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 				return new Object($collection->findOne($where));
 			});
 	}
-	
+
+	/**
+	 * Saves a models data to Mongo
+	 *
+	 * @param \Gignite\TheCure\Models\Model $model
+	 */
 	public function save(Model $model)
 	{
 		$collection = $this->collection();
@@ -96,6 +153,9 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 			});
 	}
 
+	/**
+	 * @param $model
+	 */
 	public function delete($model)
 	{
 		$collection = $this->collection();
