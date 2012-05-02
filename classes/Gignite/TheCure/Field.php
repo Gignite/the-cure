@@ -22,6 +22,8 @@ class Field {
 
 	protected $setter;
 
+	protected $rules;
+
 	/**
 	 * Create a new field.
 	 *
@@ -73,6 +75,16 @@ class Field {
 	public function is_setter()
 	{
 		return $this->setter;
+	}
+
+	/**
+	 * Get field rules.
+	 *
+	 * @return  array
+	 */
+	public function rules()
+	{
+		return $this->rules;
 	}
 
 }
