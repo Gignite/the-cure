@@ -16,10 +16,10 @@ interface Remove {
 	/**
 	 * @abstract
 	 * @param Container $container
-	 * @param           $object
+	 * @param           $model
 	 * @param           $relation
 	 * @return mixed
 	 */
-	public function remove(Container $container, $object, $relation);
+	public function remove(Container $container, $model, $relation);
 
 }

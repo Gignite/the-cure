@@ -16,10 +16,10 @@ interface Set {
 	/**
 	 * @abstract
 	 * @param Container $container
-	 * @param           $object
+	 * @param           $model
 	 * @param           $relation
 	 * @return mixed
 	 */
-	public function set(Container $container, $object, $relation);
+	public function set(Container $container, $model, $relation);
 
 }

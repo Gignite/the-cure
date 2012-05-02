@@ -16,10 +16,10 @@ interface Add {
 	/**
 	 * @abstract
 	 * @param Container $container
-	 * @param           $object
+	 * @param           $model
 	 * @param           $relation
 	 * @return mixed
 	 */
-	public function add(Container $container, $object, $relation);
+	public function add(Container $container, $model, $relation);
 
 }
