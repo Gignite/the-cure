@@ -69,14 +69,6 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 		$this->assertSame($expectedName, $model->name());
 	}
 
-	/**
-	 * @expectedException  BadMethodCallException
-	 */
-	public function testItShouldThrowBadMethodCallExceptionWhenNoSetter()
-	{
-		$this->user('Jim')->age(22);
-	}
-
 	public function testItShouldUseDefaultValueWhenNoValueSet()
 	{
 		$this->assertSame(1, $this->user('Jim')->age());
@@ -137,6 +129,26 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 	{
 		$model = new Models\User\Magic;
 		$model->unknown();
+	}
+
+	public function provideAccessorMethods()
+	{
+		return array(
+			array('name',     'name', 'Luke'),
+			array('location', 'town', 'Braintree'),
+		);
+	}
+
+	/**
+	 * @dataProvider  provideAccessorMethods
+	 */
+	public function testItShouldUseAccessorMethodName($name, $alias, $value)
+	{
+		$model = new Models\User\Magic;
+		$model->__object(new Object(array(
+			$name => $value,
+		)));
+		$this->assertSame($value, $model->{$alias}());
 	}
 
 }

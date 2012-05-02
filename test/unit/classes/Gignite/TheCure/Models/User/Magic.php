@@ -10,11 +10,12 @@ class Magic extends MagicModel {
 	public static function fields()
 	{
 		return parent::fields() + array(
-			'name'    => new Field('name', array('setter' => TRUE)),
-			'age'     => new Field('age', array('value' => 1)),
-			'friends' => new OneToMany('friends', array(
+			new Field('name'),
+			new Field('location', array('alias' => 'town')),
+			new Field('age',  array('value' => 1)),
+			new OneToMany('friends', array(
 				'mapper_suffix' => 'User',
-				'model_suffix'  => 'Magic',
+				// 'model_suffix'  => 'Magic',
 			)),
 		);
 	}
