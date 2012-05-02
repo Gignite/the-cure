@@ -12,7 +12,14 @@ namespace Gignite\TheCure\Relation;
 use Gignite\TheCure\Mapper\Container;
 
 interface Add {
-	
+
+	/**
+	 * @abstract
+	 * @param \Gignite\TheCure\Mapper\Container $container
+	 * @param                                   $object
+	 * @param                                   $relation
+	 * @return mixed
+	 */
 	public function add(Container $container, $object, $relation);
 
 }

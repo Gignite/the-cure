@@ -21,16 +21,34 @@ use Gignite\TheCure\Factory;
 
 class Container {
 
+	/**
+	 * @var
+	 */
 	protected $config;
 
+	/**
+	 * @var
+	 */
 	protected $factory;
 
+	/**
+	 * @var
+	 */
 	protected $connection;
 
+	/**
+	 * @var
+	 */
 	protected $identities;
 
+	/**
+	 * @var
+	 */
 	protected $mappers;
-	
+
+	/**
+	 * @var string
+	 */
 	protected $type;
 	
 	/**
@@ -50,11 +68,17 @@ class Container {
 		$this->type = $type;
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function type()
 	{
 		return $this->type;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function factory()
 	{
 		if ($this->factory === NULL)
@@ -65,6 +89,10 @@ class Container {
 		return $this->factory;
 	}
 
+	/**
+	 * @param null $config
+	 * @return mixed
+	 */
 	public function config($config = NULL)
 	{
 		if (is_array($config))
@@ -88,6 +116,9 @@ class Container {
 		return $this->config;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function mapper_config()
 	{
 		$mappers = $this->config('mappers');
@@ -99,6 +130,9 @@ class Container {
 		}
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function connection()
 	{
 		if ($this->connection === NULL)
@@ -120,6 +154,9 @@ class Container {
 		return $this->connection;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function identities()
 	{
 		if ($this->identities === NULL)

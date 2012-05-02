@@ -32,8 +32,8 @@ abstract class Model {
 	/**
 	 * Get/set the data transfer object.
 	 *
-	 * @param   StdClass  If setting pass in a StdClass
-	 * @return  StdClass  If getting
+	 * @param  Object $object If setting pass in an Object
+	 * @return Object If getting
 	 */
 	public function __object(Object $object = NULL)
 	{

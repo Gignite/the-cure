@@ -10,6 +10,10 @@ namespace Gignite\TheCure\Connections;
 
 interface Connection {
 
+	/**
+	 * @abstract
+	 * @return mixed
+	 */
 	public function get();
 
 }

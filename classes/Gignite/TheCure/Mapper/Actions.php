@@ -39,14 +39,25 @@ interface Actions {
 	public function find($suffix = NULL, array $where = NULL);
 
 	/**
-	 * Find a single record.
-	 *
-	 * 
+	 * @abstract
+	 * @param null $suffix
+	 * @param null $where
+	 * @return mixed
 	 */
 	public function find_one($suffix = NULL, $where = NULL);
 
+	/**
+	 * @abstract
+	 * @param \Gignite\TheCure\Models\Model $model
+	 * @return mixed
+	 */
 	public function save(Model $model);
 
+	/**
+	 * @abstract
+	 * @param $model
+	 * @return mixed
+	 */
 	public function delete($model);
 
 }
