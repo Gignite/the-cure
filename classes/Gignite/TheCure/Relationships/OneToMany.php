@@ -12,18 +12,21 @@ namespace Gignite\TheCure\Relationships;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relation;
 
-class OneToMany	extends Relationship implements Relation\Add, Relation\Remove {
+class OneToMany extends Relationship
+	implements Relation\Find, Relation\Add, Relation\Remove {
 
 	/**
 	 * @param  Container $container
 	 * @param  $ids
 	 * @return mixed
 	 */
-	public function find(Container $container, $ids)
+	public function find(Container $container, $model, $ids)
 	{
-		return $this->mapper($container)->find($this->model_suffix(), array(
+		$find = $this->mapper($container)->find($this->model_suffix(), array(
 			'_id' => array('$in' => $ids),
 		));
+
+		return $find;
 	}
 
 	/**

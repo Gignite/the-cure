@@ -12,14 +12,15 @@ namespace Gignite\TheCure\Relationships;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relation;
 
-class OneToOne	extends Relationship implements Relation\Set, Relation\Remove {
+class OneToOne extends Relationship
+	implements Relation\Find, Relation\Set, Relation\Remove {
 
 	/**
 	 * @param  Container $container
 	 * @param  $id
 	 * @return mixed
 	 */
-	public function find(Container $container, $id)
+	public function find(Container $container, $model, $id)
 	{
 		return $this->mapper($container)->find_one($this->model_suffix(), $id);
 	}

@@ -26,7 +26,7 @@ class RelationshipOneToMany extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$container->mapper('User')->save(new Models\User\Admin);
-		$collection = $this->relationship()->find($container, array(0, 1));
+		$collection = $this->relationship()->find($container, NULL, array(0, 1));
 		$this->assertInstanceOf(
 			'Gignite\TheCure\Collections\Collection',
 			$collection);

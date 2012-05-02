@@ -26,7 +26,7 @@ class RelationshipOneToOne extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$container->mapper('User')->save(new Models\User\Admin);
-		$collection = $this->relationship()->find($container, 0);
+		$collection = $this->relationship()->find($container, NULL, 0);
 		$this->assertInstanceOf('Gignite\TheCure\Models\User\Admin', $collection);
 	}
 

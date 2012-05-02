@@ -6,7 +6,7 @@ use Gignite\TheCure\Relationships\Relationship;
 use Gignite\TheCure\Relation;
 
 class Mock extends Relationship
-	implements Relation\Add, Relation\Remove, Relation\Set {
+	implements Relation\Find, Relation\Add, Relation\Remove, Relation\Set {
 
 	protected $method_called;
 
@@ -15,7 +15,7 @@ class Mock extends Relationship
 		return $this->method_called;
 	}
 
-	public function find(Container $container, $value)
+	public function find(Container $container, $object, $value)
 	{
 		$this->method_called = 'find';
 	}
