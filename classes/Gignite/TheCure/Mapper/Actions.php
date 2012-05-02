@@ -48,14 +48,14 @@ interface Actions {
 
 	/**
 	 * @abstract
-	 * @param \Gignite\TheCure\Models\Model $model
+	 * @param  Model $model
 	 * @return mixed
 	 */
 	public function save(Model $model);
 
 	/**
 	 * @abstract
-	 * @param $model
+	 * @param  $model
 	 * @return mixed
 	 */
 	public function delete($model);

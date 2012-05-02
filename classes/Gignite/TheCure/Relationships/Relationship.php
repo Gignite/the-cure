@@ -67,8 +67,8 @@ abstract class Relationship {
 	}
 
 	/**
-	 * @param  \Gignite\TheCure\Mapper\Container $container
-	 * @return \Gignite\TheCure\Mapper\Mapper
+	 * @param  Container $container
+	 * @return Mapper
 	 */
 	protected function mapper(Container $container)
 	{
@@ -77,7 +77,7 @@ abstract class Relationship {
 
 	/**
 	 * @abstract
-	 * @param  \Gignite\TheCure\Mapper\Container $container
+	 * @param  Container $container
 	 * @param  $value
 	 * @return mixed
 	 */

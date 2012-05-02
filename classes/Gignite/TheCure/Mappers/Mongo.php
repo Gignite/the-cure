@@ -26,7 +26,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	 * Sets the connection property if one is passed in otherwise
 	 * it returns the connection.
 	 *
-	 * @param  \Gignite\TheCure\Connections\Connection|null $connection
+	 * @param  Connection|null $connection
 	 * @return \Mongo
 	 */
 	public function connection(Connection $connection = NULL)
@@ -75,7 +75,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	 *
 	 * @param  null $suffix
 	 * @param  array|null $where
-	 * @return \Gignite\TheCure\Collections\Model|\Gignite\TheCure\Mapper\Collection
+	 * @return Model|Collection
 	 */
 	public function find($suffix = NULL, array $where = NULL)
 	{
@@ -124,7 +124,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	/**
 	 * Saves a models data to Mongo
 	 *
-	 * @param \Gignite\TheCure\Models\Model $model
+	 * @param Model $model
 	 */
 	public function save(Model $model)
 	{

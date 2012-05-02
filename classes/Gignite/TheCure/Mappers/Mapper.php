@@ -25,23 +25,12 @@ use Gignite\TheCure\Collections\Model as ModelCollection;
 abstract class Mapper
 	implements MapperActions, FactorySetGet, IdentitiesSetGet, ConfigSetGet {
 
-	/**
-	 * @var
-	 */
 	protected $identities;
-
-	/**
-	 * @var
-	 */
 	protected $factory;
-
-	/**
-	 * @var
-	 */
 	protected $config;
 
 	/**
-	 * @param \Gignite\TheCure\IdentityMap|null $identities
+	 * @param IdentityMap|null $identities
 	 * @return mixed
 	 */
 	public function identities(IdentityMap $identities = NULL)
@@ -71,7 +60,7 @@ abstract class Mapper
 	}
 
 	/**
-	 * @param \Gignite\TheCure\Factory|null $factory
+	 * @param  Factory|null $factory
 	 * @return mixed
 	 */
 	public function factory(Factory $factory = NULL)
@@ -94,7 +83,7 @@ abstract class Mapper
 	}
 
 	/**
-	 * @param null $suffix
+	 * @param  null $suffix
 	 * @return mixed
 	 */
 	protected function model_class($suffix = NULL)
@@ -103,10 +92,10 @@ abstract class Mapper
 	}
 
 	/**
-	 * @param $suffix
-	 * @param $where
-	 * @param $callback
-	 * @return \Gignite\TheCure\Collections\Model
+	 * @param  $suffix
+	 * @param  $where
+	 * @param  $callback
+	 * @return Collections\Model
 	 * @throws \InvalidArgumentException
 	 */
 	protected function create_collection($suffix, $where, $callback)
@@ -136,6 +125,11 @@ abstract class Mapper
 	/**
 	 * [!!] We probably always need to check to see if Model
 	 *      actually exists even if pulled from identities.
+	 *
+	 * @param  $suffix
+	 * @param  $where
+	 * @param  $callback
+	 * @return mixed
 	 */
 	protected function create_model($suffix, $where, $callback)
 	{
@@ -175,8 +169,8 @@ abstract class Mapper
 	}
 
 	/**
-	 * @param \Gignite\TheCure\Models\Model $model
-	 * @param                               $callback
+	 * @param Model $model
+	 * @param       $callback
 	 */
 	protected function save_model(Model $model, $callback)
 	{
@@ -191,8 +185,8 @@ abstract class Mapper
 	}
 
 	/**
-	 * @param $model
-	 * @param $callback
+	 * @param  $model
+	 * @param  $callback
 	 * @return mixed
 	 */
 	protected function delete_model($model, $callback)

@@ -25,7 +25,7 @@ class Model extends Iterable {
 
 	/**
 	 * @param $collection
-	 * @param \Gignite\TheCure\IdentityMap $identities
+	 * @param IdentityMap $identities
 	 * @param $class_name
 	 */
 	public function __construct(
@@ -39,7 +39,7 @@ class Model extends Iterable {
 	}
 
 	/**
-	 * @return \Gignite\TheCure\IdentityMap
+	 * @return IdentityMap
 	 */
 	protected function identities()
 	{
@@ -55,7 +55,7 @@ class Model extends Iterable {
 	}
 
 	/**
-	 * @return \Gignite\TheCure\Models\Model|mixed
+	 * @return Model|mixed
 	 */
 	public function current()
 	{

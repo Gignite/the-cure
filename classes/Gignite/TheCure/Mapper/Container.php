@@ -21,34 +21,16 @@ use Gignite\TheCure\Factory;
 
 class Container {
 
-	/**
-	 * @var
-	 */
 	protected $config;
 
-	/**
-	 * @var
-	 */
 	protected $factory;
 
-	/**
-	 * @var
-	 */
 	protected $connection;
 
-	/**
-	 * @var
-	 */
 	protected $identities;
 
-	/**
-	 * @var
-	 */
 	protected $mappers;
 
-	/**
-	 * @var string
-	 */
 	protected $type;
 	
 	/**
@@ -90,7 +72,7 @@ class Container {
 	}
 
 	/**
-	 * @param null $config
+	 * @param  null $config
 	 * @return mixed
 	 */
 	public function config($config = NULL)
