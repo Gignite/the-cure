@@ -159,10 +159,13 @@ abstract class Mapper
 			return;
 		}
 
-		if ( ! $model = $this->identities()->get($class, $object->_id))
+		$identities = $this->identities();
+
+		if ( ! $model = $identities->get($class, $object->_id))
 		{
 			$model = new $class;
 			$model->__object($object);
+			$identities->set($model);
 		}
 
 		return $model;

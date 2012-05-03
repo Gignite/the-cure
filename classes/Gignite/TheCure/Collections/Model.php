@@ -65,8 +65,9 @@ class Model extends Iterable {
 		}
 		
 		$class = $this->class_name();
+		$identities = $this->identities();
 
-		if ($model = $this->identities()->get($class, $this->key()))
+		if ($model = $identities->get($class, $this->key()))
 		{
 			// Done
 		}
@@ -79,7 +80,7 @@ class Model extends Iterable {
 			
 			$model = new $class;
 			$model->__object($object);
-			$this->identities()->set($model);
+			$identities->set($model);
 		}
 
 		return $model;
