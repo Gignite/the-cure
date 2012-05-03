@@ -53,6 +53,12 @@ class Password extends MockMapper {}
 
 namespace Gignite\TheCure\Acceptance\Relationships;
 
+/**
+ * @group  acceptance
+ * @group  relationships
+ * @group  relationships.onetoone
+ */
+
 use Gignite\TheCure\Mapper\Container;
 
 use Gignite\TheCure\Models\Userr;

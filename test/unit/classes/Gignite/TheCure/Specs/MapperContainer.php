@@ -1,6 +1,11 @@
 <?php
 namespace Gignite\TheCure\Specs;
 
+/**
+ * @group  specs
+ * @group  container
+ */
+
 use Gignite\TheCure\Mapper\Container;
 
 class MapperContainerTest extends \PHPUnit_Framework_TestCase {

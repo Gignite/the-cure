@@ -1,6 +1,11 @@
 <?php
 namespace Gignite\TheCure\Acceptance;
 
+/**
+ * @group  acceptance
+ * @group  smoke
+ */
+
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Models\User\Magic as MagicUserModel;
 

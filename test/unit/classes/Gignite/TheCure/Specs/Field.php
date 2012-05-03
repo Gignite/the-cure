@@ -1,6 +1,12 @@
 <?php
 namespace Gignite\TheCure\Specs;
 
+/**
+ * @group  specs
+ * @group  attribute
+ * @group  field
+ */
+
 use Gignite\TheCure\Field;
 
 class FieldTest extends \PHPUnit_Framework_TestCase {

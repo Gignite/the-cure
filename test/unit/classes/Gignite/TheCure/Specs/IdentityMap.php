@@ -10,6 +10,9 @@ namespace Gignite\TheCure\Specs;
  * @author      Luke Morton
  * @copyright   Luke Morton, 2011
  * @license     MIT
+ *  
+ * @group  specs
+ * @group  identitymap
  */
 use Gignite\TheCure\IdentityMap;
 use Gignite\TheCure\Object;

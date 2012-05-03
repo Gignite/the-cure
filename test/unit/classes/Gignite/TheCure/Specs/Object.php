@@ -1,6 +1,11 @@
 <?php
 namespace Gignite\TheCure\Specs;
 
+/**
+ * @group  specs
+ * @group  object
+ */
+
 use Gignite\TheCure\Object;
 
 class ObjectTest extends \PHPUnit_Framework_TestCase {
