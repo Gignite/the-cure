@@ -15,6 +15,12 @@ class Tag extends MagicModel {
 				'mapper_suffix' => 'Forum\Post',
 				'foreign'       => 'tags',
 			)),
+			// new HasMany('posts', array(
+			// 	'mapper_suffix' => 'Forum\Post',
+			// 	'via' => new HasMany('tags', array(
+			// 		'mapper_suffix' => 'Forum\Tag',
+			// 	)),
+			// )),
 		);
 	}
 
