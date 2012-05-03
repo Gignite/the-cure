@@ -12,4 +12,6 @@ namespace Gignite\TheCure\Relationships;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relation;
 
-class Has extends Relationship implements Relation\Find, Relation\Remove {}
+abstract class Has
+	extends Relationship
+	implements Relation\Find, Relation\Remove {}
