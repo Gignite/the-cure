@@ -16,12 +16,16 @@ namespace Gignite\TheCure\Collections;
 
 use Gignite\TheCure\IdentityMap;
 use Gignite\TheCure\Object;
+use Gignite\TheCure\Models\MagicModel;
+use Gignite\TheCure\Mapper\Container;
 
 class Model extends Iterable {
 
 	protected $identities;
 
 	protected $class_name;
+
+	protected $container;
 
 	/**
 	 * @param $collection
@@ -36,6 +40,22 @@ class Model extends Iterable {
 		parent::__construct($collection);
 		$this->identities = $identities;
 		$this->class_name = $class_name;
+	}
+
+	/**
+	 * Get/set container.
+	 * 
+	 * @param   Container|NULL  $container
+	 * @return  mixed
+	 */
+	public function container(Container $container = NULL)
+	{
+		if ($container === NULL)
+		{
+			return $this->container;
+		}
+
+		$this->container = $container;
 	}
 
 	/**
@@ -80,6 +100,13 @@ class Model extends Iterable {
 			
 			$model = new $class;
 			$model->__object($object);
+
+			if ($model instanceOf MagicModel
+				AND $container = $this->container())
+			{
+				$model->__container($container);
+			}
+
 			$identities->set($model);
 		}
 
