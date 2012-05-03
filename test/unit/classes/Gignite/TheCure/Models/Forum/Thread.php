@@ -2,7 +2,7 @@
 namespace Gignite\TheCure\Models\Forum;
 
 use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\OneToMany;
+use Gignite\TheCure\Relationships\HasMany;
 use Gignite\TheCure\Models\Magic as MagicModel;
 
 class Thread extends MagicModel {
@@ -12,7 +12,7 @@ class Thread extends MagicModel {
 		return array(
 			new Field('title'),
 			new Field('message'),
-			new OneToMany('posts', array(
+			new HasMany('posts', array(
 				'mapper_suffix' => 'Forum\Post',
 			)),
 		);

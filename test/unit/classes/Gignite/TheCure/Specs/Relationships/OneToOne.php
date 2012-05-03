@@ -10,7 +10,7 @@ namespace Gignite\TheCure\Specs;
 use Gignite\TheCure\Object;
 use Gignite\TheCure\Models;
 use Gignite\TheCure\Mapper\Container;
-use Gignite\TheCure\Relationships\OneToOne;
+use Gignite\TheCure\Relationships\HasOne;
 
 class RelationshipOneToOne extends \PHPUnit_Framework_TestCase {
 
@@ -20,7 +20,7 @@ class RelationshipOneToOne extends \PHPUnit_Framework_TestCase {
 			'mapper_suffix' => 'User',
 			'model_suffix' => 'Admin',
 		);
-		return new OneToOne('best_friend', $config);
+		return new HasOne('best_friend', $config);
 	}
 
 	protected function container()

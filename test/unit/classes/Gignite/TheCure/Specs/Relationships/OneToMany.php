@@ -10,7 +10,7 @@ namespace Gignite\TheCure\Specs;
 use Gignite\TheCure\Object;
 use Gignite\TheCure\Models;
 use Gignite\TheCure\Mapper\Container;
-use Gignite\TheCure\Relationships\OneToMany;
+use Gignite\TheCure\Relationships\HasMany;
 
 class RelationshipOneToMany extends \PHPUnit_Framework_TestCase {
 
@@ -20,7 +20,7 @@ class RelationshipOneToMany extends \PHPUnit_Framework_TestCase {
 			'mapper_suffix' => 'User',
 			'model_suffix' => 'Admin',
 		);
-		return new OneToMany('friends', $config);
+		return new HasMany('friends', $config);
 	}
 
 	protected function container()
