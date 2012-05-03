@@ -94,7 +94,8 @@ class Factory {
 		$config = $this->config();
 		$class = get_class($mapper);
 		$domain = str_replace($this->prefix('mapper'), '', $class);
-		$domainPos = strrpos($domain, $this->separator()) + 1;
+		$domain = trim($domain, $this->separator());
+		$domainPos = strpos($domain, $this->separator()) + 1;
 		$domain = substr($domain, $domainPos);
 		return $domain;
 	}
