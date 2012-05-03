@@ -73,11 +73,6 @@ class Model extends Iterable {
 		}
 		else
 		{
-			if ( ! $object instanceOf Object)
-			{
-				$object = new Object($object);
-			}
-			
 			$model = new $class;
 			$model->__object($object);
 			$identities->set($model);
