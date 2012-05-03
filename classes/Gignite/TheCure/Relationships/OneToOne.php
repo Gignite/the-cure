@@ -15,14 +15,21 @@ use Gignite\TheCure\Relation;
 class OneToOne extends Relationship
 	implements Relation\Find, Relation\Set, Relation\Remove {
 
+	protected function where($object)
+	{
+		return $object->{$this->name()};
+	}
+
 	/**
 	 * @param  Container $container
 	 * @param  $id
 	 * @return mixed
 	 */
-	public function find(Container $container, $model, $id)
+	public function find(Container $container, $model)
 	{
-		return $this->mapper($container)->find_one($this->model_suffix(), $id);
+		return $this->mapper($container)->find_one(
+			$this->model_suffix(),
+			$this->where($model->__object()));
 	}
 
 	/**

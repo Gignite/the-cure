@@ -15,7 +15,7 @@ class Mock extends Relationship
 		return $this->method_called;
 	}
 
-	public function find(Container $container, $object, $value)
+	public function find(Container $container, $object)
 	{
 		$this->method_called = 'find';
 	}

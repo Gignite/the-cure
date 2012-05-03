@@ -1,6 +1,12 @@
 <?php
 namespace Gignite\TheCure\Specs;
 
+/**
+ * @group  specs
+ * @group  relationships
+ * @group  relationships.onetomany
+ */
+
 use Gignite\TheCure\Object;
 use Gignite\TheCure\Models;
 use Gignite\TheCure\Mapper\Container;
@@ -25,8 +31,12 @@ class RelationshipOneToMany extends \PHPUnit_Framework_TestCase {
 	public function testItShouldFindACollectionOfRelatedModels()
 	{
 		$container = $this->container();
-		$container->mapper('User')->save(new Models\User\Admin);
-		$collection = $this->relationship()->find($container, NULL, array(0, 1));
+		$model = new Models\User\Admin;
+		$model->__object(new Object(array(
+			'friends' => array(0, 1),
+		)));
+		$container->mapper('User')->save($model);
+		$collection = $this->relationship()->find($container, $model);
 		$this->assertInstanceOf(
 			'Gignite\TheCure\Collections\Collection',
 			$collection);

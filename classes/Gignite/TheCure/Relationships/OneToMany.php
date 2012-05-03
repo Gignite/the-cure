@@ -15,18 +15,22 @@ use Gignite\TheCure\Relation;
 class OneToMany extends Relationship
 	implements Relation\Find, Relation\Add, Relation\Remove {
 
+	protected function where($object)
+	{
+		return array(
+			'_id' => array('$in' => $object->{$this->name()}),
+		);
+	}
+
 	/**
 	 * @param  Container $container
 	 * @param  $ids
 	 * @return mixed
 	 */
-	public function find(Container $container, $model, $ids)
+	public function find(Container $container, $model)
 	{
-		$find = $this->mapper($container)->find($this->model_suffix(), array(
-			'_id' => array('$in' => $ids),
-		));
-
-		return $find;
+		$where = $this->where($model->__object());
+		return $this->mapper($container)->find($this->model_suffix(), $where);
 	}
 
 	/**

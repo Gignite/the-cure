@@ -78,7 +78,6 @@ abstract class Magic extends Model {
 			else
 			{
 				$verb = 'find';
-				$args[0] = $this->__object()->get($relationship->name());
 			}
 		}
 		else

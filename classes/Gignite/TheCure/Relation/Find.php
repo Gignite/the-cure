@@ -19,6 +19,6 @@ interface Find {
 	 * @param  $value
 	 * @return mixed
 	 */
-	public function find(Container $container, $model, $value);
+	public function find(Container $container, $model);
 
 }

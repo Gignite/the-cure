@@ -1,6 +1,12 @@
 <?php
 namespace Gignite\TheCure\Specs;
 
+/**
+ * @group  specs
+ * @group  relationships
+ * @group  relationships.onetoone
+ */
+
 use Gignite\TheCure\Object;
 use Gignite\TheCure\Models;
 use Gignite\TheCure\Mapper\Container;
@@ -25,8 +31,12 @@ class RelationshipOneToOne extends \PHPUnit_Framework_TestCase {
 	public function testItShouldFindARelatedModel()
 	{
 		$container = $this->container();
-		$container->mapper('User')->save(new Models\User\Admin);
-		$collection = $this->relationship()->find($container, NULL, 0);
+		$model = new Models\User\Admin;
+		$model->__object(new Object(array(
+			'best_friend' => 0,
+		)));
+		$container->mapper('User')->save($model);
+		$collection = $this->relationship()->find($container, $model);
 		$this->assertInstanceOf('Gignite\TheCure\Models\User\Admin', $collection);
 	}
 

@@ -14,14 +14,27 @@ use Gignite\TheCure\Relation;
 
 class BelongsToOne extends Relationship implements Relation\Find {
 
+	protected $foreign;
+
+	protected function foreign()
+	{
+		return $this->foreign;
+	}
+
+	protected function where($object)
+	{
+		return array($this->foreign() => $object->_id);
+	}
+
 	/**
 	 * @param  Container $container
 	 * @param  $id
 	 * @return mixed
 	 */
-	public function find(Container $container, $model, $id)
+	public function find(Container $container, $model)
 	{
-		return $this->mapper($container)->find_one($this->model_suffix(), $id);
+		$where = $this->where($model->__object());
+		return $this->mapper($container)->find_one($this->model_suffix(), $where);
 	}
 
 }
