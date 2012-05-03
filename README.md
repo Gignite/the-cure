@@ -211,7 +211,7 @@ namespace Models;
 
 use Gignite\TheCure\Models\Magic as MagicModel;
 use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\OneToMany as OneToManyRelationship;
+use Gignite\TheCure\Relationships\HasMany;
 use Gignite\TheCure\Mapper\Container;
 
 class User extends MagicModel {
@@ -221,7 +221,7 @@ class User extends MagicModel {
 		return array(
 			'name' => new Field('name'),
 			'age'  => new Field('age'),
-			'friends' => new OneToManyRelationship('friends', array(
+			'friends' => new HasMany('friends', array(
 				'mapper_suffix' => 'User',
 				// 'model_suffix'  => 'Admin',
 			)),
