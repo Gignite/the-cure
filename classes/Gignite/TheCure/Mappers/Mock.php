@@ -53,10 +53,16 @@ abstract class Mock extends Mapper {
 					AND isset($_needle['$in'])
 					AND in_array($value, $_needle['$in']))
 				{
-					// This is okay
+					// We were doing an $in query (like mongo)
+				}
+				elseif (is_array($value) AND in_array($_needle, $value))
+				{
+					// We were doing a contains query (like mongo)
 				}
 				elseif ($value === NULL OR $value !== $_needle)
 				{
+					// We skip this result as it is either NULL
+					// or doesn't match our criteria
 					continue 2;
 				}
 			}
