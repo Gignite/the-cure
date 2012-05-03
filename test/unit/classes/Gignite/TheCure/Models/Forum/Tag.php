@@ -2,7 +2,7 @@
 namespace Gignite\TheCure\Models\Forum;
 
 use Gignite\TheCure\Field;
-// use Gignite\TheCure\Relationships\ManyToMany;
+use Gignite\TheCure\Relationships\BelongsToMany;
 use Gignite\TheCure\Models\Magic as MagicModel;
 
 class Tag extends MagicModel {
@@ -11,7 +11,10 @@ class Tag extends MagicModel {
 	{
 		return array(
 			new Field('name'),
-			// new ManyToMany('posts'),
+			new BelongsToMany('posts', array(
+				'mapper_suffix' => 'Forum\Post',
+				'foreign'       => 'tags',
+			)),
 		);
 	}
 
