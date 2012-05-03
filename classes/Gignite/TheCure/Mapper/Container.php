@@ -168,6 +168,11 @@ class Container {
 		{
 			$mapper = new $class;
 
+			if ($mapper instanceOf ContainerSetGet)
+			{
+				$mapper->container($this);
+			}
+
 			if ($mapper instanceOf ConnectionSetGet)
 			{
 				$mapper->connection($this->connection());
