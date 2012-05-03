@@ -10,3 +10,5 @@
  - Model factory method in Mapper (or maybe Container)
  - Use Model class name for foreign key field name
  - ManyToMany relationship
+ - Need to handle namespacing and underscores in type passed
+   to a new Container.
