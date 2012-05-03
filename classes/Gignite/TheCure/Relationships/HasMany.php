@@ -12,8 +12,7 @@ namespace Gignite\TheCure\Relationships;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relation;
 
-class HasMany extends Relationship
-	implements Relation\Find, Relation\Add, Relation\Remove {
+class HasMany extends Has implements Relation\Add {
 
 	protected function where($object)
 	{
