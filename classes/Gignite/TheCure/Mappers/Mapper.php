@@ -109,6 +109,26 @@ abstract class Mapper
 	{
 		return $this->factory()->model($this, $suffix);
 	}
+	
+	public function model($suffix = NULL, array $args = array())
+	{
+		if (is_array($suffix))
+		{
+			$args = $suffix;
+			$suffix = NULL;
+		}
+
+		$class = $this->model_class($suffix);
+		$reflection = new \ReflectionClass($class);
+		$model = $reflection->newInstanceArgs($args);
+
+		if ($model instanceOf MagicModel)
+		{
+			$model->__container($this->container());
+		}
+
+		return $model;
+	}
 
 	/**
 	 * @param  $suffix
