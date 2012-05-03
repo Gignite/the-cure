@@ -12,7 +12,7 @@ namespace Gignite\TheCure\Relationships;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relation;
 
-class OneToOne extends Relationship
+class HasOne extends Relationship
 	implements Relation\Find, Relation\Set, Relation\Remove {
 
 	protected function where($object)
