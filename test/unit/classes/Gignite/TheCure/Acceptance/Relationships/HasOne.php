@@ -9,10 +9,6 @@ namespace Gignite\TheCure\Acceptance\Relationships;
 
 use Gignite\TheCure\Mapper\Container;
 
-use Gignite\TheCure\Models\Account;
-use Gignite\TheCure\Models\Password;
-
-
 class HasOne extends \PHPUnit_Framework_TestCase {
 
 	public function provideContainers()
@@ -28,11 +24,8 @@ class HasOne extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldWork($container)
 	{
-		$account = new Account;
-		$account->__container($container);
-		
-		$password = new Password('a password');
-		$password->__container($container);
+		$account = $container->mapper('Account')->model();
+		$password = $container->mapper('Password')->model(array('a password'));
 
 		$account->password($password);
 		$container->mapper('Account')->save($account);

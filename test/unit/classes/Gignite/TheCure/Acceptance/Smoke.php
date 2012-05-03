@@ -24,13 +24,11 @@ class Smoke extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldWork($container)
 	{
-		$user = new MagicUserModel;
-		$user->__container($container);
-
+		$user = $container->mapper('User')->model('Magic');
 		$user->name($expectedName = 'Luke');
 		$this->assertSame($expectedName, $user->name());
 
-		$bob = new MagicUserModel;
+		$bob = $container->mapper('User')->model('Magic');
 		$bob->name($expectedFriendName = 'Bob');
 		$this->assertSame($expectedFriendName, $bob->name());
 

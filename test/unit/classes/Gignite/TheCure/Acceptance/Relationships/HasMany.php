@@ -8,7 +8,6 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  */
 
 use Gignite\TheCure\Mapper\Container;
-use Gignite\TheCure\Models\Forum;
 
 class HasMany extends \PHPUnit_Framework_TestCase {
 
@@ -25,13 +24,11 @@ class HasMany extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldWork($container)
 	{
-		$thread = new Forum\Thread;
-		$thread->__container($container);
+		$thread = $container->mapper('Forum\Thread')->model();
 		$thread->title('Welcome thread');
 		$thread->message('<p>Welcome to the forum!</p>');
 
-		$post = new Forum\Post;
-		$post->__container($container);
+		$post = $container->mapper('Forum\Post')->model();
 		$post->message('<p>What a great welcome this is :D</p>');
 		
 		$thread->add_posts($post);

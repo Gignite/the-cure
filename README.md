@@ -21,13 +21,13 @@ $container->mapper('Media');   // => Mappers\Mongo\Media
 
 ### Creating
 
- - Create a new model
+ - Create a new model using `Gignite\TheCure\Mappers\Mapper::model()`
  - Validate the model
  - Pass the model to `Gignite\TheCure\Mappers\Mapper::save()`
 
 ``` php
 <?php
-$image = new Models\Media\Image;
+$image = $container->mapper('Media')->model('Image');
 
 if ($image->create($owner, compact('filename')))
 {

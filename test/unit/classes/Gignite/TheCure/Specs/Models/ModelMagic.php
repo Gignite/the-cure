@@ -15,16 +15,13 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 		if ($this->container === NULL)
 		{
 			$container = new Container('Mock');
-
-			$jim = new Models\User\Magic;
-			$jim->__container($container);
+			$jim = $container->mapper('User')->model('Magic');
 			$jim->__object(new Object(array(
 				'name' => 'Jim',
 			)));
 			$container->mapper('User')->save($jim);
 
-			$luke = new Models\User\Magic;
-			$luke->__container($container);
+			$luke = $container->mapper('User')->model('Magic');
 			$luke->__object(new Object(array(
 				'name'    => 'Luke',
 				'friends' => array($jim->__object()->_id),

@@ -34,7 +34,9 @@ class CollectionModelTest extends CollectionTest {
 	 */
 	public function testCurrent($collection)
 	{
-		$this->assertInstanceOf('Gignite\TheCure\Models\User', $collection->current());
+		$this->assertInstanceOf(
+			'Gignite\TheCure\Models\User',
+			$collection->current());
 		return $collection;
 	}
 
