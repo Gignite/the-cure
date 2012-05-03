@@ -169,7 +169,6 @@ abstract class Mapper
 			$where = array('_id' => $where);
 		}
 
-		$class = $this->model_class($suffix);
 		$object = call_user_func($callback, $where);
 
 		if ( ! isset($object->_id))
@@ -178,6 +177,7 @@ abstract class Mapper
 		}
 
 		$identities = $this->identities();
+		$class = $this->model_class($suffix);
 
 		if ( ! $model = $identities->get($class, $object->_id))
 		{
