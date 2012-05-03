@@ -21,6 +21,7 @@ use Gignite\TheCure\Mapper\FactorySetGet;
 use Gignite\TheCure\Mapper\IdentitiesSetGet;
 use Gignite\TheCure\Mapper\ConfigSetGet;
 use Gignite\TheCure\Models\Model;
+use Gignite\TheCure\Models\Magic as MagicModel;
 use Gignite\TheCure\Collections\Collection;
 use Gignite\TheCure\Collections\Model as ModelCollection;
 
@@ -181,8 +182,19 @@ abstract class Mapper
 
 		if ( ! $model = $identities->get($class, $object->_id))
 		{
-			$model = new $class;
-			$model->__object($object);
+			$model = $this->model($suffix);
+
+			if ($object)
+			{
+				$model->__object($object);
+			}
+
+			if ($model instanceOf MagicModel
+				AND $container = $this->container())
+			{
+				$model->__container($container);
+			}
+
 			$identities->set($model);
 		}
 
@@ -198,6 +210,12 @@ abstract class Mapper
 		$object = $model->__object();
 		$object = call_user_func($callback, $object);
 		$model->__object($object);
+
+		if ($model instanceOf MagicModel
+			AND $container = $this->container())
+		{
+			$model->__container($container);
+		}
 
 		if ( ! $this->identities()->has($model))
 		{
