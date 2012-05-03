@@ -138,7 +138,14 @@ abstract class Mapper
 
 		$cursor = call_user_func($callback, $where);
 		$class = $this->model_class($suffix);
-		return new ModelCollection($cursor, $this->identities(), $class);
+		$collection = new ModelCollection($cursor, $this->identities(), $class);
+
+		if (new $class instanceOf MagicModel)
+		{
+			$collection->container($this->container());
+		}
+
+		return $collection;
 	}
 
 	/**
