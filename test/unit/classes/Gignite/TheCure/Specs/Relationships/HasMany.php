@@ -12,7 +12,7 @@ use Gignite\TheCure\Models;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\HasMany;
 
-class RelationshipOneToMany extends \PHPUnit_Framework_TestCase {
+class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 
 	protected function relationship()
 	{

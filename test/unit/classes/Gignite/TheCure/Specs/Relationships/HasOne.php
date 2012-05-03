@@ -12,7 +12,7 @@ use Gignite\TheCure\Models;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\HasOne;
 
-class RelationshipOneToOne extends \PHPUnit_Framework_TestCase {
+class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 
 	protected function relationship()
 	{

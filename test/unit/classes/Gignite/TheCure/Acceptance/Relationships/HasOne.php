@@ -13,7 +13,7 @@ use Gignite\TheCure\Models\Account;
 use Gignite\TheCure\Models\Password;
 
 
-class OneToOne extends \PHPUnit_Framework_TestCase {
+class HasOne extends \PHPUnit_Framework_TestCase {
 
 	public function provideContainers()
 	{
