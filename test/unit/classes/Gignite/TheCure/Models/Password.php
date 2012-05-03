@@ -4,7 +4,7 @@ namespace Gignite\TheCure\Models;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Models\Magic as MagicModel;
 
-use Gignite\TheCure\Relationships\BelongsToOne as BelongsToOneRelationship;
+use Gignite\TheCure\Relationships\BelongsToOne;
 
 class Password extends MagicModel {
 	
@@ -12,7 +12,7 @@ class Password extends MagicModel {
 	{
 		return array(
 			new Field('password'),
-			new BelongsToOneRelationship('account', array(
+			new BelongsToOne('account', array(
 				'mapper_suffix' => 'Account',
 				'foreign'       => 'password',
 			)),
