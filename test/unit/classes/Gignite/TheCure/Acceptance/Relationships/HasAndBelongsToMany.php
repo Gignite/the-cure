@@ -8,9 +8,8 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  */
 
 use Gignite\TheCure\Mapper\Container;
-use Gignite\TheCure\Models\Forum;
 
-class ManyToMany extends \PHPUnit_Framework_TestCase {
+class HasAndBelongsToMany extends \PHPUnit_Framework_TestCase {
 
 	public function provideContainers()
 	{
@@ -22,16 +21,14 @@ class ManyToMany extends \PHPUnit_Framework_TestCase {
 
 	protected function createPost($container, $message)
 	{
-		$post = new Forum\Post;
-		$post->__container($container);
+		$post = $container->mapper('Forum\Post')->model();
 		$post->message($message);
 		return $post;
 	}
 
 	protected function createTag($container, $name)
 	{
-		$tag = new Forum\Tag;
-		$tag->__container($container);
+		$tag = $container->mapper('Forum\Tag')->model();
 		$tag->name($name);
 		return $tag;
 	}

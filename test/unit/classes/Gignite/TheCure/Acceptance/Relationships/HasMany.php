@@ -10,7 +10,7 @@ namespace Gignite\TheCure\Acceptance\Relationships;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Models\Forum;
 
-class OneToMany extends \PHPUnit_Framework_TestCase {
+class HasMany extends \PHPUnit_Framework_TestCase {
 
 	public function provideContainers()
 	{
