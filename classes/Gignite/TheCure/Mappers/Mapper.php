@@ -14,7 +14,9 @@ namespace Gignite\TheCure\Mappers;
 
 use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;
+use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Mapper\Actions as MapperActions;
+use Gignite\TheCure\Mapper\ContainerSetGet;
 use Gignite\TheCure\Mapper\FactorySetGet;
 use Gignite\TheCure\Mapper\IdentitiesSetGet;
 use Gignite\TheCure\Mapper\ConfigSetGet;
@@ -23,11 +25,27 @@ use Gignite\TheCure\Collections\Collection;
 use Gignite\TheCure\Collections\Model as ModelCollection;
 
 abstract class Mapper
-	implements MapperActions, FactorySetGet, IdentitiesSetGet, ConfigSetGet {
+	implements MapperActions, FactorySetGet, IdentitiesSetGet,
+		ConfigSetGet, ContainerSetGet {
 
+	protected $container;
 	protected $identities;
 	protected $factory;
 	protected $config;
+
+	/**
+	 * @param   Container|null  $container
+	 * @return  mixed
+	 */
+	public function container(Container $container = NULL)
+	{
+		if ($container === NULL)
+		{
+			return $this->container;
+		}
+
+		$this->container = $container;
+	}
 
 	/**
 	 * @param IdentityMap|null $identities
