@@ -18,7 +18,7 @@ class OneToOne extends \PHPUnit_Framework_TestCase {
 	public function provideContainers()
 	{
 		return array(
-			// array(new Container('Mock')),
+			array(new Container('Mock')),
 			array(new Container('Mongo')),
 		);
 	}
