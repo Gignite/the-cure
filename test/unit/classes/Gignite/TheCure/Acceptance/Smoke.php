@@ -9,15 +9,7 @@ namespace Gignite\TheCure\Acceptance;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Models\User\Magic as MagicUserModel;
 
-class Smoke extends \PHPUnit_Framework_TestCase {
-
-	public function provideContainers()
-	{
-		return array(
-			array(new Container('Mock')),
-			array(new Container('Mongo')),
-		);
-	}
+class Smoke extends Acceptance {
 
 	/**
 	 * @dataProvider  provideContainers

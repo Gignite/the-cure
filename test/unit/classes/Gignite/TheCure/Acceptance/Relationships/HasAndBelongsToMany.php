@@ -7,17 +7,10 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  * @group  relationships.manytomany
  */
 
+use Gignite\TheCure\Acceptance\Acceptance;
 use Gignite\TheCure\Mapper\Container;
 
-class HasAndBelongsToMany extends \PHPUnit_Framework_TestCase {
-
-	public function provideContainers()
-	{
-		return array(
-			array(new Container('Mock')),
-			array(new Container('Mongo')),
-		);
-	}
+class HasAndBelongsToMany extends Acceptance {
 
 	protected function createPost($container, $message)
 	{

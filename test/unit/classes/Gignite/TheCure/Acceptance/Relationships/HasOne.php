@@ -7,17 +7,10 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  * @group  relationships.onetoone
  */
 
+use Gignite\TheCure\Acceptance\Acceptance;
 use Gignite\TheCure\Mapper\Container;
 
-class HasOne extends \PHPUnit_Framework_TestCase {
-
-	public function provideContainers()
-	{
-		return array(
-			array(new Container('Mock')),
-			array(new Container('Mongo')),
-		);
-	}
+class HasOne extends Acceptance {
 
 	/**
 	 * @dataProvider  provideContainers
