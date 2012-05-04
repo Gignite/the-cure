@@ -378,3 +378,40 @@ class BankAccount extends \Gignite\TheCure\Models\Model {
 ```
 
 Running the unit test will show this code passes.
+
+### More examples
+
+Checkout the `test` directory for more examples. In particular
+various use cases are tested in
+`test/unit/classes/Gignite/TheCure/Acceptance`. You will also
+find specifications in 
+`test/unit/classes/Gignite/TheCure/Specs`.
+
+## Unit tests
+
+The Cure is well covered with tests. We aim to:
+
+ - test every individual unit in isolation via specification
+   unit tests
+ - maintain close to 100% test coverage, with 100% coverage
+   during a release
+ - test use cases via acceptance tests
+
+### Running tests
+
+To run everything in standard PHPUnit mode:
+
+	phpunit
+
+To run a particular area of logic:
+
+	phpunit --group relationships
+
+To run just the acceptance tests or specs:
+
+	phpunit --group acceptance
+	phpunit --group specs
+
+To run a special spec report with code coverage:
+
+	rake test
