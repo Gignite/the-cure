@@ -12,3 +12,5 @@
  - ManyToMany relationship
  - Need to handle namespacing and underscores in type passed
    to a new Container.
+ - Set/get filters either via MagicModel or in the Object
+   itself. Maybe not?
