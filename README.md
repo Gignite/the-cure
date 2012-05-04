@@ -387,6 +387,53 @@ various use cases are tested in
 find specifications in 
 `test/unit/classes/Gignite/TheCure/Specs`.
 
+## Relationships
+
+The cure aims to provide some ease when it comes to describing
+and dealing with relationships between models. This ease comes
+in the form of the `Magic` model and a set of `Relationships`
+classes. Currently there are `HasOne`, `HasMany`,
+`BelongsToOne` and `BelongsToMany`.
+
+### HasOne
+
+To describe a parent's relationship with a single child you
+can use the `Gignite\TheCure\Relationships\Hasone` attribute
+in your `Gignite\TheCure\Models\Magic` model.
+
+[!!] TODO
+
+### HasMany
+
+To describe a parent's relationship with it's children you can
+use the `Gignite\TheCure\Relationships\HasMany` attribute
+in your `Gignite\TheCure\Models\Magic` model.
+
+[!!] TODO
+
+### BelongsToOne
+
+To describe a child's relationship with it's parent you can
+use the `Gignite\TheCure\Relationships\BelongsToOne` attribute
+in your `Gignite\TheCure\Models\Magic` model.
+
+[!!] TODO
+
+### BelongsToMany
+
+To describe a child's relationship with it's many parents you
+can use the `Gignite\TheCure\Relationships\BelongsToMany`
+attribute in your `Gignite\TheCure\Models\Magic` model.
+
+[!!] TODO
+
+### A more comprehensive example
+
+Here is a more complete example of a relationship between
+many models.
+
+[!!] TODO
+
 ## Unit tests
 
 The Cure is well covered with tests. We aim to:
