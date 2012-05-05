@@ -9,7 +9,7 @@
  */
 namespace Gignite\TheCure\Relationships;
 
-use Gignite\TheCure\Attribute;
+use Gignite\TheCure\Attribute\Attribute;
 use Gignite\TheCure\Container;
 
 abstract class Relationship extends Attribute {
