@@ -8,7 +8,7 @@
  */
 namespace Gignite\TheCure\Mapper;
 
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 interface ContainerSetGet {
 	

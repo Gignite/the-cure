@@ -7,7 +7,7 @@ namespace Gignite\TheCure\Acceptance;
  * @group  mappers.mongo
  */
 
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 use Gignite\TheCure\Models\User\Magic as MagicUserModel;
 
 class Smoke extends Acceptance {

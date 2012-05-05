@@ -6,7 +6,7 @@ namespace Gignite\TheCure\Specs;
  * @group  container
  */
 
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 class MapperContainerTest extends \PHPUnit_Framework_TestCase {
 

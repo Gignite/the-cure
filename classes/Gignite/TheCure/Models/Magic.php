@@ -12,7 +12,7 @@ namespace Gignite\TheCure\Models;
 
 use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 use Gignite\TheCure\Relationships\Relationship;
 use Gignite\TheCure\Relationships\Relation;
 

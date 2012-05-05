@@ -9,7 +9,7 @@
  */
 namespace Gignite\TheCure\Relation;
 
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 interface Set {
 

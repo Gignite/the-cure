@@ -9,7 +9,7 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  */
 
 use Gignite\TheCure\Acceptance\Acceptance;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 class HasAndBelongsToMany extends Acceptance {
 

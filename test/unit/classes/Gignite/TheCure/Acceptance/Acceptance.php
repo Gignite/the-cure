@@ -6,7 +6,7 @@ namespace Gignite\TheCure\Acceptance;
  * @group  smoke
  */
 
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 abstract class Acceptance extends \PHPUnit_Framework_TestCase {
 

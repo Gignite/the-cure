@@ -4,7 +4,7 @@ namespace Gignite\TheCure\Specs;
 use Gignite\TheCure\Object;
 use Gignite\TheCure\Models;
 use Gignite\TheCure\Relationships;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 class ModelMagic extends \PHPUnit_Framework_TestCase {
 

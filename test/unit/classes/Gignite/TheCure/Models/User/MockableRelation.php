@@ -3,7 +3,7 @@ namespace Gignite\TheCure\Models\User;
 
 use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Models\Magic as MagicModel;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 class MockableRelation extends MagicModel {
 

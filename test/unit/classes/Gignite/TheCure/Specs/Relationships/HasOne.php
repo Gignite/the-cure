@@ -9,7 +9,7 @@ namespace Gignite\TheCure\Specs;
 
 use Gignite\TheCure\Object;
 use Gignite\TheCure\Models;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 use Gignite\TheCure\Relationships\HasOne;
 
 class RelationshipHasOne extends \PHPUnit_Framework_TestCase {

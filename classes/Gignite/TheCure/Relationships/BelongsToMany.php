@@ -9,7 +9,7 @@
  */
 namespace Gignite\TheCure\Relationships;
 
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 use Gignite\TheCure\Relation;
 
 class BelongsToMany extends BelongsTo {

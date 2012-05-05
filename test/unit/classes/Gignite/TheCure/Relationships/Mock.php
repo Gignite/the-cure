@@ -1,7 +1,7 @@
 <?php
 namespace Gignite\TheCure\Relationships;
 
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 use Gignite\TheCure\Relationships\Relationship;
 use Gignite\TheCure\Relation;
 

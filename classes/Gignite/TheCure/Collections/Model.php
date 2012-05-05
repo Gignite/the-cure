@@ -17,7 +17,7 @@ namespace Gignite\TheCure\Collections;
 use Gignite\TheCure\IdentityMap;
 use Gignite\TheCure\Object;
 use Gignite\TheCure\Models\Magic as MagicModel;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 class Model extends Iterable {
 

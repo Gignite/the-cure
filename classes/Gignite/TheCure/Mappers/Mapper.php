@@ -14,14 +14,18 @@ namespace Gignite\TheCure\Mappers;
 
 use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;
-use Gignite\TheCure\Mapper\Container;
+
+use Gignite\TheCure\Container;
+
 use Gignite\TheCure\Mapper\Actions as MapperActions;
 use Gignite\TheCure\Mapper\ContainerSetGet;
 use Gignite\TheCure\Mapper\FactorySetGet;
 use Gignite\TheCure\Mapper\IdentitiesSetGet;
 use Gignite\TheCure\Mapper\ConfigSetGet;
+
 use Gignite\TheCure\Models\Model;
 use Gignite\TheCure\Models\Magic as MagicModel;
+
 use Gignite\TheCure\Collections\Collection;
 use Gignite\TheCure\Collections\Model as ModelCollection;
 
