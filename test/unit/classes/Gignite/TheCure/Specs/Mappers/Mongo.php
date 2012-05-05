@@ -37,9 +37,12 @@ class MapperMongoTest extends MapperTest {
 	protected static function db()
 	{
 		$config = static::config();
-		$connection = new \Mongo(\Arr::get($config, 'server'));
 
-		return $connection->selectDB(\Arr::get($config, 'db'));
+		if (class_exists('Mongo'))
+		{
+			$connection = new \Mongo(\Arr::get($config, 'server'));
+			return $connection->selectDB(\Arr::get($config, 'db'));
+		}
 	}
 
 	protected static function collection($db)
