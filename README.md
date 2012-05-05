@@ -1,4 +1,4 @@
-# The Cure
+# The cure
 
 > Each time I play a song it seems more real.
 >
@@ -12,7 +12,7 @@ And some stats quickly:
  - 612 statements with 100% covered (5 per method)
  - 111 tests and 137 asserts (in 0.69 seconds)
 
-## General flow of using The Cure
+## General flow of using the cure
 
  - Create a `Gignite\TheCure\Mapper\Container` that is the DI
    container for all mappers and the objects they create
@@ -304,7 +304,7 @@ var_dump($object->as_array()); // => array('name' => 'Jim', 'age' => 26)
 
 ## Unit testing your domain logic
 
-The Cure imposes minimal logic on it's base domain objects.
+The cure imposes minimal logic on it's base domain objects.
 Even `Gignite\TheCure\Models\Magic` is fairly minimal in the
 logic it exposes to your own domains. This isn't by accident,
 we have made this decision by design. Our mapper logic, or
@@ -774,7 +774,7 @@ for more information.
 
 ## Unit tests
 
-The Cure is well covered with tests. We aim to:
+The cure is well covered with tests. We aim to:
 
  - test every individual unit in isolation via specification
    unit tests
