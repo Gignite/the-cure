@@ -38,6 +38,10 @@ task :inspect do
   print sprintf('%d', metrics['methods'].to_f / metrics['classes'].to_f)
   puts ' per class)'
 
+  print " - "
+  print sprintf('%d', metrics['files'].to_i - metrics['classes'].to_i)
+  puts ' interfaces'
+
   covered = sprintf('%d', metrics['coveredstatements'].to_f / metrics['statements'].to_f * 100)
   print " - #{metrics['statements']} statements with ", covered, '% covered ('
   print sprintf('%d', metrics['statements'].to_f / metrics['methods'].to_f)
