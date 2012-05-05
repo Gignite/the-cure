@@ -83,6 +83,12 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame($expectedField, $attributes[$expectedField]->name());
 
 		$this->assertTrue(isset($attributes[$expectedField]));
+
+		$attributes[] = new Field('new_field');
+		$this->assertSame(7, count($attributes->as_array()));
+
+		unset($attributes['new_field']);
+		$this->assertSame(6, count($attributes->as_array()));
 	}
 
 }
