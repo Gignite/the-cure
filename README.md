@@ -28,6 +28,8 @@ Run `rake test` to produce these stats yourself. We use a
 `Rakefile` for producing stats from our unit tests so you will
 need ruby and rake installed on your system.
 
+[![Build Status](https://secure.travis-ci.org/Gignite/the-cure.png?branch=develop)](http://travis-ci.org/Gignite/the-cure)
+
 ## General flow of using the cure
 
  - Create a `Gignite\TheCure\Mapper\Container` that is the DI
