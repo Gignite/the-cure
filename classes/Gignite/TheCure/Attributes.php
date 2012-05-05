@@ -126,4 +126,14 @@ class Attributes implements \ArrayAccess {
 		$this->remove($name);
 	}
 
+	/**
+	 * Get attributes as array.
+	 * 
+	 * @return  array
+	 */
+	public function as_array()
+	{
+		return $this->attributes;
+	}
+
 }
