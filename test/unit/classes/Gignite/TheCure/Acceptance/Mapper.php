@@ -9,7 +9,7 @@ namespace Gignite\TheCure\Acceptance;
 
 use Gignite\TheCure\IdentityMap;
 
-class Mappers extends Acceptance {
+class Mapper extends Acceptance {
 	
 	/**
 	 * @dataProvider  provideContainers
