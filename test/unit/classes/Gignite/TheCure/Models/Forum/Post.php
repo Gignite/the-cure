@@ -1,6 +1,7 @@
 <?php
 namespace Gignite\TheCure\Models\Forum;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\BelongsToOne;
 use Gignite\TheCure\Relationships\HasMany;
@@ -10,7 +11,7 @@ class Post extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
+		return new Attributes(
 			new Field('message'),
 			new BelongsToOne('thread', array(
 				'mapper_suffix' => 'Forum\Thread',
@@ -21,8 +22,7 @@ class Post extends MagicModel {
 				// 'via' => array(
 				// 	'mapper_suffix' => 'Forum\Post',
 				// ),
-			)),
-		);
+			)));
 	}
 
 }
