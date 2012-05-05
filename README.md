@@ -18,11 +18,11 @@ configuration management. *Kohana is included as a submodule.*
 
 ## Some stats
 
- - 1485 non-commented lines of code
- - 24 classes with 108 methods (4 per class)
+ - 1548 non-commented lines of code
+ - 25 classes with 116 methods (4 per class)
  - 6 interfaces
- - 612 statements with 100% covered (5 per method)
- - 111 tests and 137 asserts (in 0.69 seconds)
+ - 636 statements with 98% covered (5 per method)
+ - 111 tests and 137 asserts (in 0.74 seconds)
 
 Run `rake test` to produce these stats yourself. We use a
 `Rakefile` for producing stats from our unit tests so you will
