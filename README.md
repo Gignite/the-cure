@@ -244,14 +244,13 @@ class User extends MagicModel {
 
 	public static function attributes()
 	{
-		return array(
-			'name' => new Field('name'),
-			'age'  => new Field('age'),
-			'friends' => new HasMany('friends', array(
+		return new Attributes(
+			new Field('name'),
+			new Field('age'),
+			new HasMany('friends', array(
 				'mapper_suffix' => 'User',
 				// 'model_suffix'  => 'Admin',
-			)),
-		);
+			)));
 	}
 
 }
@@ -440,12 +439,11 @@ class Account extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
+		return new Attributes(
 			new Field('email'),
 			new HasOne('password', array(
 				'mapper_suffix' => 'Password',
-			)),
-		);
+			)));
 	}
 
 }
@@ -468,9 +466,7 @@ class Password extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
-			new Field('password'),
-		);
+		return new Attributes(new Field('password'));
 	}
 
 	public function __construct($password)
@@ -529,13 +525,12 @@ class Password extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
+		return new Attributes(
 			new Field('password'),
 			new BelongsToOne('account', array(
 				'mapper_suffix' => 'Account',
 				'foreign'       => 'password',
-			)),
-		);
+			)));
 	}
 
 	public function __construct($password)
@@ -579,13 +574,12 @@ class Thread extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
+		return new Attributes(
 			new Field('title'),
 			new Field('message'),
 			new HasMany('posts', array(
 				'mapper_suffix' => 'Forum\Post',
-			)),
-		);
+			)));
 	}
 
 }
@@ -608,13 +602,12 @@ class Post extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
+		return new Attributes(
 			new Field('message'),
 			new BelongsToOne('thread', array(
 				'mapper_suffix' => 'Forum\Thread',
 				'foreign'       => 'posts',
-			)),
-		);
+			)));
 	}
 
 }
@@ -670,7 +663,7 @@ class Post extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
+		return new Attributes(
 			new Field('message'),
 			new BelongsToOne('thread', array(
 				'mapper_suffix' => 'Forum\Thread',
@@ -678,8 +671,7 @@ class Post extends MagicModel {
 			)),
 			new HasMany('tags', array(
 				'mapper_suffix' => 'Forum\Tag',
-			)),
-		);
+			)));
 	}
 
 }
@@ -701,13 +693,12 @@ class Tag extends MagicModel {
 	
 	public static function attributes()
 	{
-		return array(
+		return new Attributes(
 			new Field('name'),
 			new BelongsToMany('posts', array(
 				'mapper_suffix' => 'Forum\Post',
 				'foreign'       => 'tags',
-			)),
-		);
+			)));
 	}
 
 }
