@@ -11,10 +11,9 @@
  *
  * @package     TheCure
  * @category    Container
- * @category    Mapper
- * @copyright   Gignite, 2012
+ * @copyright   Gigniute, 2012
  */
-namespace Gignite\TheCure\Mapper;
+namespace Gignite\TheCure;
 
 use Gignite\TheCure\IdentityMap;
 use Gignite\TheCure\Factory;
