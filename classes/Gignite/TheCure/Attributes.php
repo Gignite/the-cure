@@ -17,6 +17,8 @@
  */
 namespace Gignite\TheCure;
 
+use Gignite\TheCure\Attribute\AliasTakenException;
+
 class Attributes implements \ArrayAccess {
 
 	protected $attributes = array();
@@ -49,7 +51,7 @@ class Attributes implements \ArrayAccess {
 		{
 			if ($this->get($name = $_attribute->alias()))
 			{
-				throw new AttributeAliasTakenException($name);
+				throw new AliasTakenException($name);
 			}
 
 			$this->attributes[] = $_attribute;

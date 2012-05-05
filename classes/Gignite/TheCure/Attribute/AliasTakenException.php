@@ -9,4 +9,4 @@
  */
 namespace Gignite\TheCure;
 
-class AttributeAliasTakenException extends \Exception {}
+class AliasTakenException extends \Exception {}

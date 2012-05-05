@@ -18,6 +18,8 @@
  */
 namespace Gignite\TheCure;
 
+use Gignite\TheCure\Attribute\Attribute;
+
 class Field extends Attribute {
 
 	protected $value;
