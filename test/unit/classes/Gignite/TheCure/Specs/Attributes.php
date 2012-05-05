@@ -67,7 +67,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @depends  testItShouldRemoveAttribute
-	 * @expectedException  Gignite\TheCure\AttributeAliasTakenException
+	 * @expectedException  Gignite\TheCure\Attribute\AliasTakenException
 	 */
 	public function testItShouldThrowExceptionWhenAddingTakenAlias($attributes)
 	{
