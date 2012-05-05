@@ -818,3 +818,18 @@ To run just the acceptance tests or specs:
 To run a special spec report with code coverage:
 
 	rake test
+
+## License
+
+Soon to be licensed, currently here for you to play with.
+
+## Authors
+
+The Gignite Team and anyone willing to contribute.
+
+### Gignite are hiring!
+
+If you like working on open source projects like this as well
+as building Gignite with us then get in touch!
+
+[http://gun.io/careers/959/php-developer](http://gun.io/careers/959/php-developerb)
