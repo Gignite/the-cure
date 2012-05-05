@@ -10,18 +10,21 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	{
 		$data = static::prepareData();
 
-		$id = $data->_id;
-		$suffix = 'Admin';
-		$where = array('name' => 'Luke');
+		if ($data)
+		{
+			$id = $data->_id;
+			$suffix = 'Admin';
+			$where = array('name' => 'Luke');
 
-		return array(
-			array(NULL,    NULL,   "Gignite\\TheCure\\Models\\User"),
-			array($id,     NULL,   "Gignite\\TheCure\\Models\\User"),
-			array($suffix, NULL,   "Gignite\\TheCure\\Models\\User\\{$suffix}"),
-			array($suffix, $id,    "Gignite\\TheCure\\Models\\User\\{$suffix}"),
-			array($where,  NULL,   "Gignite\\TheCure\\Models\\User"),
-			array($suffix, $where, "Gignite\\TheCure\\Models\\User\\{$suffix}")
-		);
+			return array(
+				array(NULL,    NULL,   "Gignite\\TheCure\\Models\\User"),
+				array($id,     NULL,   "Gignite\\TheCure\\Models\\User"),
+				array($suffix, NULL,   "Gignite\\TheCure\\Models\\User\\{$suffix}"),
+				array($suffix, $id,    "Gignite\\TheCure\\Models\\User\\{$suffix}"),
+				array($where,  NULL,   "Gignite\\TheCure\\Models\\User"),
+				array($suffix, $where, "Gignite\\TheCure\\Models\\User\\{$suffix}")
+			);			
+		}
 	}
 
 	/**

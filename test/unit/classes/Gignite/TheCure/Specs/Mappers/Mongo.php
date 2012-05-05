@@ -37,12 +37,8 @@ class MapperMongoTest extends MapperTest {
 	protected static function db()
 	{
 		$config = static::config();
-
-		if (class_exists('Mongo'))
-		{
-			$connection = new \Mongo(\Arr::get($config, 'server'));
-			return $connection->selectDB(\Arr::get($config, 'db'));
-		}
+		$connection = new \Mongo(\Arr::get($config, 'server'));
+		return $connection->selectDB(\Arr::get($config, 'db'));
 	}
 
 	protected static function collection($db)
@@ -53,12 +49,15 @@ class MapperMongoTest extends MapperTest {
 
 	protected static function prepareData()
 	{
-		$db = static::db();
-		$db->drop();
-		$collection = static::collection(static::db());
-		$data = array('name' => 'Luke');
-		$collection->insert($data);
-		return new Object($data);
+		if (class_exists('Mongo'))
+		{
+			$db = static::db();
+			$db->drop();
+			$collection = static::collection(static::db());
+			$data = array('name' => 'Luke');
+			$collection->insert($data);
+			return new Object($data);
+		}
 	}
 
 	protected static function mapper()
