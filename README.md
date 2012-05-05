@@ -24,6 +24,10 @@ configuration management. *Kohana is included as a submodule.*
  - 612 statements with 100% covered (5 per method)
  - 111 tests and 137 asserts (in 0.69 seconds)
 
+Run `rake test` to produce these stats yourself. We use a
+`Rakefile` for producing stats from our unit tests so you will
+need ruby and rake installed on your system.
+
 ## General flow of using the cure
 
  - Create a `Gignite\TheCure\Mapper\Container` that is the DI
