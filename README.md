@@ -401,15 +401,88 @@ To describe a parent's relationship with a single child you
 can use the `Gignite\TheCure\Relationships\Hasone` attribute
 in your `Gignite\TheCure\Models\Magic` model.
 
-[!!] TODO
+``` php
+<?php
+namespace Gignite\TheCure\Models;
 
-### HasMany
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Models\Magic as MagicModel;
 
-To describe a parent's relationship with it's children you can
-use the `Gignite\TheCure\Relationships\HasMany` attribute
-in your `Gignite\TheCure\Models\Magic` model.
+use Gignite\TheCure\Relationships\HasOne;
 
-[!!] TODO
+class Account extends MagicModel {
+	
+	public static function attributes()
+	{
+		return array(
+			new Field('email'),
+			new HasOne('password', array(
+				'mapper_suffix' => 'Password',
+			)),
+		);
+	}
+
+}
+?>
+```
+
+Here we described `Gignite\TheCure\Models\Account` and it's
+`HasOne` relationship with `Models\Password`.
+
+``` php
+<?php
+namespace Gignite\TheCure\Models;
+
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Models\Magic as MagicModel;
+
+use Gignite\TheCure\Relationships\BelongsToOne;
+
+class Password extends MagicModel {
+	
+	public static function attributes()
+	{
+		return array(
+			new Field('password'),
+		);
+	}
+
+	public function __construct($password)
+	{
+		$this->password($password);
+	}
+
+}
+?>
+```
+
+This is the `Gignite\TheCure\Models\Password` class which has
+a custom `::__construct()` taking a password.
+
+Let's test the creation of this relationship and see if we
+can pull the model back out.
+
+
+``` php
+<?php
+$account = $container->mapper('Account')->model();
+$password = $container->mapper('Password')->model(array('a password'));
+
+// Setting the HasOne relationship
+$account->password($password);
+$container->mapper('Account')->save($account);
+
+// Getting the HasOne relationship
+$this->assertSame($password, $account->password());
+?>
+```
+
+The `HasOne` attribute adds two methods to `Account`. These
+are `::password()` and `::password($password)`, used for
+getting and setting respectively.
+
+See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasOne.php`
+for more information.
 
 ### BelongsToOne
 
@@ -417,7 +490,140 @@ To describe a child's relationship with it's parent you can
 use the `Gignite\TheCure\Relationships\BelongsToOne` attribute
 in your `Gignite\TheCure\Models\Magic` model.
 
-[!!] TODO
+``` php
+<?php
+namespace Gignite\TheCure\Models;
+
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Models\Magic as MagicModel;
+
+use Gignite\TheCure\Relationships\BelongsToOne;
+
+class Password extends MagicModel {
+	
+	public static function attributes()
+	{
+		return array(
+			new Field('password'),
+			new BelongsToOne('account', array(
+				'mapper_suffix' => 'Account',
+				'foreign'       => 'password',
+			)),
+		);
+	}
+
+	public function __construct($password)
+	{
+		$this->password($password);
+	}
+
+}
+?>
+```
+
+Here we added a `BelongsToOne` relationship to our previous
+`Password` model. This method adds a getter to `Password`
+called `::account()`.
+
+``` php
+<?php
+// Getting the BelongsToOne relationship
+$this->assertSame($account, $password->account());
+?>
+```
+
+See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasOne.php`
+for more information.
+
+### HasMany
+
+To describe a parent's relationship with it's children you can
+use the `Gignite\TheCure\Relationships\HasMany` attribute
+in your `Gignite\TheCure\Models\Magic` model.
+
+``` php
+<?php
+namespace Gignite\TheCure\Models\Forum;
+
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Relationships\HasMany;
+use Gignite\TheCure\Models\Magic as MagicModel;
+
+class Thread extends MagicModel {
+	
+	public static function attributes()
+	{
+		return array(
+			new Field('title'),
+			new Field('message'),
+			new HasMany('posts', array(
+				'mapper_suffix' => 'Forum\Post',
+			)),
+		);
+	}
+
+}
+?>
+```
+
+Here we have `Gignite\TheCure\Models\Forum\Thread` which has
+a `HasMany` relationship with `Forum\Post`.
+
+``` php
+<?php
+namespace Gignite\TheCure\Models\Forum;
+
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Relationships\BelongsToOne;
+use Gignite\TheCure\Relationships\HasMany;
+use Gignite\TheCure\Models\Magic as MagicModel;
+
+class Post extends MagicModel {
+	
+	public static function attributes()
+	{
+		return array(
+			new Field('message'),
+			new BelongsToOne('thread', array(
+				'mapper_suffix' => 'Forum\Thread',
+				'foreign'       => 'posts',
+			)),
+		);
+	}
+
+}
+?>
+```
+
+Here we have the `Gignite\TheCure\Models\Forum\Post` model
+which has a `BelongsToOne` relationship with `Forum\Thread`.
+
+Let's see the relationship in action:
+
+``` php
+<?php
+$thread = $container->mapper('Forum\Thread')->model();
+$thread->title('Welcome thread');
+$thread->message('<p>Welcome to the forum!</p>');
+
+$post = $container->mapper('Forum\Post')->model();
+$post->message('<p>Wuhat a great welcome this is :D</p>');
+
+// Adding a relationship
+$thread->add_posts($post);
+
+$container->mapper('Forum\Thread')->save($thread);
+
+// Getting the HasMany relationship
+$this->assertSame($post, $thread->posts()->current());
+
+// Getting the BelongsToOne relationship
+$this->assertSame($thread, $post->thread());
+?>
+```
+
+See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasMany.php`
+for more information.
 
 ### BelongsToMany
 
@@ -425,14 +631,138 @@ To describe a child's relationship with it's many parents you
 can use the `Gignite\TheCure\Relationships\BelongsToMany`
 attribute in your `Gignite\TheCure\Models\Magic` model.
 
-[!!] TODO
+``` php
+<?php
+namespace Gignite\TheCure\Models\Forum;
 
-### A more comprehensive example
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Relationships\BelongsToOne;
+use Gignite\TheCure\Relationships\HasMany;
+use Gignite\TheCure\Models\Magic as MagicModel;
 
-Here is a more complete example of a relationship between
-many models.
+class Post extends MagicModel {
+	
+	public static function attributes()
+	{
+		return array(
+			new Field('message'),
+			new BelongsToOne('thread', array(
+				'mapper_suffix' => 'Forum\Thread',
+				'foreign'       => 'posts',
+			)),
+			new HasMany('tags', array(
+				'mapper_suffix' => 'Forum\Tag',
+			)),
+		);
+	}
 
-[!!] TODO
+}
+?>
+```
+
+Here we update `Gignite\TheCure\Models\Forum\Post` to have a
+`HasMany` relationship with `Forum\Tag`.
+
+``` php
+<?php
+namespace Gignite\TheCure\Models\Forum;
+
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Relationships\BelongsToMany;
+use Gignite\TheCure\Models\Magic as MagicModel;
+
+class Tag extends MagicModel {
+	
+	public static function attributes()
+	{
+		return array(
+			new Field('name'),
+			new BelongsToMany('posts', array(
+				'mapper_suffix' => 'Forum\Post',
+				'foreign'       => 'tags',
+			)),
+		);
+	}
+
+}
+?>
+```
+
+This is `Gignite\TheCure\Models\Forum\Tag` which has a
+`BelongsToMany` relationship with `Forum\Post`.
+
+Here is them in action:
+
+``` php
+<?php
+namespace Gignite\TheCure\Acceptance\Relationships;
+
+/**
+ * @group  acceptance
+ * @group  relationships
+ * @group  relationships.manytomany
+ */
+
+use Gignite\TheCure\Acceptance\Acceptance;
+use Gignite\TheCure\Mapper\Container;
+
+class HasAndBelongsToMany extends Acceptance {
+
+	protected function createPost($container, $message)
+	{
+		$post = $container->mapper('Forum\Post')->model();
+		$post->message($message);
+		return $post;
+	}
+
+	protected function createTag($container, $name)
+	{
+		$tag = $container->mapper('Forum\Tag')->model();
+		$tag->name($name);
+		return $tag;
+	}
+
+	/**
+	 * @dataProvider  provideContainers
+	 */
+	public function testItShouldWork($container)
+	{
+		$firstPost = $this->createPost(
+			$container,
+			'<p>What a great welcome this is :D</p>');
+
+		$secondPost = $this->createPost(
+			$container,
+			'<p>Cool stuff</p>');
+
+		$coolTag = $this->createTag($container, 'cool');
+		$irrelevantTag = $this->createTag($container, 'irrelevant');
+		
+		// Adding to HasMany relationship
+		$firstPost->add_tags($coolTag);
+
+		// And some more
+		$secondPost->add_tags($coolTag);
+		$secondPost->add_tags($irrelevantTag);
+
+		$container->mapper('Forum\Post')->save($firstPost);
+		$container->mapper('Forum\Post')->save($secondPost);
+
+		// Getting HasMany relationship
+		$this->assertSame(1, $firstPost->tags()->count());
+		$this->assertSame(2, $secondPost->tags()->count());
+
+		// Getting BelongsToMany relationship
+		$this->assertSame(2, $coolTag->posts()->count());
+		$this->assertSame(1, $irrelevantTag->posts()->count());
+	}
+
+}
+?>
+```
+
+See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasAndBelongsToMany.php`
+for more information.
 
 ## Unit tests
 
