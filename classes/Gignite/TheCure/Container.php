@@ -18,6 +18,12 @@ namespace Gignite\TheCure;
 use Gignite\TheCure\IdentityMap;
 use Gignite\TheCure\Factory;
 
+use Gignite\TheCure\Mapper\ConnectionSetGet;
+use Gignite\TheCure\Mapper\ContainerSetGet;
+use Gignite\TheCure\Mapper\FactorySetGet;
+use Gignite\TheCure\Mapper\IdentitiesSetGet;
+use Gignite\TheCure\Mapper\ConfigSetGet;
+
 class Container {
 
 	protected $config;
