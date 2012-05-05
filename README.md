@@ -1,10 +1,18 @@
 # The cure
 
+A data mapper library with a minimal impact on your domain
+logic. Low coupling and use of flexible interfaces make this
+convention over configuration library completely customisable.
+
 > Each time I play a song it seems more real.
 >
 > *Robert Smith*
 
-And some stats quickly:
+This library came about from a number of previous interations
+including [beautiful/domain](https://github.com/beautiful/domain)
+and the frustrations of unit testing the active record pattern.
+
+## Some stats
 
  - 1485 non-commented lines of code
  - 24 classes with 108 methods (4 per class)
