@@ -24,8 +24,8 @@ class Mappers extends Acceptance {
 		// areas of logic
 		$accountMapper->identities(new IdentityMap);
 		$this->assertInstanceOf(
-			'Gignite\TheCure\Collections\Model',
-			$accountMapper->find());
+			'Gignite\TheCure\Models\Account',
+			$accountMapper->find()->current());
 	}
 
 }
