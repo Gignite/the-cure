@@ -32,13 +32,13 @@ need ruby and rake installed on your system.
 
 ## General flow of using the cure
 
- - Create a `Gignite\TheCure\Mapper\Container` that is the DI
+ - Create a `Gignite\TheCure\Container` that is the DI
    container for all mappers and the objects they create
  - Get a mapper object from `Container` using `::mapper()`
 
 ``` php
 <?php
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 $container = new Container('Mongo');
 $container->mapper('Profile'); // => Mappers\Mongo\Profile
 $container->mapper('Media');   // => Mappers\Mongo\Media
@@ -192,13 +192,13 @@ This convention explains the API choice of
 `Container::__construct()`, `Container::mapper()`,
 `Mapper::find()` and `Mapper::find_one()`.
 
-### Gignite\TheCure\Mapper\Container::__construct($type)
+### Gignite\TheCure\Container::__construct($type)
 
 The argument passed here is added onto the `Mappers\` prefix,
 so for example `new Container('Mongo')` creates a prefix
 for all mappers called `Mappers\Mongo\`.
 
-### Gignite\TheCure\Mapper\Container::mapper($mapper)
+### Gignite\TheCure\Container::mapper($mapper)
 
 The argument passed to ::mapper() indicates the domain area
 being mapped so for example `$container->mapper('Profile')`
@@ -214,7 +214,7 @@ mapper class name. Take this example:
 
 ``` php
 <?php
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 $container = new Container('Mongo');
 
 // Using Mappers\Mongo\Profile to find Models\Profile\Artist
@@ -238,7 +238,7 @@ namespace Models;
 use Gignite\TheCure\Models\Magic as MagicModel;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\HasMany;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 class User extends MagicModel {
 
@@ -721,7 +721,7 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  */
 
 use Gignite\TheCure\Acceptance\Acceptance;
-use Gignite\TheCure\Mapper\Container;
+use Gignite\TheCure\Container;
 
 class HasAndBelongsToMany extends Acceptance {
 
