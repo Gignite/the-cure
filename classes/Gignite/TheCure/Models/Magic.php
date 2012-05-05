@@ -10,6 +10,7 @@
  */
 namespace Gignite\TheCure\Models;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Mapper\Container;
 use Gignite\TheCure\Relationships\Relationship;
@@ -18,17 +19,15 @@ use Gignite\TheCure\Relationships\Relation;
 abstract class Magic extends Model {
 
 	/**
-	 * @static
-	 * @return array
+	 * Attributes for this Model.
+	 * 
+	 * @return  Attributes
 	 */
 	public static function attributes()
 	{
-		return array();
+		return new Attributes;
 	}
 
-	/**
-	 * @var
-	 */
 	protected $__container;
 
 	/**
@@ -50,15 +49,9 @@ abstract class Magic extends Model {
 	 * @param   string     method called
 	 * @return  Attribute
 	 */
-	private function attribute(array $attributes, $method)
+	private function attribute(Attributes $attributes, $method)
 	{
-		foreach ($attributes as $_attr)
-		{
-			if ($_attr->alias() === $method)
-			{
-				return $_attr;
-			}
-		}
+		return $attributes->get($method);
 	}
 
 	/**
@@ -67,7 +60,7 @@ abstract class Magic extends Model {
 	 * @param   array|null  $args
 	 * @return  array
 	 */
-	private function relationship(array $attributes, $method, array $args)
+	private function relationship(Attributes $attributes, $method, array $args)
 	{
 		if ($relationship = $this->attribute($attributes, $method))
 		{
