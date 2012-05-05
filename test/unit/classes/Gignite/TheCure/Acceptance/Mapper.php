@@ -4,6 +4,7 @@ namespace Gignite\TheCure\Acceptance;
 /**
  * @group  acceptance
  * @group  mappers
+ * @group  mappers.mongo
  */
 
 use Gignite\TheCure\IdentityMap;

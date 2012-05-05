@@ -10,6 +10,10 @@ namespace Gignite\TheCure\Specs;
  * @author      Luke Morton
  * @copyright   Luke Morton, 2011
  * @license     MIT
+ * 
+ * @group  mappers
+ * @group  mappers.mongo
+ * @group  spec
  */
 use Gignite\TheCure\Factory;
 use Gignite\TheCure\IdentityMap;

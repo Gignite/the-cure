@@ -5,6 +5,7 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  * @group  acceptance
  * @group  relationships
  * @group  relationships.onetomany
+ * @group  mappers.mongo
  */
 
 use Gignite\TheCure\Acceptance\Acceptance;
