@@ -4,6 +4,7 @@ namespace Gignite\TheCure\Acceptance;
 /**
  * @group  acceptance
  * @group  smoke
+ * @group  mappers.mongo
  */
 
 use Gignite\TheCure\Mapper\Container;
