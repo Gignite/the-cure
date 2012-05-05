@@ -15,6 +15,7 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 		if ($this->container === NULL)
 		{
 			$container = new Container('Mock');
+
 			$jim = $container->mapper('User')->model('Magic');
 			$jim->__object(new Object(array(
 				'name' => 'Jim',
