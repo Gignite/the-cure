@@ -21,7 +21,17 @@ class Password extends MagicModel {
 
 	public function __construct($password)
 	{
-		$this->__object()->password = md5($password);
+		$this->password($password);
+	}
+
+	public function password($password = NULL)
+	{
+		if ($password !== NULL)
+		{
+			$password = md5($password);
+		}
+
+		return parent::password($password);
 	}
 
 }
