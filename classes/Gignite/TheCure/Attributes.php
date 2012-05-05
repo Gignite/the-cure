@@ -5,8 +5,7 @@
  *     // Enable setter method functionality
  *     $attributes = new Attributes(
  *         new Field('title'),
- *         new HasOne('owner'),
- *     );
+ *         new HasOne('owner'));
  *     
  *     $attributes->add(new Field('content'));
  *     $attributes->replace(new Field('content'));
