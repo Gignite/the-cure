@@ -4,6 +4,14 @@
 >
 > *Robert Smith*
 
+And some stats quickly:
+
+ - 1485 non-commented lines of code
+ - 24 classes with 108 methods (4 per class)
+ - 6 interfaces
+ - 612 statements with 100% covered (5 per method)
+ - 111 tests and 137 asserts (in 0.69 seconds)
+
 ## General flow of using The Cure
 
  - Create a `Gignite\TheCure\Mapper\Container` that is the DI
