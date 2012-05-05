@@ -42,22 +42,23 @@ class HasAndBelongsToMany extends Acceptance {
 		$coolTag = $this->createTag($container, 'cool');
 		$irrelevantTag = $this->createTag($container, 'irrelevant');
 		
+		// Adding to HasMany relationship
 		$firstPost->add_tags($coolTag);
 
+		// And some more
 		$secondPost->add_tags($coolTag);
 		$secondPost->add_tags($irrelevantTag);
 
 		$container->mapper('Forum\Post')->save($firstPost);
 		$container->mapper('Forum\Post')->save($secondPost);
 
-		// Test ManyToMany
+		// Getting HasMany relationship
 		$this->assertSame(1, $firstPost->tags()->count());
 		$this->assertSame(2, $secondPost->tags()->count());
 
-		// Test BelongsToMany
+		// Getting BelongsToMany relationship
 		$this->assertSame(2, $coolTag->posts()->count());
 		$this->assertSame(1, $irrelevantTag->posts()->count());
 	}
 
 }
-

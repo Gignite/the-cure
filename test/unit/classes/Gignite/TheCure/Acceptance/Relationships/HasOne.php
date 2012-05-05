@@ -23,10 +23,14 @@ class HasOne extends Acceptance {
 		$account->password($password);
 		$container->mapper('Account')->save($account);
 
-		// Test OneToOne
-		$this->assertSame($password, $account->password());
+		// Setting the HasOne relationship
+		$account->password($password);
+		$container->mapper('Account')->save($account);
 
-		// Test BelongsToOne
+		// Getting the HasOne relationship
+		$this->assertSame($password, $account->password());
+		
+		// Getting the BelongsToOne relationship
 		$this->assertSame($account, $password->account());
 	}
 
