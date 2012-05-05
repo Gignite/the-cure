@@ -12,6 +12,10 @@ This library came about from a number of previous interations
 including [beautiful/domain](https://github.com/beautiful/domain)
 and the frustrations of unit testing the active record pattern.
 
+Written in PHP and must be used with 5.3 or greater. The tests
+require the Kohana 3.3 framework for autoloading classes and
+configuration management. *Kohana is included as a submodule.*
+
 ## Some stats
 
  - 1485 non-commented lines of code
