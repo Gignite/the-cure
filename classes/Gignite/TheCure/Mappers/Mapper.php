@@ -216,12 +216,6 @@ abstract class Mapper
 				$model->__object($object);
 			}
 
-			if ($model instanceOf MagicModel
-				AND $container = $this->container())
-			{
-				$model->__container($container);
-			}
-
 			$identities->set($model);
 		}
 
