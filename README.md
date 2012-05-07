@@ -113,14 +113,10 @@ $container->mapper('Profile')->find();
 $container->mapper('Profile')->find('Artist');
 // => Gignite\TheCure\Collections\Model of Models\Profile\Artist
 
-$container->mapper('Profile')->find(array(
-	'plan' => 'free',
-));
+$container->mapper('Profile')->find(array('plan' => 'free'));
 // => Gignite\TheCure\Collections\Model of Models\Profile
 
-$container->mapper('Profile')->find('Artist', array(
-	'plan' => 'free',
-));
+$container->mapper('Profile')->find('Artist', array('plan' => 'free'));
 // => Gignite\TheCure\Collections\Model of Models\Profile\Artist
 ?>
 ```
@@ -236,6 +232,7 @@ is acceptable in specialised areas.
 namespace Models;
 
 use Gignite\TheCure\Models\Magic as MagicModel;
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\HasMany;
 use Gignite\TheCure\Container;
@@ -246,7 +243,6 @@ class User extends MagicModel {
 	{
 		return new Attributes(
 			new Field('name'),
-			new Field('age'),
 			new HasMany('friends', array(
 				'mapper_suffix' => 'User',
 				// 'model_suffix'  => 'Admin',
@@ -255,21 +251,25 @@ class User extends MagicModel {
 
 }
 
-$user = new User;
-$user->__container(new Container('Mock'));
-// Or try with mongo!!
-//     $user->__container(new Container('Mongo'));
-$user->name('Luke');
-var_dump($user->name());
+$container = new Container('Mock');
+// $container = new Container('Mongo');
 
-$bob = new User;
-$bob->name('Bob');
+// Create two new Models\User\Magic
+$user = $container->mapper('User')->model('Magic');
+$user->name($expectedName = 'Luke');
+$this->assertSame($expectedName, $user->name());
+
+$bob = $container->mapper('User')->model('Magic');
+$bob->name($expectedFriendName = 'Bob');
+$this->assertSame($expectedFriendName, $bob->name());
+
+// Add a friend
 $user->add_friends($bob);
-var_dump($user->friends()->current()->name());
-var_dump($user->friends()->count());
+$this->assertSame(1, $user->friends()->count());
 
+// Remove a friend
 $user->remove_friends($bob);
-var_dump($user->friends()->count());
+$this->assertSame(0, $user->friends()->count());
 ?>
 ```
 
@@ -430,6 +430,7 @@ in your `Gignite\TheCure\Models\Magic` model.
 <?php
 namespace Gignite\TheCure\Models;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Models\Magic as MagicModel;
 
@@ -457,6 +458,7 @@ Here we described `Gignite\TheCure\Models\Account` and it's
 <?php
 namespace Gignite\TheCure\Models;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Models\Magic as MagicModel;
 
@@ -516,6 +518,7 @@ in your `Gignite\TheCure\Models\Magic` model.
 <?php
 namespace Gignite\TheCure\Models;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Models\Magic as MagicModel;
 
@@ -566,6 +569,7 @@ in your `Gignite\TheCure\Models\Magic` model.
 <?php
 namespace Gignite\TheCure\Models\Forum;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\HasMany;
 use Gignite\TheCure\Models\Magic as MagicModel;
@@ -593,6 +597,7 @@ a `HasMany` relationship with `Forum\Post`.
 <?php
 namespace Gignite\TheCure\Models\Forum;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\BelongsToOne;
 use Gignite\TheCure\Relationships\HasMany;
@@ -654,6 +659,7 @@ attribute in your `Gignite\TheCure\Models\Magic` model.
 <?php
 namespace Gignite\TheCure\Models\Forum;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\BelongsToOne;
 use Gignite\TheCure\Relationships\HasMany;
@@ -685,6 +691,7 @@ Here we update `Gignite\TheCure\Models\Forum\Post` to have a
 <?php
 namespace Gignite\TheCure\Models\Forum;
 
+use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
 use Gignite\TheCure\Relationships\BelongsToMany;
 use Gignite\TheCure\Models\Magic as MagicModel;
