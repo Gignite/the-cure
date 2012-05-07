@@ -8,7 +8,7 @@ namespace Gignite\TheCure\Acceptance;
  */
 
 use Gignite\TheCure\Container;
-use Gignite\TheCure\Models\User\Magic as MagicUserModel;
+use Gignite\TheCure\Object;
 
 class Smoke extends Acceptance {
 
@@ -31,8 +31,7 @@ class Smoke extends Acceptance {
 		$user->remove_friends($bob);
 		$this->assertSame(0, $user->friends()->count());
 
-		$object = new \Gignite\TheCure\Object;
-		$object->set($expectedArray = array(
+		$object = new Object($expectedArray = array(
 			'name' => 'Jim',
 			'age'  => 26,
 		));
