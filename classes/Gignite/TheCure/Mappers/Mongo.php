@@ -77,13 +77,13 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	 * @param  array|null $where
 	 * @return Model|Collection
 	 */
-	public function find($suffix = NULL, array $where = NULL)
+	public function find(array $where = NULL, $suffix = NULL)
 	{
 		$collection = $this->collection();
 
 		return $this->create_collection(
-			$suffix,
 			$where,
+			$suffix,
 			function ($where) use ($collection)
 			{
 				return $collection->find($where);
@@ -108,13 +108,13 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	 * @param  null $where
 	 * @return mixed
 	 */
-	public function find_one($suffix = NULL, $where = NULL)
+	public function find_one($where = NULL, $suffix = NULL)
 	{
 		$collection = $this->collection();
 
 		return $this->create_model(
-			$suffix,
 			$where,
+			$suffix,
 			function ($where) use ($collection)
 			{
 				return new Object($collection->findOne($where));

@@ -141,7 +141,7 @@ abstract class Mapper
 	 * @return Collections\Model
 	 * @throws \InvalidArgumentException
 	 */
-	protected function create_collection($suffix, $where, $callback)
+	protected function create_collection($where, $suffix, $callback)
 	{
 		if ($where === NULL)
 		{
@@ -181,7 +181,7 @@ abstract class Mapper
 	 * @param  $callback
 	 * @return mixed
 	 */
-	protected function create_model($suffix, $where, $callback)
+	protected function create_model($where, $suffix, $callback)
 	{
 		if ($where === NULL)
 		{

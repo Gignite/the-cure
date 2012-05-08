@@ -75,17 +75,17 @@ abstract class Mock extends Mapper {
 	}
 
 	/**
-	 * @param  null $suffix
+	 * @param  array      $where
 	 * @param  array|null $where
 	 * @return Model|Collection
 	 */
-	public function find($suffix = NULL, array $where = NULL)
+	public function find(array $where = NULL, $suffix = NULL)
 	{
 		$collection = $this->collection();
 
 		return $this->create_collection(
-			$suffix,
 			$where,
+			$suffix,
 			function($where) use ($collection)
 			{
 				$found = array();
@@ -107,13 +107,13 @@ abstract class Mock extends Mapper {
 	 * @param  null $where
 	 * @return mixed
 	 */
-	public function find_one($suffix = NULL, $where = NULL)
+	public function find_one($where = NULL, $suffix = NULL)
 	{
 		$collection = $this->collection();
 
 		return $this->create_model(
-			$suffix,
 			$where,
+			$suffix,
 			function ($where) use ($collection)
 			{
 				if (isset($where['_id']))
