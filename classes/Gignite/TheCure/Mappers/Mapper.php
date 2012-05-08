@@ -106,11 +106,33 @@ abstract class Mapper
 	}
 
 	/**
+	 * @example
+	 *     
+	 *     $suffix = function ($mapper) use ($object)
+	 *     {
+	 *         if ($object->type === User::TYPE_ADMIN)
+	 *         {
+	 *             $suffix = 'User\Admin';
+	 *         }
+	 *         else
+	 *         {
+	 *             $suffix = 'User\User';
+	 *         }
+	 *         
+	 *         return $suffix;
+	 *     };
+	 *     $this->model_class($suffix);
+	 * 
 	 * @param  null $suffix
 	 * @return mixed
 	 */
 	protected function model_class($suffix = NULL)
 	{
+		if (is_callable($suffix))
+		{
+			$suffix = $suffix($this);
+		}
+
 		return $this->factory()->model($this, $suffix);
 	}
 	
