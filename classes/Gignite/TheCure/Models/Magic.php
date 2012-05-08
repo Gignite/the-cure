@@ -134,7 +134,8 @@ abstract class Magic extends Model {
 		}
 		else
 		{
-			throw new \BadMethodCallException('Method: '.$method);
+			throw new \BadMethodCallException(
+				get_class($this).'::'.$method.'()');
 		}
 	}
 
