@@ -163,7 +163,7 @@ $profile_mapper->delete(array('type' => 'artist'));
 ?>
 ```
 
-## The relationship between a Model and it's Mappers
+## A model and it's mappers
 
 This is by convention only and it is completely possible to
 not follow it.
