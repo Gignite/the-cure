@@ -1,6 +1,6 @@
 <?php
 /**
- * Attribute alias taken exception
+ * Attribute alias used exception
  *
  * @package     TheCure
  * @category    Attribute
@@ -9,4 +9,4 @@
  */
 namespace Gignite\TheCure\Attribute;
 
-class AliasTakenException extends \Exception {}
+class AliasUsedException extends \Exception {}

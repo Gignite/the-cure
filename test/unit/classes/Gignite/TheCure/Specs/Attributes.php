@@ -67,9 +67,9 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @depends  testItShouldRemoveAttribute
-	 * @expectedException  Gignite\TheCure\Attribute\AliasTakenException
+	 * @expectedException  Gignite\TheCure\Attribute\AliasUsedException
 	 */
-	public function testItShouldThrowExceptionWhenAddingTakenAlias($attributes)
+	public function testItShouldThrowExceptionWhenAddingUsedAlias($attributes)
 	{
 		$attributes->add(new Field('twitter'));
 	}
