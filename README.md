@@ -439,98 +439,9 @@ var_dump($object->as_array()); // => array('name' => 'Jim', 'age' => 26)
 ?>
 ```
 
-## Unit testing your domain logic
+## Magic free edition
 
-The cure imposes minimal logic on it's base domain objects.
-Even `Gignite\TheCure\Models\Magic` is fairly minimal in the
-logic it exposes to your own domains. This isn't by accident,
-we have made this decision by design. Our mapper logic, or
-your own mapper logic should never be tested along side your
-applications domain logic. They are unrelated and coupling
-them together will add headaches in unit testing and
-elsewhere.
-
-### A banking example
-
-So in this example we're going to design, test and then build
-a very simple bank account object.
-
-We only expect this bank account to be able to transfer money
-to another account. This is what I came up with:
-
-``` php
-<?php
-$lukes_bank_account = new Models\BankAccount;
-$bobs_bank_account = new Models\BankAccount;
-$lukes_bank_account->transfer_money($bobs_bank_account, 100);
-?>
-```
-
-So we have one object, one method and two parameters. Pretty
-simple design, let's test it.
-
-``` php
-<?php
-class ModelBankAccountTest extends PHPUnit_Framework_TestCase {
-
-	public function provideBankAccounts()
-	{
-		return array(
-			array(new Models\BankAccount, new Models\BankAccount),
-		);
-	}
-	
-	/**
-	 * @dataProvider  provideBankAccounts
-	 */
-	public function testItShouldTransferMoneyFromOneAccountToAnother(
-		$lukesAccount,
-		$bobsAccount)
-	{
-		$lukesAccount->__object()->balance = 100;
-		$bobsAccount->__object()->balance = 0;
-
-		$lukesAccount->transfer_money($bobsAccount, 100);
-		
-		$this->assertSame(0, $lukesAccount->__object()->balance);
-		$this->assertSame(100, $bobsAccount->__object()->balance);
-	}
-
-}
-?>
-```
-
-First run your tests, they should fail... we haven't written
-the BankAccount model yet! We have a test to prove the balance
-transfers to another account.
-
-Let's implement the bare minimum:
-
-``` php
-<?php
-namespace Models;
-
-class BankAccount extends \Gignite\TheCure\Models\Model {
-
-	public function transfer_money(BankAccount $account, $amount)
-	{
-		$this->__object()->balance -= $amount;
-		$account->__object()->balance += $amount;
-	}
-
-}
-?>
-```
-
-Running the unit test will show this code passes.
-
-### More examples
-
-Checkout the `test` directory for more examples. In particular
-various use cases are tested in
-`test/unit/classes/Gignite/TheCure/Acceptance`. You will also
-find specifications in 
-`test/unit/classes/Gignite/TheCure/Specs`.
+[!!] TODO
 
 ## Relationships
 
@@ -936,6 +847,99 @@ To run just the acceptance tests or specs:
 To run a special spec report with code coverage:
 
 	rake test
+
+### Unit testing your domain logic
+
+The cure imposes minimal logic on it's base domain objects.
+Even `Gignite\TheCure\Models\Magic` is fairly minimal in the
+logic it exposes to your own domains. This isn't by accident,
+we have made this decision by design. Our mapper logic, or
+your own mapper logic should never be tested along side your
+applications domain logic. They are unrelated and coupling
+them together will add headaches in unit testing and
+elsewhere.
+
+#### A banking example
+
+So in this example we're going to design, test and then build
+a very simple bank account object.
+
+We only expect this bank account to be able to transfer money
+to another account. This is what I came up with:
+
+``` php
+<?php
+$lukes_bank_account = new Models\BankAccount;
+$bobs_bank_account = new Models\BankAccount;
+$lukes_bank_account->transfer_money($bobs_bank_account, 100);
+?>
+```
+
+So we have one object, one method and two parameters. Pretty
+simple design, let's test it.
+
+``` php
+<?php
+class ModelBankAccountTest extends PHPUnit_Framework_TestCase {
+
+	public function provideBankAccounts()
+	{
+		return array(
+			array(new Models\BankAccount, new Models\BankAccount),
+		);
+	}
+	
+	/**
+	 * @dataProvider  provideBankAccounts
+	 */
+	public function testItShouldTransferMoneyFromOneAccountToAnother(
+		$lukesAccount,
+		$bobsAccount)
+	{
+		$lukesAccount->__object()->balance = 100;
+		$bobsAccount->__object()->balance = 0;
+
+		$lukesAccount->transfer_money($bobsAccount, 100);
+		
+		$this->assertSame(0, $lukesAccount->__object()->balance);
+		$this->assertSame(100, $bobsAccount->__object()->balance);
+	}
+
+}
+?>
+```
+
+First run your tests, they should fail... we haven't written
+the BankAccount model yet! We have a test to prove the balance
+transfers to another account.
+
+Let's implement the bare minimum:
+
+``` php
+<?php
+namespace Models;
+
+class BankAccount extends \Gignite\TheCure\Models\Model {
+
+	public function transfer_money(BankAccount $account, $amount)
+	{
+		$this->__object()->balance -= $amount;
+		$account->__object()->balance += $amount;
+	}
+
+}
+?>
+```
+
+Running the unit test will show this code passes.
+
+#### More examples
+
+Checkout the `test` directory for more examples. In particular
+various use cases are tested in
+`test/unit/classes/Gignite/TheCure/Acceptance`. You will also
+find specifications in 
+`test/unit/classes/Gignite/TheCure/Specs`.
 
 ## License
 
