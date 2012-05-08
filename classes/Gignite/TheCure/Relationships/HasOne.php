@@ -27,8 +27,8 @@ class HasOne extends Has implements Relation\Set {
 	public function find(Container $container, $model)
 	{
 		return $this->mapper($container)->find_one(
-			$this->model_suffix(),
-			$this->where($model->__object()));
+			$this->where($model->__object()),
+			$this->model_suffix());
 	}
 
 	/**

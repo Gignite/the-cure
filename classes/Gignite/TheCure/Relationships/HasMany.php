@@ -29,7 +29,7 @@ class HasMany extends Has implements Relation\Add {
 	public function find(Container $container, $model)
 	{
 		$where = $this->where($model->__object());
-		return $this->mapper($container)->find($this->model_suffix(), $where);
+		return $this->mapper($container)->find($where, $this->model_suffix());
 	}
 
 	/**
