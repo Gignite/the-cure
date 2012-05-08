@@ -145,19 +145,7 @@ abstract class Mapper
 	{
 		if ($where === NULL)
 		{
-			if ($suffix === NULL OR is_string($suffix))
-			{
-				$where = array();
-			}
-			elseif (is_array($suffix))
-			{
-				$where = $suffix;
-				$suffix = NULL;
-			}
-			else
-			{
-				throw new \InvalidArgumentException;
-			}
+			$where = array();
 		}
 
 		$cursor = call_user_func($callback, $where);
@@ -185,15 +173,7 @@ abstract class Mapper
 	{
 		if ($where === NULL)
 		{
-			if ($suffix === NULL OR is_string($suffix))
-			{
-				$where = array();
-			}
-			else
-			{
-				$where = $suffix;
-				$suffix = NULL;
-			}
+			$where = array();
 		}
 
 		if ( ! is_array($where))
