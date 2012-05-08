@@ -58,6 +58,17 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends  testItShouldAddAttributesViaArray
 	 */
+	public function testItShouldReplaceAttribute($attributes)
+	{
+		$attributes->replace(new Field('facebook', array('value' => TRUE)));
+		$this->assertSame(7, count($attributes->as_array()));
+		$this->assertTrue($attributes->get('facebook')->value());
+		return $attributes;
+	}
+
+	/**
+	 * @depends  testItShouldAddAttributesViaArray
+	 */
 	public function testItShouldRemoveAttribute($attributes)
 	{
 		$attributes->remove('facebook');
@@ -72,6 +83,15 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 	public function testItShouldThrowExceptionWhenAddingUsedAlias($attributes)
 	{
 		$attributes->add(new Field('twitter'));
+	}
+
+	/**
+	 * @depends  testItShouldRemoveAttribute
+	 * @expectedException  Gignite\TheCure\Attribute\AliasUnusedException
+	 */
+	public function testItShouldThrowExceptionWhenReplacingUnusedAlias($attributes)
+	{
+		$attributes->replace(new Field('unused'));
 	}
 
 	/**

@@ -18,6 +18,7 @@ namespace Gignite\TheCure;
 
 use Gignite\TheCure\Attribute\Attribute;
 use Gignite\TheCure\Attribute\AliasUsedException;
+use Gignite\TheCure\Attribute\AliasUnusedException;
 
 class Attributes implements \ArrayAccess {
 
@@ -79,6 +80,30 @@ class Attributes implements \ArrayAccess {
 	protected function index(Attribute $attribute)
 	{
 		return array_search($attribute, $this->attributes);
+	}
+
+	/**
+	 * Replace Attribute.
+	 * 
+	 * @param   Attribute|array
+	 * @return  void
+	 */
+	public function replace($attributes)
+	{
+		if ( ! is_array($attributes))
+		{
+			$attributes = func_get_args();
+		}
+
+		foreach ($attributes as $_attribute)
+		{
+			if ( ! $previous = $this->get($name = $_attribute->alias()))
+			{
+				throw new AliasUnusedException($name);
+			}
+
+			$this->attributes[$this->index($previous)] = $_attribute;
+		}
 	}
 
 	/**
