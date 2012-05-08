@@ -221,11 +221,13 @@ $model = $container->mapper('Profile')->find_one($id);
 ?>
 ```
 
-## Magic
+## Magic features
 
 Usually I try to avoid magic code but expressing fields and
 relationships is repetitive and I believe some so-called magic
 is acceptable in specialised areas.
+
+### Magic model
 
 ``` php
 <?php
@@ -245,7 +247,6 @@ class User extends MagicModel {
 			new Field('name'),
 			new HasMany('friends', array(
 				'mapper_suffix' => 'User',
-				// 'model_suffix'  => 'Admin',
 			)));
 	}
 
@@ -273,12 +274,131 @@ $this->assertSame(0, $user->friends()->count());
 ?>
 ```
 
-## Object, a data transfer object
+### Attributes
+
+To describe the various fields and relationships of a Magic
+model we contain one or more `Gignite\TheCure\Field` and
+`Gignite\TheCure\Relationships\Relationship` in a
+`Gignite\TheCure\Attributes` object.
+
+#### Defining attributes
+
+``` php
+<?php
+use Gignite\TheCure\Models\Magic as MagicModel;
+use Gignite\TheCure\Attributes;
+use Gignite\TheCure\Field;
+use Gignite\TheCure\Relationships\HasOne;
+
+class Car extends MagicModel {
+
+	public static function attributes()
+	{
+		return new Attributes(
+			new Field('license'),
+			new HasOne('manufacturer', array(
+				'mapper_suffix' => 'Manufacturer',
+			)),
+			new Field('model'),
+			new Field('colour'),
+			new HasOne('owner', array(
+				'mapper_suffix' => 'Person',
+			)));
+	}
+
+}
+?>
+```
+
+In the example above we create a `Car` object which had a
+number of relationships and fields. Both `Field` and
+the `HasOne` relationship extend the same abstract object
+`Gignite\TheCure\Attribute\Attribute`. `Attribute` objects
+passed into the `Attributes` constructor as inidividual params
+or as an array are the added to the `Attributes` object.
+
+The magic model then checks against these fields and
+relationships every time it's magic `::__call()` method is
+triggered. This is how magic getter, setter and deleter (??)
+method are added.
+
+#### Adding attributes
+
+You may wish to modify the attributes of a sub class to the
+magic model. `Attributes` has a number of methods for adding,
+replacing and removing fields and relationships.
+
+``` php
+<?php
+class LargeCar extends Car {
+
+	public static function attributes()
+	{
+		$attributes = parent::attributes();
+		$attributes->add(
+			new Field('four_by_four', array('value' => FALSE)));
+		return $attributes;
+	}
+
+}
+?>
+```
+
+#### Modifying attributes
+
+Here we added an additional field. If you tried adding a field
+with a name already used you will get an
+`Attribute\AliasTakenException` thrown. In order to avoid this
+exception you must explicitly replace a field like so:
+
+``` php
+<?php
+class HexColourCar extends Car {
+
+	public static function attributes()
+	{
+		$attributes = parent::attributes();
+		$attributes->replace(
+			new Field('colour', array(
+				'rules' => array('ValidColour::hex'),
+			)));
+		return $attributes;
+	}
+
+}
+?>
+```
+
+We replaced the `colour` field with a similar field that has
+additional validation.
+
+#### Removing attributes
+
+You may also wish to remove attributes from your model. You
+may have guessed already but this is via the `::remove()`
+method. Check it out:
+
+``` php
+<?php
+class UnlicensedCar extends Car {
+
+	public static function attributes()
+	{
+		$attributes = parent::attributes();
+		$attributes->remove('license');
+		return $attributes;
+	}
+
+}
+?>
+```
+
+### Object, a data transfer object
 
 In order to transfer data between models and mappers we have
 devised a DTO called `Object`.
 
-### Creating an Object
+#### Creating an Object
 
 `Object::__construct()` optionally takes two arguments. The
 first is an array of data. The second a whitelist of keys to
@@ -293,7 +413,7 @@ $object = new Object($_POST, array('name'));
 ?>
 ```
 
-### Updating an Object
+#### Updating an Object
 
 ``` php
 <?php
@@ -307,7 +427,7 @@ $object->accessor('name', 'Jim');
 ?>
 ```
 
-### Getting data from an Object
+#### Getting data from an Object
 
 ``` php
 <?php
