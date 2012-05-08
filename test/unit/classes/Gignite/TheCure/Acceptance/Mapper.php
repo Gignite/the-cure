@@ -29,4 +29,20 @@ class Mapper extends Acceptance {
 			$accountMapper->find()->current());
 	}
 
+	/**
+	 * @dataProvider  provideContainers
+	 */
+	public function testFindShouldAcceptCallableSuffixArg($container)
+	{
+		$accountMapper = $container->mapper('Account');
+		$accounts = $accountMapper->find(function ()
+		{
+			return NULL;
+		});
+		
+		$this->assertInstanceOf(
+			'Gignite\TheCure\Models\Account',
+			$accounts->current());
+	}
+
 }
