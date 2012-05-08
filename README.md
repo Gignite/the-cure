@@ -71,7 +71,7 @@ if ($image->create($owner, compact('filename')))
 
 ``` php
 <?php
-$image = $container->mapper('Media')->find_one('Image', $id); // => Models\Media\Image
+$image = $container->mapper('Media')->find_one($id, 'Image'); // => Models\Media\Image
 $image->caption('A new caption.');
 
 if ($image->validation()->check())
@@ -94,8 +94,17 @@ so:
 
 ``` php
 <?php
+$container->mapper('Profile')->find_one(); // => Models\Profile
 $container->mapper('Profile')->find_one($id); // => Models\Profile
-$container->mapper('Profile')->find_one('Artist', $id); // => Models\Profile\Artist
+
+$container->mapper('Profile')->find_one($id, 'Artist');
+// => Models\Profile\Artist
+
+$container->mapper('Profile')->find_one(NULL, 'Artist');
+// => Models\Profile\Artist
+
+$container->mapper('Profile')->find_one(array('name' => 'Luke'), 'Artist');
+// => Models\Profile\Artist
 ?>
 ```
 
@@ -110,13 +119,13 @@ table, etc.
 $container->mapper('Profile')->find();
 // => Gignite\TheCure\Collections\Model of Models\Profile
 
-$container->mapper('Profile')->find('Artist');
+$container->mapper('Profile')->find(NULL, 'Artist');
 // => Gignite\TheCure\Collections\Model of Models\Profile\Artist
 
 $container->mapper('Profile')->find(array('plan' => 'free'));
 // => Gignite\TheCure\Collections\Model of Models\Profile
 
-$container->mapper('Profile')->find('Artist', array('plan' => 'free'));
+$container->mapper('Profile')->find(array('plan' => 'free'), 'Artist');
 // => Gignite\TheCure\Collections\Model of Models\Profile\Artist
 ?>
 ```
@@ -202,9 +211,9 @@ will instantiate a single `Mappers\Mongo\Profile` and register
 it with the container so that subsequent calls return the same
 instance.
 
-### Gignite\TheCure\Mappers\Mapper::find($suffix, $id) and ::find_one($suffix, $id)
+### Gignite\TheCure\Mappers\Mapper::find($where, $suffix) and ::find_one($where, $suffix)
 
-The first argument passed to `::find_one()` is a suffix for
+The second argument passed to `::find_one()` is a suffix for
 the model class name which is by default a derivative of the
 mapper class name. Take this example:
 
@@ -214,7 +223,7 @@ use Gignite\TheCure\Container;
 $container = new Container('Mongo');
 
 // Using Mappers\Mongo\Profile to find Models\Profile\Artist
-$model = $container->mapper('Profile')->find_one('Artist', $id);
+$model = $container->mapper('Profile')->find_one($id, 'Artist');
 
 // Using Mappers\Mongo\Profile to find Models\Profile
 $model = $container->mapper('Profile')->find_one($id);
