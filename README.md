@@ -952,6 +952,6 @@ The Gignite Team and anyone willing to contribute.
 ### Gignite are hiring!
 
 If you like working on open source projects like this as well
-as building Gignite with us then get in touch!
+as the opportunity to build Gignite with us then get in touch!
 
 [http://gun.io/careers/959/php-developer](http://gun.io/careers/959/php-developerb)
