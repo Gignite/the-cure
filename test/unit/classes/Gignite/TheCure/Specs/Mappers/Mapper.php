@@ -17,12 +17,12 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 			$where = array('name' => 'Luke');
 
 			return array(
-				array(NULL,    NULL,   "Gignite\\TheCure\\Models\\User"),
-				array($id,     NULL,   "Gignite\\TheCure\\Models\\User"),
-				array($suffix, NULL,   "Gignite\\TheCure\\Models\\User\\{$suffix}"),
-				array($suffix, $id,    "Gignite\\TheCure\\Models\\User\\{$suffix}"),
-				array($where,  NULL,   "Gignite\\TheCure\\Models\\User"),
-				array($suffix, $where, "Gignite\\TheCure\\Models\\User\\{$suffix}")
+				array(NULL,    NULL,    "Gignite\\TheCure\\Models\\User"),
+				array($id,     NULL,    "Gignite\\TheCure\\Models\\User"),
+				array(NULL,    $suffix, "Gignite\\TheCure\\Models\\User\\{$suffix}"),
+				array($id,     $suffix, "Gignite\\TheCure\\Models\\User\\{$suffix}"),
+				array($where,  NULL,    "Gignite\\TheCure\\Models\\User"),
+				array($where,  $suffix, "Gignite\\TheCure\\Models\\User\\{$suffix}")
 			);			
 		}
 	}
@@ -30,9 +30,9 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider  providerTestFindOne
 	 */
-	public function testFindOne($suffix, $id, $expectedClass)
+	public function testFindOne($id, $suffix, $expectedClass)
 	{
-		$model = static::mapper()->find_one($suffix, $id);
+		$model = static::mapper()->find_one($id, $suffix);
 		$this->assertInstanceOf($expectedClass, $model);
 	}
 
@@ -47,25 +47,18 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$where = array('name' => 'Luke');
 
 		return array(
-			array(NULL,    NULL,   FALSE),
-			array($where,  NULL,   FALSE),
-			array($suffix, $where, FALSE),
-			array($suffix, NULL,   FALSE),
-			array(100,     NULL,   'InvalidArgumentException'),
+			array(NULL,   NULL,    FALSE),
+			array($where, NULL,    FALSE),
+			array($where, $suffix, FALSE),
 		);
 	}
 
 	/**
 	 * @dataProvider  providerTestFind
 	 */
-	public function testFind($suffix, $id, $exception)
+	public function testFind($id, $suffix, $exception)
 	{
-		if ($exception)
-		{
-			$this->setExpectedException($exception);
-		}
-
-		$collection = static::mapper()->find($suffix, $id);
+		$collection = static::mapper()->find($id, $suffix);
 		$this->assertTrue($collection->count() > 0);
 	}
 

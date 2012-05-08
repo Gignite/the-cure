@@ -38,9 +38,9 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 	protected function user($expectedName)
 	{
 		$container = $this->container();
-		return $container->mapper('User')->find_one('Magic', array(
-			'name' => $expectedName,
-		));
+		return $container->mapper('User')->find_one(
+			array('name' => $expectedName),
+			'Magic');
 	}
 
 	public function providerTestMagicCall()
