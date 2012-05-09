@@ -448,7 +448,7 @@ var_dump($object->as_array()); // => array('name' => 'Jim', 'age' => 26)
 ?>
 ```
 
-## Relationships
+### Relationships
 
 The cure aims to provide some ease when it comes to describing
 and dealing with relationships between models. This ease comes
