@@ -26,7 +26,10 @@ class CollectionModelTest extends CollectionTest {
 				new Object(array('_id' => 1)),
 			)),
 			$this->map = new IdentityMap,
-			'Gignite\TheCure\Models\User');
+			function ()
+			{
+				return 'Gignite\TheCure\Models\User';
+			});
 	}
 
 	/**
