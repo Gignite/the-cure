@@ -182,6 +182,11 @@ abstract class Mapper
 		return $collection;
 	}
 
+	protected function idize($id)
+	{
+		return $id;
+	}
+
 	/**
 	 * [!!] We probably always need to check to see if Model
 	 *      actually exists even if pulled from identities.
@@ -200,7 +205,7 @@ abstract class Mapper
 
 		if ( ! is_array($where))
 		{
-			$where = array('_id' => $where);
+			$where = array('_id' => $this->idize($where));
 		}
 
 		$object = call_user_func($callback, $where);
