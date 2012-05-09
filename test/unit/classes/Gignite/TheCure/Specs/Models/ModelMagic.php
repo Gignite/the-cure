@@ -5,6 +5,7 @@ use Gignite\TheCure\Object;
 use Gignite\TheCure\Models;
 use Gignite\TheCure\Relationships;
 use Gignite\TheCure\Container;
+use Gignite\TheCure\Field;
 
 class ModelMagic extends \PHPUnit_Framework_TestCase {
 
@@ -147,6 +148,21 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 			$name => $value,
 		)));
 		$this->assertSame($value, $model->{$alias}());
+	}
+
+	public function testItShouldExpandFieldValueIfCallable()
+	{
+		$model = new Models\MockableAttribute;
+		$model::$attribute = function ()
+		{
+			return new Field('calculate', array(
+				'value' => function ()
+				{
+					return 1 + 1;
+				},
+			));
+		};
+		$this->assertSame(2, $model->calculate());
 	}
 
 }
