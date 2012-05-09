@@ -22,6 +22,16 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 
 	protected $connection;
 
+	protected function idize($id)
+	{
+		if ( ! $id instanceOf MongoID)
+		{
+			$id = new MongoID($id);
+		}
+
+		return $id;
+	}
+
 	/**
 	 * Sets the connection property if one is passed in otherwise
 	 * it returns the connection.
