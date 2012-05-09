@@ -157,8 +157,25 @@ abstract class Mapper
 	}
 
 	/**
-	 * @param  $suffix
+	 * @example
+	 *     
+	 *     $suffix = function ($object)
+	 *     {
+	 *         if ($object->type === User::TYPE_ADMIN)
+	 *         {
+	 *             $suffix = 'User\Admin';
+	 *         }
+	 *         else
+	 *         {
+	 *             $suffix = 'User\User';
+	 *         }
+	 *         
+	 *         return $suffix;
+	 *     };
+	 *     $this->find(NULL, $suffix);
+	 *     
 	 * @param  $where
+	 * @param  $suffix
 	 * @param  $callback
 	 * @return Collections\Model
 	 * @throws \InvalidArgumentException
@@ -170,14 +187,26 @@ abstract class Mapper
 			$where = array();
 		}
 
-		$class = $this->model_class($suffix);
-		$collection = new ModelCollection($cursor, $this->identities(), $class);
 		$cursor = $callback($where);
 
-		if (new $class instanceOf MagicModel)
+		$factory = $this->factory();
+		$mapper = $this;
+		$class_factory = function ($object) use ($factory, $mapper, $suffix)
 		{
-			$collection->container($this->container());
-		}
+			if (is_callable($suffix))
+			{
+				$suffix = $suffix($object);
+			}
+
+			return $factory->model($mapper, $suffix);
+		};
+
+		$collection = new ModelCollection(
+			$cursor,
+			$this->identities(),
+			$class_factory);
+
+		$collection->container($this->container());
 
 		return $collection;
 	}
