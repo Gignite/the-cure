@@ -12,7 +12,7 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 
 		if ($data)
 		{
-			$id = $data->_id;
+			$id = (string) $data->_id;
 			$suffix = 'Admin';
 			$where = array('name' => 'Luke');
 
