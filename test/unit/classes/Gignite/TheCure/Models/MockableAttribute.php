@@ -1,17 +1,17 @@
 <?php
-namespace Gignite\TheCure\Models\User;
+namespace Gignite\TheCure\Models;
 
 use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Models\Magic as MagicModel;
 use Gignite\TheCure\Container;
 
-class MockableRelation extends MagicModel {
+class MockableAttribute extends MagicModel {
 
-	public static $relation;
+	public static $attribute;
 
 	public static function attributes()
 	{
-		return new Attributes(call_user_func(static::$relation));
+		return new Attributes(call_user_func(static::$attribute));
 	}
 
 	public function __container(Container $container = NULL)
