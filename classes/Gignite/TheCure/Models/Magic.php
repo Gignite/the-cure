@@ -127,6 +127,11 @@ abstract class Magic extends Model {
 				else
 				{
 					$value = $field->value();
+
+					if (is_callable($value))
+					{
+						$value = $value($object);
+					}
 				}
 
 				return $value;
