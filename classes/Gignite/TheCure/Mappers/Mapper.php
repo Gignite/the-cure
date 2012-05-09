@@ -106,36 +106,10 @@ abstract class Mapper
 	}
 
 	/**
-	 * @example
-	 *     
-	 *     $suffix = function ($mapper) use ($object)
-	 *     {
-	 *         if ($object->type === User::TYPE_ADMIN)
-	 *         {
-	 *             $suffix = 'User\Admin';
-	 *         }
-	 *         else
-	 *         {
-	 *             $suffix = 'User\User';
-	 *         }
-	 *         
-	 *         return $suffix;
-	 *     };
-	 *     $this->model_class($suffix);
+	 * Get an instance of a Model.
 	 * 
-	 * @param  null $suffix
-	 * @return mixed
-	 */
-	protected function model_class($suffix = NULL)
-	{
-		if (is_callable($suffix))
-		{
-			$suffix = $suffix($this);
-		}
-
-		return $this->factory()->model($this, $suffix);
-	}
-	
+	 * @return   Model
+	 */	
 	public function model($suffix = NULL, array $args = array())
 	{
 		if (is_array($suffix))
@@ -144,7 +118,7 @@ abstract class Mapper
 			$suffix = NULL;
 		}
 
-		$class = $this->model_class($suffix);
+		$class = $this->factory()->model($this, $suffix);
 		$reflection = new \ReflectionClass($class);
 		$model = $reflection->newInstanceArgs($args);
 
@@ -245,7 +219,13 @@ abstract class Mapper
 		}
 
 		$identities = $this->identities();
-		$class = $this->model_class($suffix);
+
+		if (is_callable($suffix))
+		{
+			$suffix = $suffix($object);
+		}
+
+		$class = $this->factory()->model($this, $suffix);
 
 		if ( ! $model = $identities->get($class, $object->_id))
 		{
