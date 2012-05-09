@@ -78,25 +78,25 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 
 		return array(
 			array(
-				new Models\User\MockableRelation,
+				new Models\MockableAttribute,
 				'relation',
 				'find',
 				array(),
 			),
 			array(
-				new Models\User\MockableRelation,
+				new Models\MockableAttribute,
 				'add_relation',
 				'add',
 				$args,
 			),
 			array(
-				new Models\User\MockableRelation,
+				new Models\MockableAttribute,
 				'remove_relation',
 				'remove',
 				$args,
 			),
 			array(
-				new Models\User\MockableRelation,
+				new Models\MockableAttribute,
 				'relation',
 				'set',
 				$args,
@@ -111,7 +111,7 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 	{
 		$mock = new Relationships\Mock('relation');
 
-		Models\User\MockableRelation::$relation = function () use ($mock)
+		Models\MockableAttribute::$attribute = function () use ($mock)
 		{
 			return $mock;
 		};
