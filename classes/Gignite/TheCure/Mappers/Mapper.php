@@ -170,9 +170,9 @@ abstract class Mapper
 			$where = array();
 		}
 
-		$cursor = call_user_func($callback, $where);
 		$class = $this->model_class($suffix);
 		$collection = new ModelCollection($cursor, $this->identities(), $class);
+		$cursor = $callback($where);
 
 		if (new $class instanceOf MagicModel)
 		{
@@ -208,7 +208,7 @@ abstract class Mapper
 			$where = array('_id' => $this->idize($where));
 		}
 
-		$object = call_user_func($callback, $where);
+		$object = $callback($where);
 
 		if ( ! isset($object->_id))
 		{
