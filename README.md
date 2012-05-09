@@ -448,10 +448,6 @@ var_dump($object->as_array()); // => array('name' => 'Jim', 'age' => 26)
 ?>
 ```
 
-## Magic free edition
-
-[!!] TODO
-
 ## Relationships
 
 The cure aims to provide some ease when it comes to describing
@@ -827,6 +823,10 @@ class HasAndBelongsToMany extends Acceptance {
 
 See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasAndBelongsToMany.php`
 for more information.
+
+## Magic free edition
+
+[!!] TODO
 
 ## Unit tests
 
