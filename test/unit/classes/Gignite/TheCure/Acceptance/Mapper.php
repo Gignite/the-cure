@@ -10,17 +10,23 @@ namespace Gignite\TheCure\Acceptance;
 use Gignite\TheCure\IdentityMap;
 
 class Mapper extends Acceptance {
+
+	protected function accountMapper($container)
+	{
+		$accountMapper = $container->mapper('Account');
+		$account = $accountMapper->model();
+		$account->email('luke@gignite.com');
+		$accountMapper->save($account);
+		return $accountMapper;
+	}
 	
 	/**
 	 * @dataProvider  provideContainers
 	 */
 	public function testItShouldFindCollection($container)
 	{
-		$accountMapper = $container->mapper('Account');
-		$account = $accountMapper->model();
-		$account->email('luke@gignite.com');
-		$accountMapper->save($account);
-
+		$accountMapper = $this->accountMapper($container);
+		
 		// We place in new ID map so that we can test other
 		// areas of logic
 		$accountMapper->identities(new IdentityMap);
@@ -34,8 +40,9 @@ class Mapper extends Acceptance {
 	 */
 	public function testFindShouldAcceptCallableSuffixArg($container)
 	{
-		$accountMapper = $container->mapper('Account');
-		$accounts = $accountMapper->find(function ()
+		$accountMapper = $this->accountMapper($container);
+		
+		$accounts = $accountMapper->find(NULL, function ()
 		{
 			return NULL;
 		});
@@ -43,6 +50,21 @@ class Mapper extends Acceptance {
 		$this->assertInstanceOf(
 			'Gignite\TheCure\Models\Account',
 			$accounts->current());
+	}
+
+	/**
+	 * @dataProvider  provideContainers
+	 */
+	public function testFindOneShouldAcceptCallableSuffixArg($container)
+	{
+		$accountMapper = $this->accountMapper($container);
+
+		$account = $accountMapper->find_one(NULL, function ()
+		{
+			return NULL;
+		});
+		
+		$this->assertInstanceOf('Gignite\TheCure\Models\Account', $account);
 	}
 
 }
