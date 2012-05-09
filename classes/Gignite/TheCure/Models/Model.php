@@ -12,7 +12,7 @@
  * for setting and getting the data transfer object.
  *
  *     $user = new Models\User;
- *     $user->__object((object) array(
+ *     $user->__object(new Object(array(
  *         'name' => 'Luke',
  *     ));
  *     $object = $user->__object();
