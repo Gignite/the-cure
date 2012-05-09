@@ -17,6 +17,7 @@ use Gignite\TheCure\Connections\Connection;
 use Gignite\TheCure\Mapper\ConnectionSetGet;
 use Gignite\TheCure\Mappers\Mapper;
 use Gignite\TheCure\Models\Model;
+use MongoID;
 
 abstract class Mongo extends Mapper implements ConnectionSetGet {
 
