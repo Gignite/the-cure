@@ -1,6 +1,25 @@
 <?php
 /**
  * A relationship between two models
+ * 
+ * @example
+ * 
+ *     $relationship = new HasOne('profile', array(
+ *         'mapper_suffix' => 'Profile',
+ *     ));
+ *     
+ *     $container = new Container('Mock');
+ *     $user = $container->mapper('User')->model();
+ *     
+ *     // Find a user's profile
+ *     $profile = $relationship->find($container, $user);
+ *     
+ *     // Set a user's profile
+ *     $profile = $container->mapper('Profile')->model();
+ *     $relationship->set($container, $user, $profile);
+ *     
+ *     // Delete a user's profile
+ *     $relationship->delete($container, $user);
  *
  * @package     TheCure
  * @category    Attribute
