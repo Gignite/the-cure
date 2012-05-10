@@ -77,12 +77,12 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testItShouldSetRelationOnObject
 	 */
-	public function testItShouldRemoveRelationOnObject($args)
+	public function testItShouldDeleteRelationOnObject($args)
 	{
 		list($container, $model, $relation) = $args;
 
 		$relationship = $this->relationship();
-		$relationship->remove($container, $model, $relation);
+		$relationship->delete($container, $model);
 
 		$modelObject = $model->__object();
 		$this->assertTrue(empty($modelObject->{$relationship->name()}));
@@ -93,10 +93,7 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldThrowExceptionWhenRelationFieldNotExists()
 	{
-		$this->relationship()->remove(
-			$this->container(),
-			new Models\User\Admin,
-			new Models\User\Admin);
+		$this->relationship()->delete($this->container(), new Models\User\Admin);
 	}
 
 }
