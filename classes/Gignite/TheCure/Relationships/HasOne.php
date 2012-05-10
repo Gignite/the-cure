@@ -13,7 +13,7 @@ use Gignite\TheCure\Container;
 use Gignite\TheCure\Relation;
 use Gignite\TheCure\Models\Model;
 
-class HasOne extends Has implements Relation\Set {
+class HasOne extends Has implements Relation\Set, Relation\Delete {
 
 	protected function where($object)
 	{
@@ -56,13 +56,13 @@ class HasOne extends Has implements Relation\Set {
 	}
 
 	/**
-	 * @param  Container $container
-	 * @param  $model
-	 * @param  $relation
-	 * @return mixed
-	 * @throws Relation\FieldNotFoundException
+	 * Delete the one and only relation from a model.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @return  void
 	 */
-	public function remove(Container $container, $model, $relation)
+	public function delete(Container $container, Model $model)
 	{
 		$model_object = $model->__object();
 
