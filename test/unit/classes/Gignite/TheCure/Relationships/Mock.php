@@ -4,6 +4,7 @@ namespace Gignite\TheCure\Relationships;
 use Gignite\TheCure\Container;
 use Gignite\TheCure\Relationships\Relationship;
 use Gignite\TheCure\Relation;
+use Gignite\TheCure\Models\Model;
 
 class Mock extends Relationship
 	implements Relation\Find, Relation\Add, Relation\Remove, Relation\Set {
@@ -15,22 +16,22 @@ class Mock extends Relationship
 		return $this->method_called;
 	}
 
-	public function find(Container $container, $object)
+	public function find(Container $container, Model $object)
 	{
 		$this->method_called = 'find';
 	}
 
-	public function add(Container $container, $object, $relation)
+	public function add(Container $container, Model $object, Model $relation)
 	{
 		$this->method_called = 'add';
 	}
 
-	public function remove(Container $container, $object, $relation)
+	public function remove(Container $container, Model $object, Model $relation)
 	{
 		$this->method_called = 'remove';
 	}
 
-	public function set(Container $container, $object, $relation)
+	public function set(Container $container, Model $object, Model $relation)
 	{
 		$this->method_called = 'set';
 	}

@@ -11,6 +11,7 @@ namespace Gignite\TheCure\Relationships;
 
 use Gignite\TheCure\Container;
 use Gignite\TheCure\Relation;
+use Gignite\TheCure\Models\Model;
 
 class HasMany extends Has implements Relation\Add {
 
@@ -22,22 +23,27 @@ class HasMany extends Has implements Relation\Add {
 	}
 
 	/**
-	 * @param  Container $container
-	 * @param  $ids
-	 * @return mixed
+	 * Find a Collection of relations.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @return  Collection
 	 */
-	public function find(Container $container, $model)
+	public function find(Container $container, Model $model)
 	{
 		$where = $this->where($model->__object());
 		return $this->mapper($container)->find($where, $this->model_suffix());
 	}
 
 	/**
-	 * @param  Container $container
-	 * @param  $model
-	 * @param  $relation
+	 * Add a $relation to a $model's collection of relations.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @param   Model
+	 * @return  mixed
 	 */
-	public function add(Container $container, $model, $relation)
+	public function add(Container $container, Model $model, Model $relation)
 	{
 		$relation_object = $relation->__object();
 
@@ -63,14 +69,14 @@ class HasMany extends Has implements Relation\Add {
 	}
 
 	/**
-	 * @param  Container $container
-	 * @param  $model
-	 * @param  $relation
-	 * @return mixed
-	 * @throws Relation\NotFoundException
-	 * @throws Relation\FieldNotFoundException
+	 * Remove one Relation from a Collection of relations.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @param   Model
+	 * @return  void
 	 */
-	public function remove(Container $container, $model, $relation)
+	public function remove(Container $container, Model $model, Model $relation)
 	{
 		$model_object = $model->__object();
 

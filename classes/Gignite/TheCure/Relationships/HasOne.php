@@ -11,6 +11,7 @@ namespace Gignite\TheCure\Relationships;
 
 use Gignite\TheCure\Container;
 use Gignite\TheCure\Relation;
+use Gignite\TheCure\Models\Model;
 
 class HasOne extends Has implements Relation\Set {
 
@@ -20,11 +21,13 @@ class HasOne extends Has implements Relation\Set {
 	}
 
 	/**
-	 * @param  Container $container
-	 * @param  $id
-	 * @return mixed
+	 * Find a single relation.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @return  Model
 	 */
-	public function find(Container $container, $model)
+	public function find(Container $container, Model $model)
 	{
 		return $this->mapper($container)->find_one(
 			$this->where($model->__object()),
@@ -32,11 +35,14 @@ class HasOne extends Has implements Relation\Set {
 	}
 
 	/**
-	 * @param Container $container
-	 * @param $model
-	 * @param $relation
+	 * Set the one and only relation.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @param   Model
+	 * @return  void
 	 */
-	public function set(Container $container, $model, $relation)
+	public function set(Container $container, Model $model, Model $relation)
 	{
 		$relation_object = $relation->__object();
 
