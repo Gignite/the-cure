@@ -32,8 +32,10 @@ abstract class Magic extends Model {
 	protected $__container;
 
 	/**
-	 * @param  Container|null $container
-	 * @return mixed
+	 * Get/set Container.
+	 * 
+	 * @param   Container  
+	 * @return  mixed
 	 */
 	public function __container(Container $container = NULL)
 	{
@@ -46,6 +48,8 @@ abstract class Magic extends Model {
 	}
 
 	/**
+	 * Get an attribute.
+	 * 
 	 * @param   array      of attributes
 	 * @param   string     method called
 	 * @return  Attribute
@@ -56,6 +60,8 @@ abstract class Magic extends Model {
 	}
 
 	/**
+	 * Change or find a relationship.
+	 * 
 	 * @param               $fields
 	 * @param               $method
 	 * @param   array|null  $args
@@ -122,10 +128,13 @@ abstract class Magic extends Model {
 		return $value;
 	}
 
+	/**
+	 * The magic of this object!
+	 * 
 	 * @param   string  $method
 	 * @param   array   $args
-	 * @return  mixed|null
-	 * @throws  \BadMethodCallException
+	 * @return  mixed
+	 * @throws  BadMethodCallException
 	 */
 	public function __call($method, $args)
 	{
