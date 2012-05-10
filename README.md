@@ -456,7 +456,7 @@ in the form of the `Magic` model and a set of `Relationships`
 classes. Currently there are `HasOne`, `HasMany`,
 `BelongsToOne` and `BelongsToMany`.
 
-### HasOne
+#### HasOne
 
 To describe a parent's relationship with a single child you
 can use the `Gignite\TheCure\Relationships\Hasone` attribute
@@ -544,7 +544,7 @@ getting and setting respectively.
 See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasOne.php`
 for more information.
 
-### BelongsToOne
+#### BelongsToOne
 
 To describe a child's relationship with it's parent you can
 use the `Gignite\TheCure\Relationships\BelongsToOne` attribute
@@ -595,7 +595,7 @@ $this->assertSame($account, $password->account());
 See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasOne.php`
 for more information.
 
-### HasMany
+#### HasMany
 
 To describe a parent's relationship with it's children you can
 use the `Gignite\TheCure\Relationships\HasMany` attribute
@@ -685,7 +685,7 @@ $this->assertSame($thread, $post->thread());
 See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasMany.php`
 for more information.
 
-### BelongsToMany
+#### BelongsToMany
 
 To describe a child's relationship with it's many parents you
 can use the `Gignite\TheCure\Relationships\BelongsToMany`
