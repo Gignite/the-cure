@@ -106,6 +106,17 @@ class Object {
 	}
 
 	/**
+	 * Delete a field.
+	 * 
+	 * @param   string  field name
+	 * @return  void
+	 */
+	public function delete($field)
+	{
+		unset($this->data[$field]);
+	}
+
+	/**
 	 * Set or get one field's value.
 	 *
 	 * @param   string  field name
