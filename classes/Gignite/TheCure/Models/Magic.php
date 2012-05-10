@@ -12,6 +12,7 @@ namespace Gignite\TheCure\Models;
 
 use Gignite\TheCure\Attributes;
 use Gignite\TheCure\Field;
+use Gignite\TheCure\Object;
 use Gignite\TheCure\Container;
 use Gignite\TheCure\Relationships\Relationship;
 use Gignite\TheCure\Relationships\Relation;
@@ -96,6 +97,31 @@ abstract class Magic extends Model {
 	}
 
 	/**
+	 * Get value from $object or use default $field value.
+	 * 
+	 * @param   Object
+	 * @param   Field
+	 * @return  mixed
+	 */
+	private function value(Object $object, Field $field)
+	{
+		if (isset($object->{$field->name()}))
+		{
+			$value = $object->{$field->name()};
+		}
+		else
+		{
+			$value = $field->value();
+
+			if (is_callable($value))
+			{
+				$value = $value($object);
+			}
+		}
+
+		return $value;
+	}
+
 	 * @param   string  $method
 	 * @param   array   $args
 	 * @return  mixed|null
@@ -120,21 +146,7 @@ abstract class Magic extends Model {
 			}
 			else
 			{
-				if (isset($object->{$field->name()}))
-				{
-					$value = $object->{$field->name()};
-				}
-				else
-				{
-					$value = $field->value();
-
-					if (is_callable($value))
-					{
-						$value = $value($object);
-					}
-				}
-
-				return $value;
+				return $this->value($object, $field);
 			}
 		}
 		else
