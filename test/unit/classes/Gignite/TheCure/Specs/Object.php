@@ -51,5 +51,12 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame(array('name' => 'Luke'), $object->get(array('name')));
 	}
 
+	public function testItShouldUnsetField()
+	{
+		$object = new Object(array('name' => 'Luke'));
+		unset($object->name);
+		$this->assertSame(array(), $object->as_array());
+	}
+
 }
 
