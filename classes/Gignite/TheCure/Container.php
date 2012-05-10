@@ -6,6 +6,8 @@
  * likely only ever initialise this object in your
  * application. Use this object to get your Mapper instances.
  * 
+ * @example
+ * 
  *     $container = new MapperContainer('Mongo');
  *     $container->mapper('User'); // => Mapper_Mongo_User
  *

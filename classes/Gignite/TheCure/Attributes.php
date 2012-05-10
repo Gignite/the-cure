@@ -1,8 +1,7 @@
 <?php
 /**
- * An attribute of a model
+ * An attribute container
  *
- *     // Enable setter method functionality
  *     $attributes = new Attributes(
  *         new Field('title'),
  *         new HasOne('owner'));

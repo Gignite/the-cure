@@ -1,6 +1,13 @@
 <?php
 /**
  * A relationship between models
+ * 
+ * This abstract class adds two properties to Attribute,
+ * $mapper_suffix and $model_suffix. These are used in child
+ * classes such as HasOne and HasMany when relating one model
+ * to another.
+ * 
+ * No external API is produced by this class.
  *
  * @package     TheCure
  * @category    Attribute

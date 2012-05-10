@@ -1,6 +1,30 @@
 <?php
 /**
  * A data transfer object
+ * 
+ * @example
+ * 
+ *     $object = new Object(array('name' => 'Luke'));
+ *     
+ *     $object->name = 'Alf';
+ *     echo $object->name;
+ *     
+ *     $object->set('name', 'Bob');
+ *     echo $object->get('name');
+ *     
+ *     $object->accessor('name', 'Jim');
+ *     echo $object->accessor('name');
+ *     
+ *     var_dump($object->as_array());
+ *     
+ *     var_dump(isset($object->name));
+ *     unset($object->name);
+ *     
+ *     // Filter input fields
+ *     $_POST = array('name' => 'Luke', 'age' => 22);
+ *     $object = new Object($_POST, array('name'));
+ *     echo $object->name; // => 'Luke'
+ *     echo $object->age; // => ''
  *
  * @package     TheCure
  * @category    Object

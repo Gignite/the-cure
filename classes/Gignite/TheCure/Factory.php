@@ -2,6 +2,8 @@
 /**
  * A class name factory
  * 
+ * @example
+ * 
  *     $factory->connection('Mongo');
  *     $factory->mapper('Mongo', 'User');
  *     $factory->domain($mapper);

@@ -1,6 +1,8 @@
 <?php
 /**
  * A field
+ * 
+ * @example
  *
  *     // A field with a name of "name"
  *     new Field('name');
@@ -10,6 +12,12 @@
  *
  *     // Provide a default value
  *     new Field('verified', array('value' => FALSE));
+ *     
+ *     // Add some rules to the field
+ *     new Field('verified', array('rules' => array(
+ *         array('not_empty'),
+ *         array('min_length', array(':value', 2)),
+ *     )));
  *
  * @package     TheCure
  * @category    Attribute
