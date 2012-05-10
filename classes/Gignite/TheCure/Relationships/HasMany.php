@@ -13,7 +13,7 @@ use Gignite\TheCure\Container;
 use Gignite\TheCure\Relation;
 use Gignite\TheCure\Models\Model;
 
-class HasMany extends Has implements Relation\Add {
+class HasMany extends Has implements Relation\Add, Relation\Remove {
 
 	protected function where($object)
 	{
