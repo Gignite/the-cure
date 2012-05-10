@@ -7,7 +7,8 @@ use Gignite\TheCure\Relation;
 use Gignite\TheCure\Models\Model;
 
 class Mock extends Relationship
-	implements Relation\Find, Relation\Add, Relation\Remove, Relation\Set {
+	implements Relation\Find, Relation\Add, Relation\Remove,
+		Relation\Delete, Relation\Set {
 
 	protected $method_called;
 
@@ -29,6 +30,11 @@ class Mock extends Relationship
 	public function remove(Container $container, Model $object, Model $relation)
 	{
 		$this->method_called = 'remove';
+	}
+
+	public function delete(Container $container, Model $object)
+	{
+		$this->method_called = 'delete';
 	}
 
 	public function set(Container $container, Model $object, Model $relation)

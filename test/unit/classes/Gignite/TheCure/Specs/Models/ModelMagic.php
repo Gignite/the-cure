@@ -98,6 +98,12 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 			),
 			array(
 				new Models\MockableAttribute,
+				'delete_relation',
+				'delete',
+				$args,
+			),
+			array(
+				new Models\MockableAttribute,
 				'relation',
 				'set',
 				$args,
