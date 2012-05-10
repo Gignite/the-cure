@@ -178,4 +178,15 @@ class Object {
 		$this->set($field, $value);
 	}
 
+	/**
+	 * Magic unset.
+	 * 
+	 * @param   string  field name
+	 * @return  void
+	 */
+	public function __unset($field)
+	{
+		$this->delete($field);
+	}
+
 }
