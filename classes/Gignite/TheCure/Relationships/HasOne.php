@@ -36,7 +36,7 @@ class HasOne extends Has implements Relation\Set, Relation\Delete {
 
 	protected function where($object)
 	{
-		return $object->{$this->name()};
+		return array('_id' => $object->{$this->name()});
 	}
 
 	/**
