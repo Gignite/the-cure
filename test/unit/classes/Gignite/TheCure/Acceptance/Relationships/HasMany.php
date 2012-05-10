@@ -34,6 +34,13 @@ class HasMany extends Acceptance {
 
 		// // Test BelongsToOne
 		$this->assertSame($thread, $post->thread());
+
+		// Test removing
+		$thread->remove_posts($post);
+		$container->mapper('Forum\Thread')->save($thread);
+
+		$this->assertSame(0, $thread->posts()->count());
+		$this->assertNull($post->thread());
 	}
 
 }
