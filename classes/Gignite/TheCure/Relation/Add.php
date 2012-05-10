@@ -10,16 +10,18 @@
 namespace Gignite\TheCure\Relation;
 
 use Gignite\TheCure\Container;
+use Gignite\TheCure\Models\Model;
 
 interface Add {
 
 	/**
-	 * @abstract
-	 * @param Container $container
-	 * @param           $model
-	 * @param           $relation
-	 * @return mixed
+	 * Add a $relation to a $model's collection of relations.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @param   Model
+	 * @return  mixed
 	 */
-	public function add(Container $container, $model, $relation);
+	public function add(Container $container, Model $model, Model $relation);
 
 }

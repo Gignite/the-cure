@@ -10,16 +10,18 @@
 namespace Gignite\TheCure\Relation;
 
 use Gignite\TheCure\Container;
+use Gignite\TheCure\Models\Model;
 
 interface Set {
 
 	/**
-	 * @abstract
-	 * @param Container $container
-	 * @param           $model
-	 * @param           $relation
-	 * @return mixed
+	 * Set the one and only relation.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @param   Model
+	 * @return  void
 	 */
-	public function set(Container $container, $model, $relation);
+	public function set(Container $container, Model $model, Model $relation);
 
 }

@@ -10,15 +10,17 @@
 namespace Gignite\TheCure\Relation;
 
 use Gignite\TheCure\Container;
+use Gignite\TheCure\Models\Model;
 
 interface Find {
 
 	/**
-	 * @abstract
-	 * @param  Container $container
-	 * @param  $value
-	 * @return mixed
+	 * Find a Collection of relations or a single relation.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @return  Collection|Model
 	 */
-	public function find(Container $container, $model);
+	public function find(Container $container, Model $model);
 
 }

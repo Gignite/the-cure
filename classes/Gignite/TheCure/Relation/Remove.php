@@ -10,16 +10,18 @@
 namespace Gignite\TheCure\Relation;
 
 use Gignite\TheCure\Container;
+use Gignite\TheCure\Models\Model;
 
 interface Remove {
 
 	/**
-	 * @abstract
-	 * @param Container $container
-	 * @param           $model
-	 * @param           $relation
-	 * @return mixed
+	 * Remove one Relation from a Collection of relations.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @param   Model
+	 * @return  void
 	 */
-	public function remove(Container $container, $model, $relation);
+	public function remove(Container $container, Model $model, Model $relation);
 
 }
