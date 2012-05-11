@@ -144,9 +144,11 @@ class Container {
 	}
 
 	/**
-	 * @return mixed
+	 * Get IdentityMap.
+	 * 
+	 * @return  IdentityMap
 	 */
-	protected function identities()
+	public function identities()
 	{
 		if ($this->identities === NULL)
 		{
