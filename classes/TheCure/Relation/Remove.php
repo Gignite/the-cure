@@ -6,6 +6,7 @@
  * @category    Relation
  * @category    Relationships
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure\Relation;
 

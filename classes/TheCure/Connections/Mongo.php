@@ -5,6 +5,7 @@
  * @package     TheCure
  * @category    Connections
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure\Connections;
 

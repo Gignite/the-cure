@@ -25,6 +25,7 @@
  * @category    Attribute
  * @category    Relationships
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure\Relationships;
 

@@ -12,6 +12,7 @@
  * @package     TheCure
  * @category    Factory
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure;
 

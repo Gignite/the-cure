@@ -5,6 +5,7 @@
  * @package     TheCure
  * @category    Mapper
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure\Mapper;
 

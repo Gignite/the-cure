@@ -20,6 +20,7 @@
  * @package     TheCure
  * @category    Models
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure\Models;
 

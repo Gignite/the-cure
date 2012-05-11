@@ -13,7 +13,8 @@
  *
  * @package     TheCure
  * @category    Container
- * @copyright   Gigniute, 2012
+ * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure;
 

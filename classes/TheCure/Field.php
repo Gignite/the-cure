@@ -23,6 +23,7 @@
  * @category    Attribute
  * @category    Field
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure;
 

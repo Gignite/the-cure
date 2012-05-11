@@ -12,6 +12,7 @@
  * @package     TheCure
  * @category    Attribute
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 namespace TheCure;
 

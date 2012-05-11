@@ -5,6 +5,7 @@
  * @package     TheCure
  * @category    Test
  * @copyright   Gignite, 2012
+ * @license     MIT
  */
 define('EXT', '.php');
 define('APPPATH', __DIR__.'/');
