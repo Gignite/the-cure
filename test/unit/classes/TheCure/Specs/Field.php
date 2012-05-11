@@ -4,6 +4,8 @@ namespace TheCure\Specs;
  * Test a base field class
  *
  * @package     TheCure
+ * @category    Field
+ * @category    Attribute
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

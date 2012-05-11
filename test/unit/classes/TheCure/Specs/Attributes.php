@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test the attributes container
  *
  * @package     TheCure
+ * @category    Attributes
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

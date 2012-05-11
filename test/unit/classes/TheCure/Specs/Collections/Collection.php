@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test a collection
  *
  * @package     TheCure
+ * @category    Collection
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

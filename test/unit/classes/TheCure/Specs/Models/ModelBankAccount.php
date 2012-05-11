@@ -6,6 +6,7 @@ namespace TheCure\Specs;
  * This test covers logic found within a README example.
  *
  * @package     TheCure
+ * @category    Model
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

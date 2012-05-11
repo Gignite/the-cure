@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test the identities handled in a session
  *
  * @package     TheCure
+ * @category    IdentityMap
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

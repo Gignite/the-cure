@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test MongoDB mapper
  *
  * @package     TheCure
+ * @category    Mapper
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

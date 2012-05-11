@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test mock (array) mapper
  *
  * @package     TheCure
+ * @category    Mapper
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

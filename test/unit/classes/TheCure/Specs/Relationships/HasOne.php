@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test has one relationship
  *
  * @package     TheCure
+ * @category    Relationship
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

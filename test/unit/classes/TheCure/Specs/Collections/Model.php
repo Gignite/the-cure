@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test an iterable model collection
  *
  * @package     TheCure
+ * @category    Collection
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

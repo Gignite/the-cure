@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test base domain class
  *
  * @package     TheCure
+ * @category    Model
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

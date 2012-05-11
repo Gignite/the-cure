@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test the data transfer object
  *
  * @package     TheCure
+ * @category    Object
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test abstract mapper interface
  *
  * @package     TheCure
+ * @category    Mapper
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012

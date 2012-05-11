@@ -4,6 +4,7 @@ namespace TheCure\Specs;
  * Test the cure's main dependency container
  *
  * @package     TheCure
+ * @category    Container
  * @category    Spec
  * @category    Test
  * @copyright   Gignite, 2012
