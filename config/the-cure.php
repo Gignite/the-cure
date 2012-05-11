@@ -1,5 +1,4 @@
 <?php
-
 return array(
 	'factory' => array(
 		'prefixes' => array(
