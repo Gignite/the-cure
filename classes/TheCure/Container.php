@@ -94,11 +94,11 @@ class Container {
 		{
 			if (class_exists('Kohana') AND isset(\Kohana::$config))
 			{
-				$this->config = \Kohana::$config->load('thecure')->as_array();
+				$this->config = \Kohana::$config->load('the-cure')->as_array();
 			}
 			else
 			{
-				$this->config = require __DIR__.'/../../config/thecure.php';
+				$this->config = require __DIR__.'/../../config/the-cure.php';
 			}
 		}
 

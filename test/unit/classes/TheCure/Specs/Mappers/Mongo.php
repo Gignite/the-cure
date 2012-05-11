@@ -68,7 +68,7 @@ class MapperMongoTest extends MapperTest {
 			$mapper->connection(new MongoConnection(static::config()));
 			$mapper->identities(new IdentityMap);
 			$mapper->factory(
-				new Factory(\Kohana::$config->load('thecure.factory')));
+				new Factory(\Kohana::$config->load('the-cure.factory')));
 			$mapper->config(array('query_options' => array('safe' => TRUE)));
 			static::$mapper = $mapper;
 		}

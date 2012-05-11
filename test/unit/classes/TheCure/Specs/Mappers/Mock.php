@@ -27,7 +27,7 @@ class MapperMockTest extends MapperTest {
 			$mapper = new MockUserMapper;
 			$mapper->identities(new IdentityMap);
 			$mapper->factory(
-				new Factory(\Kohana::$config->load('thecure.factory')));
+				new Factory(\Kohana::$config->load('the-cure.factory')));
 			static::$mapper = $mapper;
 		}
 
