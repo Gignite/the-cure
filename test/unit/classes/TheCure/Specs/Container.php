@@ -8,7 +8,7 @@ namespace TheCure\Specs;
 
 use TheCure\Container;
 
-class MapperContainerTest extends \PHPUnit_Framework_TestCase {
+class ContainerTest extends \PHPUnit_Framework_TestCase {
 
 	public function testMapper()
 	{
