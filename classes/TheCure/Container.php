@@ -90,11 +90,16 @@ class Container {
 			return;
 		}
 
-		if ($this->config === NULL
-			AND class_exists('Kohana')
-			AND isset(\Kohana::$config))
+		if ($this->config === NULL)
 		{
-			$this->config = \Kohana::$config->load('thecure');
+			if (class_exists('Kohana') AND isset(\Kohana::$config))
+			{
+				$this->config = \Kohana::$config->load('thecure')->as_array();
+			}
+			else
+			{
+				$this->config = require __DIR__.'/../../config/thecure.php';
+			}
 		}
 
 		if (isset($this->config[$config]))
