@@ -1,3 +1,10 @@
+# 
+# Rakefile for running and consuming unit tests 
+# 
+# @package     TheCure
+# @category    Test
+# @copyright   Gignite, 2012
+# @license     MIT
 require 'nokogiri'
 
 # Test path

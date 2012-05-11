@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * Test configuration file
+ *
+ * @package     TheCure
+ * @category    Config
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ */
 return array(
 	'factory' => array(
 		'prefixes' => array(
