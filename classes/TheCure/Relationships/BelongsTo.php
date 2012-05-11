@@ -3,8 +3,8 @@
  * A relationship from child(ren) to parent(s)
  *
  * @package     TheCure
+ * @category    Relationship
  * @category    Attribute
- * @category    Relationships
  * @copyright   Gignite, 2012
  * @license     MIT
  */

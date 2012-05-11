@@ -18,7 +18,7 @@
  *     $object = $user->__object();
  *
  * @package     TheCure
- * @category    Models
+ * @category    Model
  * @copyright   Gignite, 2012
  * @license     MIT
  */

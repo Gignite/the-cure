@@ -3,8 +3,8 @@
  * A relationship between two models (inverse relationship)
  *
  * @package     TheCure
+ * @category    Relationship
  * @category    Attribute
- * @category    Relationships
  * @copyright   Gignite, 2012
  * @license     MIT
  */

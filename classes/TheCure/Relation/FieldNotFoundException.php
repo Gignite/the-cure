@@ -4,6 +4,8 @@
  *
  * @package     TheCure
  * @category    Relation
+ * @category    Relationship
+ * @category    Attribute
  * @category    Exception
  * @copyright   Gignite, 2012
  * @license     MIT

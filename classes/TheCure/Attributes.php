@@ -10,7 +10,7 @@
  *     $attributes->replace(new Field('content'));
  *
  * @package     TheCure
- * @category    Attribute
+ * @category    Attributes
  * @copyright   Gignite, 2012
  * @license     MIT
  */

@@ -10,8 +10,8 @@
  * No external API is produced by this class.
  *
  * @package     TheCure
+ * @category    Relationship
  * @category    Attribute
- * @category    Relationships
  * @copyright   Gignite, 2012
  * @license     MIT
  */

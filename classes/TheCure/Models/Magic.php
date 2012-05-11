@@ -5,7 +5,7 @@
  * [!!] This file is full of sin
  *
  * @package     TheCure
- * @category    Models
+ * @category    Model
  * @copyright   Gignite, 2012
  * @license     MIT
  */

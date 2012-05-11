@@ -3,7 +3,7 @@
  * A MongoDB connection
  *
  * @package     TheCure
- * @category    Connections
+ * @category    Connection
  * @copyright   Gignite, 2012
  * @license     MIT
  */

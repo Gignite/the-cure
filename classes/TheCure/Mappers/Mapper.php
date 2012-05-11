@@ -7,7 +7,7 @@
  *     $mapper->find('Admin', array('name' => 'Luke'));
  *
  * @package     TheCure
- * @category    Mappers
+ * @category    Mapper
  * @copyright   Gignite, 2012
  * @license     MIT
  */
