@@ -8,6 +8,10 @@ namespace TheCure\Specs;
  * @category    Test
  * @copyright   Gignite, 2012
  * @license     MIT
+ * 
+ * @group  specs
+ * @group  collections
+ * @group  collections.collection
  */
 use TheCure\Collections\Collection;
 

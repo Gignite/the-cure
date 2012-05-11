@@ -11,7 +11,7 @@ namespace TheCure\Specs;
  * 
  * @group  specs
  * @group  relationships
- * @group  relationships.onetoone
+ * @group  relationships.hasone
  */
 use TheCure\Object;
 use TheCure\Models;

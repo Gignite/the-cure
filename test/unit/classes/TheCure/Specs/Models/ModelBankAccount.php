@@ -10,6 +10,10 @@ namespace TheCure\Specs;
  * @category    Test
  * @copyright   Gignite, 2012
  * @license     MIT
+ * 
+ * @group  specs
+ * @group  models
+ * @group  models.bankaccount
  */
 
 use TheCure\Models;

@@ -8,6 +8,10 @@ namespace TheCure\Specs;
  * @category    Test
  * @copyright   Gignite, 2012
  * @license     MIT
+ * 
+ * @group  specs
+ * @group  mappers
+ * @group  mappers.mapper
  */
 use TheCure\Object;
 use TheCure\Models;

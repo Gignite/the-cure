@@ -8,6 +8,10 @@ namespace TheCure\Specs;
  * @category    Test
  * @copyright   Gignite, 2012
  * @license     MIT
+ * 
+ * @group  specs
+ * @group  collections
+ * @group  collections.iterable
  */
 use TheCure\Collections\Collection;
 use TheCure\Collections\Iterable as IterableCollection;

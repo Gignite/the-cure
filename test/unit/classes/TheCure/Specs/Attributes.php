@@ -8,13 +8,10 @@ namespace TheCure\Specs;
  * @category    Test
  * @copyright   Gignite, 2012
  * @license     MIT
- */
-
-/**
+ * 
  * @group  specs
  * @group  attributes
  */
-
 use TheCure\Attributes;
 use TheCure\Field;
 

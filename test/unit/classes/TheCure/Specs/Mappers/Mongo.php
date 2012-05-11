@@ -9,9 +9,9 @@ namespace TheCure\Specs;
  * @copyright   Gignite, 2012
  * @license     MIT
  * 
+ * @group  specs
  * @group  mappers
  * @group  mappers.mongo
- * @group  spec
  */
 use TheCure\Factory;
 use TheCure\IdentityMap;
