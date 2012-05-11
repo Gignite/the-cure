@@ -1,6 +1,14 @@
 <?php
 namespace TheCure\Specs;
-
+/**
+ * Test abstract mapper interface
+ *
+ * @package     TheCure
+ * @category    Spec
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ */
 use TheCure\Object;
 use TheCure\Models;
 

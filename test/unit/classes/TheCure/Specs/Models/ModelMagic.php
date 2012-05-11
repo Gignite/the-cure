@@ -1,6 +1,14 @@
 <?php
 namespace TheCure\Specs;
-
+/**
+ * Test the magic provided by an enhanced base domain class
+ *
+ * @package     TheCure
+ * @category    Spec
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ */
 use TheCure\Object;
 use TheCure\Models;
 use TheCure\Relationships;

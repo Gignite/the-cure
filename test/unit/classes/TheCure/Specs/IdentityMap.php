@@ -2,13 +2,11 @@
 namespace TheCure\Specs;
 /**
  * Test the identities handled in a session
- * 
- * @package     Beautiful
- * @subpackage  Beautiful Domain
- * @category    IdentityMap
+ *
+ * @package     TheCure
+ * @category    Spec
  * @category    Test
- * @author      Luke Morton
- * @copyright   Luke Morton, 2011
+ * @copyright   Gignite, 2012
  * @license     MIT
  *  
  * @group  specs

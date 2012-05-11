@@ -1,14 +1,12 @@
 <?php
 namespace TheCure\Specs;
 /**
- * Test the mock persistence of a data object
- * 
- * @package     Beautiful
- * @subpackage  Beautiful Domain
- * @category    Mapper
+ * Test mock (array) mapper
+ *
+ * @package     TheCure
+ * @category    Spec
  * @category    Test
- * @author      Luke Morton
- * @copyright   Luke Morton, 2011
+ * @copyright   Gignite, 2012
  * @license     MIT
  */
 use TheCure\Factory;

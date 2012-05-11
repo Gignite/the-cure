@@ -1,11 +1,17 @@
 <?php
 namespace TheCure\Specs;
-
 /**
+ * Test the data transfer object
+ *
+ * @package     TheCure
+ * @category    Spec
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ * 
  * @group  specs
  * @group  object
  */
-
 use TheCure\Object;
 
 class ObjectTest extends \PHPUnit_Framework_TestCase {

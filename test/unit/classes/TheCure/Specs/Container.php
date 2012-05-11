@@ -1,11 +1,17 @@
 <?php
 namespace TheCure\Specs;
-
 /**
+ * Test the cure's main dependency container
+ *
+ * @package     TheCure
+ * @category    Spec
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ * 
  * @group  specs
  * @group  container
  */
-
 use TheCure\Container;
 
 class ContainerTest extends \PHPUnit_Framework_TestCase {

@@ -1,15 +1,12 @@
 <?php
 namespace TheCure\Specs;
 /**
- * Test an iterable domain collection
- * 
- * @package     Beautiful
- * @subpackage  Beautiful Domain
- * @category    Collection
- * @category    Domain
+ * Test an iterable model collection
+ *
+ * @package     TheCure
+ * @category    Spec
  * @category    Test
- * @author      Luke Morton
- * @copyright   Luke Morton, 2011
+ * @copyright   Gignite, 2012
  * @license     MIT
  */
 use TheCure\IdentityMap;

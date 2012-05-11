@@ -1,12 +1,18 @@
 <?php
 namespace TheCure\Specs;
-
 /**
+ * Test belongs to one relationship
+ *
+ * @package     TheCure
+ * @category    Spec
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ * 
  * @group  specs
  * @group  relationships
  * @group  relationships.belongstoone
  */
-
 use TheCure\Object;
 use TheCure\Models;
 use TheCure\Container;

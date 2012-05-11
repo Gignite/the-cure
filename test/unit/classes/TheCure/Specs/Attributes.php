@@ -1,5 +1,14 @@
 <?php
 namespace TheCure\Specs;
+/**
+ * Test the attributes container
+ *
+ * @package     TheCure
+ * @category    Spec
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ */
 
 /**
  * @group  specs
