@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
 /**
  * @group  specs
@@ -7,10 +7,10 @@ namespace Gignite\TheCure\Specs;
  * @group  relationships.belongstoone
  */
 
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Models;
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Relationships\BelongsToOne;
+use TheCure\Object;
+use TheCure\Models;
+use TheCure\Container;
+use TheCure\Relationships\BelongsToOne;
 
 class RelationshipBelongsToOne extends \PHPUnit_Framework_TestCase {
 
@@ -38,7 +38,7 @@ class RelationshipBelongsToOne extends \PHPUnit_Framework_TestCase {
 		)));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
-		$this->assertInstanceOf('Gignite\TheCure\Models\User\Admin', $collection);
+		$this->assertInstanceOf('TheCure\Models\User\Admin', $collection);
 	}
 
 }

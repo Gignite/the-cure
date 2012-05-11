@@ -10,13 +10,13 @@
  * @category    Mappers
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Mappers;
+namespace TheCure\Mappers;
 
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Connections\Connection;
-use Gignite\TheCure\Mapper\ConnectionSetGet;
-use Gignite\TheCure\Mappers\Mapper;
-use Gignite\TheCure\Models\Model;
+use TheCure\Object;
+use TheCure\Connections\Connection;
+use TheCure\Mapper\ConnectionSetGet;
+use TheCure\Mappers\Mapper;
+use TheCure\Models\Model;
 use MongoID;
 
 abstract class Mongo extends Mapper implements ConnectionSetGet {

@@ -10,9 +10,9 @@
  * @category    Mappers
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Mappers;
+namespace TheCure\Mappers;
 
-use Gignite\TheCure\Models\Model;
+use TheCure\Models\Model;
 
 abstract class Mock extends Mapper {
 

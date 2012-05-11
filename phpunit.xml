@@ -7,8 +7,8 @@
 	>
 	<testsuites>
 		<testsuite name="The Cure">
-			<directory suffix=".php">test/unit/classes/Gignite/TheCure/Specs</directory>
-			<directory suffix=".php">test/unit/classes/Gignite/TheCure/Acceptance</directory>
+			<directory suffix=".php">test/unit/classes/TheCure/Specs</directory>
+			<directory suffix=".php">test/unit/classes/TheCure/Acceptance</directory>
 		</testsuite>
 	</testsuites>
 	<filter>

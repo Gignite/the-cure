@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
 /**
  * @group  specs
@@ -7,10 +7,10 @@ namespace Gignite\TheCure\Specs;
  * @group  relationships.onetomany
  */
 
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Models;
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Relationships\HasMany;
+use TheCure\Object;
+use TheCure\Models;
+use TheCure\Container;
+use TheCure\Relationships\HasMany;
 
 class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 
@@ -38,7 +38,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
 		$this->assertInstanceOf(
-			'Gignite\TheCure\Collections\Collection',
+			'TheCure\Collections\Collection',
 			$collection);
 	}
 
@@ -99,7 +99,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  Gignite\TheCure\Relation\FieldNotFoundException
+	 * @expectedException  TheCure\Relation\FieldNotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelationArrayNotExists()
 	{
@@ -110,7 +110,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  Gignite\TheCure\Relation\NotFoundException
+	 * @expectedException  TheCure\Relation\NotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelatedObjectIDNotInArray()
 	{

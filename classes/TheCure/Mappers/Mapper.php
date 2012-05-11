@@ -10,24 +10,24 @@
  * @category    Mappers
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Mappers;
+namespace TheCure\Mappers;
 
-use Gignite\TheCure\Factory;
-use Gignite\TheCure\IdentityMap;
+use TheCure\Factory;
+use TheCure\IdentityMap;
 
-use Gignite\TheCure\Container;
+use TheCure\Container;
 
-use Gignite\TheCure\Mapper\Actions as MapperActions;
-use Gignite\TheCure\Mapper\ContainerSetGet;
-use Gignite\TheCure\Mapper\FactorySetGet;
-use Gignite\TheCure\Mapper\IdentitiesSetGet;
-use Gignite\TheCure\Mapper\ConfigSetGet;
+use TheCure\Mapper\Actions as MapperActions;
+use TheCure\Mapper\ContainerSetGet;
+use TheCure\Mapper\FactorySetGet;
+use TheCure\Mapper\IdentitiesSetGet;
+use TheCure\Mapper\ConfigSetGet;
 
-use Gignite\TheCure\Models\Model;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Models\Model;
+use TheCure\Models\Magic as MagicModel;
 
-use Gignite\TheCure\Collections\Collection;
-use Gignite\TheCure\Collections\Model as ModelCollection;
+use TheCure\Collections\Collection;
+use TheCure\Collections\Model as ModelCollection;
 
 abstract class Mapper
 	implements MapperActions, FactorySetGet, IdentitiesSetGet,

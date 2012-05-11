@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 /**
  * Test an iterable domain collection
  * 
@@ -12,9 +12,9 @@ namespace Gignite\TheCure\Specs;
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-use Gignite\TheCure\IdentityMap;
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Collections\Model as ModelCollection;
+use TheCure\IdentityMap;
+use TheCure\Object;
+use TheCure\Collections\Model as ModelCollection;
 
 class CollectionModelTest extends CollectionTest {
 
@@ -28,7 +28,7 @@ class CollectionModelTest extends CollectionTest {
 			$this->map = new IdentityMap,
 			function ()
 			{
-				return 'Gignite\TheCure\Models\User';
+				return 'TheCure\Models\User';
 			});
 	}
 
@@ -38,7 +38,7 @@ class CollectionModelTest extends CollectionTest {
 	public function testCurrent($collection)
 	{
 		$this->assertInstanceOf(
-			'Gignite\TheCure\Models\User',
+			'TheCure\Models\User',
 			$collection->current());
 		return $collection;
 	}

@@ -1,10 +1,10 @@
 <?php
-namespace Gignite\TheCure\Models\Forum;
+namespace TheCure\Models\Forum;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\BelongsToMany;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\BelongsToMany;
+use TheCure\Models\Magic as MagicModel;
 
 class Tag extends MagicModel {
 	

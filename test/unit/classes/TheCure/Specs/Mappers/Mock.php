@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 /**
  * Test the mock persistence of a data object
  * 
@@ -11,10 +11,10 @@ namespace Gignite\TheCure\Specs;
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-use Gignite\TheCure\Factory;
-use Gignite\TheCure\IdentityMap;
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Mappers\Mock\User as MockUserMapper;
+use TheCure\Factory;
+use TheCure\IdentityMap;
+use TheCure\Object;
+use TheCure\Mappers\Mock\User as MockUserMapper;
 
 class MapperMockTest extends MapperTest {
 

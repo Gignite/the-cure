@@ -7,10 +7,10 @@
  * @category    Relationships
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Relation;
+namespace TheCure\Relation;
 
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Models\Model;
+use TheCure\Container;
+use TheCure\Models\Model;
 
 interface Set {
 

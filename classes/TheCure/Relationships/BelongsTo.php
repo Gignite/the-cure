@@ -7,10 +7,10 @@
  * @category    Relationships
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Relationships;
+namespace TheCure\Relationships;
 
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Relation;
+use TheCure\Container;
+use TheCure\Relation;
 
 abstract class BelongsTo extends Relationship implements Relation\Find {
 

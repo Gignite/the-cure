@@ -1,7 +1,7 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
-use Gignite\TheCure\Models;
+use TheCure\Models;
 
 class ModelBankAccount extends \PHPUnit_Framework_TestCase {
 

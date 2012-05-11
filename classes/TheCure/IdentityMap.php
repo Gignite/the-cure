@@ -6,9 +6,9 @@
  * @category    IdentityMap
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure;
+namespace TheCure;
 
-use Gignite\TheCure\Models\Model;
+use TheCure\Models\Model;
 
 /**
  * Describe the identities handled in a session

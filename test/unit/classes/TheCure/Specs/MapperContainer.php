@@ -1,12 +1,12 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
 /**
  * @group  specs
  * @group  container
  */
 
-use Gignite\TheCure\Container;
+use TheCure\Container;
 
 class MapperContainerTest extends \PHPUnit_Framework_TestCase {
 
@@ -14,7 +14,7 @@ class MapperContainerTest extends \PHPUnit_Framework_TestCase {
 	{
 		$container = new Container('Mock');
 		$this->assertInstanceOf(
-			'Gignite\TheCure\Mappers\Mock\User',
+			'TheCure\Mappers\Mock\User',
 			$container->mapper('User'));
 	}
 
@@ -22,7 +22,7 @@ class MapperContainerTest extends \PHPUnit_Framework_TestCase {
 	{
 		$container = new Container('ConnectionTest');
 		$this->assertInstanceOf(
-			'Gignite\TheCure\Mappers\ConnectionTest\User',
+			'TheCure\Mappers\ConnectionTest\User',
 			$container->mapper('User'));
 	}
 
@@ -40,8 +40,8 @@ class MapperContainerTest extends \PHPUnit_Framework_TestCase {
 		$container->config(array(
 			'factory' => array(
 				'prefixes' => array(
-					'connection' => 'Gignite\TheCure\Connections',
-					'mapper'     => 'Gignite\TheCure\Mappers',
+					'connection' => 'TheCure\Connections',
+					'mapper'     => 'TheCure\Mappers',
 				),
 				'separator' => '\\',
 			),

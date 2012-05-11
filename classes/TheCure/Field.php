@@ -24,9 +24,9 @@
  * @category    Field
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure;
+namespace TheCure;
 
-use Gignite\TheCure\Attribute\Attribute;
+use TheCure\Attribute\Attribute;
 
 class Field extends Attribute {
 

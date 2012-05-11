@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Acceptance\Relationships;
+namespace TheCure\Acceptance\Relationships;
 
 /**
  * @group  acceptance
@@ -8,8 +8,8 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  * @group  mappers.mongo
  */
 
-use Gignite\TheCure\Acceptance\Acceptance;
-use Gignite\TheCure\Container;
+use TheCure\Acceptance\Acceptance;
+use TheCure\Container;
 
 class HasMany extends Acceptance {
 

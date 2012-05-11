@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Acceptance;
+namespace TheCure\Acceptance;
 
 /**
  * @group  acceptance
@@ -7,7 +7,7 @@ namespace Gignite\TheCure\Acceptance;
  * @group  mappers.mongo
  */
 
-use Gignite\TheCure\IdentityMap;
+use TheCure\IdentityMap;
 
 class Mapper extends Acceptance {
 
@@ -31,7 +31,7 @@ class Mapper extends Acceptance {
 		// areas of logic
 		$accountMapper->identities(new IdentityMap);
 		$this->assertInstanceOf(
-			'Gignite\TheCure\Models\Account',
+			'TheCure\Models\Account',
 			$accountMapper->find()->current());
 	}
 
@@ -48,7 +48,7 @@ class Mapper extends Acceptance {
 		});
 		
 		$this->assertInstanceOf(
-			'Gignite\TheCure\Models\Account',
+			'TheCure\Models\Account',
 			$accounts->current());
 	}
 
@@ -64,7 +64,7 @@ class Mapper extends Acceptance {
 			return NULL;
 		});
 		
-		$this->assertInstanceOf('Gignite\TheCure\Models\Account', $account);
+		$this->assertInstanceOf('TheCure\Models\Account', $account);
 	}
 
 }

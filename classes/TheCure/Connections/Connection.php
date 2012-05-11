@@ -6,7 +6,7 @@
  * @category    Connections
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Connections;
+namespace TheCure\Connections;
 
 interface Connection {
 

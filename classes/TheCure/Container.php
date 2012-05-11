@@ -15,16 +15,16 @@
  * @category    Container
  * @copyright   Gigniute, 2012
  */
-namespace Gignite\TheCure;
+namespace TheCure;
 
-use Gignite\TheCure\IdentityMap;
-use Gignite\TheCure\Factory;
+use TheCure\IdentityMap;
+use TheCure\Factory;
 
-use Gignite\TheCure\Mapper\ConnectionSetGet;
-use Gignite\TheCure\Mapper\ContainerSetGet;
-use Gignite\TheCure\Mapper\FactorySetGet;
-use Gignite\TheCure\Mapper\IdentitiesSetGet;
-use Gignite\TheCure\Mapper\ConfigSetGet;
+use TheCure\Mapper\ConnectionSetGet;
+use TheCure\Mapper\ContainerSetGet;
+use TheCure\Mapper\FactorySetGet;
+use TheCure\Mapper\IdentitiesSetGet;
+use TheCure\Mapper\ConfigSetGet;
 
 class Container {
 

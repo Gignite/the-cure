@@ -12,12 +12,12 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-namespace Gignite\TheCure\Collections;
+namespace TheCure\Collections;
 
-use Gignite\TheCure\IdentityMap;
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Models\Magic as MagicModel;
-use Gignite\TheCure\Container;
+use TheCure\IdentityMap;
+use TheCure\Object;
+use TheCure\Models\Magic as MagicModel;
+use TheCure\Container;
 
 class Model extends Iterable {
 

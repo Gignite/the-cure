@@ -1,10 +1,10 @@
 <?php
-namespace Gignite\TheCure\Relationships;
+namespace TheCure\Relationships;
 
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Relationships\Relationship;
-use Gignite\TheCure\Relation;
-use Gignite\TheCure\Models\Model;
+use TheCure\Container;
+use TheCure\Relationships\Relationship;
+use TheCure\Relation;
+use TheCure\Models\Model;
 
 class Mock extends Relationship
 	implements Relation\Find, Relation\Add, Relation\Remove,

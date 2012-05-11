@@ -1,12 +1,12 @@
 <?php
-namespace Gignite\TheCure\Acceptance;
+namespace TheCure\Acceptance;
 
 /**
  * @group  acceptance
  * @group  smoke
  */
 
-use Gignite\TheCure\Container;
+use TheCure\Container;
 
 abstract class Acceptance extends \PHPUnit_Framework_TestCase {
 

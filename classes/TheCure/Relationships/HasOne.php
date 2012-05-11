@@ -26,11 +26,11 @@
  * @category    Relationships
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Relationships;
+namespace TheCure\Relationships;
 
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Relation;
-use Gignite\TheCure\Models\Model;
+use TheCure\Container;
+use TheCure\Relation;
+use TheCure\Models\Model;
 
 class HasOne extends Has implements Relation\Set, Relation\Delete {
 

@@ -1,7 +1,7 @@
 <?php
-namespace Gignite\TheCure\Connections;
+namespace TheCure\Connections;
 
-use Gignite\TheCure\Connections\Connection;
+use TheCure\Connections\Connection;
 
 class ConnectionTest implements Connection {
 

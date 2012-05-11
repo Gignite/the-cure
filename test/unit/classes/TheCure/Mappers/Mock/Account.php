@@ -1,6 +1,6 @@
 <?php
-namespace Gignite\TheCure\Mappers\Mock;
+namespace TheCure\Mappers\Mock;
 
-use Gignite\TheCure\Mappers\Mock as MockMapper;
+use TheCure\Mappers\Mock as MockMapper;
 
 class Account extends MockMapper {}

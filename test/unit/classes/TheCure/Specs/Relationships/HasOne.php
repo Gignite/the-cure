@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
 /**
  * @group  specs
@@ -7,10 +7,10 @@ namespace Gignite\TheCure\Specs;
  * @group  relationships.onetoone
  */
 
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Models;
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Relationships\HasOne;
+use TheCure\Object;
+use TheCure\Models;
+use TheCure\Container;
+use TheCure\Relationships\HasOne;
 
 class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 
@@ -37,7 +37,7 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 		)));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
-		$this->assertInstanceOf('Gignite\TheCure\Models\User\Admin', $collection);
+		$this->assertInstanceOf('TheCure\Models\User\Admin', $collection);
 	}
 
 	public function testItShouldSaveRelationWhenSetting()
@@ -89,7 +89,7 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  Gignite\TheCure\Relation\FieldNotFoundException
+	 * @expectedException  TheCure\Relation\FieldNotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelationFieldNotExists()
 	{

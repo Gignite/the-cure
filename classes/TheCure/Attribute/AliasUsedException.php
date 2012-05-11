@@ -7,6 +7,6 @@
  * @category    Exception
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Attribute;
+namespace TheCure\Attribute;
 
 class AliasUsedException extends \Exception {}

@@ -30,7 +30,7 @@
  * @category    Object
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure;
+namespace TheCure;
 
 class Object {
 

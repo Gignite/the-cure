@@ -7,6 +7,6 @@
  * @category    Exception
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Relation;
+namespace TheCure\Relation;
 
 class NotFoundException extends \Exception {}

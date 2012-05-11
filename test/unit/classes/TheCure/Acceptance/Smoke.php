@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Acceptance;
+namespace TheCure\Acceptance;
 
 /**
  * @group  acceptance
@@ -7,8 +7,8 @@ namespace Gignite\TheCure\Acceptance;
  * @group  mappers.mongo
  */
 
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Object;
+use TheCure\Container;
+use TheCure\Object;
 
 class Smoke extends Acceptance {
 

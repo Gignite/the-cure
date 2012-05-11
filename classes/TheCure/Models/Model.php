@@ -21,9 +21,9 @@
  * @category    Models
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-use Gignite\TheCure\Object;
+use TheCure\Object;
 
 abstract class Model {
 

@@ -1,14 +1,14 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
-use Gignite\TheCure\Models;
+use TheCure\Models;
 
 class ModelTest extends \PHPUnit_Framework_TestCase {
 
 	public function testDefaultObjectIsStdClass()
 	{
 		$model = new Models\User;
-		$this->assertInstanceOf('Gignite\TheCure\Object', $model->__object());
+		$this->assertInstanceOf('TheCure\Object', $model->__object());
 	}
 
 }

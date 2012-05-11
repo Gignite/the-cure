@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 /**
  * Test the persistence of a data object in documents
  * 
@@ -15,11 +15,11 @@ namespace Gignite\TheCure\Specs;
  * @group  mappers.mongo
  * @group  spec
  */
-use Gignite\TheCure\Factory;
-use Gignite\TheCure\IdentityMap;
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Mappers;
-use Gignite\TheCure\Connections\Mongo as MongoConnection;
+use TheCure\Factory;
+use TheCure\IdentityMap;
+use TheCure\Object;
+use TheCure\Mappers;
+use TheCure\Connections\Mongo as MongoConnection;
 
 class MapperMongoTest extends MapperTest {
 

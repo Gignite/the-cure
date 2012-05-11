@@ -12,7 +12,7 @@
  * @category    Attribute
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Attribute;
+namespace TheCure\Attribute;
 
 abstract class Attribute {
 

@@ -1,11 +1,11 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Models;
-use Gignite\TheCure\Relationships;
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Field;
+use TheCure\Object;
+use TheCure\Models;
+use TheCure\Relationships;
+use TheCure\Container;
+use TheCure\Field;
 
 class ModelMagic extends \PHPUnit_Framework_TestCase {
 

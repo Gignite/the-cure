@@ -13,11 +13,11 @@
  * @category    Attribute
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure;
+namespace TheCure;
 
-use Gignite\TheCure\Attribute\Attribute;
-use Gignite\TheCure\Attribute\AliasUsedException;
-use Gignite\TheCure\Attribute\AliasUnusedException;
+use TheCure\Attribute\Attribute;
+use TheCure\Attribute\AliasUsedException;
+use TheCure\Attribute\AliasUnusedException;
 
 class Attributes implements \ArrayAccess {
 

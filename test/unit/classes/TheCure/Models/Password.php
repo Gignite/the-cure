@@ -1,11 +1,11 @@
 <?php
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Models\Magic as MagicModel;
 
-use Gignite\TheCure\Relationships\BelongsToOne;
+use TheCure\Relationships\BelongsToOne;
 
 class Password extends MagicModel {
 	

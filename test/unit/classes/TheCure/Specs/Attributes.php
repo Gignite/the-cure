@@ -1,13 +1,13 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
 /**
  * @group  specs
  * @group  attributes
  */
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
+use TheCure\Attributes;
+use TheCure\Field;
 
 class AttributesTest extends \PHPUnit_Framework_TestCase {
 
@@ -78,7 +78,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @depends  testItShouldRemoveAttribute
-	 * @expectedException  Gignite\TheCure\Attribute\AliasUsedException
+	 * @expectedException  TheCure\Attribute\AliasUsedException
 	 */
 	public function testItShouldThrowExceptionWhenAddingUsedAlias($attributes)
 	{
@@ -87,7 +87,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @depends  testItShouldRemoveAttribute
-	 * @expectedException  Gignite\TheCure\Attribute\AliasUnusedException
+	 * @expectedException  TheCure\Attribute\AliasUnusedException
 	 */
 	public function testItShouldThrowExceptionWhenReplacingUnusedAlias($attributes)
 	{

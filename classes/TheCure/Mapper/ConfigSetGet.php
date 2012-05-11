@@ -6,7 +6,7 @@
  * @category    Mapper
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Mapper;
+namespace TheCure\Mapper;
 
 interface ConfigSetGet {
 	

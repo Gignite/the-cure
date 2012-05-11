@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
 /**
  * @group  specs
@@ -7,7 +7,7 @@ namespace Gignite\TheCure\Specs;
  * @group  field
  */
 
-use Gignite\TheCure\Field;
+use TheCure\Field;
 
 class FieldTest extends \PHPUnit_Framework_TestCase {
 

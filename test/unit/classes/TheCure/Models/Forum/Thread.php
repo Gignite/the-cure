@@ -1,10 +1,10 @@
 <?php
-namespace Gignite\TheCure\Models\Forum;
+namespace TheCure\Models\Forum;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\HasMany;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\HasMany;
+use TheCure\Models\Magic as MagicModel;
 
 class Thread extends MagicModel {
 	

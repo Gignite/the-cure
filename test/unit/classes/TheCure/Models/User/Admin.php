@@ -1,6 +1,6 @@
 <?php
-namespace Gignite\TheCure\Models\User;
+namespace TheCure\Models\User;
 
-use Gignite\TheCure\Models\Model;
+use TheCure\Models\Model;
 
 class Admin extends Model {}

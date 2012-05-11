@@ -14,10 +14,10 @@
  * @category    Relationships
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Relationships;
+namespace TheCure\Relationships;
 
-use Gignite\TheCure\Attribute\Attribute;
-use Gignite\TheCure\Container;
+use TheCure\Attribute\Attribute;
+use TheCure\Container;
 
 abstract class Relationship extends Attribute {
 

@@ -13,9 +13,9 @@
  * @category    Factory
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure;
+namespace TheCure;
 
-use Gignite\TheCure\Mappers\Mapper;
+use TheCure\Mappers\Mapper;
 
 class Factory {
 

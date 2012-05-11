@@ -1,7 +1,7 @@
 <?php
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-class BankAccount extends \Gignite\TheCure\Models\Model {
+class BankAccount extends \TheCure\Models\Model {
 
 	public function transfer_money(BankAccount $account, $amount)
 	{

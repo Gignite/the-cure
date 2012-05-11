@@ -1,9 +1,9 @@
 <?php
-namespace Gignite\TheCure\Models\User;
+namespace TheCure\Models\User;
 
-use Gignite\TheCure\Models\Magic as MagicModel;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\HasMany;
+use TheCure\Models\Magic as MagicModel;
+use TheCure\Field;
+use TheCure\Relationships\HasMany;
 
 class Magic extends MagicModel {
 

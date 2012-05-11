@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 /**
  * Test the identities handled in a session
  * 
@@ -14,9 +14,9 @@ namespace Gignite\TheCure\Specs;
  * @group  specs
  * @group  identitymap
  */
-use Gignite\TheCure\IdentityMap;
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Models\User;
+use TheCure\IdentityMap;
+use TheCure\Object;
+use TheCure\Models\User;
 
 class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 
@@ -57,7 +57,7 @@ class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 	{
 		$this->assertEquals(
 			$this->domain,
-			$map->get('Gignite\TheCure\Models\User', 2));
+			$map->get('TheCure\Models\User', 2));
 	}
 
 	/**

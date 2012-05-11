@@ -1,8 +1,8 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Models;
+use TheCure\Object;
+use TheCure\Models;
 
 abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 
@@ -17,12 +17,12 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 			$where = array('name' => 'Luke');
 
 			return array(
-				array(NULL,    NULL,    "Gignite\\TheCure\\Models\\User"),
-				array($id,     NULL,    "Gignite\\TheCure\\Models\\User"),
-				array(NULL,    $suffix, "Gignite\\TheCure\\Models\\User\\{$suffix}"),
-				array($id,     $suffix, "Gignite\\TheCure\\Models\\User\\{$suffix}"),
-				array($where,  NULL,    "Gignite\\TheCure\\Models\\User"),
-				array($where,  $suffix, "Gignite\\TheCure\\Models\\User\\{$suffix}")
+				array(NULL,    NULL,    "TheCure\\Models\\User"),
+				array($id,     NULL,    "TheCure\\Models\\User"),
+				array(NULL,    $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($id,     $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($where,  NULL,    "TheCure\\Models\\User"),
+				array($where,  $suffix, "TheCure\\Models\\User\\{$suffix}")
 			);			
 		}
 	}

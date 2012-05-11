@@ -12,7 +12,7 @@
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-namespace Gignite\TheCure\Collections;
+namespace TheCure\Collections;
 
 class Iterable extends Collection {
 

@@ -1,8 +1,8 @@
 <?php
-namespace Gignite\TheCure\Mappers\ConnectionTest;
+namespace TheCure\Mappers\ConnectionTest;
 
-use Gignite\TheCure\Mapper\ConnectionSetGet;
-use Gignite\TheCure\Connections\Connection;
+use TheCure\Mapper\ConnectionSetGet;
+use TheCure\Connections\Connection;
 
 class User implements ConnectionSetGet {
 

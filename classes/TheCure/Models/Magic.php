@@ -8,14 +8,14 @@
  * @category    Models
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Object;
-use Gignite\TheCure\Container;
-use Gignite\TheCure\Relationships\Relationship;
-use Gignite\TheCure\Relationships\Relation;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Object;
+use TheCure\Container;
+use TheCure\Relationships\Relationship;
+use TheCure\Relationships\Relation;
 
 abstract class Magic extends Model {
 
@@ -91,7 +91,7 @@ abstract class Magic extends Model {
 		$arg = current($args);
 
 		$interface = ucfirst($verb);
-		$interface = "Gignite\\TheCure\\Relation\\{$interface}";
+		$interface = "TheCure\\Relation\\{$interface}";
 
 		if (interface_exists($interface)
 			AND $relationship instanceOf $interface)

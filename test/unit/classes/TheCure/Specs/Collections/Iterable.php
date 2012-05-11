@@ -1,5 +1,5 @@
 <?php
-namespace Gignite\TheCure\Specs;
+namespace TheCure\Specs;
 /**
  * Test an iterable collection
  * 
@@ -11,8 +11,8 @@ namespace Gignite\TheCure\Specs;
  * @copyright   Luke Morton, 2011
  * @license     MIT
  */
-use Gignite\TheCure\Collections\Collection;
-use Gignite\TheCure\Collections\Iterable as IterableCollection;
+use TheCure\Collections\Collection;
+use TheCure\Collections\Iterable as IterableCollection;
 
 class CollectionIterableTest extends CollectionTest {
 

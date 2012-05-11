@@ -1,6 +1,6 @@
 <?php
-namespace Gignite\TheCure\Mappers\Mock\Forum;
+namespace TheCure\Mappers\Mock\Forum;
 
-use Gignite\TheCure\Mappers\Mock as MockMapper;
+use TheCure\Mappers\Mock as MockMapper;
 
 class Tag extends MockMapper {}

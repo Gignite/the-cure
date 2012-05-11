@@ -6,9 +6,9 @@
  * @category    Mapper
  * @copyright   Gignite, 2012
  */
-namespace Gignite\TheCure\Mapper;
+namespace TheCure\Mapper;
 
-use Gignite\TheCure\Connections\Connection;
+use TheCure\Connections\Connection;
 
 interface ConnectionSetGet {
 	

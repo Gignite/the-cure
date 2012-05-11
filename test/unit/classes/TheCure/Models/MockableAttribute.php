@@ -1,9 +1,9 @@
 <?php
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Models\Magic as MagicModel;
-use Gignite\TheCure\Container;
+use TheCure\Attributes;
+use TheCure\Models\Magic as MagicModel;
+use TheCure\Container;
 
 class MockableAttribute extends MagicModel {
 

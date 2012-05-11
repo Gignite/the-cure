@@ -18,7 +18,7 @@ return array(
 				'profiling' => TRUE,
 				'safe'      => TRUE,
 			),
-			'connection_class' => 'Gignite\TheCure\Connections\Mongo',
+			'connection_class' => 'TheCure\Connections\Mongo',
 		),
 	),
 );
