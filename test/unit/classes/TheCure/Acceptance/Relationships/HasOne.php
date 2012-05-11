@@ -1,13 +1,21 @@
 <?php
 namespace TheCure\Acceptance\Relationships;
-
 /**
+ * Test the attributes container
+ *
+ * @package     TheCure
+ * @category    Relationship
+ * @category    Acceptance
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ * 
  * @group  acceptance
  * @group  relationships
- * @group  relationships.onetoone
+ * @group  relationships.hasone
+ * @group  mappers
  * @group  mappers.mongo
  */
-
 use TheCure\Acceptance\Acceptance;
 use TheCure\Container;
 

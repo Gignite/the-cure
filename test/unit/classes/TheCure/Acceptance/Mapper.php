@@ -1,12 +1,18 @@
 <?php
 namespace TheCure\Acceptance;
-
 /**
+ * Test the attributes container
+ *
+ * @package     TheCure
+ * @category    Acceptance
+ * @category    Test
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ * 
  * @group  acceptance
  * @group  mappers
  * @group  mappers.mongo
  */
-
 use TheCure\IdentityMap;
 
 class Mapper extends Acceptance {
