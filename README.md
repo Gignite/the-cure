@@ -41,8 +41,8 @@ $mapper->save($user);
 ```
 
 For more information on the cure start with "General Usage"
-and work your way from there. The API has been made minimal
-so there's not much to learn.
+and work your way from there. The API is minimal so there is
+not much to learn.
 
  - [General Usage](https://github.com/Gignite/the-cure/wiki/general-usage)
  - [Models and Mappers](https://github.com/Gignite/the-cure/wiki/models-and-mappers)
