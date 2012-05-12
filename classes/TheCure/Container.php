@@ -8,8 +8,8 @@
  * 
  * @example
  * 
- *     $container = new MapperContainer('Mongo');
- *     $container->mapper('User'); // => Mapper_Mongo_User
+ *     $container = new Container('Mongo');
+ *     $container->mapper('User'); // => Mappers\Mongo\User
  *
  * @package     TheCure
  * @category    Container
@@ -67,6 +67,8 @@ class Container {
 	}
 
 	/**
+	 * Get Factory. If a factory isn't initialised one will.
+	 *
 	 * @return mixed
 	 */
 	protected function factory()
@@ -80,6 +82,16 @@ class Container {
 	}
 
 	/**
+	 * Get/set config.
+	 *
+	 * This method tries to load a config using
+	 * `Kohana::$config` and if that fails, it loads a default
+	 * config using `require`.
+	 *
+	 * If setting a config before ::config() is used to get a
+	 * config then no config will be loaded and only the
+	 * provided config will be used.
+	 * 
 	 * @param  null $config
 	 * @return mixed
 	 */
@@ -112,6 +124,8 @@ class Container {
 	}
 
 	/**
+	 * Get the mapper specific configuration.
+	 * 
 	 * @return mixed
 	 */
 	protected function mapper_config()
@@ -126,6 +140,9 @@ class Container {
 	}
 
 	/**
+	 * Get connection class name from config or Factory then
+	 * initialise an instance.
+	 * 
 	 * @return mixed
 	 */
 	protected function connection()
@@ -170,7 +187,7 @@ class Container {
 	 * returned.
 	 *
 	 *     $container = new Container('Mongo');
-	 *     $container->mapper('User'); // => Mapper_Mongo_User
+	 *     $container->mapper('User'); // => Mappers\Mongo\User
 	 *
 	 * @param   string  the class
 	 * @return  Mapper
