@@ -12,7 +12,7 @@ RakeFileUtils.verbose_flag = false
 desc 'Run unit tests, optionally quiet'
 task :phpunit do |t, args|
   print 'Running unit tests...'
-  sh 'phpunit > /dev/null', do |ok|
+  sh 'phpunit > /dev/null' do |ok|
     puts ok ? ' they passed.' : ' some failed.'
   end
 end
