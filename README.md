@@ -132,11 +132,11 @@ $container->mapper('Profile')->find(array('plan' => 'free'), 'Artist');
 
 ### Working with collections
 
-A `TheCure\Collections\Collection` is a container,
-cursor and iterable that represents more than one document,
-row, etc. It does not initialise any models however until that
-row is iterated over, at that point an `IdentityMap` is used
-to ensure the model isn't already in the ecosystem.
+`TheCure\Collections\Collection` is a container, cursor and
+iterable that represents more than one document, row, etc. It
+does not initialise any models however until that row is
+iterated over, at that point an `IdentityMap` is used to
+ensure the model isn't already in the ecosystem.
 
 ``` php
 <?php
@@ -459,8 +459,8 @@ classes. Currently there are `HasOne`, `HasMany`,
 #### HasOne
 
 To describe a parent's relationship with a single child you
-can use the `TheCure\Relationships\Hasone` attribute
-in your `TheCure\Models\Magic` model.
+can use `TheCure\Relationships\HasOne` attribute in your
+`TheCure\Models\Magic` model.
 
 ``` php
 <?php
@@ -487,8 +487,8 @@ class Account extends MagicModel {
 ?>
 ```
 
-Here we described `TheCure\Models\Account` and it's
-`HasOne` relationship with `Models\Password`.
+Here we described `TheCure\Models\Account` and it's `HasOne`
+relationship with `Models\Password`.
 
 ``` php
 <?php
@@ -516,8 +516,8 @@ class Password extends MagicModel {
 ?>
 ```
 
-This is the `TheCure\Models\Password` class which has
-a custom `::__construct()` taking a password.
+This is `TheCure\Models\Password` class which has a custom
+`::__construct()` taking a password.
 
 Let's test the creation of this relationship and see if we
 can pull the model back out.
@@ -547,8 +547,8 @@ for more information.
 #### BelongsToOne
 
 To describe a child's relationship with it's parent you can
-use the `TheCure\Relationships\BelongsToOne` attribute
-in your `TheCure\Models\Magic` model.
+use `TheCure\Relationships\BelongsToOne` attribute in your
+`TheCure\Models\Magic` model.
 
 ``` php
 <?php
@@ -598,8 +598,8 @@ for more information.
 #### HasMany
 
 To describe a parent's relationship with it's children you can
-use the `TheCure\Relationships\HasMany` attribute
-in your `TheCure\Models\Magic` model.
+use `TheCure\Relationships\HasMany` attribute in your
+`TheCure\Models\Magic` model.
 
 ``` php
 <?php
@@ -655,8 +655,8 @@ class Post extends MagicModel {
 ?>
 ```
 
-Here we have the `TheCure\Models\Forum\Post` model
-which has a `BelongsToOne` relationship with `Forum\Thread`.
+Here we have `TheCure\Models\Forum\Post` model which has a
+`BelongsToOne` relationship with `Forum\Thread`.
 
 Let's see the relationship in action:
 
@@ -688,8 +688,8 @@ for more information.
 #### BelongsToMany
 
 To describe a child's relationship with it's many parents you
-can use the `TheCure\Relationships\BelongsToMany`
-attribute in your `TheCure\Models\Magic` model.
+can use `TheCure\Relationships\BelongsToMany` attribute in
+your `TheCure\Models\Magic` model.
 
 ``` php
 <?php
