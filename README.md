@@ -32,13 +32,13 @@ need ruby and rake installed on your system.
 
 ## General flow of using the cure
 
- - Create a `Gignite\TheCure\Container` that is the DI
+ - Create a `TheCure\Container` that is the DI
    container for all mappers and the objects they create
  - Get a mapper object from `Container` using `::mapper()`
 
 ``` php
 <?php
-use Gignite\TheCure\Container;
+use TheCure\Container;
 $container = new Container('Mongo');
 $container->mapper('Profile'); // => Mappers\Mongo\Profile
 $container->mapper('Media');   // => Mappers\Mongo\Media
@@ -47,9 +47,9 @@ $container->mapper('Media');   // => Mappers\Mongo\Media
 
 ### Creating
 
- - Create a new model using `Gignite\TheCure\Mappers\Mapper::model()`
+ - Create a new model using `TheCure\Mappers\Mapper::model()`
  - Validate the model
- - Pass the model to `Gignite\TheCure\Mappers\Mapper::save()`
+ - Pass the model to `TheCure\Mappers\Mapper::save()`
 
 ``` php
 <?php
@@ -64,10 +64,10 @@ if ($image->create($owner, compact('filename')))
 
 ### Updating
 
- - Use `Gignite\TheCure\Mappers\Mapper::find_one()`
+ - Use `TheCure\Mappers\Mapper::find_one()`
  - Operate on the model
  - Validate the model
- - Pass the model to `Gignite\TheCure\Mappers\Mapper::save()`
+ - Pass the model to `TheCure\Mappers\Mapper::save()`
 
 ``` php
 <?php
@@ -83,9 +83,9 @@ if ($image->validation()->check())
 
 ### Finding
 
- - Use `Gignite\TheCure\Mappers\Mapper::find_one()` to find a
+ - Use `TheCure\Mappers\Mapper::find_one()` to find a
    single `Model`
- - Use `Gignite\TheCure\Mappers\Mapper::find()` to find a
+ - Use `TheCure\Mappers\Mapper::find()` to find a
    `Collection` of models
 
 The update example includes a `::find_one()` call which has
@@ -117,22 +117,22 @@ table, etc.
 ``` php
 <?php
 $container->mapper('Profile')->find();
-// => Gignite\TheCure\Collections\Model of Models\Profile
+// => TheCure\Collections\Model of Models\Profile
 
 $container->mapper('Profile')->find(NULL, 'Artist');
-// => Gignite\TheCure\Collections\Model of Models\Profile\Artist
+// => TheCure\Collections\Model of Models\Profile\Artist
 
 $container->mapper('Profile')->find(array('plan' => 'free'));
-// => Gignite\TheCure\Collections\Model of Models\Profile
+// => TheCure\Collections\Model of Models\Profile
 
 $container->mapper('Profile')->find(array('plan' => 'free'), 'Artist');
-// => Gignite\TheCure\Collections\Model of Models\Profile\Artist
+// => TheCure\Collections\Model of Models\Profile\Artist
 ?>
 ```
 
 ### Working with collections
 
-A `Gignite\TheCure\Collections\Collection` is a container,
+A `TheCure\Collections\Collection` is a container,
 cursor and iterable that represents more than one document,
 row, etc. It does not initialise any models however until that
 row is iterated over, at that point an `IdentityMap` is used
@@ -151,7 +151,7 @@ foreach ($collection as $_model)
 
 ### Deleting
 
- - Use `Gignite\TheCure\Mappers\Mapper::delete()` to delete a
+ - Use `TheCure\Mappers\Mapper::delete()` to delete a
    model, collection or by a new query.
 
 ``` php
@@ -197,13 +197,13 @@ This convention explains the API choice of
 `Container::__construct()`, `Container::mapper()`,
 `Mapper::find()` and `Mapper::find_one()`.
 
-### Gignite\TheCure\Container::__construct($type)
+### TheCure\Container::__construct($type)
 
 The argument passed here is added onto the `Mappers\` prefix,
 so for example `new Container('Mongo')` creates a prefix
 for all mappers called `Mappers\Mongo\`.
 
-### Gignite\TheCure\Container::mapper($mapper)
+### TheCure\Container::mapper($mapper)
 
 The argument passed to ::mapper() indicates the domain area
 being mapped so for example `$container->mapper('Profile')`
@@ -211,7 +211,7 @@ will instantiate a single `Mappers\Mongo\Profile` and register
 it with the container so that subsequent calls return the same
 instance.
 
-### Gignite\TheCure\Mappers\Mapper::find($where, $suffix) and ::find_one($where, $suffix)
+### TheCure\Mappers\Mapper::find($where, $suffix) and ::find_one($where, $suffix)
 
 The second argument passed to `::find_one()` is a suffix for
 the model class name which is by default a derivative of the
@@ -219,7 +219,7 @@ mapper class name. Take this example:
 
 ``` php
 <?php
-use Gignite\TheCure\Container;
+use TheCure\Container;
 $container = new Container('Mongo');
 
 // Using Mappers\Mongo\Profile to find Models\Profile\Artist
@@ -242,11 +242,11 @@ is acceptable in specialised areas.
 <?php
 namespace Models;
 
-use Gignite\TheCure\Models\Magic as MagicModel;
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\HasMany;
-use Gignite\TheCure\Container;
+use TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\HasMany;
+use TheCure\Container;
 
 class User extends MagicModel {
 
@@ -286,18 +286,18 @@ $this->assertSame(0, $user->friends()->count());
 ### Attributes
 
 To describe the various fields and relationships of a Magic
-model we contain one or more `Gignite\TheCure\Field` and
-`Gignite\TheCure\Relationships\Relationship` in a
-`Gignite\TheCure\Attributes` object.
+model we contain one or more `TheCure\Field` and
+`TheCure\Relationships\Relationship` in a
+`TheCure\Attributes` object.
 
 #### Defining attributes
 
 ``` php
 <?php
-use Gignite\TheCure\Models\Magic as MagicModel;
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\HasOne;
+use TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\HasOne;
 
 class Car extends MagicModel {
 
@@ -322,7 +322,7 @@ class Car extends MagicModel {
 In the example above we create a `Car` object which had a
 number of relationships and fields. Both `Field` and
 the `HasOne` relationship extend the same abstract object
-`Gignite\TheCure\Attribute\Attribute`. `Attribute` objects
+`TheCure\Attribute\Attribute`. `Attribute` objects
 passed into the `Attributes` constructor as inidividual params
 or as an array are the added to the `Attributes` object.
 
@@ -459,18 +459,18 @@ classes. Currently there are `HasOne`, `HasMany`,
 #### HasOne
 
 To describe a parent's relationship with a single child you
-can use the `Gignite\TheCure\Relationships\Hasone` attribute
-in your `Gignite\TheCure\Models\Magic` model.
+can use the `TheCure\Relationships\Hasone` attribute
+in your `TheCure\Models\Magic` model.
 
 ``` php
 <?php
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Models\Magic as MagicModel;
 
-use Gignite\TheCure\Relationships\HasOne;
+use TheCure\Relationships\HasOne;
 
 class Account extends MagicModel {
 	
@@ -487,18 +487,18 @@ class Account extends MagicModel {
 ?>
 ```
 
-Here we described `Gignite\TheCure\Models\Account` and it's
+Here we described `TheCure\Models\Account` and it's
 `HasOne` relationship with `Models\Password`.
 
 ``` php
 <?php
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Models\Magic as MagicModel;
 
-use Gignite\TheCure\Relationships\BelongsToOne;
+use TheCure\Relationships\BelongsToOne;
 
 class Password extends MagicModel {
 	
@@ -516,7 +516,7 @@ class Password extends MagicModel {
 ?>
 ```
 
-This is the `Gignite\TheCure\Models\Password` class which has
+This is the `TheCure\Models\Password` class which has
 a custom `::__construct()` taking a password.
 
 Let's test the creation of this relationship and see if we
@@ -541,24 +541,24 @@ The `HasOne` attribute adds two methods to `Account`. These
 are `::password()` and `::password($password)`, used for
 getting and setting respectively.
 
-See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasOne.php`
+See `test/unit/classes/TheCure/Acceptance/Relationships/HasOne.php`
 for more information.
 
 #### BelongsToOne
 
 To describe a child's relationship with it's parent you can
-use the `Gignite\TheCure\Relationships\BelongsToOne` attribute
-in your `Gignite\TheCure\Models\Magic` model.
+use the `TheCure\Relationships\BelongsToOne` attribute
+in your `TheCure\Models\Magic` model.
 
 ``` php
 <?php
-namespace Gignite\TheCure\Models;
+namespace TheCure\Models;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Models\Magic as MagicModel;
 
-use Gignite\TheCure\Relationships\BelongsToOne;
+use TheCure\Relationships\BelongsToOne;
 
 class Password extends MagicModel {
 	
@@ -592,23 +592,23 @@ $this->assertSame($account, $password->account());
 ?>
 ```
 
-See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasOne.php`
+See `test/unit/classes/TheCure/Acceptance/Relationships/HasOne.php`
 for more information.
 
 #### HasMany
 
 To describe a parent's relationship with it's children you can
-use the `Gignite\TheCure\Relationships\HasMany` attribute
-in your `Gignite\TheCure\Models\Magic` model.
+use the `TheCure\Relationships\HasMany` attribute
+in your `TheCure\Models\Magic` model.
 
 ``` php
 <?php
-namespace Gignite\TheCure\Models\Forum;
+namespace TheCure\Models\Forum;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\HasMany;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\HasMany;
+use TheCure\Models\Magic as MagicModel;
 
 class Thread extends MagicModel {
 	
@@ -626,18 +626,18 @@ class Thread extends MagicModel {
 ?>
 ```
 
-Here we have `Gignite\TheCure\Models\Forum\Thread` which has
+Here we have `TheCure\Models\Forum\Thread` which has
 a `HasMany` relationship with `Forum\Post`.
 
 ``` php
 <?php
-namespace Gignite\TheCure\Models\Forum;
+namespace TheCure\Models\Forum;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\BelongsToOne;
-use Gignite\TheCure\Relationships\HasMany;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\BelongsToOne;
+use TheCure\Relationships\HasMany;
+use TheCure\Models\Magic as MagicModel;
 
 class Post extends MagicModel {
 	
@@ -655,7 +655,7 @@ class Post extends MagicModel {
 ?>
 ```
 
-Here we have the `Gignite\TheCure\Models\Forum\Post` model
+Here we have the `TheCure\Models\Forum\Post` model
 which has a `BelongsToOne` relationship with `Forum\Thread`.
 
 Let's see the relationship in action:
@@ -682,24 +682,24 @@ $this->assertSame($thread, $post->thread());
 ?>
 ```
 
-See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasMany.php`
+See `test/unit/classes/TheCure/Acceptance/Relationships/HasMany.php`
 for more information.
 
 #### BelongsToMany
 
 To describe a child's relationship with it's many parents you
-can use the `Gignite\TheCure\Relationships\BelongsToMany`
-attribute in your `Gignite\TheCure\Models\Magic` model.
+can use the `TheCure\Relationships\BelongsToMany`
+attribute in your `TheCure\Models\Magic` model.
 
 ``` php
 <?php
-namespace Gignite\TheCure\Models\Forum;
+namespace TheCure\Models\Forum;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\BelongsToOne;
-use Gignite\TheCure\Relationships\HasMany;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\BelongsToOne;
+use TheCure\Relationships\HasMany;
+use TheCure\Models\Magic as MagicModel;
 
 class Post extends MagicModel {
 	
@@ -720,17 +720,17 @@ class Post extends MagicModel {
 ?>
 ```
 
-Here we update `Gignite\TheCure\Models\Forum\Post` to have a
+Here we update `TheCure\Models\Forum\Post` to have a
 `HasMany` relationship with `Forum\Tag`.
 
 ``` php
 <?php
-namespace Gignite\TheCure\Models\Forum;
+namespace TheCure\Models\Forum;
 
-use Gignite\TheCure\Attributes;
-use Gignite\TheCure\Field;
-use Gignite\TheCure\Relationships\BelongsToMany;
-use Gignite\TheCure\Models\Magic as MagicModel;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\BelongsToMany;
+use TheCure\Models\Magic as MagicModel;
 
 class Tag extends MagicModel {
 	
@@ -748,14 +748,14 @@ class Tag extends MagicModel {
 ?>
 ```
 
-This is `Gignite\TheCure\Models\Forum\Tag` which has a
+This is `TheCure\Models\Forum\Tag` which has a
 `BelongsToMany` relationship with `Forum\Post`.
 
 Here is them in action:
 
 ``` php
 <?php
-namespace Gignite\TheCure\Acceptance\Relationships;
+namespace TheCure\Acceptance\Relationships;
 
 /**
  * @group  acceptance
@@ -763,8 +763,8 @@ namespace Gignite\TheCure\Acceptance\Relationships;
  * @group  relationships.manytomany
  */
 
-use Gignite\TheCure\Acceptance\Acceptance;
-use Gignite\TheCure\Container;
+use TheCure\Acceptance\Acceptance;
+use TheCure\Container;
 
 class HasAndBelongsToMany extends Acceptance {
 
@@ -821,7 +821,7 @@ class HasAndBelongsToMany extends Acceptance {
 ?>
 ```
 
-See `test/unit/classes/Gignite/TheCure/Acceptance/Relationships/HasAndBelongsToMany.php`
+See `test/unit/classes/TheCure/Acceptance/Relationships/HasAndBelongsToMany.php`
 for more information.
 
 ## Magic free edition
@@ -860,7 +860,7 @@ To run a special spec report with code coverage:
 ### Unit testing your domain logic
 
 The cure imposes minimal logic on it's base domain objects.
-Even `Gignite\TheCure\Models\Magic` is fairly minimal in the
+Even `TheCure\Models\Magic` is fairly minimal in the
 logic it exposes to your own domains. This isn't by accident,
 we have made this decision by design. Our mapper logic, or
 your own mapper logic should never be tested along side your
@@ -928,7 +928,7 @@ Let's implement the bare minimum:
 <?php
 namespace Models;
 
-class BankAccount extends \Gignite\TheCure\Models\Model {
+class BankAccount extends \TheCure\Models\Model {
 
 	public function transfer_money(BankAccount $account, $amount)
 	{
@@ -946,9 +946,9 @@ Running the unit test will show this code passes.
 
 Checkout the `test` directory for more examples. In particular
 various use cases are tested in
-`test/unit/classes/Gignite/TheCure/Acceptance`. You will also
+`test/unit/classes/TheCure/Acceptance`. You will also
 find specifications in 
-`test/unit/classes/Gignite/TheCure/Specs`.
+`test/unit/classes/TheCure/Specs`.
 
 ## License
 
