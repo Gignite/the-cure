@@ -952,7 +952,7 @@ find specifications in
 
 ## License
 
-Soon to be licensed, currently here for you to play with.
+MIT licensed.
 
 ## Authors
 
