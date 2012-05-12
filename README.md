@@ -60,9 +60,9 @@ Run `rake test` to produce these stats yourself. We use a
 `Rakefile` for producing stats from our unit tests so you will
 need ruby and rake installed on your system.
 
-[![Build Status](https://secure.travis-ci.org/Gignite/the-cure.png?branch=develop)](http://travis-ci.org/Gignite/the-cure)
-
 ## Unit tests
+
+[![Build Status](https://secure.travis-ci.org/Gignite/the-cure.png?branch=develop)](http://travis-ci.org/Gignite/the-cure)
 
 The cure is well covered with tests. We aim to:
 
