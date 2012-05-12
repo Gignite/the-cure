@@ -1,8 +1,6 @@
 # The cure
 
-A data mapper library with a minimal impact on your domain
-logic. Low coupling and use of flexible interfaces make this
-convention over configuration library completely customisable.
+A data mapper library with a minimal impact on your domain logic.
 
 > Each time I play a song it seems more real.
 >
