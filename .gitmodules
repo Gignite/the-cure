@@ -1,3 +1,6 @@
 [submodule "test/system"]
 	path = test/system
 	url = git://github.com/kohana/core.git
+[submodule "guide"]
+	path = guide
+	url = git://github.com/Gignite/the-cure.wiki.git
