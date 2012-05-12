@@ -50,9 +50,9 @@ task :inspect do
   puts ' interfaces'
 
   covered = sprintf('%d', metrics['coveredstatements'].to_f / metrics['statements'].to_f * 100)
-  print " - #{metrics['statements']} statements with ", covered, '% covered ('
+  print " - #{metrics['statements']} statements ("
   print sprintf('%d', metrics['statements'].to_f / metrics['methods'].to_f)
-  puts ' per method)'
+  puts ' per method) with '+covered+'% covered'
 
   print " - #{suite['tests']} tests and "
   print "#{suite['assertions']} asserts "
