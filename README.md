@@ -40,7 +40,7 @@ $mapper->save($user);
 $userCopy = $mapper->find_one(array('name' => 'Luke'));
 
 // Note that these are the exact same object
-$this->assertSame($user, $userCopy);
+var_dump($user === $userCopy);
 ?>
 ```
 
