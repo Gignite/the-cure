@@ -61,10 +61,10 @@ $container = new TheCure\Container('Mongo');
 // We grab the user mapper
 $mapper = $container->mapper('User');
 
-// And the model
+// And a new model
 $user = $mapper->model();
 
-// Update the model's name
+// Set the model's name
 $user->name('Luke');
 
 // And persist it to mongo
