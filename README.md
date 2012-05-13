@@ -1,7 +1,9 @@
 # The cure
 
-A data mapper library with a minimal impact on your domain logic.
-
+A data mapper library with a minimal impact on your domain
+logic. In plainer terms, a library for writing the models of
+your PHP application, mapping them to data stores such as
+mongo db and unit testing against mock data stores.
 
 This library came about from a number of previous interations
 including [beautiful/domain](https://github.com/beautiful/domain)
