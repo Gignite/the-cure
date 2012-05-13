@@ -129,12 +129,12 @@ foreach ($user->friends() as $_friend)
 ?>
 ```
 
-For more information on the cure start with "General Usage"
+For more information on the cure start with "General usage"
 and work your way from there.
 
 And relax! The API is minimal so there is not much to learn.
 
- - [General Usage](https://github.com/Gignite/the-cure/wiki/General-flow-of-using-the-cure)
+ - [General usage](https://github.com/Gignite/the-cure/wiki/General-flow-of-using-the-cure)
  - [A model and it's mappers](https://github.com/Gignite/the-cure/wiki/A-model-and-it's-mappers)
  - [Magic features](https://github.com/Gignite/the-cure/wiki/Magic-features)
  - [Unit testing your domain logic](https://github.com/Gignite/the-cure/wiki/Unit-testing-your-domain-logic)
