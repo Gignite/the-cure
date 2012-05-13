@@ -13,3 +13,4 @@
  - Set/get filters either via MagicModel or in the Object
    itself. Maybe not?
  - Provide non-magic example of a model
+ - Lazy fields
