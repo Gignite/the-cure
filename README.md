@@ -46,7 +46,7 @@ class User extends \TheCure\Models\Magic {
 <?php
 namespace Mappers\Mongo;
 
-class UserMapper extends \TheCure\Mappers\Mongo {}
+class User extends \TheCure\Mappers\Mongo {}
 ?>
 ```
 
