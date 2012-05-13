@@ -15,7 +15,42 @@ configuration management. *Kohana is included as a submodule.*
 
 ## Taking the cure
 
-Here's a quick teaser:
+So let's take a look at the medicine. In particular a model,
+mapper and some usage of them.
+
+### A model
+
+``` php
+<?php
+namespace Models;
+use TheCure\Attributes;
+use TheCure\Field;
+use TheCure\Relationships\HasMany;
+
+class User extends \TheCure\Models\Magic {
+
+	public static function attributes()
+	{
+		return new Attributes(
+			new Field('name'),
+			new HasMany('friends'));
+	}
+
+}
+?>
+```
+
+### A mapper
+
+``` php
+<?php
+namespace Mappers\Mongo;
+
+class UserMapper extends \TheCure\Mappers\Mongo {}
+?>
+```
+
+### Using the model and mapper
 
 ``` php
 <?php
@@ -40,6 +75,19 @@ $userCopy = $mapper->find_one(array('name' => 'Luke'));
 
 // Note that these are the exact same object
 var_dump($user === $userCopy);
+
+// Create another user
+$friend = $mapper->model();
+$friend->name('Jake');
+
+// Add Jake as a friend
+$user->add_friends($friend);
+
+// Get Luke's friends as a collection
+foreach ($user->friends() as $_friend)
+{
+	echo "{$_friend->name()}\n";
+}
 ?>
 ```
 
