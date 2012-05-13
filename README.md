@@ -15,7 +15,7 @@ configuration management. *Kohana is included as a submodule.*
 
 ## Ingredients
 
-A model to describe domain logic:
+A model to describe domain logic.
 
 ``` php
 <?php
@@ -49,38 +49,79 @@ class User extends \TheCure\Mappers\Mongo {}
 
 ## Instructions
 
+We create a container which is responsible for creating mapper
+objects that connect with a MongoDB.
+
 ``` php
 <?php
-// We create a container which is responsible for creating
-// mapper objects that connect with a MongoDB
 $container = new TheCure\Container('Mongo');
+?>
+```
 
-// We grab the user mapper
+We grab the user mapper.
+
+``` php
+<?php
 $mapper = $container->mapper('User');
+?>
+```
 
-// And a new model
+And a new model.
+
+``` php
+<?php
 $user = $mapper->model();
+?>
+```
 
-// Set the model's name
+Set the model's name.
+
+``` php
+<?php
 $user->name('Luke');
+?>
+```
 
-// And persist it to MongoDB
+And persist it to MongoDB.
+
+``` php
+<?php
 $mapper->save($user);
+?>
+```
 
-// Find the same model
+Find the same model.
+
+``` php
+<?php
 $userCopy = $mapper->find_one(array('name' => 'Luke'));
 
 // Note that these are the exact same object
 var_dump($user === $userCopy);
+?>
+```
 
-// Create another user
+Create another user.
+
+``` php
+<?php
 $friend = $mapper->model();
 $friend->name('Jake');
+?>
+```
 
-// Add Jake as a friend
+Add Jake as a friend.
+
+``` php
+<?php
 $user->add_friends($friend);
+?>
+```
 
-// Get Luke's friends as a collection
+Get Luke's friends as a collection.
+
+``` php
+<?php
 foreach ($user->friends() as $_friend)
 {
 	echo "{$_friend->name()}\n";
