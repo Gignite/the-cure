@@ -3,7 +3,7 @@
 A data mapper library with a minimal impact on your domain
 logic. In plainer terms, a library for writing the models of
 your PHP application, mapping them to data stores such as
-mongo db and unit testing against mock data stores.
+MongoDB and unit testing against mock data stores.
 
 This library came about from a number of previous interations
 including [beautiful/domain](https://github.com/beautiful/domain)
@@ -55,7 +55,7 @@ class User extends \TheCure\Mappers\Mongo {}
 ``` php
 <?php
 // We create a container which is responsible for creating
-// mapper objects that connect with a mongo db
+// mapper objects that connect with a MongoDB
 $container = new TheCure\Container('Mongo');
 
 // We grab the user mapper
@@ -67,7 +67,7 @@ $user = $mapper->model();
 // Set the model's name
 $user->name('Luke');
 
-// And persist it to mongo
+// And persist it to MongoDB
 $mapper->save($user);
 
 // Find the same model
