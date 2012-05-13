@@ -2,9 +2,6 @@
 
 A data mapper library with a minimal impact on your domain logic.
 
-> Each time I play a song it seems more real.
->
-> *Robert Smith*
 
 This library came about from a number of previous interations
 including [beautiful/domain](https://github.com/beautiful/domain)
