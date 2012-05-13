@@ -35,6 +35,12 @@ $user->name('Luke');
 
 // And persist it to mongo
 $mapper->save($user);
+
+// Find the same model
+$userCopy = $mapper->find_one(array('name' => 'Luke'));
+
+// Note that these are the exact same object
+$this->assertSame($user, $userCopy);
 ?>
 ```
 
