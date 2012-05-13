@@ -13,12 +13,9 @@ Written in PHP and must be used with 5.3 or later. The tests
 require the Kohana 3.3 framework for autoloading classes and
 configuration management. *Kohana is included as a submodule.*
 
-## Taking the cure
+## Ingredients
 
-So let's take a look at the medicine. In particular a model,
-mapper and some usage of them.
-
-### A model
+A model to describe domain logic:
 
 ``` php
 <?php
@@ -40,7 +37,7 @@ class User extends \TheCure\Models\Magic {
 ?>
 ```
 
-### A mapper
+A mapper for persisting data to MongoDB.
 
 ``` php
 <?php
@@ -50,7 +47,7 @@ class User extends \TheCure\Mappers\Mongo {}
 ?>
 ```
 
-### Using the model and mapper
+## Instructions
 
 ``` php
 <?php
