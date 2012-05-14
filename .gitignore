@@ -2,3 +2,5 @@ test/coverage
 test/coverage.xml
 test/junit.xml
 vendor
+composer.phar
+composer.lock
