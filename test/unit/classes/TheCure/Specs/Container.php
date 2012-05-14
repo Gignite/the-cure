@@ -41,7 +41,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame($expectedConfig, $container->config());
 	}
 
-	public function testItShouldReturnNullIfNoMapperConfigFound()
+	public function testItShouldUseFactoryIfNoMapperConfigFound()
 	{
 		$container = new Container('ConnectionTest');
 		$container->config(array(
@@ -54,6 +54,18 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 			),
 		));
 		$mapper = $container->mapper('User');
+		$this->assertInstanceOf('TheCure\Mappers\ConnectionTest\User', $mapper);
+	}
+
+	public function testItShouldLoadDefaultConfigIfNoKohanaAndNoConfigSet()
+	{
+		$config = \Kohana::$config;
+		\Kohana::$config = NULL;
+		$container = new Container('ConnectionTest');
+		$this->assertSame(
+			require(APPPATH.'/../../config/the-cure.php'),
+			$container->config());
+		\Kohana::$config = $config;
 	}
 
 }

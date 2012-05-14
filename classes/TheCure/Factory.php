@@ -1,13 +1,21 @@
 <?php
 /**
  * A class name factory
+ *
+ * This object is used for constructing class names based on
+ * configuration and method arguments. Every public method
+ * returns a string of a class name.
  * 
  * @example
+ *
+ *     // These examples assume a default configuration
  * 
- *     $factory->connection('Mongo');
- *     $factory->mapper('Mongo', 'User');
- *     $factory->domain($mapper);
- *     $factory->model($mapper, 'Admin');
+ *     $factory->connection('Mongo'); // => 'Connections\Mongo'
+ *     $factory->mapper('Mongo', 'User'); // => 'Mappers\Mongo\User'
+ *
+ *     $mapper = new Mappers\Mongo\User;
+ *     $factory->domain($mapper); // => 'User'
+ *     $factory->model($mapper, 'Admin'); // => 'Models\User\Admin'
  *
  * @package     TheCure
  * @category    Factory
