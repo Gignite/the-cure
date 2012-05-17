@@ -13,6 +13,26 @@ Written in PHP and must be used with 5.3 or later. The tests
 require the Kohana 3.3 framework for autoloading classes and
 configuration management. *Kohana is included as a submodule.*
 
+## Installation
+
+The cure is available as a [composer][composer] package so you
+can add it as a dependency.
+
+[composer]: http://getcomposer.com
+
+``` json
+{
+	"require": {
+		"php": ">=5.3.2",
+		"the-cure/the-cure": "dev-develop"
+	}
+}
+```
+
+Alternatively you can download the latest zip from github:
+
+[The cure v0.1.0](https://github.com/Gignite/the-cure/zipball/v0.1.0)
+
 ## Ingredients
 
 Before we go into that CRUD stuff let's explain a few
