@@ -15,7 +15,18 @@ configuration management. *Kohana is included as a submodule.*
 
 ## Ingredients
 
-A model to describe domain logic.
+Before we go into that CRUD stuff let's explain a few
+ingredients of the cure.
+
+### Models
+
+In the cure we use a class known as a model to describe domain
+logic. Your models in your application will represent users,
+blog posts, spaceships or anything that concerns yours or your
+bosses business. 
+
+The cure provides two base models. Here is an example of the
+second, more ORM like model, `TheCure\Models\Magic`:
 
 ``` php
 <?php
@@ -30,14 +41,31 @@ class User extends \TheCure\Models\Magic {
 	{
 		return new Attributes(
 			new Field('name'),
-			new HasMany('friends'));
+			new HasMany('friends', array('mapper_suffix' => 'User')));
 	}
 
 }
 ?>
 ```
 
-A mapper for persisting data to MongoDB.
+The magical ORM features of the class `Models\User` extends
+include providing a getter/setter method for each field along
+with several more per relationship. The example above includes
+a `TheCure\Relationships\HasMany` which adds methods for
+finding, adding and removing other `User` models from it's
+`friends` collection.
+
+### Mappers
+
+The second piece to the puzzle are mappers. These classes
+describe the behaviour for persisting your models to
+databases, flat files, JSON, S3, or whatever. Currently the
+cure provides two mappers, one for MongoDB, the other a mock
+mapper for your unit tests.
+
+Because `TheCure\Mappers\Mongo` contains enough behaviour to
+get us going we can simply extend this class and leave it
+blank for our example below.
 
 ``` php
 <?php
@@ -48,6 +76,9 @@ class User extends \TheCure\Mappers\Mongo {}
 ```
 
 ## Instructions
+
+Now that we've assembled some ingredients let's go over the
+instructions for using them.
 
 We create a container which is responsible for creating mapper
 objects that connect with a MongoDB.
@@ -62,7 +93,7 @@ We grab the user mapper.
 
 ``` php
 <?php
-$mapper = $container->mapper('User');
+$mapper = $container->mapper('User'); // => Mappers\Mongo\User
 ?>
 ```
 
@@ -70,7 +101,7 @@ And a new model.
 
 ``` php
 <?php
-$user = $mapper->model();
+$user = $mapper->model(); // => Models\User
 ?>
 ```
 
