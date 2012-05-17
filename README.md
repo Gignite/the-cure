@@ -24,7 +24,7 @@ can add it as a dependency.
 {
 	"require": {
 		"php": ">=5.3.2",
-		"the-cure/the-cure": "dev-develop"
+		"the-cure/the-cure": ">=0.1.0"
 	}
 }
 ```
