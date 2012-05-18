@@ -14,3 +14,7 @@
    itself. Maybe not?
  - Provide non-magic example of a model
  - Lazy fields
+ - Convert methods to camelCase
+ - Add section to guide on configuration
+ - Maybe also mongo specific informtion
+ - Add MySQL mapper, do this as a tutorial
