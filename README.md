@@ -109,7 +109,8 @@ $container = new TheCure\Container('Mongo');
 ?>
 ```
 
-We grab the user mapper.
+We grab the user mapper, this will be used for creating a new
+user model as well as storing it later.
 
 ``` php
 <?php
@@ -117,7 +118,7 @@ $mapper = $container->mapper('User'); // => Mappers\Mongo\User
 ?>
 ```
 
-And a new model.
+And a new user model to represent a single person.
 
 ``` php
 <?php
@@ -125,7 +126,7 @@ $user = $mapper->model(); // => Models\User
 ?>
 ```
 
-Set the model's name.
+Set the model's name to "Luke", because it's a good name.
 
 ``` php
 <?php
@@ -133,7 +134,8 @@ $user->name('Luke');
 ?>
 ```
 
-And persist it to MongoDB.
+And persist it to MongoDB. As you can see the API is fairly
+minimal and quite self explanatory.
 
 ``` php
 <?php
@@ -141,7 +143,7 @@ $mapper->save($user);
 ?>
 ```
 
-Find the same model.
+Find the same model using `::find_one()`.
 
 ``` php
 <?php
@@ -152,7 +154,7 @@ var_dump($user === $userCopy);
 ?>
 ```
 
-Create another user.
+Create another user with a name of "Jake".
 
 ``` php
 <?php
@@ -161,7 +163,7 @@ $friend->name('Jake');
 ?>
 ```
 
-Add Jake as a friend.
+Add Jake as a friend of Luke's.
 
 ``` php
 <?php
