@@ -15,6 +15,7 @@ namespace TheCure\Specs;
  * @group  models.magic
  */
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Models;
 use TheCure\Relationships;
 use TheCure\Container;
@@ -29,18 +30,17 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 		if ($this->container === NULL)
 		{
 			$container = new Container('Mock');
+			$accessor = new ObjectAccessor;
 
 			$jim = $container->mapper('User')->model('Magic');
-			$jim->__object(new Object(array(
-				'name' => 'Jim',
-			)));
+			$accessor->set($jim, array('name' => 'Jim'));
 			$container->mapper('User')->save($jim);
 
 			$luke = $container->mapper('User')->model('Magic');
-			$luke->__object(new Object(array(
+			$accessor->set($luke, array(
 				'name'    => 'Luke',
 				'friends' => array($jim->__object()->_id),
-			)));
+			));
 			$container->mapper('User')->save($luke);
 
 			$this->container = $container;
@@ -163,9 +163,8 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 	public function testItShouldUseAccessorMethodName($name, $alias, $value)
 	{
 		$model = new Models\User\Magic;
-		$model->__object(new Object(array(
-			$name => $value,
-		)));
+		$accessor = new ObjectAccessor;
+		$accessor->set($model, array($name => $value));
 		$this->assertSame($value, $model->{$alias}());
 	}
 

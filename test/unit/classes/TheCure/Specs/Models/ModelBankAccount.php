@@ -18,6 +18,7 @@ namespace TheCure\Specs;
  */
 
 use TheCure\Models;
+use TheCure\ObjectAccessor;
 
 class ModelBankAccount extends \PHPUnit_Framework_TestCase {
 
@@ -35,13 +36,14 @@ class ModelBankAccount extends \PHPUnit_Framework_TestCase {
 		$lukesAccount,
 		$bobsAccount)
 	{
-		$lukesAccount->__object()->balance = 100;
-		$bobsAccount->__object()->balance = 0;
+		$accessor = new ObjectAccessor;
+		$accessor->get($lukesAccount)->balance = 100;
+		$accessor->get($bobsAccount)->balance = 0;
 
 		$lukesAccount->transfer_money($bobsAccount, 100);
 		
-		$this->assertSame(0, $lukesAccount->__object()->balance);
-		$this->assertSame(100, $bobsAccount->__object()->balance);
+		$this->assertSame(0, $accessor->get($lukesAccount)->balance);
+		$this->assertSame(100, $accessor->get($bobsAccount)->balance);
 	}
 
 }

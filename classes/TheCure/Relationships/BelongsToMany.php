@@ -11,6 +11,7 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
+use TheCure\ObjectAccessor;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
@@ -25,7 +26,9 @@ class BelongsToMany extends BelongsTo {
 	 */
 	public function find(Container $container, Model $model)
 	{
-		$where = $this->where($model->__object());
+		$accessor = new ObjectAccessor;
+		$object = $accessor->get($model);
+		$where = $this->where($object);
 		return $this->mapper($container)->find($where, $this->model_suffix());
 	}
 

@@ -11,6 +11,7 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
+use TheCure\ObjectAccessor;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
@@ -32,7 +33,9 @@ class HasMany extends Has implements Relation\Add, Relation\Remove {
 	 */
 	public function find(Container $container, Model $model)
 	{
-		$where = $this->where($model->__object());
+		$accessor = new ObjectAccessor;
+		$object = $accessor->get($model);
+		$where = $this->where($object);
 		return $this->mapper($container)->find($where, $this->model_suffix());
 	}
 
@@ -46,7 +49,8 @@ class HasMany extends Has implements Relation\Add, Relation\Remove {
 	 */
 	public function add(Container $container, Model $model, Model $relation)
 	{
-		$relation_object = $relation->__object();
+		$accessor = new ObjectAccessor;
+		$relation_object = $accessor->get($relation);
 
 		if ( ! isset($relation_object->_id))
 		{
@@ -54,7 +58,7 @@ class HasMany extends Has implements Relation\Add, Relation\Remove {
 			$this->mapper($container)->save($relation);
 		}
 
-		$object = $model->__object();
+		$object = $accessor->get($model);
 
 		if (isset($object->{$this->name()}))
 		{
@@ -65,7 +69,7 @@ class HasMany extends Has implements Relation\Add, Relation\Remove {
 			$relations = array();
 		}
 
-		$relations[] = $relation->__object()->_id;
+		$relations[] = $accessor->get($relation)->_id;
 		$object->{$this->name()} = $relations;
 	}
 
@@ -79,7 +83,8 @@ class HasMany extends Has implements Relation\Add, Relation\Remove {
 	 */
 	public function remove(Container $container, Model $model, Model $relation)
 	{
-		$model_object = $model->__object();
+		$accessor = new ObjectAccessor;
+		$model_object = $accessor->get($model);
 
 		if (isset($model_object->{$this->name()}))
 		{
@@ -87,7 +92,7 @@ class HasMany extends Has implements Relation\Add, Relation\Remove {
 		
 			foreach ($ids as $_k => $_id)
 			{
-				if ($_id == $relation->__object()->_id)
+				if ($_id == $accessor->get($relation)->_id)
 				{
 					$relations = $model_object->{$this->name()};
 					unset($relations[$_k]);

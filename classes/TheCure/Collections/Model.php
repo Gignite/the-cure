@@ -16,6 +16,7 @@ namespace TheCure\Collections;
 
 use TheCure\IdentityMap;
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Models\Magic as MagicModel;
 use TheCure\Container;
 
@@ -102,7 +103,8 @@ class Model extends Iterable {
 		{
 			
 			$model = new $class;
-			$model->__object($object);
+			$accessor = new ObjectAccessor;
+			$accessor->set($model, $object);
 
 			if ($model instanceOf MagicModel
 				AND $container = $this->container())

@@ -30,6 +30,7 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
+use TheCure\ObjectAccessor;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
@@ -49,8 +50,10 @@ class HasOne extends Has implements Relation\Set, Relation\Delete {
 	 */
 	public function find(Container $container, Model $model)
 	{
+		$accessor = new ObjectAccessor;
+		$object = $accessor->get($model);
 		return $this->mapper($container)->find_one(
-			$this->where($model->__object()),
+			$this->where($object),
 			$this->model_suffix());
 	}
 
@@ -64,15 +67,17 @@ class HasOne extends Has implements Relation\Set, Relation\Delete {
 	 */
 	public function set(Container $container, Model $model, Model $relation)
 	{
-		$relation_object = $relation->__object();
+		$accessor = new ObjectAccessor;
+		$relation_object = $accessor->get($relation);
 
-		if ( ! isset($relation_object->_id))
+		if ( ! isset($accessor->get($relation)->_id))
 		{
 			// If not saved we save the model first
 			$this->mapper($container)->save($relation);
 		}
 
-		$model->__object()->{$this->name()} = $relation->__object()->_id;
+		$accessor->get($model)->{$this->name()} =
+			$accessor->get($relation)->_id;
 	}
 
 	/**
@@ -84,7 +89,8 @@ class HasOne extends Has implements Relation\Set, Relation\Delete {
 	 */
 	public function delete(Container $container, Model $model)
 	{
-		$model_object = $model->__object();
+		$accessor = new ObjectAccessor;
+		$model_object = $accessor->get($model);
 
 		if (isset($model_object->{$this->name()}))
 		{

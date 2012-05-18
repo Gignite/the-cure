@@ -15,6 +15,7 @@ namespace TheCure\Mappers;
 
 use TheCure\Factory;
 use TheCure\IdentityMap;
+use TheCure\ObjectAccessor;
 
 use TheCure\Container;
 
@@ -234,7 +235,8 @@ abstract class Mapper
 
 			if ($object)
 			{
-				$model->__object($object);
+				$accessor = new ObjectAccessor;
+				$accessor->set($model, $object);
 			}
 
 			$identities->set($model);
@@ -249,9 +251,10 @@ abstract class Mapper
 	 */
 	protected function save_model(Model $model, $callback)
 	{
-		$object = $model->__object();
+		$accessor = new ObjectAccessor;
+		$object = $accessor->get($model);
 		$object = call_user_func($callback, $object);
-		$model->__object($object);
+		$accessor->set($model, $object);
 
 		if ($model instanceOf MagicModel
 			AND $container = $this->container())
@@ -274,7 +277,8 @@ abstract class Mapper
 	{
 		if ($model instanceOf Model)
 		{
-			$id = $model->__object()->_id;
+			$accessor = new ObjectAccessor;
+			$id = $accessor->get($model)->_id;
 			$remove = array('_id' => $id);
 		}
 		elseif ($model instanceOf Collection)

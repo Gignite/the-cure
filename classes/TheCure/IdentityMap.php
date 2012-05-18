@@ -44,7 +44,9 @@ class IdentityMap {
 	 */
 	protected function extract_identity(Model $model)
 	{
-		return $this->extract_identity_from_object($model->__object());
+		$accessor = new ObjectAccessor;
+		$object = $accessor->get($model);
+		return $this->extract_identity_from_object($object);
 	}
 
 	/**

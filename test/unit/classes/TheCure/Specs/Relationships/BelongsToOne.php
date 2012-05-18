@@ -15,6 +15,7 @@ namespace TheCure\Specs;
  * @group  relationships.belongstoone
  */
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Models;
 use TheCure\Container;
 use TheCure\Relationships\BelongsToOne;
@@ -40,9 +41,8 @@ class RelationshipBelongsToOne extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$model = new Models\User\Admin;
-		$model->__object(new Object(array(
-			'best_friend' => 0,
-		)));
+		$accessor = new ObjectAccessor;
+		$accessor->set($model, array('best_friend' => 0));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
 		$this->assertInstanceOf('TheCure\Models\User\Admin', $collection);

@@ -15,6 +15,7 @@ namespace TheCure\Specs;
  */
 use TheCure\IdentityMap;
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Models\User;
 
 class IdentityMapTest extends \PHPUnit_Framework_TestCase {
@@ -24,7 +25,8 @@ class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->domain = new User;
-		$this->domain->__object(new Object(array('_id' => 2)));
+		$accessor = new ObjectAccessor;
+		$accessor->set($this->domain, array('_id' => 2));
 	}
 
 	public function testItShouldConstructAnIdentityMap()

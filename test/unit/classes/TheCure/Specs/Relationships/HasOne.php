@@ -15,6 +15,7 @@ namespace TheCure\Specs;
  * @group  relationships.hasone
  */
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Models;
 use TheCure\Container;
 use TheCure\Relationships\HasOne;
@@ -39,9 +40,8 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$model = new Models\User\Admin;
-		$model->__object(new Object(array(
-			'best_friend' => 0,
-		)));
+		$accessor = new ObjectAccessor;
+		$accessor->set($model, array('best_friend' => 0));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
 		$this->assertInstanceOf('TheCure\Models\User\Admin', $collection);
@@ -53,12 +53,12 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 
 		$model = new Models\User\Admin;
 
-		$relationObject = new Object(array('name' => 'Luke'));
 		$relation = new Models\User\Admin;
-		$relation->__object($relationObject);
+		$accessor = new ObjectAccessor;
+		$accessor->set($relation, array('name' => 'Luke'));
 
 		$this->relationship()->set($container, $model, $relation);
-		$this->assertTrue(isset($relationObject->_id));
+		$this->assertTrue(isset($accessor->get($relation)->_id));
 	
 		return array($container, $model, $relation);
 	}
@@ -70,8 +70,9 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 	{
 		list($container, $model, $relation) = $args;
 
-		$modelObject = $model->__object();
-		$relationObject = $relation->__object();
+		$accessor = new ObjectAccessor;
+		$modelObject = $accessor->get($model);
+		$relationObject = $accessor->get($relation);
 		$relationshipName = $this->relationship()->name();
 
 		$this->assertSame(
@@ -91,7 +92,8 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 		$relationship = $this->relationship();
 		$relationship->delete($container, $model);
 
-		$modelObject = $model->__object();
+		$accessor = new ObjectAccessor;
+		$modelObject = $accessor->get($model);
 		$this->assertTrue(empty($modelObject->{$relationship->name()}));
 	}
 

@@ -15,6 +15,7 @@ namespace TheCure\Specs;
  * @group  relationships.hasmany
  */
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Models;
 use TheCure\Container;
 use TheCure\Relationships\HasMany;
@@ -39,9 +40,8 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$model = new Models\User\Admin;
-		$model->__object(new Object(array(
-			'friends' => array(0, 1),
-		)));
+		$accessor = new ObjectAccessor;
+		$accessor->set($model, array('friends' => array(0, 1)));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
 		$this->assertInstanceOf(
@@ -52,8 +52,8 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	protected function relation()
 	{
 		$relation = new Models\User\Admin;
-		$relationObject = new Object(array('name' => 'Luke'));
-		$relation->__object($relationObject);
+		$accessor = new ObjectAccessor;
+		$accessor->set($relation, array('name' => 'Luke'));
 		return $relation;
 	}
 
@@ -64,7 +64,8 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 		$model = new Models\User\Admin;
 
 		$relation = $this->relation();
-		$relationObject = $relation->__object();
+		$accessor = new ObjectAccessor;
+		$relationObject = $accessor->get($relation);
 		$anotherRelation = $this->relation();
 
 		$relationship = $this->relationship();
@@ -84,7 +85,8 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	{
 		list($container, $model, $relation) = $args;
 
-		$modelObject = $model->__object();
+		$accessor = new ObjectAccessor;
+		$modelObject = $accessor->get($model);
 		$relationshipName = $this->relationship()->name();
 		$this->assertSame(2, count($modelObject->{$relationshipName}));
 
@@ -101,7 +103,8 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 		$relationship = $this->relationship();
 		$relationship->remove($container, $model, $relation);
 
-		$modelObject = $model->__object();
+		$accessor = new ObjectAccessor;
+		$modelObject = $accessor->get($model);
 		$this->assertSame(1, count($modelObject->{$relationship->name()}));
 	}
 
@@ -124,9 +127,10 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 		$relationship = $this->relationship();
 
 		$model = new Models\User\Admin;
-		$model->__object(new Object(array(
+		$accessor = new ObjectAccessor;
+		$accessor->set($model, array(
 			$relationship->name() => array(),
-		)));
+		));
 		
 		$relationship->remove(
 			$this->container(),

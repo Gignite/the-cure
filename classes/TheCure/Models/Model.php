@@ -9,13 +9,16 @@
  * persisted.
  *
  * This class provides one pseudo-magic method ::__object()
- * for setting and getting the data transfer object.
+ * for setting and getting the data transfer object. This is
+ * not to be relied upon and you should always use
+ * `TheCure\ObjectAccessor` to access a models DTO.
  *
  *     $user = new Models\User;
- *     $user->__object(new Object(array(
+ *     $accessor = new ObjectAccessor;
+ *     $accessor->set($user, array(
  *         'name' => 'Luke',
  *     ));
- *     $object = $user->__object();
+ *     $object = $accessor->get($user);
  *
  * @package     TheCure
  * @category    Model

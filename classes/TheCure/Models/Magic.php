@@ -14,6 +14,7 @@ namespace TheCure\Models;
 use TheCure\Attributes;
 use TheCure\Field;
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Container;
 use TheCure\Relationships\Relationship;
 use TheCure\Relationships\Relation;
@@ -140,7 +141,8 @@ abstract class Magic extends Model {
 	public function __call($method, $args)
 	{
 		$attributes = static::attributes();
-		$object = $this->__object();
+		$accessor = new ObjectAccessor;
+		$object = $accessor->get($this);
 		$relationship = $this->relationship($attributes, $method, $args);
 
 		if ($relationship !== FALSE)

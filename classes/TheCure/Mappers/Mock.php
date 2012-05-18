@@ -156,6 +156,7 @@ abstract class Mock extends Mapper {
 			}
 
 			$collection[$object->_id] = $object;
+			return $object;
 		});
 
 		$this->collection($collection);

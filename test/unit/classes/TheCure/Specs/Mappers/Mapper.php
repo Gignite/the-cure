@@ -15,6 +15,7 @@ namespace TheCure\Specs;
  * @group  mappers.mapper
  */
 use TheCure\Object;
+use TheCure\ObjectAccessor;
 use TheCure\Models;
 
 abstract class MapperTest extends \PHPUnit_Framework_TestCase {
@@ -85,7 +86,8 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	public function providerTestSave()
 	{
 		$model = new Models\User;
-		$model->__object(new Object(array('name' => 'Luke')));
+		$accessor = new ObjectAccessor;
+		$accessor->set($model, array('name' => 'Luke'));
 
 		return array(
 			array($model),
@@ -99,7 +101,8 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	{
 		static::mapper()->save($model);
 
-		$object = static::mapper()->find()->current()->__object();
+		$accessor = new ObjectAccessor;
+		$object = $accessor->get(static::mapper()->find()->current());
 
 		$this->assertTrue(isset($object->_id));
 		$this->assertSame('Luke', $object->name);
@@ -120,7 +123,8 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$expectedCount = $mapper->find()->count();
 
 		$model = new Models\User;
-		$model->__object(new Object(array('name' => 'Luke')));
+		$accessor = new ObjectAccessor;
+		$accessor->set($model, array('name' => 'Luke'));
 
 		$mapper->save($model);
 		$this->assertSame($expectedCount + 1, $mapper->find()->count());
@@ -143,13 +147,15 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 
 		$expectedCount = $mapper->find($query)->count();
 
+		$accessor = new ObjectAccessor;
+
 		// Create two users
 		$model = new Models\User;
-		$model->__object($bobObject());
+		$accessor->set($model, $bobObject());
 		$mapper->save($model);
 		
 		$model = new Models\User;
-		$model->__object($bobObject());
+		$accessor->set($model, $bobObject());
 		$mapper->save($model);
 
 		$this->assertSame(2, $mapper->find($query)->count());
@@ -171,14 +177,16 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		};
 
 		$expectedCount = $mapper->find($query)->count();
+		
+		$accessor = new ObjectAccessor;
 
 		// Create two users
 		$model = new Models\User;
-		$model->__object($bobObject());
+		$accessor->set($model, $bobObject());
 		$mapper->save($model);
 		
 		$model = new Models\User;
-		$model->__object($bobObject());
+		$accessor->set($model, $bobObject());
 		$mapper->save($model);
 
 		$this->assertSame(2, $mapper->find($query)->count());
