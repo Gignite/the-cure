@@ -129,7 +129,10 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 			$suffix,
 			function ($where) use ($collection)
 			{
-				return new Object($collection->findOne($where));
+				if ($row = $collection->findOne($where))
+				{
+					return new Object($row);
+				}
 			});
 	}
 

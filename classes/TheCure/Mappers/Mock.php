@@ -134,9 +134,9 @@ abstract class Mock extends Mapper {
 						});
 					return $found;
 				}
-				else
+				elseif ($first = current($collection))
 				{
-					return current($collection);
+					return $first;
 				}
 			});
 	}
