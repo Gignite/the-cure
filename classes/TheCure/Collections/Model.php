@@ -101,7 +101,6 @@ class Model extends Iterable {
 		}
 		else
 		{
-			
 			$model = new $class;
 			$accessor = new ObjectAccessor;
 			$accessor->set($model, $object);
