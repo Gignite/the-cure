@@ -212,6 +212,10 @@ abstract class Mapper
 		{
 			$where = array('_id' => $this->idize($where));
 		}
+		elseif (isset($where['_id']))
+		{
+			$where['_id'] = $this->idize($where['_id']);
+		}
 
 		$object = $callback($where);
 
