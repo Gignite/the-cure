@@ -194,11 +194,11 @@ And relax! The API is minimal so there is not much to learn.
 
 ## Statistics
 
- - 1711 non-commented lines of code
+ - 1717 non-commented lines of code
  - 28 classes with 127 methods (4 per class)
  - 7 interfaces
- - 699 statements (5 per method) with 100% covered
- - 127 tests and 165 asserts (in 0.86 seconds)
+ - 705 statements (5 per method) with 100% covered
+ - 127 tests and 165 asserts (in 0.97 seconds)
 
 Run `rake test` to produce these stats yourself. We use a
 `Rakefile` for producing stats from our unit tests so you will
