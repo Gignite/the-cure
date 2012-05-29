@@ -60,6 +60,10 @@ abstract class Mock extends Mapper {
 				{
 					// We were doing a contains query (like mongo)
 				}
+				elseif (is_string($_needle) AND strpos($_needle, '/') === 0 AND preg_match($_needle, $value))
+				{
+					// Regex search, and it matched
+				}
 				elseif ($value === NULL OR $value !== $_needle)
 				{
 					// We skip this result as it is either NULL
