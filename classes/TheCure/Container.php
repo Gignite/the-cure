@@ -145,7 +145,7 @@ class Container {
 	 * 
 	 * @return mixed
 	 */
-	protected function connection()
+	public function connection()
 	{
 		if ($this->connection === NULL)
 		{

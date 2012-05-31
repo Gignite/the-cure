@@ -24,6 +24,11 @@ class Collection implements \Iterator, \Countable {
 	 */
 	public function __construct($collection)
 	{
+		if ($collection === NULL)
+		{
+			$collection = array();
+		}
+		
 		$this->collection = $collection;
 		$this->rewind();
 	}
