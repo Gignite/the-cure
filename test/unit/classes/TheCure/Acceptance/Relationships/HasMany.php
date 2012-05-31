@@ -37,6 +37,9 @@ class HasMany extends Acceptance {
 
 		$container->mapper('Forum\Thread')->save($thread);
 
+		// Test Contains
+		$this->assertTrue($thread->contains_posts($post));
+
 		// Test OneToMany
 		$this->assertSame($post, $thread->posts()->current());
 

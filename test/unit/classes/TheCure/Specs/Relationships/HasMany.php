@@ -81,6 +81,23 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @depends testItShouldSaveAnRelatedObjectWhenAddingRelation
 	 */
+	public function testItShouldReturnTrueIfARelationContainsAnObject($args)
+	{
+		list($container, $model, $relation) = $args;
+
+		$result = $this->relationship()->contains(
+			$container,
+			$model,
+			$relation);
+
+		$this->assertTrue($result);
+
+		return array($container, $model, $relation);
+	}
+
+	/**
+	 * @depends testItShouldReturnTrueIfARelationContainsAnObject
+	 */
 	public function testItShouldAddAnObjectIDToAnotherObjectsArray($args)
 	{
 		list($container, $model, $relation) = $args;
@@ -106,6 +123,23 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 		$accessor = new ObjectAccessor;
 		$modelObject = $accessor->get($model);
 		$this->assertSame(1, count($modelObject->{$relationship->name()}));
+
+		return array($container, $model, $relation);
+	}
+
+	/**
+	 * @depends testItShouldRemoveAnObjectIDFromAnotherObjectsArray
+	 */
+	public function testItShouldReturnFalseIfARelationDoesntContainAnObject($args)
+	{
+		list($container, $model, $relation) = $args;
+
+		$result = $this->relationship()->contains(
+			$container,
+			$model,
+			$relation);
+		
+		$this->assertFalse($result);
 	}
 
 	/**

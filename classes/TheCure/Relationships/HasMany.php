@@ -15,7 +15,7 @@ use TheCure\ObjectAccessor;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
-class HasMany extends Has implements Relation\Add, Relation\Remove {
+class HasMany extends Has implements Relation\Add, Relation\Remove, Relation\Contains {
 
 	protected function where($object)
 	{
@@ -36,7 +36,35 @@ class HasMany extends Has implements Relation\Add, Relation\Remove {
 		$accessor = new ObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
-		return $this->mapper($container)->find($where, $this->model_suffix());
+		return $this->mapper($container)->find(
+			$where,
+			$this->model_suffix());
+	}
+
+	/**
+	 * Determine if a Model is contained within a relation.
+	 * 
+	 * @param   Container
+	 * @param   Model
+	 * @param   Model
+	 * @return  boolean
+	 */
+	public function contains(
+		Container $container,
+		Model $model,
+		Model $relation)
+	{
+		$accessor = new ObjectAccessor;
+		
+		$object = $accessor->get($model);
+		$relations = $object->{$this->name()};
+
+		if ( ! is_array($relations))
+		{
+			return FALSE;
+		}
+
+		return in_array($accessor->get($relation)->_id, $relations);
 	}
 
 	/**
