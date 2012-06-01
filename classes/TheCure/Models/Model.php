@@ -43,11 +43,6 @@ abstract class Model {
 	{
 		if ($object === NULL)
 		{
-			if ($this->__object === NULL)
-			{
-				$this->__object = new Object;
-			}
-			
 			return $this->__object;
 		}
 

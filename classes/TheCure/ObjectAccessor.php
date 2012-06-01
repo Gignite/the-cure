@@ -26,7 +26,15 @@ class ObjectAccessor {
 
 	public function get(Model $model)
 	{
-		return $model->__object();
+		$object = $model->__object();
+
+		if ( ! $object)
+		{
+			$object = new Object;
+			$this->set_object($model, $object);
+		}
+
+		return $object;
 	}
 
 	protected function set_object(Model $model, Object $object)
