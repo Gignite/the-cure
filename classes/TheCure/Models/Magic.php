@@ -105,32 +105,6 @@ abstract class Magic extends Model {
 	}
 
 	/**
-	 * Get value from $object or use default $field value.
-	 * 
-	 * @param   Object
-	 * @param   Field
-	 * @return  mixed
-	 */
-	private function value(Object $object, Field $field)
-	{
-		if (isset($object->{$field->name()}))
-		{
-			$value = $object->{$field->name()};
-		}
-		else
-		{
-			$value = $field->value();
-
-			if (is_callable($value))
-			{
-				$value = $value($object);
-			}
-		}
-
-		return $value;
-	}
-
-	/**
 	 * The magic of this object!
 	 * 
 	 * @param   string  $method
@@ -158,7 +132,7 @@ abstract class Magic extends Model {
 			}
 			else
 			{
-				return $this->value($object, $field);
+				return $accessor->get_field_value($this, $field);
 			}
 		}
 		else
