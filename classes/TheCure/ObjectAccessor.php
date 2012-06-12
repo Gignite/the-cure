@@ -21,6 +21,7 @@ namespace TheCure;
 
 use TheCure\Models\Model;
 use TheCure\Object;
+use TheCure\Field;
 
 class ObjectAccessor {
 
@@ -50,6 +51,27 @@ class ObjectAccessor {
 		}
 
 		$this->set_object($model, $object);
+	}
+
+	public function get_field_value(Model $model, Field $field)
+	{
+		$object = $this->get($model);
+
+		if (isset($object->{$field->name()}))
+		{
+			$value = $object->{$field->name()};
+		}
+		else
+		{
+			$value = $field->value();
+
+			if (is_callable($value))
+			{
+				$value = $value($object);
+			}
+		}
+
+		return $value;
 	}
 
 }
