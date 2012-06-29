@@ -10,36 +10,36 @@ class Mock extends Relationship
 	implements Relation\Find, Relation\Add, Relation\Remove,
 		Relation\Delete, Relation\Set {
 
-	protected $method_called;
+	protected $methodCalled;
 
-	public function method_called()
+	public function methodCalled()
 	{
-		return $this->method_called;
+		return $this->methodCalled;
 	}
 
 	public function find(Container $container, Model $object)
 	{
-		$this->method_called = 'find';
+		$this->methodCalled = 'find';
 	}
 
 	public function add(Container $container, Model $object, Model $relation)
 	{
-		$this->method_called = 'add';
+		$this->methodCalled = 'add';
 	}
 
 	public function remove(Container $container, Model $object, Model $relation)
 	{
-		$this->method_called = 'remove';
+		$this->methodCalled = 'remove';
 	}
 
 	public function delete(Container $container, Model $object)
 	{
-		$this->method_called = 'delete';
+		$this->methodCalled = 'delete';
 	}
 
 	public function set(Container $container, Model $object, Model $relation)
 	{
-		$this->method_called = 'set';
+		$this->methodCalled = 'set';
 	}
 
 }

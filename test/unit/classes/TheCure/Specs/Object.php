@@ -23,7 +23,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
 		$filter = array('name');
 		$object = new Object($data, $filter);
 		$expected = array('name' => 'Luke');
-		$this->assertSame($expected, $object->as_array());
+		$this->assertSame($expected, $object->asArray());
 	}
 
 	public function testItShouldReturnNullIfFieldNotSet()
@@ -49,7 +49,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
 	{
 		$object = new Object;
 		$object->set($expected = array('name' => 'Bob'));
-		$this->assertSame($expected, $object->as_array());
+		$this->assertSame($expected, $object->asArray());
 	}
 
 	public function testItShouldReturnAnArrayIfGivenAnArrayOfFields()
@@ -62,7 +62,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
 	{
 		$object = new Object(array('name' => 'Luke'));
 		unset($object->name);
-		$this->assertSame(array(), $object->as_array());
+		$this->assertSame(array(), $object->asArray());
 	}
 
 }

@@ -14,7 +14,7 @@ class Password extends MagicModel {
 		return new Attributes(
 			new Field('password'),
 			new BelongsToOne('account', array(
-				'mapper_suffix' => 'Account',
+				'mapperSuffix' => 'Account',
 				'foreign'       => 'password',
 			)));
 	}

@@ -15,8 +15,8 @@ class Magic extends MagicModel {
 			new Field('location', array('alias' => 'town')),
 			new Field('age',  array('value' => 1)),
 			new HasMany('friends', array(
-				'mapper_suffix' => 'User',
-				// 'model_suffix'  => 'Magic',
+				'mapperSuffix' => 'User',
+				// 'modelSuffix'  => 'Magic',
 			)));
 		return $attributes;
 	}

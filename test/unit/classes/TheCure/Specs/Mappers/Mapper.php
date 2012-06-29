@@ -46,13 +46,13 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testFindOne($id, $suffix, $expectedClass)
 	{
-		$model = static::mapper()->find_one($id, $suffix);
+		$model = static::mapper()->findOne($id, $suffix);
 		$this->assertInstanceOf($expectedClass, $model);
 	}
 
 	public function testFindOneNone()
 	{
-		$this->assertNull(static::mapper()->find_one(array('foo' => 'bar')));
+		$this->assertNull(static::mapper()->findOne(array('foo' => 'bar')));
 	}
 
 	public function providerTestFind()
@@ -111,9 +111,9 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	public function testUpdate()
 	{
 		$mapper = static::mapper();
-		$model = $mapper->find_one();
+		$model = $mapper->findOne();
 		$mapper->save($model);
-		$this->assertSame($model, $mapper->find_one());
+		$this->assertSame($model, $mapper->findOne());
 	}
 
 	public function testDeleteWithModel()

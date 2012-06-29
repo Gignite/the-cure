@@ -53,11 +53,11 @@ class HasAndBelongsToMany extends Acceptance {
 		$irrelevantTag = $this->createTag($container, 'irrelevant');
 		
 		// Adding to HasMany relationship
-		$firstPost->add_tags($coolTag);
+		$firstPost->addTags($coolTag);
 
 		// And some more
-		$secondPost->add_tags($coolTag);
-		$secondPost->add_tags($irrelevantTag);
+		$secondPost->addTags($coolTag);
+		$secondPost->addTags($irrelevantTag);
 
 		$container->mapper('Forum\Post')->save($firstPost);
 		$container->mapper('Forum\Post')->save($secondPost);
