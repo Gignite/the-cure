@@ -18,3 +18,11 @@
  - Add section to guide on configuration
  - Maybe also mongo specific informtion
  - Add MySQL mapper, do this as a tutorial
+ - Collection::as() to alter classFactory
+ - Split MapperActions into individual interfaces
+ - Remove complex querying
+ - Relation\Contains needs to rely on an unimplemented interface
+ - Change class names to include their type as a suffix
+ - Rename the SetGet interfaces
+ - Group classes in type folders not any other way
+ - Add transaction flushing (model persistence until its req.)
