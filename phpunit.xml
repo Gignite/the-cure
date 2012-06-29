@@ -28,11 +28,11 @@
 			/>
 		<log
 			type="coverage-clover"
-			target="test/coverage.xml"
+			target="test/coverage/coverage.xml"
 			/>	 
 		<log
 			type="junit"
-			target="test/junit.xml"
+			target="test/coverage/junit.xml"
 			logIncompleteSkipped="false"
 			/>
 	</logging>
