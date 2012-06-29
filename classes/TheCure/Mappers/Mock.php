@@ -2,9 +2,8 @@
 /**
  * An array mapper for mocking tests
  * 
- *     $mapper->find($id);
  *     $mapper->find(array('name' => 'Luke'));
- *     $mapper->find('Admin', array('name' => 'Luke'));
+ *     $mapper->find(array('name' => 'Luke'), 'Admin');
  *
  * @package     TheCure
  * @category    Mapper

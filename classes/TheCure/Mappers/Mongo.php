@@ -2,9 +2,8 @@
 /**
  * An MongoDB mapper
  * 
- *     $mapper->find($id);
  *     $mapper->find(array('name' => 'Luke'));
- *     $mapper->find('Admin', array('name' => 'Luke'));
+ *     $mapper->find(array('name' => 'Luke'), 'Admin');
  *
  * @package     TheCure
  * @category    Mapper
@@ -110,7 +109,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	 *
 	 *   // When using a suffix this would an entry
 	 *   // in the Page\Artist model
-	 *   $container->mapper('Page')->find_one('Artist')
+	 *   $container->mapper('Page')->find_one(NULL, 'Artist')
 	 *
 	 *   // When no suffix is needed the where
 	 *   // condition can be moved forward.
