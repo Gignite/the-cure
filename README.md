@@ -61,7 +61,7 @@ class User extends \TheCure\Models\Magic {
 	{
 		return new Attributes(
 			new Field('name'),
-			new HasMany('friends', array('mapper_suffix' => 'User')));
+			new HasMany('friends', array('mapperSuffix' => 'User')));
 	}
 
 }
@@ -147,7 +147,7 @@ Find the same model using `::find_one()`.
 
 ``` php
 <?php
-$userCopy = $mapper->find_one(array('name' => 'Luke'));
+$userCopy = $mapper->findOne(array('name' => 'Luke'));
 
 // Note that these are the exact same object
 var_dump($user === $userCopy);
@@ -167,7 +167,7 @@ Add Jake as a friend of Luke's.
 
 ``` php
 <?php
-$user->add_friends($friend);
+$user->addFriends($friend);
 ?>
 ```
 
