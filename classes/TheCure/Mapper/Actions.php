@@ -45,7 +45,7 @@ interface Actions {
 	 * @param null $suffix
 	 * @return mixed
 	 */
-	public function find_one($where = NULL, $suffix = NULL);
+	public function findOne($where = NULL, $suffix = NULL);
 
 	/**
 	 * @abstract

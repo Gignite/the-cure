@@ -15,7 +15,7 @@
  *     $object->accessor('name', 'Jim');
  *     echo $object->accessor('name');
  *     
- *     var_dump($object->as_array());
+ *     var_dump($object->asArray());
  *     
  *     var_dump(isset($object->name));
  *     unset($object->name);
@@ -66,17 +66,17 @@ class Object {
 	 */
 	protected function filter(array $data, array $filter)
 	{
-		$clean_data = array();
+		$cleanData = array();
 
 		foreach ($filter as $_field)
 		{
 			if (array_key_exists($_field, $data))
 			{
-				$clean_data[$_field] = $data[$_field];
+				$cleanData[$_field] = $data[$_field];
 			}
 		}
 
-		return $clean_data;
+		return $cleanData;
 	}
 
 	/**
@@ -164,7 +164,7 @@ class Object {
 	 *
 	 * @return  array
 	 */
-	public function as_array()
+	public function asArray()
 	{
 		return $this->data;
 	}

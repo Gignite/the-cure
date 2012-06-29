@@ -128,7 +128,7 @@ class Container {
 	 * 
 	 * @return mixed
 	 */
-	protected function mapper_config()
+	protected function mapperConfig()
 	{
 		$mappers = $this->config('mappers');
 		$key = $this->type();
@@ -149,18 +149,18 @@ class Container {
 	{
 		if ($this->connection === NULL)
 		{
-			$mapper_config = $this->mapper_config();
+			$mapperConfig = $this->mapperConfig();
 
-			if (isset($mapper_config['connection_class']))
+			if (isset($mapperConfig['connectionClass']))
 			{
-				$class = $mapper_config['connection_class'];
+				$class = $mapperConfig['connectionClass'];
 			}
 			else
 			{
 				$class = $this->factory()->connection($this->type());
 			}
 
-			$this->connection = new $class($mapper_config);
+			$this->connection = new $class($mapperConfig);
 		}
 
 		return $this->connection;
@@ -217,7 +217,7 @@ class Container {
 			
 			if ($mapper instanceOf ConfigSetGet)
 			{
-				$mapper->config($this->mapper_config());
+				$mapper->config($this->mapperConfig());
 			}
 
 			if ($mapper instanceOf FactorySetGet)

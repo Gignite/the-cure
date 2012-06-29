@@ -29,7 +29,7 @@ class BelongsToOne extends BelongsTo {
 		$accessor = new ObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
-		return $this->mapper($container)->find_one($where, $this->model_suffix());
+		return $this->mapper($container)->findOne($where, $this->modelSuffix());
 	}
 
 }

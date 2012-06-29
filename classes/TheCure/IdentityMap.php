@@ -33,7 +33,7 @@ class IdentityMap {
 	 * @param  $object
 	 * @return string
 	 */
-	protected function extract_identity_from_object($object)
+	protected function extractIdentityFromObject($object)
 	{
 		return (string) $object->_id;
 	}
@@ -42,11 +42,11 @@ class IdentityMap {
 	 * @param  Models\Model $model
 	 * @return string
 	 */
-	protected function extract_identity(Model $model)
+	protected function extractIdentity(Model $model)
 	{
 		$accessor = new ObjectAccessor;
 		$object = $accessor->get($model);
-		return $this->extract_identity_from_object($object);
+		return $this->extractIdentityFromObject($object);
 	}
 
 	/**
@@ -67,7 +67,7 @@ class IdentityMap {
 
 		if ($id === NULL)
 		{
-			$id = $this->extract_identity($model);
+			$id = $this->extractIdentity($model);
 		}
 		
 		return $class.$id;

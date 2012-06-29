@@ -57,7 +57,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	protected function collection()
 	{
 		return $this->connection()->get()->selectCollection(
-			$this->collection_name());
+			$this->collectionName());
 	}
 
 	/**
@@ -66,7 +66,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	 *
 	 * @return array
 	 */
-	protected function query_options()
+	protected function queryOptions()
 	{
 		return $this->config('query_options', array());
 	}
@@ -93,7 +93,7 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	{
 		$collection = $this->collection();
 
-		return $this->create_collection(
+		return $this->createCollection(
 			$where,
 			$suffix,
 			function ($where) use ($collection)
@@ -106,25 +106,25 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	 * @example
 	 *
 	 *   // Find one entry in the Page model
-	 *   $container->mapper('Page')->find_one()
+	 *   $container->mapper('Page')->findOne()
 	 *
 	 *   // When using a suffix this would an entry
 	 *   // in the Page\Artist model
-	 *   $container->mapper('Page')->find_one('Artist')
+	 *   $container->mapper('Page')->findOne('Artist')
 	 *
 	 *   // When no suffix is needed the where
 	 *   // condition can be moved forward.
-	 *   $container->mapper('Page')->find_one(array('email' => '...')
+	 *   $container->mapper('Page')->findOne(array('email' => '...')
 	 *
 	 * @param  null $suffix
 	 * @param  null $where
 	 * @return mixed
 	 */
-	public function find_one($where = NULL, $suffix = NULL)
+	public function findOne($where = NULL, $suffix = NULL)
 	{
 		$collection = $this->collection();
 
-		return $this->create_model(
+		return $this->createModel(
 			$where,
 			$suffix,
 			function ($where) use ($collection)
@@ -144,13 +144,13 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	public function save(Model $model)
 	{
 		$collection = $this->collection();
-		$options = $this->query_options();
+		$options = $this->queryOptions();
 
-		$this->save_model(
+		$this->saveModel(
 			$model,
 			function ($object) use ($collection, $options)
 			{
-				$array = $object->as_array();
+				$array = $object->asArray();
 
 				if (isset($object->_id))
 				{
@@ -174,9 +174,9 @@ abstract class Mongo extends Mapper implements ConnectionSetGet {
 	public function delete($model)
 	{
 		$collection = $this->collection();
-		$options = $this->query_options();
+		$options = $this->queryOptions();
 
-		$this->delete_model(
+		$this->deleteModel(
 			$model,
 			function ($where) use ($collection, $options)
 			{

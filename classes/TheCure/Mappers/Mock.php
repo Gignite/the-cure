@@ -42,7 +42,7 @@ abstract class Mock extends Mapper {
 	 * @param $where
 	 * @param $callback
 	 */
-	public static function each_where($collection, $where, $callback)
+	public static function eachWhere($collection, $where, $callback)
 	{
 		foreach ($collection as $_key => $_row)
 		{
@@ -88,14 +88,14 @@ abstract class Mock extends Mapper {
 	{
 		$collection = $this->collection();
 
-		return $this->create_collection(
+		return $this->createCollection(
 			$where,
 			$suffix,
 			function($where) use ($collection)
 			{
 				$found = array();
 
-				Mock::each_where(
+				Mock::eachWhere(
 					$collection,
 					$where,
 					function ($record) use ($collection, & $found)
@@ -112,11 +112,11 @@ abstract class Mock extends Mapper {
 	 * @param  null $where
 	 * @return mixed
 	 */
-	public function find_one($where = NULL, $suffix = NULL)
+	public function findOne($where = NULL, $suffix = NULL)
 	{
 		$collection = $this->collection();
 
-		return $this->create_model(
+		return $this->createModel(
 			$where,
 			$suffix,
 			function ($where) use ($collection)
@@ -128,7 +128,7 @@ abstract class Mock extends Mapper {
 				elseif ($where)
 				{
 					$found = NULL;
-					Mock::each_where(
+					Mock::eachWhere(
 						$collection,
 						$where,
 						function ($record) use ($collection, & $found)
@@ -152,7 +152,7 @@ abstract class Mock extends Mapper {
 	{
 		$collection = $this->collection();
 
-		$this->save_model($model, function ($object) use (& $collection)
+		$this->saveModel($model, function ($object) use (& $collection)
 		{
 			if ( ! isset($object->_id))
 			{
@@ -173,7 +173,7 @@ abstract class Mock extends Mapper {
 	{
 		$collection = $this->collection();
 
-		$this->delete_model($model, function ($where) use (& $collection)
+		$this->deleteModel($model, function ($where) use (& $collection)
 		{
 			unset($collection[$where['_id']]);
 		});

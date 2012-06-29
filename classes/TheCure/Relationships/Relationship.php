@@ -3,7 +3,7 @@
  * A relationship between models
  * 
  * This abstract class adds two properties to Attribute,
- * $mapper_suffix and $model_suffix. These are used in child
+ * $mapperSuffix and $modelSuffix. These are used in child
  * classes such as HasOne and HasMany when relating one model
  * to another.
  * 
@@ -22,24 +22,24 @@ use TheCure\Container;
 
 abstract class Relationship extends Attribute {
 
-	protected $mapper_suffix;
+	protected $mapperSuffix;
 
-	protected $model_suffix;
+	protected $modelSuffix;
 
 	/**
 	 * @return mixed
 	 */
-	protected function model_suffix()
+	protected function modelSuffix()
 	{
-		return $this->model_suffix;
+		return $this->modelSuffix;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	protected function mapper_suffix()
+	protected function mapperSuffix()
 	{
-		return $this->mapper_suffix;
+		return $this->mapperSuffix;
 	}
 
 	/**
@@ -48,7 +48,7 @@ abstract class Relationship extends Attribute {
 	 */
 	protected function mapper(Container $container)
 	{
-		return $container->mapper($this->mapper_suffix());
+		return $container->mapper($this->mapperSuffix());
 	}
 
 }

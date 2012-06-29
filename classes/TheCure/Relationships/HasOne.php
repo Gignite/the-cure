@@ -5,7 +5,7 @@
  * @example
  * 
  *     $relationship = new HasOne('profile', array(
- *         'mapper_suffix' => 'Profile',
+ *         'mapperSuffix' => 'Profile',
  *     ));
  *     
  *     $container = new Container('Mock');
@@ -52,9 +52,9 @@ class HasOne extends Has implements Relation\Set, Relation\Delete {
 	{
 		$accessor = new ObjectAccessor;
 		$object = $accessor->get($model);
-		return $this->mapper($container)->find_one(
+		return $this->mapper($container)->findOne(
 			$this->where($object),
-			$this->model_suffix());
+			$this->modelSuffix());
 	}
 
 	/**
@@ -90,11 +90,11 @@ class HasOne extends Has implements Relation\Set, Relation\Delete {
 	public function delete(Container $container, Model $model)
 	{
 		$accessor = new ObjectAccessor;
-		$model_object = $accessor->get($model);
+		$modelObject = $accessor->get($model);
 
-		if (isset($model_object->{$this->name()}))
+		if (isset($modelObject->{$this->name()}))
 		{
-			unset($model_object->{$this->name()});
+			unset($modelObject->{$this->name()});
 			return;
 		}
 
