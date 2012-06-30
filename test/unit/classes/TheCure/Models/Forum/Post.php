@@ -14,13 +14,13 @@ class Post extends MagicModel {
 		return new Attributes(
 			new Field('message'),
 			new BelongsToOne('thread', array(
-				'mapper_suffix' => 'Forum\Thread',
+				'mapperSuffix' => 'Forum\Thread',
 				'foreign'       => 'posts',
 			)),
 			new HasMany('tags', array(
-				'mapper_suffix' => 'Forum\Tag',
+				'mapperSuffix' => 'Forum\Tag',
 				// 'via' => array(
-				// 	'mapper_suffix' => 'Forum\Post',
+				// 	'mapperSuffix' => 'Forum\Post',
 				// ),
 			)));
 	}

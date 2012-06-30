@@ -84,10 +84,11 @@ abstract class Magic extends Model {
 		}
 		else
 		{
-			$verb = current(explode('_', $method));
+        	$spaced_method = preg_replace('/([a-z])([A-Z])/', '$1 $2', $method);
+			$verb = current(explode(' ', $spaced_method, 2));
 			$relationship = $this->attribute(
 				$attributes,
-				substr($method, strlen($verb) + 1));
+				substr(strtolower($method), strlen($verb)));
 		}
 
 		$arg = current($args);
@@ -132,7 +133,7 @@ abstract class Magic extends Model {
 			}
 			else
 			{
-				return $accessor->get_field_value($this, $field);
+				return $accessor->getFieldValue($this, $field);
 			}
 		}
 		else

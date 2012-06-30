@@ -13,13 +13,13 @@ class Tag extends MagicModel {
 		return new Attributes(
 			new Field('name'),
 			new BelongsToMany('posts', array(
-				'mapper_suffix' => 'Forum\Post',
+				'mapperSuffix' => 'Forum\Post',
 				'foreign'       => 'tags',
 			// )),
 			// new HasMany('posts', array(
-			// 	'mapper_suffix' => 'Forum\Post',
+			// 	'mapperSuffix' => 'Forum\Post',
 			// 	'via' => new HasMany('tags', array(
-			// 		'mapper_suffix' => 'Forum\Tag',
+			// 		'mapperSuffix' => 'Forum\Tag',
 			// 	)),
 			)));
 		

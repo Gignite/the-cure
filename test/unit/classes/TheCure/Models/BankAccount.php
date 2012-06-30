@@ -5,7 +5,7 @@ use TheCure\ObjectAccessor;
 
 class BankAccount extends \TheCure\Models\Model {
 
-	public function transfer_money(BankAccount $account, $amount)
+	public function transferMoney(BankAccount $account, $amount)
 	{
 		$accessor = new ObjectAccessor;
 		$accessor->get($this)->balance -= $amount;

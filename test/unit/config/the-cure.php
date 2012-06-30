@@ -17,7 +17,7 @@ return array(
 	'mappers' => array(
 		'Mock' => array(),
 		'ConnectionTest' => array(
-			'connection_class' => 'TheCure\Connections\ConnectionTest',
+			'connectionClass' => 'TheCure\Connections\ConnectionTest',
 		),
 	),
 );

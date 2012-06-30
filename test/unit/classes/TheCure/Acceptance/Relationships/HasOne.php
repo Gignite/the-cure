@@ -43,7 +43,7 @@ class HasOne extends Acceptance {
 		$this->assertSame($account, $password->account());
 
 		// Remove the HasOne relationship
-		$account->delete_password();
+		$account->deletePassword();
 		$container->mapper('Account')->save($account);
 
 		$this->assertNull($account->password());

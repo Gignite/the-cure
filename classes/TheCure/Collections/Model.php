@@ -24,23 +24,23 @@ class Model extends Iterable {
 
 	protected $identities;
 
-	protected $class_name;
+	protected $classFactory;
 
 	protected $container;
 
 	/**
 	 * @param $collection
 	 * @param IdentityMap  $identities
-	 * @param Callable     $class_factory
+	 * @param Callable     $classFactory
 	 */
 	public function __construct(
 		$collection,
 		IdentityMap $identities,
-		$class_factory)
+		$classFactory)
 	{
 		parent::__construct($collection);
 		$this->identities = $identities;
-		$this->class_factory = $class_factory;
+		$this->classFactory = $classFactory;
 	}
 
 	/**
@@ -70,9 +70,9 @@ class Model extends Iterable {
 	/**
 	 * @return mixed
 	 */
-	protected function class_factory()
+	protected function classFactory()
 	{
-		return $this->class_factory;
+		return $this->classFactory;
 	}
 
 	/**
@@ -85,7 +85,7 @@ class Model extends Iterable {
 			return;
 		}
 		
-		$class_factory = $this->class_factory();
+		$classFactory = $this->classFactory();
 		$identities = $this->identities();
 
 		if ( ! $object instanceOf Object)
@@ -93,7 +93,7 @@ class Model extends Iterable {
 			$object = new Object($object);
 		}
 
-		$class = $class_factory($object);
+		$class = $classFactory($object);
 
 		if ($model = $identities->get($class, $this->key()))
 		{

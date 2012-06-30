@@ -25,6 +25,11 @@ use TheCure\Field;
 
 class ObjectAccessor {
 
+	protected function setObject(Model $model, Object $object)
+	{
+		$model->__object($object);
+	}
+
 	public function get(Model $model)
 	{
 		$object = $model->__object();
@@ -32,15 +37,10 @@ class ObjectAccessor {
 		if ( ! $object)
 		{
 			$object = new Object;
-			$this->set_object($model, $object);
+			$this->setObject($model, $object);
 		}
 
 		return $object;
-	}
-
-	protected function set_object(Model $model, Object $object)
-	{
-		$model->__object($object);
 	}
 
 	public function set(Model $model, $object)
@@ -50,10 +50,10 @@ class ObjectAccessor {
 			$object = new Object($object);
 		}
 
-		$this->set_object($model, $object);
+		$this->setObject($model, $object);
 	}
 
-	public function get_field_value(Model $model, Field $field)
+	public function getFieldValue(Model $model, Field $field)
 	{
 		$object = $this->get($model);
 

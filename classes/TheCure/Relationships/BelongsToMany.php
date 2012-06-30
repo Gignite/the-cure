@@ -29,7 +29,7 @@ class BelongsToMany extends BelongsTo {
 		$accessor = new ObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
-		return $this->mapper($container)->find($where, $this->model_suffix());
+		return $this->mapper($container)->find($where, $this->modelSuffix());
 	}
 
 }

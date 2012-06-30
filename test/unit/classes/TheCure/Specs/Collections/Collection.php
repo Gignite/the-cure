@@ -89,7 +89,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testAsArray($collection)
 	{
-		$this->assertTrue(is_array($collection->as_array()));
+		$this->assertTrue(is_array($collection->asArray()));
 		return $collection;
 	}
 

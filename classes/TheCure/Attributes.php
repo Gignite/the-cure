@@ -167,7 +167,7 @@ class Attributes implements \ArrayAccess {
 	 * 
 	 * @return  array
 	 */
-	public function as_array()
+	public function asArray()
 	{
 		return $this->attributes;
 	}

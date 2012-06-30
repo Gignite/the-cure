@@ -44,7 +44,7 @@ class Collection implements \Iterator, \Countable {
 	/**
 	 * @return array
 	 */
-	public function as_array()
+	public function asArray()
 	{
 		return iterator_to_array($this);
 	}

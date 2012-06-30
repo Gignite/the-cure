@@ -25,7 +25,7 @@ return array(
 				'profiling' => TRUE,
 				'safe'      => TRUE,
 			),
-			'connection_class' => 'TheCure\Connections\Mongo',
+			'connectionClass' => 'TheCure\Connections\Mongo',
 		),
 	),
 );

@@ -52,7 +52,7 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 	protected function user($expectedName)
 	{
 		$container = $this->container();
-		return $container->mapper('User')->find_one(
+		return $container->mapper('User')->findOne(
 			array('name' => $expectedName),
 			'Magic');
 	}
@@ -99,19 +99,19 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 			),
 			array(
 				new Models\MockableAttribute,
-				'add_relation',
+				'addRelation',
 				'add',
 				$args,
 			),
 			array(
 				new Models\MockableAttribute,
-				'remove_relation',
+				'removeRelation',
 				'remove',
 				$args,
 			),
 			array(
 				new Models\MockableAttribute,
-				'delete_relation',
+				'deleteRelation',
 				'delete',
 				$args,
 			),
@@ -137,7 +137,7 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 		};
 
 		call_user_func_array(array($model, $method), $args);
-		$this->assertSame($expected, $mock->method_called());
+		$this->assertSame($expected, $mock->methodCalled());
 	}
 
 	/**

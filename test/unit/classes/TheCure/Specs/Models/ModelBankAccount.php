@@ -40,7 +40,7 @@ class ModelBankAccount extends \PHPUnit_Framework_TestCase {
 		$accessor->get($lukesAccount)->balance = 100;
 		$accessor->get($bobsAccount)->balance = 0;
 
-		$lukesAccount->transfer_money($bobsAccount, 100);
+		$lukesAccount->transferMoney($bobsAccount, 100);
 		
 		$this->assertSame(0, $accessor->get($lukesAccount)->balance);
 		$this->assertSame(100, $accessor->get($bobsAccount)->balance);

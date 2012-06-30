@@ -100,7 +100,7 @@ abstract class Mapper
 	/**
 	 * @return string
 	 */
-	protected function collection_name()
+	protected function collectionName()
 	{
 		$collection = strtolower($this->factory()->domain($this));
 		return $collection;
@@ -155,7 +155,7 @@ abstract class Mapper
 	 * @return Collections\Model
 	 * @throws \InvalidArgumentException
 	 */
-	protected function create_collection($where, $suffix, $callback)
+	protected function createCollection($where, $suffix, $callback)
 	{
 		if ($where === NULL)
 		{
@@ -200,7 +200,7 @@ abstract class Mapper
 	 * @param  $callback
 	 * @return mixed
 	 */
-	protected function create_model($where, $suffix, $callback)
+	protected function createModel($where, $suffix, $callback)
 	{
 		if ($where === NULL)
 		{
@@ -252,7 +252,7 @@ abstract class Mapper
 	 * @param Model $model
 	 * @param       $callback
 	 */
-	protected function save_model(Model $model, $callback)
+	protected function saveModel(Model $model, $callback)
 	{
 		$accessor = new ObjectAccessor;
 		$object = $accessor->get($model);
@@ -276,7 +276,7 @@ abstract class Mapper
 	 * @param  $callback
 	 * @return mixed
 	 */
-	protected function delete_model($model, $callback)
+	protected function deleteModel($model, $callback)
 	{
 		if ($model instanceOf Model)
 		{
@@ -288,13 +288,13 @@ abstract class Mapper
 		{
 			foreach ($model as $_model)
 			{
-				$this->delete_model($_model, $callback);
+				$this->deleteModel($_model, $callback);
 			}
 			return;
 		}
 		else
 		{
-			$this->delete_model($this->find($model), $callback);
+			$this->deleteModel($this->find($model), $callback);
 			return;
 		}
 

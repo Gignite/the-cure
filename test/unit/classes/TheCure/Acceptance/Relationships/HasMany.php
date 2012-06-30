@@ -33,12 +33,12 @@ class HasMany extends Acceptance {
 		$post = $container->mapper('Forum\Post')->model();
 		$post->message('<p>What a great welcome this is :D</p>');
 		
-		$thread->add_posts($post);
+		$thread->addPosts($post);
 
 		$container->mapper('Forum\Thread')->save($thread);
 
 		// Test Contains
-		$this->assertTrue($thread->contains_posts($post));
+		$this->assertTrue($thread->containsPosts($post));
 
 		// Test OneToMany
 		$this->assertSame($post, $thread->posts()->current());
@@ -47,7 +47,7 @@ class HasMany extends Acceptance {
 		$this->assertSame($thread, $post->thread());
 
 		// Test removing
-		$thread->remove_posts($post);
+		$thread->removePosts($post);
 		$container->mapper('Forum\Thread')->save($thread);
 
 		$this->assertSame(0, $thread->posts()->count());

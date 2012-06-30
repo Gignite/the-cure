@@ -65,7 +65,7 @@ class Mapper extends Acceptance {
 	{
 		$accountMapper = $this->accountMapper($container);
 
-		$account = $accountMapper->find_one(NULL, function ()
+		$account = $accountMapper->findOne(NULL, function ()
 		{
 			return NULL;
 		});

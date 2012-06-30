@@ -32,10 +32,10 @@ class Smoke extends Acceptance {
 		$bob->name($expectedFriendName = 'Bob');
 		$this->assertSame($expectedFriendName, $bob->name());
 
-		$user->add_friends($bob);
+		$user->addFriends($bob);
 		$this->assertSame(1, $user->friends()->count());
 
-		$user->remove_friends($bob);
+		$user->removeFriends($bob);
 		$this->assertSame(0, $user->friends()->count());
 
 		$object = new Object($expectedArray = array(

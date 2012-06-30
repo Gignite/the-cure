@@ -25,8 +25,8 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	protected function relationship()
 	{
 		$config = array(
-			'mapper_suffix' => 'User',
-			'model_suffix' => 'Admin',
+			'mapperSuffix' => 'User',
+			'modelSuffix' => 'Admin',
 		);
 		return new HasMany('friends', $config);
 	}

@@ -38,7 +38,7 @@ class HasMany extends Has implements Relation\Add, Relation\Remove, Relation\Con
 		$where = $this->where($object);
 		return $this->mapper($container)->find(
 			$where,
-			$this->model_suffix());
+			$this->modelSuffix());
 	}
 
 	/**
@@ -112,19 +112,19 @@ class HasMany extends Has implements Relation\Add, Relation\Remove, Relation\Con
 	public function remove(Container $container, Model $model, Model $relation)
 	{
 		$accessor = new ObjectAccessor;
-		$model_object = $accessor->get($model);
+		$modelObject = $accessor->get($model);
 
-		if (isset($model_object->{$this->name()}))
+		if (isset($modelObject->{$this->name()}))
 		{
-			$ids = $model_object->{$this->name()};
+			$ids = $modelObject->{$this->name()};
 		
 			foreach ($ids as $_k => $_id)
 			{
 				if ($_id == $accessor->get($relation)->_id)
 				{
-					$relations = $model_object->{$this->name()};
+					$relations = $modelObject->{$this->name()};
 					unset($relations[$_k]);
-					$model_object->{$this->name()} = $relations;
+					$modelObject->{$this->name()} = $relations;
 					return;
 				}
 			}
