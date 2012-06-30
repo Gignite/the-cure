@@ -13,7 +13,7 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Attribute;
+namespace TheCure\Attributes;
 
 abstract class Attribute {
 

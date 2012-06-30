@@ -8,6 +8,6 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Attribute;
+namespace TheCure\Exceptions;
 
 class AliasUnusedException extends \Exception {}
