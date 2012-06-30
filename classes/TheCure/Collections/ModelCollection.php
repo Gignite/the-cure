@@ -20,7 +20,7 @@ use TheCure\ObjectAccessor;
 use TheCure\Models\Magic as MagicModel;
 use TheCure\Container;
 
-class Model extends Iterable {
+class ModelCollection extends IterableCollection {
 
 	protected $identities;
 

@@ -3,7 +3,7 @@
  * Describe an iterable collection of objects
  * 
  * In order to iterate a result set from [Mapper_Mongo] we use
- * an [Object_Iterable_Collection].
+ * an IterableCollection.
  * 
  * @package     Beautiful
  * @subpackage  Beautiful Domain
@@ -14,7 +14,7 @@
  */
 namespace TheCure\Collections;
 
-class Iterable extends Collection {
+class IterableCollection extends Collection {
 
 	/**
 	 * @return mixed
