@@ -1,6 +1,6 @@
 <?php
 /**
- * Remove relation interface
+ * Find relation interface
  *
  * @package     TheCure
  * @category    Relation
@@ -9,21 +9,24 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Relation;
+namespace TheCure\Relations;
 
 use TheCure\Container;
 use TheCure\Models\Model;
 
-interface Remove {
+interface ContainsRelation {
 
 	/**
-	 * Remove one Relation from a Collection of relations.
+	 * Determine if a Model is contained within a relation.
 	 * 
 	 * @param   Container
 	 * @param   Model
 	 * @param   Model
-	 * @return  void
+	 * @return  boolean
 	 */
-	public function remove(Container $container, Model $model, Model $relation);
+	public function contains(
+		Container $container,
+		Model $model,
+		Model $relation);
 
 }

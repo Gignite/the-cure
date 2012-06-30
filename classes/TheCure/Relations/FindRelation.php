@@ -1,6 +1,6 @@
 <?php
 /**
- * Add relation interface
+ * Find relation interface
  *
  * @package     TheCure
  * @category    Relation
@@ -9,21 +9,20 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Relation;
+namespace TheCure\Relations;
 
 use TheCure\Container;
 use TheCure\Models\Model;
 
-interface Add {
+interface FindRelation {
 
 	/**
-	 * Add a $relation to a $model's collection of relations.
+	 * Find a Collection of relations or a single relation.
 	 * 
 	 * @param   Container
 	 * @param   Model
-	 * @param   Model
-	 * @return  mixed
+	 * @return  Collection|Model
 	 */
-	public function add(Container $container, Model $model, Model $relation);
+	public function find(Container $container, Model $model);
 
 }

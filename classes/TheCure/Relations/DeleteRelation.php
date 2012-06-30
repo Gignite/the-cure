@@ -9,12 +9,12 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Relation;
+namespace TheCure\Relations;
 
 use TheCure\Container;
 use TheCure\Models\Model;
 
-interface Delete {
+interface DeleteRelation {
 
 	/**
 	 * Delete the one and only relation from a model.

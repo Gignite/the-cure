@@ -1,6 +1,6 @@
 <?php
 /**
- * Find relation interface
+ * Set relation interface
  *
  * @package     TheCure
  * @category    Relation
@@ -9,24 +9,21 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Relation;
+namespace TheCure\Relations;
 
 use TheCure\Container;
 use TheCure\Models\Model;
 
-interface Contains {
+interface SetRelation {
 
 	/**
-	 * Determine if a Model is contained within a relation.
+	 * Set the one and only relation.
 	 * 
 	 * @param   Container
 	 * @param   Model
 	 * @param   Model
-	 * @return  boolean
+	 * @return  void
 	 */
-	public function contains(
-		Container $container,
-		Model $model,
-		Model $relation);
+	public function set(Container $container, Model $model, Model $relation);
 
 }

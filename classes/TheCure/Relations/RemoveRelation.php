@@ -1,6 +1,6 @@
 <?php
 /**
- * Find relation interface
+ * Remove relation interface
  *
  * @package     TheCure
  * @category    Relation
@@ -9,20 +9,21 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Relation;
+namespace TheCure\Relations;
 
 use TheCure\Container;
 use TheCure\Models\Model;
 
-interface Find {
+interface RemoveRelation {
 
 	/**
-	 * Find a Collection of relations or a single relation.
+	 * Remove one Relation from a Collection of relations.
 	 * 
 	 * @param   Container
 	 * @param   Model
-	 * @return  Collection|Model
+	 * @param   Model
+	 * @return  void
 	 */
-	public function find(Container $container, Model $model);
+	public function remove(Container $container, Model $model, Model $relation);
 
 }

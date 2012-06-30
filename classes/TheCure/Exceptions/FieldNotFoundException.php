@@ -10,6 +10,6 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Relation;
+namespace TheCure\Exceptions;
 
 class FieldNotFoundException extends \Exception {}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Set relation interface
+ * Add relation interface
  *
  * @package     TheCure
  * @category    Relation
@@ -9,21 +9,21 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure\Relation;
+namespace TheCure\Relations;
 
 use TheCure\Container;
 use TheCure\Models\Model;
 
-interface Set {
+interface AddRelation {
 
 	/**
-	 * Set the one and only relation.
+	 * Add a $relation to a $model's collection of relations.
 	 * 
 	 * @param   Container
 	 * @param   Model
 	 * @param   Model
-	 * @return  void
+	 * @return  mixed
 	 */
-	public function set(Container $container, Model $model, Model $relation);
+	public function add(Container $container, Model $model, Model $relation);
 
 }
