@@ -1,10 +1,10 @@
 <?php
-namespace TheCure\Mappers\ConnectionTest;
+namespace TheCure\Mappers\TestConnection;
 
 use TheCure\Mapper\ConnectionSetGet;
 use TheCure\Connections\Connection;
 
-class User implements ConnectionSetGet {
+class UserTestConnectionMapper implements ConnectionSetGet {
 
 	protected $connection;
 
