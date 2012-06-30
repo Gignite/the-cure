@@ -9,7 +9,7 @@
  */
 namespace TheCure\Connections;
 
-class Mongo implements Connection {
+class MongoConnection implements Connection {
 
 	/**
 	 * @var \Mongo
