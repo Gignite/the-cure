@@ -15,21 +15,21 @@ use TheCure\ObjectAccessor;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
-class BelongsToOne extends BelongsTo {
+class BelongsToManyRelationship extends BelongsToRelationship {
 
 	/**
-	 * Find a single relation.
+	 * Find a Collection of relations.
 	 * 
 	 * @param   Container
 	 * @param   Model
-	 * @return  Model
+	 * @return  Collection
 	 */
 	public function find(Container $container, Model $model)
 	{
 		$accessor = new ObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
-		return $this->mapper($container)->findOne($where, $this->modelSuffix());
+		return $this->mapper($container)->find($where, $this->modelSuffix());
 	}
 
 }

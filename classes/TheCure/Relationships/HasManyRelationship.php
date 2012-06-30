@@ -15,7 +15,7 @@ use TheCure\ObjectAccessor;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
-class HasMany extends Has implements Relation\Add, Relation\Remove, Relation\Contains {
+class HasManyRelationship extends HasRelationship implements Relation\Add, Relation\Remove, Relation\Contains {
 
 	protected function where($object)
 	{

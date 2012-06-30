@@ -13,7 +13,7 @@ namespace TheCure\Relationships;
 use TheCure\Container;
 use TheCure\Relation;
 
-abstract class BelongsTo extends Relationship implements Relation\Find {
+abstract class BelongsToRelationship extends Relationship implements Relation\Find {
 
 	protected $foreign;
 

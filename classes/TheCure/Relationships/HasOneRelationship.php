@@ -34,7 +34,7 @@ use TheCure\ObjectAccessor;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
-class HasOne extends Has implements Relation\Set, Relation\Delete {
+class HasOneRelationship extends HasRelationship implements Relation\Set, Relation\Delete {
 
 	protected function where($object)
 	{
