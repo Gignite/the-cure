@@ -19,7 +19,7 @@ use TheCure\Mappers\Mapper;
 use TheCure\Models\Model;
 use MongoID;
 
-abstract class Mongo extends Mapper implements ConnectionSetGet {
+abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 
 	protected $connection;
 

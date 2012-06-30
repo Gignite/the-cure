@@ -14,7 +14,7 @@ namespace TheCure\Mappers;
 
 use TheCure\Models\Model;
 
-abstract class Mock extends Mapper {
+abstract class MockMapper extends Mapper {
 
 	public $data = array();
 
