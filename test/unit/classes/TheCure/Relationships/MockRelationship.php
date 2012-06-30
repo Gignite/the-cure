@@ -6,7 +6,7 @@ use TheCure\Relationships\Relationship;
 use TheCure\Relation;
 use TheCure\Models\Model;
 
-class Mock extends Relationship
+class MockRelationship extends Relationship
 	implements Relation\Find, Relation\Add, Relation\Remove,
 		Relation\Delete, Relation\Set {
 
