@@ -3,7 +3,7 @@ namespace TheCure\Connections;
 
 use TheCure\Connections\Connection;
 
-class ConnectionTest implements Connection {
+class TestConnection implements Connection {
 
 	public function get() {}
 
