@@ -2,13 +2,20 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
+
 use TheCure\Relationships\Relationship;
-use TheCure\Relation;
+
+use TheCure\Relations\FindRelation;
+use TheCure\Relations\AddRelation;
+use TheCure\Relations\RemoveRelation;
+use TheCure\Relations\DeleteRelation;
+use TheCure\Relations\SetRelation;
+
 use TheCure\Models\Model;
 
 class MockRelationship extends Relationship
-	implements Relation\Find, Relation\Add, Relation\Remove,
-		Relation\Delete, Relation\Set {
+	implements FindRelation, AddRelation, RemoveRelation,
+		DeleteRelation, SetRelation {
 
 	protected $methodCalled;
 
