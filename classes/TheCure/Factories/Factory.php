@@ -116,7 +116,19 @@ class Factory {
 		$domain = str_replace($this->prefix('mapper'), '', $class);
 		$domain = trim($domain, $this->separator());
 		$domainPos = strpos($domain, $this->separator()) + 1;
-		$domain = substr($domain, $domainPos, - strlen($this->suffix('mapper')));
+
+		if ($mapperSuffix = $this->suffix('mapper'))
+		{
+			$domain = substr(
+				$domain,
+				$domainPos,
+				strlen($this->suffix('mapper')) * -1);
+		}
+		else
+		{
+			$domain = substr($domain, $domainPos);
+		}
+
 		return $domain;
 	}
 
@@ -134,6 +146,7 @@ class Factory {
 
 		if ($model !== NULL)
 		{
+			$class .= $this->separator();
 			$class .= $model;
 		}
 
