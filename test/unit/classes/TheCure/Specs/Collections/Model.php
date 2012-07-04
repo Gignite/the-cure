@@ -31,7 +31,8 @@ class CollectionModelTest extends CollectionTest {
 			function ()
 			{
 				return 'TheCure\Models\User';
-			});
+			},
+			'TheCure\Mappers\Mongo\UserMapper');
 	}
 
 	/**
