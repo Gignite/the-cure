@@ -51,17 +51,22 @@ second, more ORM like model, `TheCure\Models\Magic`:
 ``` php
 <?php
 namespace Models;
-use TheCure\Attributes;
-use TheCure\Field;
-use TheCure\Relationships\HasMany;
 
-class User extends \TheCure\Models\Magic {
+use TheCure\Lists\AttributeList;
+
+use TheCure\Attributes\Field;
+
+use TheCure\Relationships\HasManyRelationship;
+
+class User extends \TheCure\Models\MagicModel {
 
 	public static function attributes()
 	{
-		return new Attributes(
+		return new AttributeList(
 			new Field('name'),
-			new HasMany('friends', array('mapperSuffix' => 'User')));
+			new HasManyRelationship(
+				'friends',
+				array('mapperSuffix' => 'User')));
 	}
 
 }
@@ -91,7 +96,7 @@ blank for our example below.
 <?php
 namespace Mappers\Mongo;
 
-class User extends \TheCure\Mappers\Mongo {}
+class User extends \TheCure\Mappers\MongoMapper {}
 ?>
 ```
 
