@@ -10,8 +10,8 @@
 return array(
 	'factory' => array(
 		'prefixes' => array(
-			'model'  => 'TheCure\Models',
-			'mapper' => 'TheCure\Mappers',
+			'model'       => 'TheCure\Models\\',
+			'mapper'      => 'TheCure\Mappers\\',
 		),
 	),
 	'mappers' => array(

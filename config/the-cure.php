@@ -10,9 +10,14 @@
 return array(
 	'factory' => array(
 		'prefixes' => array(
-			'connection' => 'Connections',
-			'mapper'     => 'Mappers',
-			'model'      => 'Models',
+			'connection' => 'Connections\\',
+			'mapper'     => 'Mappers\\',
+			'model'      => 'Models\\',
+		),
+		'suffixes' => array(
+			'connection' => 'Connection',
+			'mapper'     => 'Mapper',
+			'model'      => '',
 		),
 		'separator' => '\\',
 	),
@@ -25,7 +30,7 @@ return array(
 				'profiling' => TRUE,
 				'safe'      => TRUE,
 			),
-			'connectionClass' => 'TheCure\Connections\Mongo',
+			'connectionClass' => 'TheCure\Connections\MongoConnection',
 		),
 	),
 );
