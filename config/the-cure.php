@@ -26,7 +26,7 @@ return array(
 		'Mongo' => array(
 			'db'               => 'demo',
 			'connection'       => 'mongodb://127.0.0.1',
-			'query_options'    => array(
+			'queryOptions'    => array(
 				'profiling' => TRUE,
 				'safe'      => TRUE,
 			),
