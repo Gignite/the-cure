@@ -106,8 +106,46 @@ abstract class Mapper
 		return $collection;
 	}
 
+	protected function idize($id)
+	{
+		return $id;
+	}
+
+	protected function identityNamespace()
+	{
+		return $this->factory()->domain($this);
+	}
+
+	protected function getModelFromIdentityMap($id)
+	{
+		return $this->identities()->get($this->identityNamespace(), $id);
+	}
+
+	protected function addModelToIdentityMap($model)
+	{
+		$this->identities()->set($this->identityNamespace(), $model);
+	}
+
+	protected function isHeldByIdentityMap($model)
+	{
+		return $this->identities()->has($this->identityNamespace(), $model);
+	}
+
+	protected function deleteFromIdentityMap($model)
+	{
+		return $this->identities()->delete($this->identityNamespace(), $model);
+	}
+
 	/**
 	 * Get an instance of a Model.
+	 *
+	 *     $mapper->model();
+	 *     
+	 *     // With constructor args
+	 *     $mapper->model(array('construct', array('args' => TRUE)));
+	 *     
+	 *     // With model and constructor args
+	 *     $mapper->model('Admin', array('construct', array('args' => TRUE)));
 	 * 
 	 * @return   Model
 	 */	
@@ -180,16 +218,12 @@ abstract class Mapper
 		$collection = new ModelCollection(
 			$cursor,
 			$this->identities(),
-			$class_factory);
+			$class_factory,
+			$this->identityNamespace());
 
 		$collection->container($this->container());
 
 		return $collection;
-	}
-
-	protected function idize($id)
-	{
-		return $id;
 	}
 
 	/**
@@ -208,13 +242,22 @@ abstract class Mapper
 			$where = array();
 		}
 
+		$class = get_class($this);
+
 		if ( ! is_array($where))
 		{
-			$where = array('_id' => $this->idize($where));
+			$where = array('_id' => $where);
 		}
-		elseif (isset($where['_id']))
+
+		if (isset($where['_id']))
 		{
 			$where['_id'] = $this->idize($where['_id']);
+
+			if (count($where) === 1
+				AND $model = $this->getModelFromIdentityMap($where['_id']))
+			{
+				return $model;
+			}
 		}
 
 		$object = $callback($where);
@@ -224,17 +267,13 @@ abstract class Mapper
 			return;
 		}
 
-		$identities = $this->identities();
-
-		if (is_callable($suffix))
+		if ( ! $model = $this->getModelFromIdentityMap($object->_id))
 		{
-			$suffix = $suffix($object);
-		}
+			if (is_callable($suffix))
+			{
+				$suffix = $suffix($object);
+			}
 
-		$class = $this->factory()->model($this, $suffix);
-
-		if ( ! $model = $identities->get($class, $object->_id))
-		{
 			$model = $this->model($suffix);
 
 			if ($object)
@@ -243,7 +282,7 @@ abstract class Mapper
 				$accessor->set($model, $object);
 			}
 
-			$identities->set($model);
+			$this->addModelToIdentityMap($model);
 		}
 
 		return $model;
@@ -266,9 +305,9 @@ abstract class Mapper
 			$model->__container($container);
 		}
 
-		if ( ! $this->identities()->has($model))
+		if ( ! $this->isHeldByIdentityMap($model))
 		{
-			$this->identities()->set($model);
+			$this->addModelToIdentityMap($model);
 		}
 	}
 
@@ -301,9 +340,9 @@ abstract class Mapper
 
 		call_user_func($callback, $remove);
 
-		if ($this->identities()->has($model))
+		if ($this->isHeldByIdentityMap($model))
 		{
-			$this->identities()->delete($model);
+			$this->deleteFromIdentityMap($model);
 		}
 	}
 
