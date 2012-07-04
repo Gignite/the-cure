@@ -11,24 +11,29 @@
  */
 namespace TheCure\Models;
 
-use TheCure\Attributes;
-use TheCure\Field;
-use TheCure\Object;
-use TheCure\ObjectAccessor;
 use TheCure\Container;
-use TheCure\Relationships\Relationship;
-use TheCure\Relationships\Relation;
 
-abstract class Magic extends Model {
+use TheCure\Lists\AttributeList;
+
+use TheCure\Attributes\Field;
+
+use TheCure\TransferObjects\TransferObject;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
+use TheCure\Relationships\Relationship;
+use TheCure\Relationships\Relations;
+
+abstract class MagicModel extends Model {
 
 	/**
 	 * Attributes for this Model.
 	 * 
 	 * @return  Attributes
-	 */
+ */
 	public static function attributes()
 	{
-		return new Attributes;
+		return new AttributeList;
 	}
 
 	protected $__container;
@@ -56,7 +61,7 @@ abstract class Magic extends Model {
 	 * @param   string     method called
 	 * @return  Attribute
 	 */
-	private function attribute(Attributes $attributes, $method)
+	private function attribute(AttributeList $attributes, $method)
 	{
 		return $attributes->get($method);
 	}
@@ -69,7 +74,7 @@ abstract class Magic extends Model {
 	 * @param   array|null  $args
 	 * @return  array
 	 */
-	private function relationship(Attributes $attributes, $method, array $args)
+	private function relationship(AttributeList $attributes, $method, array $args)
 	{
 		if ($relationship = $this->attribute($attributes, $method))
 		{
@@ -94,7 +99,7 @@ abstract class Magic extends Model {
 		$arg = current($args);
 
 		$interface = ucfirst($verb);
-		$interface = "TheCure\\Relation\\{$interface}";
+		$interface = "TheCure\\Relations\\{$interface}Relation";
 
 		if (interface_exists($interface)
 			AND $relationship instanceOf $interface)
@@ -116,7 +121,7 @@ abstract class Magic extends Model {
 	public function __call($method, $args)
 	{
 		$attributes = static::attributes();
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($this);
 		$relationship = $this->relationship($attributes, $method, $args);
 
