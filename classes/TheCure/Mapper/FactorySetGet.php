@@ -9,7 +9,7 @@
  */
 namespace TheCure\Mapper;
 
-use TheCure\Factory;
+use TheCure\Factories\Factory;
 
 interface FactorySetGet {
 	

@@ -17,7 +17,7 @@
  */
 namespace TheCure\Relationships;
 
-use TheCure\Attribute\Attribute;
+use TheCure\Attributes\Attribute;
 use TheCure\Container;
 
 abstract class Relationship extends Attribute {

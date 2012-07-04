@@ -7,9 +7,11 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure;
+namespace TheCure\Maps;
 
 use TheCure\Models\Model;
+
+use TheCure\Accessors\TransferObjectAccessor;
 
 /**
  * Describe the identities handled in a session
@@ -44,7 +46,7 @@ class IdentityMap {
 	 */
 	protected function extractIdentity(Model $model)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
 		return $this->extractIdentityFromObject($object);
 	}

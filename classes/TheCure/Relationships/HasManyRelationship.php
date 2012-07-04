@@ -11,11 +11,19 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
-use TheCure\ObjectAccessor;
-use TheCure\Relation;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
+use TheCure\Exceptions;
+
+use TheCure\Relations\AddRelation;
+use TheCure\Relations\RemoveRelation;
+use TheCure\Relations\ContainsRelation;
+
 use TheCure\Models\Model;
 
-class HasManyRelationship extends HasRelationship implements Relation\Add, Relation\Remove, Relation\Contains {
+class HasManyRelationship extends HasRelationship
+	implements AddRelation, RemoveRelation, ContainsRelation {
 
 	protected function where($object)
 	{
@@ -33,7 +41,7 @@ class HasManyRelationship extends HasRelationship implements Relation\Add, Relat
 	 */
 	public function find(Container $container, Model $model)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
 		return $this->mapper($container)->find(
@@ -54,7 +62,7 @@ class HasManyRelationship extends HasRelationship implements Relation\Add, Relat
 		Model $model,
 		Model $relation)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		
 		$object = $accessor->get($model);
 		$relations = $object->{$this->name()};
@@ -77,7 +85,7 @@ class HasManyRelationship extends HasRelationship implements Relation\Add, Relat
 	 */
 	public function add(Container $container, Model $model, Model $relation)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$relation_object = $accessor->get($relation);
 
 		if ( ! isset($relation_object->_id))
@@ -111,7 +119,7 @@ class HasManyRelationship extends HasRelationship implements Relation\Add, Relat
 	 */
 	public function remove(Container $container, Model $model, Model $relation)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$modelObject = $accessor->get($model);
 
 		if (isset($modelObject->{$this->name()}))
@@ -129,10 +137,10 @@ class HasManyRelationship extends HasRelationship implements Relation\Add, Relat
 				}
 			}
 			
-			throw new Relation\NotFoundException;
+			throw new Exceptions\NotFoundException;
 		}
 
-		throw new Relation\FieldNotFoundException;
+		throw new Exceptions\FieldNotFoundException;
 	}
 
 }

@@ -25,9 +25,9 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure;
+namespace TheCure\Attributes;
 
-use TheCure\Attribute\Attribute;
+use TheCure\Attributes\Attribute;
 
 class Field extends Attribute {
 

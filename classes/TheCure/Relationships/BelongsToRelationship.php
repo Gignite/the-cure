@@ -11,9 +11,10 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
-use TheCure\Relation;
+use TheCure\Relations\FindRelation;
 
-abstract class BelongsToRelationship extends Relationship implements Relation\Find {
+abstract class BelongsToRelationship extends Relationship
+	implements FindRelation {
 
 	protected $foreign;
 

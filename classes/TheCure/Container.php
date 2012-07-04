@@ -18,8 +18,9 @@
  */
 namespace TheCure;
 
-use TheCure\IdentityMap;
-use TheCure\Factory;
+use TheCure\Maps\IdentityMap;
+
+use TheCure\Factories\Factory;
 
 use TheCure\Mapper\ConnectionSetGet;
 use TheCure\Mapper\ContainerSetGet;

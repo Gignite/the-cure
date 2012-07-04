@@ -14,18 +14,18 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure;
+namespace TheCure\Lists;
 
-use TheCure\Attribute\Attribute;
-use TheCure\Attribute\AliasUsedException;
-use TheCure\Attribute\AliasUnusedException;
+use TheCure\Attributes\Attribute;
+use TheCure\Exceptions\AliasUsedException;
+use TheCure\Exceptions\AliasUnusedException;
 
-class Attributes implements \ArrayAccess {
+class AttributeList implements \ArrayAccess {
 
 	protected $attributes = array();
 
 	/**
-	 * Create a new Attribute.
+	 * Create a new AttributeList.
 	 *
 	 * @param   Attribute
 	 * @return  void

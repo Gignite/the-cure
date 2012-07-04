@@ -11,8 +11,9 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
-use TheCure\ObjectAccessor;
-use TheCure\Relation;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
 use TheCure\Models\Model;
 
 class BelongsToOneRelationship extends BelongsToRelationship {
@@ -26,7 +27,7 @@ class BelongsToOneRelationship extends BelongsToRelationship {
 	 */
 	public function find(Container $container, Model $model)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
 		return $this->mapper($container)->findOne($where, $this->modelSuffix());

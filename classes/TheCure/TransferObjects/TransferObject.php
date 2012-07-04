@@ -27,13 +27,13 @@
  *     echo $object->age; // => ''
  *
  * @package     TheCure
- * @category    Object
+ * @category    TransferObject
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure;
+namespace TheCure\TransferObjects;
 
-class Object {
+class TransferObject {
 
 	protected $data;
 	

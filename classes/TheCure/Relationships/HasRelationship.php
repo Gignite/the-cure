@@ -11,6 +11,6 @@
 namespace TheCure\Relationships;
 
 use TheCure\Container;
-use TheCure\Relation;
+use TheCure\Relations\FindRelation;
 
-abstract class HasRelationship extends Relationship implements Relation\Find {}
+abstract class HasRelationship extends Relationship implements FindRelation {}

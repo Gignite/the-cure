@@ -29,12 +29,19 @@
  */
 namespace TheCure\Relationships;
 
+use TheCure\Exceptions;
+
 use TheCure\Container;
-use TheCure\ObjectAccessor;
-use TheCure\Relation;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
+use TheCure\Relations\SetRelation;
+use TheCure\Relations\DeleteRelation;
+
 use TheCure\Models\Model;
 
-class HasOneRelationship extends HasRelationship implements Relation\Set, Relation\Delete {
+class HasOneRelationship extends HasRelationship
+	implements SetRelation, DeleteRelation {
 
 	protected function where($object)
 	{
@@ -50,7 +57,7 @@ class HasOneRelationship extends HasRelationship implements Relation\Set, Relati
 	 */
 	public function find(Container $container, Model $model)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
 		return $this->mapper($container)->findOne(
 			$this->where($object),
@@ -67,7 +74,7 @@ class HasOneRelationship extends HasRelationship implements Relation\Set, Relati
 	 */
 	public function set(Container $container, Model $model, Model $relation)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$relation_object = $accessor->get($relation);
 
 		if ( ! isset($accessor->get($relation)->_id))
@@ -89,7 +96,7 @@ class HasOneRelationship extends HasRelationship implements Relation\Set, Relati
 	 */
 	public function delete(Container $container, Model $model)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$modelObject = $accessor->get($model);
 
 		if (isset($modelObject->{$this->name()}))
@@ -98,7 +105,7 @@ class HasOneRelationship extends HasRelationship implements Relation\Set, Relati
 			return;
 		}
 
-		throw new Relation\FieldNotFoundException;
+		throw new Exceptions\FieldNotFoundException;
 	}
 
 }

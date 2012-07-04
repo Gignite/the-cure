@@ -13,19 +13,22 @@
  *     $accessor->set($model, array(...));
  *
  * @package     TheCure
- * @category    ObjectAccessor
+ * @category    Accessor
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure;
+namespace TheCure\Accessors;
 
 use TheCure\Models\Model;
-use TheCure\Object;
-use TheCure\Field;
 
-class ObjectAccessor {
+use TheCure\TransferObjects\TransferObject;
 
-	protected function setObject(Model $model, Object $object)
+use TheCure\Attributes\Attribute;
+use TheCure\Attributes\Field;
+
+class TransferObjectAccessor {
+
+	protected function setObject(Model $model, TransferObject $object)
 	{
 		$model->__object($object);
 	}
@@ -36,7 +39,7 @@ class ObjectAccessor {
 
 		if ( ! $object)
 		{
-			$object = new Object;
+			$object = new TransferObject;
 			$this->setObject($model, $object);
 		}
 
@@ -47,7 +50,7 @@ class ObjectAccessor {
 	{
 		if (is_array($object))
 		{
-			$object = new Object($object);
+			$object = new TransferObject($object);
 		}
 
 		$this->setObject($model, $object);

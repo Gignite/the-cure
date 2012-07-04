@@ -12,11 +12,16 @@
  */
 namespace TheCure\Mappers;
 
-use TheCure\Object;
+use TheCure\TransferObjects\TransferObject;
+
 use TheCure\Connections\Connection;
+
 use TheCure\Mapper\ConnectionSetGet;
+
 use TheCure\Mappers\Mapper;
+
 use TheCure\Models\Model;
+
 use MongoID;
 
 abstract class MongoMapper extends Mapper implements ConnectionSetGet {
@@ -130,7 +135,7 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 			{
 				if ($row = $collection->findOne($where))
 				{
-					return new Object($row);
+					return new TransferObject($row);
 				}
 			});
 	}
@@ -163,7 +168,7 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 					$collection->insert($array, $options);
 				}
 
-				return new Object($array);
+				return new TransferObject($array);
 			});
 	}
 

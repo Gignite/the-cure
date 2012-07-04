@@ -9,7 +9,7 @@
  */
 namespace TheCure\Mapper;
 
-use TheCure\IdentityMap;
+use TheCure\Maps\IdentityMap;
 
 interface IdentitiesSetGet {
 	

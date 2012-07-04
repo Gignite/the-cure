@@ -27,7 +27,7 @@
  */
 namespace TheCure\Models;
 
-use TheCure\Object;
+use TheCure\TransferObjects\TransferObject;
 
 abstract class Model {
 
@@ -36,10 +36,10 @@ abstract class Model {
 	/**
 	 * Get/set the data transfer object.
 	 *
-	 * @param  Object $object If setting pass in an Object
-	 * @return Object If getting
+	 * @param  TransferObject $object If setting pass in an TransferObject
+	 * @return TransferObject If getting
 	 */
-	public function __object(Object $object = NULL)
+	public function __object(TransferObject $object = NULL)
 	{
 		if ($object === NULL)
 		{

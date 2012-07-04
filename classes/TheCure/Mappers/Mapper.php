@@ -12,9 +12,9 @@
  */
 namespace TheCure\Mappers;
 
-use TheCure\Factory;
-use TheCure\IdentityMap;
-use TheCure\ObjectAccessor;
+use TheCure\Factories\Factory;
+use TheCure\Maps\IdentityMap;
+use TheCure\Accessors\TransferObjectAccessor;
 
 use TheCure\Container;
 
@@ -25,10 +25,10 @@ use TheCure\Mapper\IdentitiesSetGet;
 use TheCure\Mapper\ConfigSetGet;
 
 use TheCure\Models\Model;
-use TheCure\Models\Magic as MagicModel;
+use TheCure\Models\MagicModel;
 
 use TheCure\Collections\Collection;
-use TheCure\Collections\Model as ModelCollection;
+use TheCure\Collections\ModelCollection;
 
 abstract class Mapper
 	implements MapperActions, FactorySetGet, IdentitiesSetGet,
@@ -166,6 +166,7 @@ abstract class Mapper
 
 		$factory = $this->factory();
 		$mapper = $this;
+
 		$class_factory = function ($object) use ($factory, $mapper, $suffix)
 		{
 			if (is_callable($suffix))
@@ -238,7 +239,7 @@ abstract class Mapper
 
 			if ($object)
 			{
-				$accessor = new ObjectAccessor;
+				$accessor = new TransferObjectAccessor;
 				$accessor->set($model, $object);
 			}
 
@@ -254,7 +255,7 @@ abstract class Mapper
 	 */
 	protected function saveModel(Model $model, $callback)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
 		$object = call_user_func($callback, $object);
 		$accessor->set($model, $object);
@@ -280,7 +281,7 @@ abstract class Mapper
 	{
 		if ($model instanceOf Model)
 		{
-			$accessor = new ObjectAccessor;
+			$accessor = new TransferObjectAccessor;
 			$id = $accessor->get($model)->_id;
 			$remove = array('_id' => $id);
 		}

@@ -14,11 +14,15 @@
  */
 namespace TheCure\Collections;
 
-use TheCure\IdentityMap;
-use TheCure\Object;
-use TheCure\ObjectAccessor;
-use TheCure\Models\Magic as MagicModel;
 use TheCure\Container;
+
+use TheCure\Maps\IdentityMap;
+
+use TheCure\TransferObjects\TransferObject;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
+use TheCure\Models\MagicModel;
 
 class ModelCollection extends IterableCollection {
 
@@ -88,9 +92,9 @@ class ModelCollection extends IterableCollection {
 		$classFactory = $this->classFactory();
 		$identities = $this->identities();
 
-		if ( ! $object instanceOf Object)
+		if ( ! $object instanceOf TransferObject)
 		{
-			$object = new Object($object);
+			$object = new TransferObject($object);
 		}
 
 		$class = $classFactory($object);
@@ -102,7 +106,7 @@ class ModelCollection extends IterableCollection {
 		else
 		{
 			$model = new $class;
-			$accessor = new ObjectAccessor;
+			$accessor = new TransferObjectAccessor;
 			$accessor->set($model, $object);
 
 			if ($model instanceOf MagicModel

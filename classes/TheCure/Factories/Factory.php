@@ -22,7 +22,7 @@
  * @copyright   Gignite, 2012
  * @license     MIT
  */
-namespace TheCure;
+namespace TheCure\Factories;
 
 use TheCure\Mappers\Mapper;
 

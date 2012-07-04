@@ -94,7 +94,7 @@ abstract class MockMapper extends Mapper {
 			{
 				$found = array();
 
-				Mock::eachWhere(
+				MockMapper::eachWhere(
 					$collection,
 					$where,
 					function ($record) use ($collection, & $found)
@@ -127,7 +127,7 @@ abstract class MockMapper extends Mapper {
 				elseif ($where)
 				{
 					$found = NULL;
-					Mock::eachWhere(
+					MockMapper::eachWhere(
 						$collection,
 						$where,
 						function ($record) use ($collection, & $found)
