@@ -29,8 +29,12 @@ class ModelCollection extends IterableCollection {
 	protected $identities;
 
 	protected $classFactory;
+	
+	protected $identitiesNamespace;
 
 	protected $container;
+
+	protected $mapper;
 
 	/**
 	 * @param $collection
@@ -40,11 +44,13 @@ class ModelCollection extends IterableCollection {
 	public function __construct(
 		$collection,
 		IdentityMap $identities,
-		$classFactory)
+		$classFactory,
+		$identitiesNamespace)
 	{
 		parent::__construct($collection);
 		$this->identities = $identities;
 		$this->classFactory = $classFactory;
+		$this->identitiesNamespace = $identitiesNamespace;
 	}
 
 	/**
@@ -79,6 +85,11 @@ class ModelCollection extends IterableCollection {
 		return $this->classFactory;
 	}
 
+	protected function identitiesNamespace()
+	{
+		return $this->identitiesNamespace;
+	}
+
 	/**
 	 * @return Model|mixed
 	 */
@@ -97,14 +108,11 @@ class ModelCollection extends IterableCollection {
 			$object = new TransferObject($object);
 		}
 
-		$class = $classFactory($object);
+		$model = $identities->get($this->identitiesNamespace(), $this->key());
 
-		if ($model = $identities->get($class, $this->key()))
+		if ( ! $model)
 		{
-			// Done
-		}
-		else
-		{
+			$class = $classFactory($object);
 			$model = new $class;
 			$accessor = new TransferObjectAccessor;
 			$accessor->set($model, $object);
@@ -115,7 +123,7 @@ class ModelCollection extends IterableCollection {
 				$model->__container($container);
 			}
 
-			$identities->set($model);
+			$identities->set($this->identitiesNamespace(), $model);
 		}
 
 		return $model;
