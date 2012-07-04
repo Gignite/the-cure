@@ -1,6 +1,6 @@
 <?php
 namespace TheCure\Mappers\Mongo;
 
-use TheCure\Mappers\Mongo as MongoMapper;
+use TheCure\Mappers\MongoMapper;
 
-class Account extends MongoMapper {}
+class AccountMapper extends MongoMapper {}

@@ -1,6 +1,6 @@
 <?php
 namespace TheCure\Mappers\Mock;
 
-use TheCure\Mappers\Mock as MockMapper;
+use TheCure\Mappers\MockMapper;
 
-class User extends MockMapper {}
+class UserMapper extends MockMapper {}

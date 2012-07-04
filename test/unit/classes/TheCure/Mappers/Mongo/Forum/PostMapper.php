@@ -1,6 +1,6 @@
 <?php
 namespace TheCure\Mappers\Mongo\Forum;
 
-use TheCure\Mappers\Mongo as MongoMapper;
+use TheCure\Mappers\MongoMapper;
 
-class Post extends MongoMapper {}
+class PostMapper extends MongoMapper {}

@@ -14,12 +14,17 @@ namespace TheCure\Specs;
  * @group  models
  * @group  models.magic
  */
-use TheCure\Object;
-use TheCure\ObjectAccessor;
+use TheCure\TransferObjects\TransferObject;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
 use TheCure\Models;
+
 use TheCure\Relationships;
+
 use TheCure\Container;
-use TheCure\Field;
+
+use TheCure\Attributes\Field;
 
 class ModelMagic extends \PHPUnit_Framework_TestCase {
 
@@ -30,7 +35,7 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 		if ($this->container === NULL)
 		{
 			$container = new Container('Mock');
-			$accessor = new ObjectAccessor;
+			$accessor = new TransferObjectAccessor;
 
 			$jim = $container->mapper('User')->model('Magic');
 			$accessor->set($jim, array('name' => 'Jim'));
@@ -129,7 +134,7 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testMagicCallRelationship($model, $method, $expected, $args)
 	{
-		$mock = new Relationships\Mock('relation');
+		$mock = new Relationships\MockRelationship('relation');
 
 		Models\MockableAttribute::$attribute = function () use ($mock)
 		{
@@ -163,7 +168,7 @@ class ModelMagic extends \PHPUnit_Framework_TestCase {
 	public function testItShouldUseAccessorMethodName($name, $alias, $value)
 	{
 		$model = new Models\User\Magic;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array($name => $value));
 		$this->assertSame($value, $model->{$alias}());
 	}

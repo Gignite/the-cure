@@ -14,8 +14,8 @@ namespace TheCure\Specs;
  * @group  mappers
  * @group  mappers.mapper
  */
-use TheCure\Object;
-use TheCure\ObjectAccessor;
+use TheCure\TransferObjects\TransferObject;
+use TheCure\Accessors\TransferObjectAccessor;
 use TheCure\Models;
 
 abstract class MapperTest extends \PHPUnit_Framework_TestCase {
@@ -86,7 +86,7 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	public function providerTestSave()
 	{
 		$model = new Models\User;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array('name' => 'Luke'));
 
 		return array(
@@ -101,7 +101,7 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	{
 		static::mapper()->save($model);
 
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get(static::mapper()->find()->current());
 
 		$this->assertTrue(isset($object->_id));
@@ -123,7 +123,7 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$expectedCount = $mapper->find()->count();
 
 		$model = new Models\User;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array('name' => 'Luke'));
 
 		$mapper->save($model);
@@ -142,12 +142,12 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$query = array('name' => 'Bob');
 		$bobObject = function ()
 		{
-			return new Object(array('name' => 'Bob'));
+			return new TransferObject(array('name' => 'Bob'));
 		};
 
 		$expectedCount = $mapper->find($query)->count();
 
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 
 		// Create two users
 		$model = new Models\User;
@@ -173,12 +173,12 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$query = array('name' => 'Jim');
 		$bobObject = function ()
 		{
-			return new Object(array('name' => 'Jim'));
+			return new TransferObject(array('name' => 'Jim'));
 		};
 
 		$expectedCount = $mapper->find($query)->count();
 		
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 
 		// Create two users
 		$model = new Models\User;

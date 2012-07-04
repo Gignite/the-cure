@@ -14,9 +14,9 @@ namespace TheCure\Specs;
  * @group  collections
  * @group  collections.model
  */
-use TheCure\IdentityMap;
-use TheCure\Object;
-use TheCure\Collections\Model as ModelCollection;
+use TheCure\Maps\IdentityMap;
+use TheCure\TransferObjects\TransferObject;
+use TheCure\Collections\ModelCollection;
 
 class CollectionModelTest extends CollectionTest {
 
@@ -24,8 +24,8 @@ class CollectionModelTest extends CollectionTest {
 	{
 		return new ModelCollection(
 			new \ArrayIterator(array(
-				new Object(array('_id' => 0)),
-				new Object(array('_id' => 1)),
+				new TransferObject(array('_id' => 0)),
+				new TransferObject(array('_id' => 1)),
 			)),
 			$this->map = new IdentityMap,
 			function ()

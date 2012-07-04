@@ -1,6 +1,6 @@
 <?php
 namespace TheCure\Mappers\Mongo\Forum;
 
-use TheCure\Mappers\Mongo as MongoMapper;
+use TheCure\Mappers\MongoMapper;
 
-class Thread extends MongoMapper {}
+class ThreadMapper extends MongoMapper {}

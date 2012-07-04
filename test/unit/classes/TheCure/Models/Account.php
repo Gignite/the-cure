@@ -1,19 +1,21 @@
 <?php
 namespace TheCure\Models;
 
-use TheCure\Attributes;
-use TheCure\Field;
-use TheCure\Models\Magic as MagicModel;
+use TheCure\Lists\AttributeList;
 
-use TheCure\Relationships\HasOne;
+use TheCure\Attributes\Field;
+
+use TheCure\Models\MagicModel;
+
+use TheCure\Relationships\HasOneRelationship;
 
 class Account extends MagicModel {
 	
 	public static function attributes()
 	{
-		return new Attributes(
+		return new AttributeList(
 			new Field('email'),
-			new HasOne('password', array(
+			new HasOneRelationship('password', array(
 				'mapperSuffix' => 'Password',
 			)));
 	}

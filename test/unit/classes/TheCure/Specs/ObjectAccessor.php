@@ -14,8 +14,8 @@ namespace TheCure\Specs;
  * @group  specs
  * @group  objectaccessor
  */
-use TheCure\ObjectAccessor;
-use TheCure\Object;
+use TheCure\Accessors\TransferObjectAccessor;
+use TheCure\TransferObjects\TransferObject;
 use TheCure\Models\User\Magic as User;
 
 class ObjectAccessorTest extends \PHPUnit_Framework_TestCase {
@@ -23,27 +23,31 @@ class ObjectAccessorTest extends \PHPUnit_Framework_TestCase {
 	public function testItShouldSetObject()
 	{
 		$model = new User;
-		$accessor = new ObjectAccessor;
-		$accessor->set($model, new Object(array('name' => 'Luke')));
+		$accessor = new TransferObjectAccessor;
+		$accessor->set($model, new TransferObject(array('name' => 'Luke')));
 		$this->assertSame('Luke', $model->name());
 	}
 
 	public function testItShouldGetObject()
 	{
 		$model = new User;
-		$model->__object(new Object(array('name' => 'Luke')));
-		$accessor = new ObjectAccessor;
+		$model->__object(new TransferObject(array('name' => 'Luke')));
+		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
-		$this->assertInstanceOf('TheCure\Object', $object);
+		$this->assertInstanceOf(
+			'TheCure\TransferObjects\TransferObject',
+			$object);
 		$this->assertSame('Luke', $object->name);
 	}
 
 	public function testItShouldConvertArrayToObjectWhenSetting()
 	{
 		$model = new User;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array('name' => 'Luke'));
-		$this->assertInstanceOf('TheCure\Object', $model->__object());
+		$this->assertInstanceOf(
+			'TheCure\TransferObjects\TransferObject',
+			$model->__object());
 	}
 
 }

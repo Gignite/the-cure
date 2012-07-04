@@ -14,11 +14,15 @@ namespace TheCure\Specs;
  * @group  relationships
  * @group  relationships.hasmany
  */
-use TheCure\Object;
-use TheCure\ObjectAccessor;
+use TheCure\TransferObjects\TransferObjects;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
 use TheCure\Models;
+
 use TheCure\Container;
-use TheCure\Relationships\HasMany;
+
+use TheCure\Relationships\HasManyRelationship;
 
 class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 
@@ -28,7 +32,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 			'mapperSuffix' => 'User',
 			'modelSuffix' => 'Admin',
 		);
-		return new HasMany('friends', $config);
+		return new HasManyRelationship('friends', $config);
 	}
 
 	protected function container()
@@ -40,7 +44,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$model = new Models\User\Admin;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array('friends' => array(0, 1)));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
@@ -52,7 +56,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	protected function relation()
 	{
 		$relation = new Models\User\Admin;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($relation, array('name' => 'Luke'));
 		return $relation;
 	}
@@ -64,7 +68,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 		$model = new Models\User\Admin;
 
 		$relation = $this->relation();
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$relationObject = $accessor->get($relation);
 		$anotherRelation = $this->relation();
 
@@ -102,7 +106,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	{
 		list($container, $model, $relation) = $args;
 
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$modelObject = $accessor->get($model);
 		$relationshipName = $this->relationship()->name();
 		$this->assertSame(2, count($modelObject->{$relationshipName}));
@@ -120,7 +124,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 		$relationship = $this->relationship();
 		$relationship->remove($container, $model, $relation);
 
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$modelObject = $accessor->get($model);
 		$this->assertSame(1, count($modelObject->{$relationship->name()}));
 
@@ -143,7 +147,7 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  TheCure\Relation\FieldNotFoundException
+	 * @expectedException  TheCure\Exceptions\FieldNotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelationArrayNotExists()
 	{
@@ -154,14 +158,14 @@ class RelationshipHasMany extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @expectedException  TheCure\Relation\NotFoundException
+	 * @expectedException  TheCure\Exceptions\NotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelatedObjectIDNotInArray()
 	{
 		$relationship = $this->relationship();
 
 		$model = new Models\User\Admin;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array(
 			$relationship->name() => array(),
 		));

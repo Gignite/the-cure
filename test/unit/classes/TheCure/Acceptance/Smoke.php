@@ -15,7 +15,7 @@ namespace TheCure\Acceptance;
  * @group  mappers.mongo
  */
 use TheCure\Container;
-use TheCure\Object;
+use TheCure\TransferObjects\TransferObject;
 
 class Smoke extends Acceptance {
 
@@ -38,7 +38,7 @@ class Smoke extends Acceptance {
 		$user->removeFriends($bob);
 		$this->assertSame(0, $user->friends()->count());
 
-		$object = new Object($expectedArray = array(
+		$object = new TransferObject($expectedArray = array(
 			'name' => 'Jim',
 			'age'  => 26,
 		));

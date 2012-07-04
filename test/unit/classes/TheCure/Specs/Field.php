@@ -15,7 +15,7 @@ namespace TheCure\Specs;
  * @group  attribute
  * @group  field
  */
-use TheCure\Field;
+use TheCure\Attributes\Field;
 
 class FieldTest extends \PHPUnit_Framework_TestCase {
 

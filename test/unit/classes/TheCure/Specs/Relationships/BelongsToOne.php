@@ -14,11 +14,15 @@ namespace TheCure\Specs;
  * @group  relationships
  * @group  relationships.belongstoone
  */
-use TheCure\Object;
-use TheCure\ObjectAccessor;
-use TheCure\Models;
 use TheCure\Container;
-use TheCure\Relationships\BelongsToOne;
+
+use TheCure\TransferObjects\TransferObject;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
+use TheCure\Models;
+
+use TheCure\Relationships\BelongsToOneRelationship;
 
 class RelationshipBelongsToOne extends \PHPUnit_Framework_TestCase {
 
@@ -29,7 +33,7 @@ class RelationshipBelongsToOne extends \PHPUnit_Framework_TestCase {
 			'modelSuffix'  => 'Admin',
 			'foreign'       => 'best_friend',
 		);
-		return new BelongsToOne('best_friender', $config);
+		return new BelongsToOneRelationship('best_friender', $config);
 	}
 
 	protected function container()
@@ -41,7 +45,7 @@ class RelationshipBelongsToOne extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$model = new Models\User\Admin;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array('best_friend' => 0));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);

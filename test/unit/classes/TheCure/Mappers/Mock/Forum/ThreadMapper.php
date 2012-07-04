@@ -1,6 +1,6 @@
 <?php
 namespace TheCure\Mappers\Mock\Forum;
 
-use TheCure\Mappers\Mock as MockMapper;
+use TheCure\Mappers\MockMapper;
 
-class Thread extends MockMapper {}
+class ThreadMapper extends MockMapper {}

@@ -18,7 +18,7 @@ namespace TheCure\Specs;
  */
 
 use TheCure\Models;
-use TheCure\ObjectAccessor;
+use TheCure\Accessors\TransferObjectAccessor;
 
 class ModelBankAccount extends \PHPUnit_Framework_TestCase {
 
@@ -36,7 +36,7 @@ class ModelBankAccount extends \PHPUnit_Framework_TestCase {
 		$lukesAccount,
 		$bobsAccount)
 	{
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->get($lukesAccount)->balance = 100;
 		$accessor->get($bobsAccount)->balance = 0;
 

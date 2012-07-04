@@ -13,14 +13,15 @@ namespace TheCure\Specs;
  * @group  specs
  * @group  attributes
  */
-use TheCure\Attributes;
-use TheCure\Field;
+use TheCure\Lists\AttributeList;
+
+use TheCure\Attributes\Field;
 
 class AttributesTest extends \PHPUnit_Framework_TestCase {
 
 	public function testItShouldAddAttributesViaConstruct()
 	{
-		$attributes = new Attributes(
+		$attributes = new AttributeList(
 			$name = new Field('name'),
 			$age = new Field('age'));
 		$this->assertSame(
@@ -85,7 +86,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @depends  testItShouldRemoveAttribute
-	 * @expectedException  TheCure\Attribute\AliasUsedException
+	 * @expectedException  TheCure\Exceptions\AliasUsedException
 	 */
 	public function testItShouldThrowExceptionWhenAddingUsedAlias($attributes)
 	{
@@ -94,7 +95,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @depends  testItShouldRemoveAttribute
-	 * @expectedException  TheCure\Attribute\AliasUnusedException
+	 * @expectedException  TheCure\Exceptions\AliasUnusedException
 	 */
 	public function testItShouldThrowExceptionWhenReplacingUnusedAlias($attributes)
 	{

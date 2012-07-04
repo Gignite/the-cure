@@ -1,6 +1,6 @@
 <?php
 namespace TheCure\Mappers\Mongo;
 
-use TheCure\Mappers\Mongo as MongoMapper;
+use TheCure\Mappers\MongoMapper;
 
-class Password extends MongoMapper {}
+class PasswordMapper extends MongoMapper {}

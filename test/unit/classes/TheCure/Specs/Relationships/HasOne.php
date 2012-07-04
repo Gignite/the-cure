@@ -14,11 +14,15 @@ namespace TheCure\Specs;
  * @group  relationships
  * @group  relationships.hasone
  */
-use TheCure\Object;
-use TheCure\ObjectAccessor;
+use TheCure\TransferObjects\TransferObject;
+
+use TheCure\Accessors\TransferObjectAccessor;
+
 use TheCure\Models;
+
 use TheCure\Container;
-use TheCure\Relationships\HasOne;
+
+use TheCure\Relationships\HasOneRelationship;
 
 class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 
@@ -28,7 +32,7 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 			'mapperSuffix' => 'User',
 			'modelSuffix' => 'Admin',
 		);
-		return new HasOne('best_friend', $config);
+		return new HasOneRelationship('best_friend', $config);
 	}
 
 	protected function container()
@@ -40,7 +44,7 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 	{
 		$container = $this->container();
 		$model = new Models\User\Admin;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($model, array('best_friend' => 0));
 		$container->mapper('User')->save($model);
 		$collection = $this->relationship()->find($container, $model);
@@ -54,7 +58,7 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 		$model = new Models\User\Admin;
 
 		$relation = new Models\User\Admin;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($relation, array('name' => 'Luke'));
 
 		$this->relationship()->set($container, $model, $relation);
@@ -70,7 +74,7 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 	{
 		list($container, $model, $relation) = $args;
 
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$modelObject = $accessor->get($model);
 		$relationObject = $accessor->get($relation);
 		$relationshipName = $this->relationship()->name();
@@ -92,13 +96,13 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 		$relationship = $this->relationship();
 		$relationship->delete($container, $model);
 
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$modelObject = $accessor->get($model);
 		$this->assertTrue(empty($modelObject->{$relationship->name()}));
 	}
 
 	/**
-	 * @expectedException  TheCure\Relation\FieldNotFoundException
+	 * @expectedException  TheCure\Exceptions\FieldNotFoundException
 	 */
 	public function testItShouldThrowExceptionWhenRelationFieldNotExists()
 	{

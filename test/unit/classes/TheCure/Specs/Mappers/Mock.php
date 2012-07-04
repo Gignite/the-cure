@@ -14,10 +14,13 @@ namespace TheCure\Specs;
  * @group  mappers
  * @group  mappers.mock
  */
-use TheCure\Factory;
-use TheCure\IdentityMap;
-use TheCure\Object;
-use TheCure\Mappers\Mock\User as MockUserMapper;
+use TheCure\Factories\Factory;
+
+use TheCure\Maps\IdentityMap;
+
+use TheCure\TransferObjects\TransferObject;
+
+use TheCure\Mappers\Mock\UserMapper as MockUserMapper;
 
 class MapperMockTest extends MapperTest {
 
@@ -40,7 +43,7 @@ class MapperMockTest extends MapperTest {
 	protected static function prepareData()
 	{
 		$mapper = static::mapper();
-		$mapper->data[] = $data = new Object(array(
+		$mapper->data[] = $data = new TransferObject(array(
 			'_id'  => 0,
 			'name' => 'Luke',
 		));

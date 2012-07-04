@@ -1,19 +1,21 @@
 <?php
 namespace TheCure\Models;
 
-use TheCure\Attributes;
-use TheCure\Field;
-use TheCure\Models\Magic as MagicModel;
+use TheCure\Lists\AttributeList;
 
-use TheCure\Relationships\BelongsToOne;
+use TheCure\Attributes\Field;
+
+use TheCure\Models\MagicModel;
+
+use TheCure\Relationships\BelongsToOneRelationship;
 
 class Password extends MagicModel {
 	
 	public static function attributes()
 	{
-		return new Attributes(
+		return new AttributeList(
 			new Field('password'),
-			new BelongsToOne('account', array(
+			new BelongsToOneRelationship('account', array(
 				'mapperSuffix' => 'Account',
 				'foreign'       => 'password',
 			)));

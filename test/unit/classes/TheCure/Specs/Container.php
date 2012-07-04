@@ -21,15 +21,15 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 	{
 		$container = new Container('Mock');
 		$this->assertInstanceOf(
-			'TheCure\Mappers\Mock\User',
+			'TheCure\Mappers\Mock\UserMapper',
 			$container->mapper('User'));
 	}
 
 	public function testMapperConnection()
 	{
-		$container = new Container('ConnectionTest');
+		$container = new Container('Test');
 		$this->assertInstanceOf(
-			'TheCure\Mappers\ConnectionTest\User',
+			'TheCure\Mappers\Test\UserMapper',
 			$container->mapper('User'));
 	}
 
@@ -43,25 +43,29 @@ class ContainerTest extends \PHPUnit_Framework_TestCase {
 
 	public function testItShouldUseFactoryIfNoMapperConfigFound()
 	{
-		$container = new Container('ConnectionTest');
+		$container = new Container('Test');
 		$container->config(array(
 			'factory' => array(
 				'prefixes' => array(
-					'connection' => 'TheCure\Connections',
-					'mapper'     => 'TheCure\Mappers',
+					'connection' => 'TheCure\Connections\\',
+					'mapper'     => 'TheCure\Mappers\\',
+				),
+				'suffixes' => array(
+					'connection' => 'Connection',
+					'mapper'     => 'Mapper',
 				),
 				'separator' => '\\',
 			),
 		));
 		$mapper = $container->mapper('User');
-		$this->assertInstanceOf('TheCure\Mappers\ConnectionTest\User', $mapper);
+		$this->assertInstanceOf('TheCure\Mappers\Test\UserMapper', $mapper);
 	}
 
 	public function testItShouldLoadDefaultConfigIfNoKohanaAndNoConfigSet()
 	{
 		$config = \Kohana::$config;
 		\Kohana::$config = NULL;
-		$container = new Container('ConnectionTest');
+		$container = new Container('Test');
 		$this->assertSame(
 			require(APPPATH.'/../../config/the-cure.php'),
 			$container->config());

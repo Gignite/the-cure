@@ -13,9 +13,9 @@ namespace TheCure\Specs;
  * @group  specs
  * @group  identitymap
  */
-use TheCure\IdentityMap;
-use TheCure\Object;
-use TheCure\ObjectAccessor;
+use TheCure\Maps\IdentityMap;
+use TheCure\TransferObjects\TransferObject;
+use TheCure\Accessors\TransferObjectAccessor;
 use TheCure\Models\User;
 
 class IdentityMapTest extends \PHPUnit_Framework_TestCase {
@@ -25,7 +25,7 @@ class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->domain = new User;
-		$accessor = new ObjectAccessor;
+		$accessor = new TransferObjectAccessor;
 		$accessor->set($this->domain, array('_id' => 2));
 	}
 

@@ -1,8 +1,8 @@
 <?php
 namespace TheCure\Models;
 
-use TheCure\Attributes;
-use TheCure\Models\Magic as MagicModel;
+use TheCure\Lists\AttributeList;
+use TheCure\Models\MagicModel;
 use TheCure\Container;
 
 class MockableAttribute extends MagicModel {
@@ -11,7 +11,7 @@ class MockableAttribute extends MagicModel {
 
 	public static function attributes()
 	{
-		return new Attributes(call_user_func(static::$attribute));
+		return new AttributeList(call_user_func(static::$attribute));
 	}
 
 	public function __container(Container $container = NULL)

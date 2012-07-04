@@ -15,7 +15,7 @@ namespace TheCure\Specs;
  * @group  collections.iterable
  */
 use TheCure\Collections\Collection;
-use TheCure\Collections\Iterable as IterableCollection;
+use TheCure\Collections\IterableCollection;
 
 class CollectionIterableTest extends CollectionTest {
 

@@ -13,7 +13,7 @@ namespace TheCure\Specs;
  * @group  specs
  * @group  object
  */
-use TheCure\Object;
+use TheCure\TransferObjects\TransferObject;
 
 class ObjectTest extends \PHPUnit_Framework_TestCase {
 
@@ -21,46 +21,46 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
 	{
 		$data = array('name' => 'Luke', 'age' => 22);
 		$filter = array('name');
-		$object = new Object($data, $filter);
+		$object = new TransferObject($data, $filter);
 		$expected = array('name' => 'Luke');
 		$this->assertSame($expected, $object->asArray());
 	}
 
 	public function testItShouldReturnNullIfFieldNotSet()
 	{
-		$object = new Object;
+		$object = new TransferObject;
 		$this->assertNull($object->get('unknown'));
 	}
 
 	public function testItShouldGetViaAccessor()
 	{
-		$object = new Object(array('name' => 'Luke'));
+		$object = new TransferObject(array('name' => 'Luke'));
 		$this->assertSame('Luke', $object->accessor('name'));
 	}
 
 	public function testItShouldSetViaAccessor()
 	{
-		$object = new Object(array('name' => 'Luke'));
+		$object = new TransferObject(array('name' => 'Luke'));
 		$object->accessor('name', 'Jake');
 		$this->assertSame('Jake', $object->name);
 	}
 
 	public function testItShouldSetAnArrayOfDataIfGivenAnArray()
 	{
-		$object = new Object;
+		$object = new TransferObject;
 		$object->set($expected = array('name' => 'Bob'));
 		$this->assertSame($expected, $object->asArray());
 	}
 
 	public function testItShouldReturnAnArrayIfGivenAnArrayOfFields()
 	{
-		$object = new Object(array('name' => 'Luke'));
+		$object = new TransferObject(array('name' => 'Luke'));
 		$this->assertSame(array('name' => 'Luke'), $object->get(array('name')));
 	}
 
 	public function testItShouldUnsetField()
 	{
-		$object = new Object(array('name' => 'Luke'));
+		$object = new TransferObject(array('name' => 'Luke'));
 		unset($object->name);
 		$this->assertSame(array(), $object->asArray());
 	}

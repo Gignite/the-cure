@@ -14,11 +14,15 @@ namespace TheCure\Specs;
  * @group  mappers
  * @group  mappers.mongo
  */
-use TheCure\Factory;
-use TheCure\IdentityMap;
-use TheCure\Object;
+use TheCure\Factories\Factory;
+
+use TheCure\Maps\IdentityMap;
+
+use TheCure\TransferObjects\TransferObject;
+
 use TheCure\Mappers;
-use TheCure\Connections\Mongo as MongoConnection;
+
+use TheCure\Connections\MongoConnection;
 
 class MapperMongoTest extends MapperTest {
 
@@ -55,7 +59,7 @@ class MapperMongoTest extends MapperTest {
 			$collection = static::collection(static::db());
 			$data = array('name' => 'Luke');
 			$collection->insert($data);
-			return new Object($data);
+			return new TransferObject($data);
 		}
 	}
 
@@ -63,7 +67,7 @@ class MapperMongoTest extends MapperTest {
 	{
 		if (static::$mapper === NULL)
 		{
-			$mapper = new Mappers\Mongo\User;
+			$mapper = new Mappers\Mongo\UserMapper;
 			$mapper->connection(new MongoConnection(static::config()));
 			$mapper->identities(new IdentityMap);
 			$mapper->factory(

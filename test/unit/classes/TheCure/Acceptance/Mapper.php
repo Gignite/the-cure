@@ -13,7 +13,7 @@ namespace TheCure\Acceptance;
  * @group  mappers
  * @group  mappers.mongo
  */
-use TheCure\IdentityMap;
+use TheCure\Maps\IdentityMap;
 
 class Mapper extends Acceptance {
 
