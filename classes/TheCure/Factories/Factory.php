@@ -134,7 +134,6 @@ class Factory {
 
 		if ($model !== NULL)
 		{
-			$class .= $this->separator();
 			$class .= $model;
 		}
 
