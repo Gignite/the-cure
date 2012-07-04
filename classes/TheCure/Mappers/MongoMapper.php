@@ -72,7 +72,7 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 	 */
 	protected function queryOptions()
 	{
-		return $this->config('query_options', array());
+		return $this->config('queryOptions', array());
 	}
 
 	/**
