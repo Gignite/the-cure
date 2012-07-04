@@ -58,6 +58,15 @@ class Factory {
 	}
 
 	/**
+	 * @param  $type
+	 * @return mixed
+	 */
+	protected function suffix($type)
+	{
+		return $this->config['suffixes'][$type];
+	}
+
+	/**
 	 * @return string
 	 */
 	protected function separator()
@@ -69,11 +78,11 @@ class Factory {
 	 * @param  string $suffix
 	 * @return string
 	 */
-	public function connection($suffix)
+	public function connection($connection)
 	{
 		$class = $this->prefix('connection');
-		$class .= $this->separator();
-		$class .= $suffix;
+		$class .= $connection;
+		$class .= $this->suffix('connection');
 		return $class;
 	}
 	
@@ -84,13 +93,13 @@ class Factory {
 	 * @param   string  mapper suffix
 	 * @return  string  class name
 	 */
-	public function mapper($type, $suffix)
+	public function mapper($type, $mapper)
 	{
 		$class = $this->prefix('mapper');
-		$class .= $this->separator();
 		$class .= $type;
 		$class .= $this->separator();
-		$class .= $suffix;
+		$class .= $mapper;
+		$class .= $this->suffix('mapper');
 		return $class;
 	}
 
@@ -107,7 +116,7 @@ class Factory {
 		$domain = str_replace($this->prefix('mapper'), '', $class);
 		$domain = trim($domain, $this->separator());
 		$domainPos = strpos($domain, $this->separator()) + 1;
-		$domain = substr($domain, $domainPos);
+		$domain = substr($domain, $domainPos, - strlen($this->suffix('mapper')));
 		return $domain;
 	}
 
@@ -118,18 +127,18 @@ class Factory {
 	 * @param  null $suffix
 	 * @return string
 	 */
-	public function model(Mapper $mapper, $suffix = NULL)
+	public function model(Mapper $mapper, $model = NULL)
 	{
 		$class = $this->prefix('model');
-		$class .= $this->separator();
 		$class .= $this->domain($mapper);
 
-		if ($suffix !== NULL)
+		if ($model !== NULL)
 		{
 			$class .= $this->separator();
-			$class .= $suffix;
+			$class .= $model;
 		}
 
+		$class .= $this->suffix('model');
 		return $class;
 	}
 
