@@ -46,7 +46,7 @@ abstract class Relationship extends Attribute {
 	 * @param  Container $container
 	 * @return Mapper
 	 */
-	protected function mapper(Container $container)
+	public function mapper(Container $container)
 	{
 		return $container->mapper($this->mapperSuffix());
 	}
