@@ -39,7 +39,7 @@ class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldNotHaveDomain($map)
 	{
-		$this->assertFalse($map->has($this->domain));
+		$this->assertFalse($map->has('ns', $this->domain));
 	}
 
 	/**
@@ -47,7 +47,7 @@ class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldSetDomain($map)
 	{
-		$map->set($this->domain);
+		$map->set('ns', $this->domain);
 		return $map;
 	}
 
@@ -58,7 +58,7 @@ class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 	{
 		$this->assertEquals(
 			$this->domain,
-			$map->get('TheCure\Models\User', 2));
+			$map->get('ns', 2));
 	}
 
 	/**
@@ -66,8 +66,8 @@ class IdentityMapTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testItShouldDeleteDomain($map)
 	{
-		$map->delete($this->domain);
-		$this->assertFalse($map->has($this->domain));
+		$map->delete('ns', $this->domain);
+		$this->assertFalse($map->has('ns', $this->domain));
 	}
 
 }

@@ -56,23 +56,14 @@ class IdentityMap {
 	 * @param  null $id
 	 * @return string
 	 */
-	protected function key($model, $id = NULL)
+	protected function key($ns, $id)
 	{
-		if ($model instanceOf Model)
+		if ($id instanceOf Model)
 		{
-			$class = get_class($model);
-		}
-		else
-		{
-			$class = $model;
+			$id = $this->extractIdentity($id);
 		}
 
-		if ($id === NULL)
-		{
-			$id = $this->extractIdentity($model);
-		}
-		
-		return $class.$id;
+		return $ns.$id;
 	}
 
 	/**
@@ -81,9 +72,10 @@ class IdentityMap {
 	 * @param  Model   $model
 	 * @return boolean
 	 */
-	public function has(Model $model)
+	public function has($ns, Model $model)
 	{
-		return in_array($model, $this->identities);
+		$key = $this->key($ns, $model);
+		return array_search($model, $this->identities) === $key;
 	}
 
 	/**
@@ -93,9 +85,9 @@ class IdentityMap {
 	 * @param   mixed   ID
 	 * @return  Model
 	 */
-	public function get($class, $id)
+	public function get($ns, $id)
 	{
-		$key = $this->key($class, $id);
+		$key = $this->key($ns, $id);
 		
 		if (isset($this->identities[$key]))
 		{
@@ -106,11 +98,12 @@ class IdentityMap {
 	/**
 	 * Add a Model to the identity map.
 	 *
-	 * @param Models\Model $model
+	 * @param  mixed
+	 * @param  mixed
 	 */
-	public function set(Model $model)
+	public function set($ns, $model)
 	{
-		$this->identities[$this->key($model)] = $model;
+		$this->identities[$this->key($ns, $model)] = $model;
 	}
 
 	/**
@@ -118,9 +111,9 @@ class IdentityMap {
 	 *
 	 * @param Models\Model $model
 	 */
-	public function delete(Model $model)
+	public function delete($ns, Model $model)
 	{
-		unset($this->identities[$this->key($model)]);
+		unset($this->identities[$this->key($ns, $model)]);
 	}
 
 }
