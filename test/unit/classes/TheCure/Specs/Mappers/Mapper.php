@@ -22,21 +22,25 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 
 	public function providerTestFindOne()
 	{
-		$data = static::prepareData();
+		$mapper = static::mapper();
+		$mapper2 = static::mapper();
+		$data = static::prepareData($mapper);
+		$data2 = static::prepareData($mapper2);
 
-		if ($data)
+		if ($data && $data2)
 		{
 			$id = (string) $data->_id;
+			$id2 = (string) $data2->_id;
 			$suffix = 'Admin';
 			$where = array('name' => 'Luke');
 
 			return array(
-				array(NULL,    NULL,    "TheCure\\Models\\User"),
-				array($id,     NULL,    "TheCure\\Models\\User"),
-				array(NULL,    $suffix, "TheCure\\Models\\User\\{$suffix}"),
-				array($id,     $suffix, "TheCure\\Models\\User\\{$suffix}"),
-				array($where,  NULL,    "TheCure\\Models\\User"),
-				array($where,  $suffix, "TheCure\\Models\\User\\{$suffix}")
+				array($mapper,  NULL,   NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $id,    NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $where, NULL,    "TheCure\\Models\\User"),
+				array($mapper2, NULL,   $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($mapper2, $id2,   $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($mapper2, $where, $suffix, "TheCure\\Models\\User\\{$suffix}"),
 			);			
 		}
 	}
@@ -44,9 +48,9 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider  providerTestFindOne
 	 */
-	public function testFindOne($id, $suffix, $expectedClass)
+	public function testFindOne($mapper, $id, $suffix, $expectedClass)
 	{
-		$model = static::mapper()->findOne($id, $suffix);
+		$model = $mapper->findOne($id, $suffix);
 		$this->assertInstanceOf($expectedClass, $model);
 	}
 
@@ -57,22 +61,24 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 
 	public function providerTestFind()
 	{
+		$mapper = static::mapper();
+		static::prepareData($mapper);
 		$suffix = 'Admin';
 		$where = array('name' => 'Luke');
 
 		return array(
-			array(NULL,   NULL,    FALSE),
-			array($where, NULL,    FALSE),
-			array($where, $suffix, FALSE),
+			array($mapper, NULL,   NULL,    FALSE),
+			array($mapper, $where, NULL,    FALSE),
+			array($mapper, $where, $suffix, FALSE),
 		);
 	}
 
 	/**
 	 * @dataProvider  providerTestFind
 	 */
-	public function testFind($id, $suffix, $exception)
+	public function testFind($mapper, $id, $suffix, $exception)
 	{
-		$collection = static::mapper()->find($id, $suffix);
+		$collection = $mapper->find($id, $suffix);
 		$this->assertTrue($collection->count() > 0);
 	}
 
@@ -83,7 +89,7 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNull($collection->current());
 	}
 
-	public function providerTestSave()
+	public function provideModel()
 	{
 		$model = new Models\User;
 		$accessor = new TransferObjectAccessor;
@@ -95,22 +101,28 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider  providerTestSave
+	 * @dataProvider  provideModel
 	 */
 	public function testSave($model)
 	{
-		static::mapper()->save($model);
+		$mapper = static::mapper();
+		$mapper->save($model);
 
 		$accessor = new TransferObjectAccessor;
-		$object = $accessor->get(static::mapper()->find()->current());
+		$object = $accessor->get($mapper->find()->current());
 
 		$this->assertTrue(isset($object->_id));
 		$this->assertSame('Luke', $object->name);
 	}
 
-	public function testUpdate()
+	/**
+	 * @dataProvider  provideModel
+	 */
+	public function testUpdate($model)
 	{
 		$mapper = static::mapper();
+		$mapper->save($model);
+
 		$model = $mapper->findOne();
 		$mapper->save($model);
 		$this->assertSame($model, $mapper->findOne());

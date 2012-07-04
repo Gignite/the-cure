@@ -50,12 +50,11 @@ class MapperMongoTest extends MapperTest {
 		return $db->selectCollection(\Arr::get($config, 'collection'));
 	}
 
-	protected static function prepareData()
+	protected static function prepareData($mapper)
 	{
 		if (class_exists('Mongo'))
 		{
 			$db = static::db();
-			$db->drop();
 			$collection = static::collection(static::db());
 			$data = array('name' => 'Luke');
 			$collection->insert($data);
@@ -65,18 +64,13 @@ class MapperMongoTest extends MapperTest {
 
 	protected static function mapper()
 	{
-		if (static::$mapper === NULL)
-		{
-			$mapper = new Mappers\Mongo\UserMapper;
-			$mapper->connection(new MongoConnection(static::config()));
-			$mapper->identities(new IdentityMap);
-			$mapper->factory(
-				new Factory(\Kohana::$config->load('the-cure.factory')));
-			$mapper->config(array('query_options' => array('safe' => TRUE)));
-			static::$mapper = $mapper;
-		}
-
-		return static::$mapper;
+		$mapper = new Mappers\Mongo\UserMapper;
+		$mapper->connection(new MongoConnection(static::config()));
+		$mapper->identities(new IdentityMap);
+		$mapper->factory(
+			new Factory(\Kohana::$config->load('the-cure.factory')));
+		$mapper->config(array('queryOptions' => array('safe' => TRUE)));
+		return $mapper;
 	}
 
 }

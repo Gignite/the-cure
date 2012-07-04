@@ -28,21 +28,15 @@ class MapperMockTest extends MapperTest {
 
 	protected static function mapper()
 	{
-		if (static::$mapper === NULL)
-		{
-			$mapper = new MockUserMapper;
-			$mapper->identities(new IdentityMap);
-			$mapper->factory(
-				new Factory(\Kohana::$config->load('the-cure.factory')));
-			static::$mapper = $mapper;
-		}
-
-		return static::$mapper;
+		$mapper = new MockUserMapper;
+		$mapper->identities(new IdentityMap);
+		$mapper->factory(
+			new Factory(\Kohana::$config->load('the-cure.factory')));
+		return $mapper;
 	}
 
-	protected static function prepareData()
+	protected static function prepareData($mapper)
 	{
-		$mapper = static::mapper();
 		$mapper->data[] = $data = new TransferObject(array(
 			'_id'  => 0,
 			'name' => 'Luke',
