@@ -56,7 +56,7 @@ class TransferObjectAccessor {
 		$this->setObject($model, $object);
 	}
 
-	public function getFieldValue(Model $model, Field $field)
+	public function getFieldValue(Model $model, Attribute $field)
 	{
 		$object = $this->get($model);
 
@@ -64,7 +64,7 @@ class TransferObjectAccessor {
 		{
 			$value = $object->{$field->name()};
 		}
-		else
+		elseif ($field instanceOf Field)
 		{
 			$value = $field->value();
 
@@ -72,6 +72,10 @@ class TransferObjectAccessor {
 			{
 				$value = $value($object);
 			}
+		}
+		else
+		{
+			$value = NULL;
 		}
 
 		return $value;
