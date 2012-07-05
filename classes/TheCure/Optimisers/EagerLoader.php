@@ -11,6 +11,8 @@ use TheCure\Exceptions\IncompatibleMapperException;
 
 use TheCure\Mappers\FindInMapper;
 
+use TheCure\Relationships\Relationship;
+
 class EagerLoader {
 	
 	/**
@@ -36,7 +38,7 @@ class EagerLoader {
 
 			if (empty($relations))
 			{
-				foreach ($attributes as $_relation)
+				foreach ($attributes->asArray() as $_relation)
 				{
 					if ($_relation instanceOf Relationship)
 					{
@@ -47,16 +49,32 @@ class EagerLoader {
 
 			foreach ($relations as $_relation)
 			{
-				$relation = $attributes->get($_relation);
-				$ids[] = array($relation, $object->{$_relation});
+				if ( ! isset($ids[$_relation->name()]))
+				{
+					$ids[$_relation->name()] = array(
+						'relation' => $_relation,
+						'ids'      => array(),
+					);
+				}
+
+				$relationID = $object->{$_relation->name()};
+
+				if (is_array($relationID))
+				{
+					$ids[$_relation->name()]['ids'] = array_merge(
+						$ids[$_relation->name()]['ids'],
+						$relationID);
+				}
+				else
+				{
+					$ids[$_relation->name()]['ids'][] = $relationID;
+				}
 			}
 		}
 
 		foreach ($ids as $_data)
 		{
-			list($relation, $_ids) = $_data;
-
-			$mapper = $relation->mapper($container);
+			$mapper = $_data['relation']->mapper($container);
 
 			// if ( ! $mapper instanceOf FindInMapper)
 			// {
@@ -64,8 +82,16 @@ class EagerLoader {
 			// 	throw new IncompatibleMapperException(
 			// 		"{$class} not instance of FindInMapper");
 			// }
+			// 
+			$mongoIDs = array();
 
-			$mapper->find(array('_id' => array('$in' => $_ids)));
+			foreach ($_data['ids'] as $_id)
+			{
+				$mongoIDs[] = new \MongoID($_id);
+			}
+
+			iterator_to_array(
+				$mapper->find(array('_id' => array('$in' => $mongoIDs))));
 		}
 	}
 
