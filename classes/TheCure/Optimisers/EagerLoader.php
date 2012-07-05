@@ -17,7 +17,15 @@ class EagerLoader {
 	
 	/**
 	 * 
-	 *     $eagerLoading->load($collection, array('venue', 'friends'));
+	 *     $mapOfCollections = $eagerLoader->loadRelations(
+	 *         $container,
+	 *         $collection,
+	 *         array('venue', 'friends'));
+	 *
+	 *     foreach ($mapOfCollections as $_collection)
+	 *     {
+	 *         $eagerLoader->loadRelations($container, $_collection, array('location'));
+	 *     }
 	 * 
 	 * @param  Collection $collection [description]
 	 * @param  array      $fields     [description]
@@ -72,17 +80,13 @@ class EagerLoader {
 			}
 		}
 
+		$eagerLoaded = array();
+
 		foreach ($ids as $_data)
 		{
-			$mapper = $_data['relation']->mapper($container);
+			$relation = $_data['relation'];
+			$mapper = $relation->mapper($container);
 
-			// if ( ! $mapper instanceOf FindInMapper)
-			// {
-			// 	$class = get_class($mapper);
-			// 	throw new IncompatibleMapperException(
-			// 		"{$class} not instance of FindInMapper");
-			// }
-			// 
 			$mongoIDs = array();
 
 			foreach ($_data['ids'] as $_id)
@@ -90,12 +94,15 @@ class EagerLoader {
 				$mongoIDs[] = new \MongoID($_id);
 			}
 
-			$collection = $mapper->find(
-				array('_id' => array('$in' => $mongoIDs)),
-				$_data['relation']->modelSuffix());
+			$eagerLoaded[$relation->name()] =
+				$mapper->find(
+					array('_id' => array('$in' => $mongoIDs)),
+					$relation->modelSuffix());
 
-			iterator_to_array($collection);
+			iterator_to_array($eagerLoaded[$relation->name()]);
 		}
+
+		return $eagerLoaded;
 	}
 
 }
