@@ -65,7 +65,7 @@ class EagerLoader {
 			// 		"{$class} not instance of FindInMapper");
 			// }
 
-			$mapper->find(array('_id' => $_ids));
+			$mapper->find(array('_id' => array('$in' => $_ids)));
 		}
 	}
 
