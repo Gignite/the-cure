@@ -156,12 +156,19 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 			{
 				$array = $object->asArray();
 
-				$options['upsert'] = TRUE;
+				if (isset($object->_id))
+				{
+					$options['upsert'] = TRUE;
 
-				$collection->update(
-					array('_id' => $object->_id),
-					$array,
-					$options);
+					$report = $collection->update(
+						array('_id' => $object->_id),
+						$array,
+						$options);
+				}
+				else
+				{
+					$collection->insert($array, $options);
+				}
 
 				return new TransferObject($array);
 			});
