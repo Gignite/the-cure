@@ -24,19 +24,31 @@ class EagerLoader {
 	public function loadRelations(
 		Container $container,
 		ModelCollection $collection,
-		array $fields)
+		array $relations = array())
 	{
 		$accessor = new TransferObjectAccessor;
 		$ids = array();
 
 		foreach ($collection as $_model)
 		{
+			$attributes = $_model::attributes();
 			$object = $accessor->get($_model);
 
-			foreach ($fields as $_field)
+			if (empty($relations))
 			{
-				$relation = $_model::attributes()->get($_field);
-				$ids[] = array($relation, $object->{$_field});
+				foreach ($attributes as $_relation)
+				{
+					if ($_relation instanceOf Relationship)
+					{
+						$relations[] = $_relation;
+					}
+				}
+			}
+
+			foreach ($relations as $_relation)
+			{
+				$relation = $attributes->get($_relation);
+				$ids[] = array($relation, $object->{$_relation});
 			}
 		}
 
