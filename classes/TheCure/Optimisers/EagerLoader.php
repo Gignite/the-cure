@@ -10,6 +10,7 @@ use TheCure\Accessors\TransferObjectAccessor;
 use TheCure\Exceptions\IncompatibleMapperException;
 
 use TheCure\Mappers\FindInMapper;
+use TheCure\Mappers\MongoMapper;
 
 use TheCure\Relationships\Relationship;
 
@@ -94,16 +95,17 @@ class EagerLoader {
 			$relation = $_data['relation'];
 			$mapper = $relation->mapper($container);
 
-			$mongoIDs = array();
-
-			foreach ($_data['ids'] as $_id)
+			if ($mapper instanceOf MongoMapper)
 			{
-				$mongoIDs[] = new \MongoID($_id);
+				foreach ($_data['ids'] as $_k => $_id)
+				{
+					$_data['ids'][$_k] = new \MongoID($_id);
+				}
 			}
 
 			$eagerLoaded[$relation->name()] =
 				$mapper->find(
-					array('_id' => array('$in' => $mongoIDs)),
+					array('_id' => array('$in' => $_data['ids'])),
 					$relation->modelSuffix());
 
 			iterator_to_array($eagerLoaded[$relation->name()]);
