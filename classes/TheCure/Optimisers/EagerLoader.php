@@ -90,8 +90,11 @@ class EagerLoader {
 				$mongoIDs[] = new \MongoID($_id);
 			}
 
-			iterator_to_array(
-				$mapper->find(array('_id' => array('$in' => $mongoIDs))));
+			$collection = $mapper->find(
+				array('_id' => array('$in' => $mongoIDs)),
+				$_data['relation']->modelSuffix());
+
+			iterator_to_array($collection);
 		}
 	}
 
