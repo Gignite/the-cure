@@ -54,6 +54,13 @@ class EagerLoader {
 					}
 				}
 			}
+			else
+			{
+				foreach ($relations as $_k => $_relation)
+				{
+					$relations[$_k] = $attributes->get($_relation);
+				}
+			}
 
 			foreach ($relations as $_relation)
 			{
