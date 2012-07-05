@@ -29,17 +29,17 @@ abstract class Relationship extends Attribute {
 	/**
 	 * @return mixed
 	 */
-	protected function modelSuffix()
+	public function mapperSuffix()
 	{
-		return $this->modelSuffix;
+		return $this->mapperSuffix;
 	}
 
 	/**
 	 * @return mixed
 	 */
-	protected function mapperSuffix()
+	public function modelSuffix()
 	{
-		return $this->mapperSuffix;
+		return $this->modelSuffix;
 	}
 
 	/**
