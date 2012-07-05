@@ -35,7 +35,7 @@ class EagerLoader {
 	public function loadRelations(
 		Container $container,
 		ModelCollection $collection,
-		array $relations = array())
+		array $relationNames = array())
 	{
 		$accessor = new TransferObjectAccessor;
 		$ids = array();
@@ -44,8 +44,9 @@ class EagerLoader {
 		{
 			$attributes = $_model::attributes();
 			$object = $accessor->get($_model);
+			$relations = array();
 
-			if (empty($relations))
+			if (empty($relationNames))
 			{
 				foreach ($attributes->asArray() as $_relation)
 				{
@@ -57,7 +58,7 @@ class EagerLoader {
 			}
 			else
 			{
-				foreach ($relations as $_k => $_relation)
+				foreach ($relationNames as $_k => $_relation)
 				{
 					$relations[$_k] = $attributes->get($_relation);
 				}
