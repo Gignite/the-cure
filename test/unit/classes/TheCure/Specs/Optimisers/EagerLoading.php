@@ -57,6 +57,16 @@ class EagerLoading extends \PHPUnit_Framework_TestCase {
 		$threads = $container->mapper('Forum\Thread')->find();
 		$eagerLoader->loadRelations($container, $threads, array('posts'));
 		$this->assertNotNull($identityMap->get('Forum\Thread', $postId));
+
+		$identityMap = new IdentityMap;
+		$container->mapper('Forum\Thread')->identities($identityMap);
+		$accessor = new TransferObjectAccessor;
+		$postId = $accessor->get($post)->_id;
+
+		$eagerLoader = new EagerLoader;
+		$threads = $container->mapper('Forum\Thread')->find();
+		$eagerLoader->loadRelations($container, $threads);
+		$this->assertNotNull($identityMap->get('Forum\Thread', $postId));
 	}
 
 }
