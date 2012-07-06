@@ -50,12 +50,14 @@ class AttributeList implements \ArrayAccess {
 
 		foreach ($attributes as $_attribute)
 		{
-			if ($this->get($name = $_attribute->alias()))
+			$name = $_attribute->alias();
+
+			if ($this->get($name))
 			{
 				throw new AliasUsedException($name);
 			}
 
-			$this->attributes[] = $_attribute;
+			$this->attributes[$name] = $_attribute;
 		}
 	}
 
@@ -67,19 +69,16 @@ class AttributeList implements \ArrayAccess {
 	 */
 	public function get($name)
 	{
-		foreach ($this->attributes as $_attribute)
+		if (isset($this->attributes[$name]))
 		{
-			if ($_attribute->alias() === $name)
-			{
-				return $_attribute;
-			}
+			return $this->attributes[$name];
 		}
 	}
 
 	// Get index of an Attribute
 	protected function index(Attribute $attribute)
 	{
-		return array_search($attribute, $this->attributes);
+		return $attribute->alias();
 	}
 
 	/**
@@ -97,12 +96,14 @@ class AttributeList implements \ArrayAccess {
 
 		foreach ($attributes as $_attribute)
 		{
-			if ( ! $previous = $this->get($name = $_attribute->alias()))
+			$name = $_attribute->alias();
+
+			if ( ! $previous = $this->get($name))
 			{
 				throw new AliasUnusedException($name);
 			}
 
-			$this->attributes[$this->index($previous)] = $_attribute;
+			$this->attributes[$name] = $_attribute;
 		}
 	}
 
@@ -119,7 +120,8 @@ class AttributeList implements \ArrayAccess {
 			$attribute = $this->get($attribute);
 		}
 
-		unset($this->attributes[$this->index($attribute)]);
+		$name = $attribute->alias();
+		unset($this->attributes[$name]);
 	}
 
 	/**
