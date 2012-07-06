@@ -3,6 +3,8 @@ namespace TheCure\Optimisers;
 
 use TheCure\Container;
 
+use TheCure\Lists\AttributeList;
+
 use TheCure\Collections\ModelCollection;
 
 use TheCure\Accessors\TransferObjectAccessor;
@@ -15,6 +17,103 @@ use TheCure\Mappers\MongoMapper;
 use TheCure\Relationships\Relationship;
 
 class EagerLoader {
+
+	private function getRelationshipsFromAttributeList(AttributeList $attributes)
+	{
+		$relationships = array();
+
+		foreach ($attributes->asArray() as $_relationship)
+		{
+			if ($_relationship instanceOf Relationship)
+			{
+				$relationships[] = $_relationship;
+			}
+		}
+
+		return $relationships;
+	}
+
+	private function extractAttributes(AttributeList $attributes, $names)
+	{
+		$extractedAttributes = array();
+
+		foreach ($names as $_k => $_relation)
+		{
+			$extractedAttributes[$_k] = $attributes->get($_relation);
+		}
+
+		return $extractedAttributes;
+	}
+
+	private function collectIDsFromRelationship($object, $relationship)
+	{
+		$ids = $object->{$relationship->name()};
+
+		if ( ! is_array($ids))
+		{
+			$ids = array($ids);
+		}
+
+		return $ids;
+	}
+
+	private function appendRelationAndIDs(
+		Relationship $relationship,
+		array $ids,
+		array $newIDs)
+	{
+		$relationshipName = $relationship->name();
+
+		if ( ! isset($ids[$relationshipName]))
+		{
+			$ids[$relationshipName] = array(
+				'relation' => $relationship,
+				'ids'      => array(),
+			);
+		}
+
+		$ids[$relationshipName]['ids'] = array_merge(
+			$ids[$relationshipName]['ids'],
+			$newIDs);
+
+		return $ids;
+	}
+
+	private function getRelationshipsAndIDsFromCollection(
+		ModelCollection $collection)
+	{
+		$accessor = new TransferObjectAccessor;
+		$ids = array();
+
+		foreach ($collection as $_model)
+		{
+			$attributes = $_model::attributes();
+			$object = $accessor->get($_model);
+			$relations = array();
+
+			if (empty($relationNames))
+			{
+				$relationships = $this->getRelationshipsFromAttributeList(
+					$attributes);
+			}
+			else
+			{
+				$relationships = $this->extractAttributes(
+					$attributes,
+					$relationNames);
+			}
+
+			foreach ($relationships as $_relation)
+			{
+				$ids = $this->appendRelationAndIDs(
+					$_relation,
+					$ids,
+					$this->collectIDsFromRelationship($object, $_relation));
+			}
+		}
+
+		return $ids;
+	}
 	
 	/**
 	 * 
@@ -28,66 +127,17 @@ class EagerLoader {
 	 *         $eagerLoader->loadRelations($container, $_collection, array('location'));
 	 *     }
 	 * 
-	 * @param  Collection $collection [description]
-	 * @param  array      $fields     [description]
-	 * @return [type]                 [description]
+	 * @param   Container
+	 * @param   ModelCollection
+	 * @param   array     
+	 * @return  map of ModelCollections
 	 */
 	public function loadRelations(
 		Container $container,
 		ModelCollection $collection,
 		array $relationNames = array())
 	{
-		$accessor = new TransferObjectAccessor;
-		$ids = array();
-
-		foreach ($collection as $_model)
-		{
-			$attributes = $_model::attributes();
-			$object = $accessor->get($_model);
-			$relations = array();
-
-			if (empty($relationNames))
-			{
-				foreach ($attributes->asArray() as $_relation)
-				{
-					if ($_relation instanceOf Relationship)
-					{
-						$relations[] = $_relation;
-					}
-				}
-			}
-			else
-			{
-				foreach ($relationNames as $_k => $_relation)
-				{
-					$relations[$_k] = $attributes->get($_relation);
-				}
-			}
-
-			foreach ($relations as $_relation)
-			{
-				if ( ! isset($ids[$_relation->name()]))
-				{
-					$ids[$_relation->name()] = array(
-						'relation' => $_relation,
-						'ids'      => array(),
-					);
-				}
-
-				$relationID = $object->{$_relation->name()};
-
-				if (is_array($relationID))
-				{
-					$ids[$_relation->name()]['ids'] = array_merge(
-						$ids[$_relation->name()]['ids'],
-						$relationID);
-				}
-				else
-				{
-					$ids[$_relation->name()]['ids'][] = $relationID;
-				}
-			}
-		}
+		$ids = $this->getRelationshipsAndIDsFromCollection($collection);
 
 		$eagerLoaded = array();
 
