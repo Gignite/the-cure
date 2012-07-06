@@ -25,7 +25,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase {
 			$name = new Field('name'),
 			$age = new Field('age'));
 		$this->assertSame(
-			array_values(compact('name', 'age')),
+			compact('name', 'age'),
 			$attributes->asArray());
 		return $attributes;
 	}
