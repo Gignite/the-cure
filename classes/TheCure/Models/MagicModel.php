@@ -30,7 +30,7 @@ abstract class MagicModel extends Model {
 	 * Attributes for this Model.
 	 * 
 	 * @return  Attributes
- */
+	 */
 	public static function attributes()
 	{
 		return new AttributeList;
@@ -110,6 +110,18 @@ abstract class MagicModel extends Model {
 		return FALSE;
 	}
 
+	private $attributes;
+
+	private function _attributes()
+	{
+		if ($this->attributes === NULL)
+		{
+			$this->attributes = static::attributes();
+		}
+
+		return $this->attributes;
+	}
+
 	/**
 	 * The magic of this object!
 	 * 
@@ -120,7 +132,7 @@ abstract class MagicModel extends Model {
 	 */
 	public function __call($method, $args)
 	{
-		$attributes = static::attributes();
+		$attributes = $this->_attributes();
 		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($this);
 		$relationship = $this->relationship($attributes, $method, $args);
@@ -133,7 +145,7 @@ abstract class MagicModel extends Model {
 		{
 			if ($args)
 			{
-				$object->{$field->name()} = $args[0];
+				$object->{$field->alias()} = $args[0];
 				return;
 			}
 			else
