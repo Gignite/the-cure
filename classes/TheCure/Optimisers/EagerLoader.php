@@ -47,7 +47,7 @@ class EagerLoader {
 
 	private function collectIDsFromRelationship($object, $relationship)
 	{
-		$ids = $object->{$relationship->name()};
+		$ids = $object->{$relationship->alias()};
 
 		if ( ! is_array($ids))
 		{
@@ -62,7 +62,7 @@ class EagerLoader {
 		array $ids,
 		array $newIDs)
 	{
-		$relationshipName = $relationship->name();
+		$relationshipName = $relationship->alias();
 
 		if ( ! isset($ids[$relationshipName]))
 		{
