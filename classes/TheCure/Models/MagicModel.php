@@ -145,7 +145,7 @@ abstract class MagicModel extends Model {
 		{
 			if ($args)
 			{
-				$object->{$field->alias()} = $args[0];
+				$object->{$field->name()} = $args[0];
 				return;
 			}
 			else
