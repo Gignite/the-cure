@@ -82,24 +82,32 @@ class EagerLoader {
 	private function getRelationshipsAndIDsFromCollection(
 		ModelCollection $collection)
 	{
+		$attributes = array();
 		$accessor = new TransferObjectAccessor;
 		$ids = array();
 
 		foreach ($collection as $_model)
 		{
-			$attributes = $_model::attributes();
+			$class = get_class($_model);
+
+			if ( ! isset($attributes[$class]))
+			{
+				$attributes[$class] = $_model::attributes();
+			}
+
+			$attr = $attributes[$class];
 			$object = $accessor->get($_model);
 			$relations = array();
 
 			if (empty($relationNames))
 			{
 				$relationships = $this->getRelationshipsFromAttributeList(
-					$attributes);
+					$attr);
 			}
 			else
 			{
 				$relationships = $this->extractAttributes(
-					$attributes,
+					$attr,
 					$relationNames);
 			}
 
