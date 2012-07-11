@@ -89,6 +89,12 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNull($collection->current());
 	}
 
+	public function testFindOneWithNonExistentId()
+	{
+		$result = static::mapper()->findOne(123);
+		$this->assertNull($result);
+	}
+
 	public function provideModel()
 	{
 		$model = new Models\User;

@@ -122,7 +122,10 @@ abstract class MockMapper extends Mapper {
 			{
 				if (isset($where['_id']))
 				{
-					return $collection[$where['_id']];
+					if (isset($collection[$where['_id']]))
+					{
+						return $collection[$where['_id']];
+					}
 				}
 				elseif ($where)
 				{
