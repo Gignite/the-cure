@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * @package     TheCure
+ * @category    Accessor
+ * @copyright   Gignite, 2012
+ * @license     MIT
+ */
 namespace TheCure\Accessors;
 
 use TheCure\Lists\AttributeList;
