@@ -31,8 +31,19 @@ use TheCure\Collections\Collection;
 use TheCure\Collections\ModelCollection;
 
 abstract class Mapper
-	implements MapperActions, FactorySetGet, IdentitiesSetGet,
-		ConfigSetGet, ContainerSetGet {
+	implements
+		FindOneMapper,
+		FindAndMapper,
+		FindOrMapper,
+		FindInMapper,
+		
+		SaveMapper,
+		DeleteMapper,
+
+		FactorySetGet,
+		IdentitiesSetGet,
+		ConfigSetGet,
+		ContainerSetGet {
 
 	protected $container;
 	protected $identities;
