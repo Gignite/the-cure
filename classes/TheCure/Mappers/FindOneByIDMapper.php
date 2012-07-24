@@ -9,7 +9,7 @@
  */
 namespace TheCure\Mappers;
 
-interface FindOneMapper {
+interface FindOneByIDMapper {
 	
 	/**
 	 * Find a single model by ID.
