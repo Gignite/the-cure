@@ -46,7 +46,7 @@ class HasManyRelationship extends HasRelationship
 		$where = $this->where($object);
 		return $this->mapper($container)->find(
 			$where,
-			$this->modelSuffix());
+			$this->model());
 	}
 
 	/**

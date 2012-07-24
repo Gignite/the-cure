@@ -165,7 +165,7 @@ class EagerLoader {
 			$eagerLoaded[$relation->name()] =
 				$mapper->find(
 					array('_id' => array('$in' => $_data['ids'])),
-					$relation->modelSuffix());
+					$relation->model());
 
 			iterator_to_array($eagerLoaded[$relation->name()]);
 		}

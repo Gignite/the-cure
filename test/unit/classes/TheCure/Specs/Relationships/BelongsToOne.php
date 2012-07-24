@@ -29,7 +29,7 @@ class RelationshipBelongsToOne extends \PHPUnit_Framework_TestCase {
 	protected function relationship()
 	{
 		$config = array(
-			'mapperSuffix' => 'User',
+			'mapper' => 'User',
 			'modelSuffix'  => 'Admin',
 			'foreign'       => 'best_friend',
 		);

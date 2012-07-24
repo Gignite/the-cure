@@ -5,7 +5,7 @@
  * @example
  * 
  *     $relationship = new HasOne('profile', array(
- *         'mapperSuffix' => 'Profile',
+ *         'mapper' => 'Profile',
  *     ));
  *     
  *     $container = new Container('Mock');
@@ -61,7 +61,7 @@ class HasOneRelationship extends HasRelationship
 		$object = $accessor->get($model);
 		return $this->mapper($container)->findOne(
 			$this->where($object),
-			$this->modelSuffix());
+			$this->model());
 	}
 
 	/**

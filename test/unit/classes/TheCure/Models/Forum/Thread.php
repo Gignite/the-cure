@@ -17,7 +17,7 @@ class Thread extends MagicModel {
 			new Field('title'),
 			new Field('message'),
 			new HasManyRelationship('posts', array(
-				'mapperSuffix' => 'Forum\Post',
+				'mapper' => 'Forum\Post',
 			)));
 	}
 

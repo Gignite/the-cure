@@ -30,7 +30,7 @@ class BelongsToManyRelationship extends BelongsToRelationship {
 		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
-		return $this->mapper($container)->find($where, $this->modelSuffix());
+		return $this->mapper($container)->find($where, $this->model());
 	}
 
 }

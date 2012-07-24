@@ -22,33 +22,30 @@ use TheCure\Container;
 
 abstract class Relationship extends Attribute {
 
-	protected $mapperSuffix;
+	protected $mapper;
 
-	protected $modelSuffix;
-
-	/**
-	 * @return mixed
-	 */
-	public function mapperSuffix()
-	{
-		return $this->mapperSuffix;
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function modelSuffix()
-	{
-		return $this->modelSuffix;
-	}
+	protected $model;
 
 	/**
 	 * @param  Container $container
 	 * @return Mapper
 	 */
-	public function mapper(Container $container)
+	public function mapper(Container $container = NULL)
 	{
-		return $container->mapper($this->mapperSuffix());
+		if ($container !== NULL)
+		{
+			return $container->mapper($this->mapper());
+		}
+
+		return $this->mapper;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function model()
+	{
+		return $this->model;
 	}
 
 }

@@ -30,7 +30,7 @@ class BelongsToOneRelationship extends BelongsToRelationship {
 		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
 		$where = $this->where($object);
-		return $this->mapper($container)->findOne($where, $this->modelSuffix());
+		return $this->mapper($container)->findOne($where, $this->model());
 	}
 
 }

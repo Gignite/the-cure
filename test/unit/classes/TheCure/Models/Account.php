@@ -16,7 +16,7 @@ class Account extends MagicModel {
 		return new AttributeList(
 			new Field('email'),
 			new HasOneRelationship('password', array(
-				'mapperSuffix' => 'Password',
+				'mapper' => 'Password',
 			)));
 	}
 
