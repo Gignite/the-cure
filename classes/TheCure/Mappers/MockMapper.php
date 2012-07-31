@@ -126,7 +126,7 @@ abstract class MockMapper extends Mapper {
 			$suffix,
 			function ($where) use ($collection)
 			{
-				if (isset($where['_id']))
+				if (isset($where['_id']) AND ! is_array($where['_id']))
 				{
 					if (isset($collection[$where['_id']]))
 					{
