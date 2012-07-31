@@ -55,6 +55,12 @@ abstract class MockMapper extends Mapper {
 				{
 					// We were doing an $in query (like mongo)
 				}
+				elseif (is_array($_needle) 
+					AND isset($_needle['$ne']) 
+					AND $value !== $_needle['$ne'])
+				{
+					// We're doing a $ne query (like mongo)
+				}
 				elseif (is_array($value) AND in_array($_needle, $value))
 				{
 					// We were doing a contains query (like mongo)
