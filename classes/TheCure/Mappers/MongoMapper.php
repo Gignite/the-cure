@@ -30,7 +30,21 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 
 	protected function idize($id)
 	{
-		if ( ! $id instanceOf MongoID)
+		if (is_array($id))
+		{
+			$first_value = current($id);
+			$first_key = key($id);
+
+			if (is_array($first_value))
+			{
+				foreach ($first_value as $_k => $_id)
+				{
+					$id[$first_key][$_k] = $this->idize($_id);
+				}
+			}
+		}
+
+		elseif ( ! $id instanceOf MongoID)
 		{
 			$id = new MongoID($id);
 		}
