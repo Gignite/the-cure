@@ -34,14 +34,19 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 			$suffix = 'Admin';
 			$where = array('name' => 'Luke');
 
+			$where2 = array(
+				'_id' => array('$in' => array($id, $id2)),
+			);
+
 			return array(
-				array($mapper,  NULL,   NULL,    "TheCure\\Models\\User"),
-				array($mapper,  $id,    NULL,    "TheCure\\Models\\User"),
-				array($mapper,  $where, NULL,    "TheCure\\Models\\User"),
-				array($mapper2, NULL,   $suffix, "TheCure\\Models\\User\\{$suffix}"),
-				array($mapper2, $id2,   $suffix, "TheCure\\Models\\User\\{$suffix}"),
-				array($mapper2, $where, $suffix, "TheCure\\Models\\User\\{$suffix}"),
-			);			
+				array($mapper,  NULL,    NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $id,     NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $where,  NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $where2, NULL,    "TheCure\\Models\\User"),
+				array($mapper2, NULL,    $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($mapper2, $id2,    $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($mapper2, $where,  $suffix, "TheCure\\Models\\User\\{$suffix}"),
+			);
 		}
 	}
 
