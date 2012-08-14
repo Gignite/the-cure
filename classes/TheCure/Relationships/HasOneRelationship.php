@@ -104,8 +104,6 @@ class HasOneRelationship extends HasRelationship
 			unset($modelObject->{$this->name()});
 			return;
 		}
-
-		throw new Exceptions\FieldNotFoundException;
 	}
 
 }
