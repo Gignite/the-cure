@@ -46,7 +46,7 @@ class HasOne extends Acceptance {
 		$account->deletePassword();
 		$container->mapper('Account')->save($account);
 
-		$this->assertNull($account->password());
+		$this->assertFalse($account->password());
 	}
 
 }
