@@ -26,3 +26,5 @@
  - Rename the SetGet interfaces
  - Group classes in type folders not any other way
  - Add transaction flushing (model persistence until its req.)
+ - IDless relationships so we don't need to prematurely and
+   secretly save child models
