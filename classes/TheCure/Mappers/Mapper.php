@@ -265,6 +265,7 @@ abstract class Mapper
 			$where['_id'] = $this->idize($where['_id']);
 
 			if (count($where) === 1
+				AND ! is_array($where['_id'])
 				AND $model = $this->getModelFromIdentityMap($where['_id']))
 			{
 				return $model;

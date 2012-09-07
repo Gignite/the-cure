@@ -22,7 +22,7 @@ use TheCure\Mappers\Mapper;
 
 use TheCure\Models\Model;
 
-use MongoID;
+use MongoID, MongoCursor;
 
 abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 
@@ -30,7 +30,21 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 
 	protected function idize($id)
 	{
-		if ( ! $id instanceOf MongoID)
+		if (is_array($id))
+		{
+			$first_value = current($id);
+			$first_key = key($id);
+
+			if (is_array($first_value))
+			{
+				foreach ($first_value as $_k => $_id)
+				{
+					$id[$first_key][$_k] = $this->idize($_id);
+				}
+			}
+		}
+
+		elseif ( ! $id instanceOf MongoID)
 		{
 			$id = new MongoID($id);
 		}
@@ -75,6 +89,30 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 		return $this->config('queryOptions', array());
 	}
 
+	private function log($message)
+	{
+		if (class_exists('Kohana') AND isset(\Kohana::$log))
+		{
+			\Kohana::$log->add(\Log::INFO, $message);
+		}
+	}
+
+	public function log_nonindexed_queries(MongoCursor $results)
+	{
+		if ($config = $this->config('log', FALSE) 
+			AND isset($config['nonindexed_queries']))
+		{
+			$explain = $results->explain();
+
+			if (isset($explain['cursor']) 
+				AND $explain['cursor'] === 'BasicCursor')
+			{
+				$info = $results->info();
+				$this->log(compact('info', 'explain'), TRUE);
+			}
+		}
+	}
+
 	/**
 	 * @example
 	 *
@@ -97,12 +135,16 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 	{
 		$collection = $this->collection();
 
+		$mapper = $this;
+
 		return $this->createCollection(
 			$where,
 			$suffix,
-			function ($where) use ($collection)
+			function ($where) use ($collection, $mapper)
 			{
-				return $collection->find($where);
+				$cursor = $collection->find($where);
+				$mapper->log_nonindexed_queries($cursor);
+				return $cursor;
 			});
 	}
 

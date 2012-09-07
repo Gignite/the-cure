@@ -22,14 +22,19 @@ use TheCure\Relations\ContainsRelation;
 
 use TheCure\Models\Model;
 
+use TheCure\Collections\Collection;
+
 class HasManyRelationship extends HasRelationship
 	implements AddRelation, RemoveRelation, ContainsRelation {
 
 	protected function where($object)
 	{
-		return array(
-			'_id' => array('$in' => $object->{$this->name()}),
-		);
+		if ($relation_ids = $object->{$this->name()})
+		{
+			return array(
+				'_id' => array('$in' => $relation_ids),
+			);
+		}
 	}
 
 	/**
@@ -43,7 +48,12 @@ class HasManyRelationship extends HasRelationship
 	{
 		$accessor = new TransferObjectAccessor;
 		$object = $accessor->get($model);
-		$where = $this->where($object);
+
+		if ( ! $where = $this->where($object))
+		{
+			return new Collection(array());
+		}
+
 		return $this->mapper($container)->find(
 			$where,
 			$this->model());

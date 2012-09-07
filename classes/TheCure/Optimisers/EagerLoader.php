@@ -80,7 +80,7 @@ class EagerLoader {
 	}
 
 	private function getRelationshipsAndIDsFromCollection(
-		ModelCollection $collection)
+		\TheCure\Collections\Collection $collection)
 	{
 		$attributes = array();
 		$accessor = new TransferObjectAccessor;
@@ -142,9 +142,15 @@ class EagerLoader {
 	 */
 	public function loadRelations(
 		Container $container,
-		ModelCollection $collection,
+		$collection,
 		array $relationNames = array())
 	{
+
+		if (is_array($collection))
+		{
+			$collection = new \TheCure\Collections\Collection($collection);
+		}
+		
 		$ids = $this->getRelationshipsAndIDsFromCollection($collection);
 
 		$eagerLoaded = array();

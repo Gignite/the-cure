@@ -4,3 +4,7 @@ test/junit.xml
 vendor
 composer.phar
 composer.lock
+*.swo
+*.swp
+*.vim
+*.un~

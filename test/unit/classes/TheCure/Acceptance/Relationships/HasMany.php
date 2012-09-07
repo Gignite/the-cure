@@ -51,7 +51,7 @@ class HasMany extends Acceptance {
 		$container->mapper('Forum\Thread')->save($thread);
 
 		$this->assertSame(0, $thread->posts()->count());
-		$this->assertNull($post->thread());
+		$this->assertFalse($post->thread());
 	}
 
 }

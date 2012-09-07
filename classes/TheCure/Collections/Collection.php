@@ -54,7 +54,10 @@ class Collection implements \Iterator, \Countable {
 	 */
 	public function current()
 	{
-		return $this->collection[$this->i];
+		if ($this->valid())
+		{
+			return $this->collection[$this->i];
+		}
 	}
 
 	/**

@@ -34,14 +34,19 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 			$suffix = 'Admin';
 			$where = array('name' => 'Luke');
 
+			$where2 = array(
+				'_id' => array('$in' => array($id, $id2)),
+			);
+
 			return array(
-				array($mapper,  NULL,   NULL,    "TheCure\\Models\\User"),
-				array($mapper,  $id,    NULL,    "TheCure\\Models\\User"),
-				array($mapper,  $where, NULL,    "TheCure\\Models\\User"),
-				array($mapper2, NULL,   $suffix, "TheCure\\Models\\User\\{$suffix}"),
-				array($mapper2, $id2,   $suffix, "TheCure\\Models\\User\\{$suffix}"),
-				array($mapper2, $where, $suffix, "TheCure\\Models\\User\\{$suffix}"),
-			);			
+				array($mapper,  NULL,    NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $id,     NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $where,  NULL,    "TheCure\\Models\\User"),
+				array($mapper,  $where2, NULL,    "TheCure\\Models\\User"),
+				array($mapper2, NULL,    $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($mapper2, $id2,    $suffix, "TheCure\\Models\\User\\{$suffix}"),
+				array($mapper2, $where,  $suffix, "TheCure\\Models\\User\\{$suffix}"),
+			);
 		}
 	}
 
@@ -87,6 +92,12 @@ abstract class MapperTest extends \PHPUnit_Framework_TestCase {
 		$collection = static::mapper()->find(array('foo' => 'bar'));
 		$this->assertSame(0, $collection->count());
 		$this->assertNull($collection->current());
+	}
+
+	public function testFindOneWithNonExistentId()
+	{
+		$result = static::mapper()->findOne(123);
+		$this->assertNull($result);
 	}
 
 	public function provideModel()

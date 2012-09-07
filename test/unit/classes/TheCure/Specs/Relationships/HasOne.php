@@ -101,13 +101,5 @@ class RelationshipHasOne extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue(empty($modelObject->{$relationship->name()}));
 	}
 
-	/**
-	 * @expectedException  TheCure\Exceptions\FieldNotFoundException
-	 */
-	public function testItShouldThrowExceptionWhenRelationFieldNotExists()
-	{
-		$this->relationship()->delete($this->container(), new Models\User\Admin);
-	}
-
 }
 

@@ -104,7 +104,12 @@ abstract class MagicModel extends Model {
 		if (interface_exists($interface)
 			AND $relationship instanceOf $interface)
 		{
-			return $relationship->{$verb}($this->__container(), $this, $arg);
+			if (($r = $relationship->{$verb}($this->__container(), $this, $arg)) === FALSE)
+			{
+				return NULL;
+			}
+
+			return $r;
 		}
 
 		return FALSE;
@@ -139,6 +144,11 @@ abstract class MagicModel extends Model {
 
 		if ($relationship !== FALSE)
 		{
+			if ($relationship === NULL)
+			{
+				return FALSE;
+			}
+
 			return $relationship;
 		}
 		elseif ($field = $this->attribute($attributes, $method))
