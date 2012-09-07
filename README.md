@@ -31,7 +31,7 @@ can add it as a dependency.
 
 Alternatively you can download the latest zip from github:
 
-[The cure v0.1.0](https://github.com/Gignite/the-cure/zipball/v0.1.0)
+[The cure v0.2.0](https://github.com/Gignite/the-cure/zipball/v0.2.0)
 
 ## Ingredients
 
