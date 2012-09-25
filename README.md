@@ -24,14 +24,14 @@ can add it as a dependency.
 {
 	"require": {
 		"php": ">=5.3.2",
-		"the-cure/the-cure": ">=0.2.0"
+		"the-cure/the-cure": ">=0.2.1"
 	}
 }
 ```
 
 Alternatively you can download the latest zip from github:
 
-[The cure v0.2.0](https://github.com/Gignite/the-cure/zipball/v0.2.0)
+[The cure v0.2.1](https://github.com/Gignite/the-cure/zipball/v0.2.1)
 
 ## Ingredients
 
