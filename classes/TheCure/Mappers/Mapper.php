@@ -32,12 +32,16 @@ use TheCure\Collections\ModelCollection;
 
 abstract class Mapper
 	implements
+		FindMapper,
 		FindOneMapper,
-		FindAndMapper,
-		FindOrMapper,
-		FindInMapper,
+
+		// FindAndMapper,
+		// FindInMapper,
+		// FindOneByIDMapper,
+		// FindOrMapper,
 		
 		SaveMapper,
+		
 		DeleteMapper,
 
 		FactorySetGet,
