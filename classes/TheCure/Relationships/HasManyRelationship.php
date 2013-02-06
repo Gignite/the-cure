@@ -142,7 +142,7 @@ class HasManyRelationship extends HasRelationship
 				{
 					$relations = $modelObject->{$this->name()};
 					unset($relations[$_k]);
-					$modelObject->{$this->name()} = $relations;
+					$modelObject->{$this->name()} = array_values($relations);
 					return;
 				}
 			}
