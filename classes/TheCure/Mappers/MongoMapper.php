@@ -100,7 +100,8 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 	public function log_nonindexed_queries(MongoCursor $results)
 	{
 		if ($config = $this->config('log', FALSE) 
-			AND isset($config['nonindexed_queries']))
+			AND isset($config['nonindexed_queries'])
+			AND $config['nonindexed_queries'] === TRUE)
 		{
 			$explain = $results->explain();
 
