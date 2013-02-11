@@ -198,6 +198,7 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 			function ($object) use ($collection, $options)
 			{
 				$array = $object->asArray();
+				$array['_updated'] = time();
 
 				if (isset($object->_id))
 				{
@@ -210,6 +211,7 @@ abstract class MongoMapper extends Mapper implements ConnectionSetGet {
 				}
 				else
 				{
+					$array['_created'] = time();
 					$collection->insert($array, $options);
 				}
 
